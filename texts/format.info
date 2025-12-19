@@ -1,0 +1,32 @@
+Format of the files in texts:
+
+1) Main sections: triple # is the separator
+
+Lines of meta data
+###
+Lines of Analyzed text.
+
+2) Meta data
+
+Author: George Eliot (Mary Ann Evans)
+Work: Middlemarch
+Year: 1871–72
+Choice: beginning of chapter one
+Comment: This excerpt has very long sentences.
+
+3) Analyzed text:
+
+Sentence 1 on one line
+( beginning of then structure analysis
+...
+ some text of sentence 1
+...
+)
+(
+...
+)
+
+Sentence 2 on one line, after an empty line
+( etc
+...
+)
