@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sentence Structural Analysis</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root{
+      --bg:#17110c;
+      --panel:#21160f;
+      --paper:#e7d7b6;
+      --ink:#efe6d5;
+      --muted:rgba(239,230,213,.65);
+      --green:#5a7a5c;
+      --border:rgba(231,215,182,.25);
+      --error:#7a1f1b;
+      --errorInk:#ffb8b2;
+      --radius:14px;
+      --radiusSm:10px;
+      --serif:ui-serif, Georgia, "Times New Roman", serif;
+      --sans:system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      --mono:ui-monospace, Menlo, Consolas, monospace;
+      --hlBg:rgba(231,215,182,.22);
+      --hlBd:rgba(231,215,182,.35);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--ink);
+      font-family:var(--sans);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .container{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:48px 56px;
+      max-width:720px;
+      width:90%;
+      text-align:center;
+    }
+
+    h1{
+      margin:0;
+      font-family:var(--serif);
+      font-size:2.4rem;
+      letter-spacing:.02em;
+    }
+
+    .subtitle{
+      margin-top:10px;
+      font-size:1.05rem;
+      color:var(--muted);
+    }
+
+    .versions{
+      margin-top:40px;
+      text-align:left;
+    }
+
+    .versions h2{
+      font-size:1rem;
+      font-weight:600;
+      margin-bottom:14px;
+      color:var(--paper);
+      letter-spacing:.04em;
+      text-transform:uppercase;
+    }
+
+    .version-link{
+      display:block;
+      padding:14px 16px;
+      margin-bottom:10px;
+      border-radius:var(--radiusSm);
+      border:1px solid transparent;
+      color:var(--ink);
+      text-decoration:none;
+      transition:background .15s ease, border-color .15s ease;
+      font-family:var(--sans);
+    }
+
+    .version-link:hover{
+      background:var(--hlBg);
+      border-color:var(--hlBd);
+    }
+
+    .version-label{
+      font-weight:600;
+      color:var(--paper);
+    }
+
+    .version-desc{
+      display:block;
+      margin-top:4px;
+      font-size:.9rem;
+      color:var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Sentence Structural Analysis</h1>
+    <div class="subtitle">Visual comparison tool</div>
+
+    <div class="versions">
+      <h2>Available versions</h2>
+
+      <a class="version-link" href="proto/Structure_display_v3.3.html">
+        <span class="version-label">ver. 3.3.2</span>
+        <span class="version-desc">
+          Two samples or works. Working with minor cosmetic glitches.
+        </span>
+      </a>
+
+    </div>
+  </div>
+</body>
+</html>
