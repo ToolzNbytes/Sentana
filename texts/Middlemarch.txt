@@ -1,0 +1,92 @@
+Author: George Eliot (Mary Ann Evans)
+Work: Middlemarch
+Year: 1871–72
+Choice: beginning of chapter one
+Comment: This excerpt has very long sentences.
+###
+
+Miss Brooke had that kind of beauty which seems to be thrown into relief by poor dress.
+(IC1 Miss Brooke had that kind of beauty
+~(DC2<1 which seems to be thrown into relief by poor dress.
+~)
+)
+
+Her hand and wrist were so finely formed that she could wear sleeves not less bare of style than those in which the Blessed Virgin appeared to Italian painters; and her profile as well as her stature and bearing seemed to gain the more dignity from her plain garments, which by the side of provincial fashion gave her the impressiveness of a fine quotation from the Bible,—or from one of our elder poets,—in a paragraph of to-day’s newspaper.
+(IC1 Her hand and wrist were so finely formed
+~(DC2<1 that she could wear sleeves not less bare of style than those
+~~(DC3<2 in which the Blessed Virgin appeared to Italian painters;
+~~)
+~)
+)
+(IC4 and her profile as well as her stature and bearing seemed to gain the more dignity from her plain garments,
+~(DC5<4 which by the side of provincial fashion gave her the impressiveness of a fine quotation from the Bible,—or from one of our elder poets,—in a paragraph of to-day’s newspaper.
+~)
+)
+
+She was usually spoken of as being remarkably clever, but with the addition that her sister Celia had more common-sense.
+(IC1 She was usually spoken of as being remarkably clever, but with the addition
+~(DC2<1 that her sister Celia had more common-sense.
+~)
+)
+
+Nevertheless, Celia wore scarcely more trimmings; and it was only to close observers that her dress differed from her sister’s, and had a shade of coquetry in its arrangements; for Miss Brooke’s plain dressing was due to mixed conditions, in most of which her sister shared.
+(IC1 Nevertheless, Celia wore scarcely more trimmings;
+)
+(IC2 and it was only to close observers
+~(DC3<2 that her dress differed from her sister’s,
+~[CP4 and had a shade of coquetry in its arrangements;
+~]
+~)
+)
+(IC5 for Miss Brooke’s plain dressing was due to mixed conditions,
+~(DC6<5 in most of which her sister shared.
+~)
+)
+
+The pride of being ladies had something to do with it: the Brooke connections, though not exactly aristocratic, were unquestionably “good:” if you inquired backward for a generation or two, you would not find any yard-measuring or parcel-tying forefathers—anything lower than an admiral or a clergyman; and there was even an ancestor discernible as a Puritan gentleman who served under Cromwell, but afterwards conformed, and managed to come out of all political troubles as the proprietor of a respectable family estate.
+(IC1 The pride of being ladies had something to do with it:
+)
+(IC2 the Brooke connections, though not exactly aristocratic, were unquestionably “good:”
+)
+(IC3
+~(DC4>3 if you inquired backward for a generation or two,
+~)
+ you would not find any yard-measuring or parcel-tying forefathers—anything lower than an admiral or a clergyman;
+)
+(IC5 and there was even an ancestor discernible as a Puritan gentleman
+~(DC6<5 who served under Cromwell,
+~)
+[CP7 but afterwards conformed,
+]
+[CP8 and managed to come out of all political troubles as the proprietor of a respectable family estate.
+]
+)
+
+Young women of such birth, living in a quiet country-house, and attending a village church hardly larger than a parlor, naturally regarded frippery as the ambition of a huckster’s daughter.
+(IC1 Young women of such birth,
+~(PP2<1 living in a quiet country-house,
+~[CP3 and attending a village church hardly larger than a parlor,
+~]
+~)
+ naturally regarded frippery as the ambition of a huckster’s daughter.
+)
+
+Then there was well-bred economy, which in those days made show in dress the first item to be deducted from, when any margin was required for expenses more distinctive of rank.
+(IC1 Then there was well-bred economy,
+~(DC2<1 which in those days made show in dress the first item to be deducted from,
+~~(DC3<2 when any margin was required for expenses more distinctive of rank.
+~~)
+~)
+)
+
+Such reasons would have been enough to account for plain dress, quite apart from religious feeling; but in Miss Brooke’s case, religion alone would have determined it; and Celia mildly acquiesced in all her sister’s sentiments, only infusing them with that common-sense which is able to accept momentous doctrines without any eccentric agitation.
+(IC1 Such reasons would have been enough to account for plain dress, quite apart from religious feeling;
+)
+(IC2 but in Miss Brooke’s case, religion alone would have determined it;
+)
+(IC3 and Celia mildly acquiesced in all her sister’s sentiments,
+~(PP4<3 only infusing them with that common-sense
+~~(DC5<4 which is able to accept momentous doctrines without any eccentric agitation.
+~~)
+~)
+)
