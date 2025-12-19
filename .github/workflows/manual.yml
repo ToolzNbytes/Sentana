@@ -1,9 +1,13 @@
 name: Rebuild Corpus Index
 # When the action will run: Workflow runs when manually triggered using the UI
+
 on:
   workflow_dispatch:
     # (No Inputs needed)
 
+permissions:
+  contents: write
+  
 jobs:
   build:
     runs-on: ubuntu-latest
