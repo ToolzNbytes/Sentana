@@ -18,7 +18,7 @@ jobs:
           echo "[" > gen/texts.meta.json
       
           first_file=true
-          for file in data/*.txt; do
+          for file in texts/*.txt; do
             if [ "$first_file" = true ]; then
               first_file=false
             else
