@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
+      
       - name: Generate metadata index with awk
         run: |
           mkdir -p gen
@@ -35,8 +35,10 @@ jobs:
                 print "  {"
               }
       
-              /^###$/ { exit }
+              # stop at separator (robuste)
+              /^[[:space:]]*###[[:space:]]*$/ { exit }
       
+              # key: value
               /^[^:]+:[[:space:]]*/ {
                 key = $0
                 sub(/:.*/, "", key)
@@ -51,12 +53,11 @@ jobs:
               }
       
               END {
-                print ","
+                if (!first) print ","
                 printf "    \"file\": \"%s\"\n", FILENAME
                 print "  }"
               }
-            ' "$file" | sed "s|\"$file\"|\"$(basename "$file")\"|" \
-            >> gen/index.meta.json
+            ' "$file" >> gen/texts.meta.json
           done
       
           echo "]" >> gen/texts.meta.json
