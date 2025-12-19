@@ -1,3 +1,18 @@
 [
+  {
+    "Author": "George Eliot (Mary Ann Evans)",
+    "Work": "Middlemarch",
+    "Year": "1871–72",
+    "Choice": "beginning of chapter one",
+    "Comment": "This excerpt has very long sentences.",
+    "file": "texts/Middlemarch.txt"
+  }
 ,
+  {
+    "Author": "Henry James",
+    "Work": "The Portrait of a Lady",
+    "Year": "1881",
+    "Choice": "beginning of chapter one",
+    "file": "texts/The_Portrait_of_a_Lady_1.txt"
+  }
 ]
