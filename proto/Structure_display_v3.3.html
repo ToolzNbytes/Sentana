@@ -1,0 +1,1519 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Structural analysis of Sentences</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<style>
+:root{
+  --bg:#17110c;
+  --panel:#21160f;
+  --paper:#e7d7b6;
+  --ink:#efe6d5;
+  --muted:rgba(239,230,213,.65);
+  --green:#5a7a5c;
+  --border:rgba(231,215,182,.25);
+  --error:#7a1f1b;
+  --errorInk:#ffb8b2;
+  --radius:14px;
+  --radiusSm:10px;
+  --serif:ui-serif, Georgia, "Times New Roman", serif;
+  --sans:system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  --mono:ui-monospace, Menlo, Consolas, monospace;
+  --hlBg:rgba(231,215,182,.22);
+  --hlBd:rgba(231,215,182,.35);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+}
+
+/* ===== Top bar ===== */
+.topbar{
+  height:64px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(180deg,#261a12,#21160f);
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+.title{
+  font-family:var(--serif);
+  font-size:19px;
+  color:var(--paper);
+}
+
+/* Left controls */
+.leftControls{
+  position:absolute;
+  left:14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.iconBtn{
+  width:44px;
+  height:44px;
+  border-radius:12px;
+  border:1px solid rgba(231,215,182,.18);
+  background:transparent;
+  color:rgba(231,215,182,.75);
+  font-family:monospace;
+  font-size:15px;
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  user-select:none;
+}
+.iconBtn:disabled{
+  opacity:.35;
+  cursor:default;
+}
+.iconBtn.ghost{
+  border-style:dashed;
+  pointer-events:none;
+}
+
+/* Settings on right */
+.settings{
+  position:absolute;
+  right:14px;
+  width:56px;
+  height:56px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:none;
+  border:none;
+  cursor:pointer;
+}
+.settings svg{opacity:.9}
+
+/* ===== Layout ===== */
+.workspaces{
+  display:flex;
+  gap:16px;
+  padding:16px;
+  height:calc(100% - 64px);
+  align-items:stretch;
+  overflow:auto;
+}
+.workspaceWrap{
+  flex: 1 1 0;
+  min-width: 520px;
+}
+.workspaceWrap.hidden {
+  display: none;
+}
+.workspaceWrap {
+  transition: transform 220ms ease, opacity 220ms ease;
+}
+.workspaceWrap.collapsingOut {
+  transform: translateX(-24px);
+  opacity: 0;
+}
+
+.workspace{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  max-width:100%;
+  transition: transform 220ms ease, opacity 220ms ease;
+}
+
+.copyR{
+  flex:0 0 auto;
+  display:flex;
+  flex-direction:column;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  min-height:100%;
+}
+.infoR{
+  position:relative;
+  padding:10px 12px;
+  border-bottom:1px solid var(--border);
+  text-align:center;
+}
+.infoR .line1{
+  font-family:var(--serif);
+  color:var(--paper);
+  font-size:15px;
+}
+.infoR .line2{
+  margin-top:4px;
+  font-size:12.5px;
+  color:rgba(239,230,213,.7);
+}
+.infoR .xDel{
+  position:absolute;
+  left:10px;
+  top:10px;
+  width:26px;
+  height:26px;
+  border-radius:8px;
+  border:1px solid var(--border);
+  background:transparent;
+  color:var(--paper);
+  cursor:pointer;
+  line-height:24px;
+}
+.mainR{
+  padding:14px;
+  overflow:auto;
+  display:block;
+}
+.mainR .svgWrap{
+  margin-bottom:15px;
+}
+.mainR .svgWrap:last-child{margin-bottom:0}
+
+/* ===== Top panel ===== */
+.top-panel{
+  padding:14px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.row-1{
+  display:flex;
+  gap:12px;
+}
+.row-1 > *{flex:1}
+
+.work-details{
+  padding:10px 12px;
+  border:1px solid var(--border);
+  border-radius:var(--radiusSm);
+}
+.work{font-family:var(--serif);font-size:16px;color:var(--paper)}
+.author{font-size:13px;color:var(--muted)}
+.choice{font-size:13px;color:var(--green)}
+
+.work-list{
+  resize:vertical;
+  min-height:96px;
+  background:#17110c;
+  color:var(--ink);
+  border:none;
+  border-radius:var(--radiusSm);
+  padding:6px;
+}
+
+.row-2{
+  display:flex;
+  gap:8px;
+}
+.comment{
+  flex:1;
+  resize:vertical;
+  min-height:56px;
+  padding:8px 10px;
+  font-size:12.5px;
+  border:1px solid var(--border);
+  border-radius:var(--radiusSm);
+  color:var(--muted);
+  background:transparent;
+  white-space:pre-wrap;
+}
+.comment.error{
+  background:rgba(122,31,27,.2);
+  color:var(--errorInk);
+  border-color:rgba(122,31,27,.6);
+}
+.plus-btn{
+  width:36px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:transparent;
+  color:var(--paper);
+  font-size:20px;
+  cursor:pointer;
+}
+
+.sentence{
+  resize:vertical;
+  min-height:72px;
+  padding:8px 10px;
+  font-family:var(--serif);
+  font-size:16px;
+  line-height: 1.2;
+  border:1px solid var(--border);
+  border-radius:var(--radiusSm);
+  background:#17110c;
+  color:var(--ink);
+  overflow:auto;
+}
+.sentence .hl{
+  background:var(--hlBg);
+  border:0px solid var(--hlBd);
+  border-radius:6px;
+  padding:0 2px;
+}
+
+/* ===== Result / SVG stack ===== */
+.result-panel{
+  flex:1;
+  padding:14px;
+  overflow:auto;
+  display:block; /* wrappers manage spacing */
+  background:var(--panel);
+}
+.svgWrap{
+  margin-bottom:15px;
+}
+.svgWrap:last-child{margin-bottom:0}
+.result-panel svg{
+  width:100%;
+  display:block;
+}
+
+/* ===== Modal base ===== */
+.modal-backdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  display:none;
+  align-items:flex-start;
+  justify-content:center;
+  padding-top:90px;
+  z-index:100;
+}
+.modal{
+  background:#1a120d;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  width:70%;
+  max-width:900px;
+  max-height:70%;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+.modal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px;
+  gap:10px;
+}
+.modal-header button{
+  background:none;
+  border:1px solid var(--border);
+  border-radius:8px;
+  color:var(--paper);
+  padding:6px 10px;
+  cursor:pointer;
+}
+.modal-content{
+  padding:14px;
+  overflow:auto;
+  white-space:pre-wrap;
+}
+.modal-content.mono{
+  font-family:var(--mono);
+  font-size:13px;
+}
+.modal-content.serif{
+  font-family:var(--serif);
+  font-size:16px;
+  line-height:1.5;
+}
+
+/* ===== Parameter panel modal ===== */
+.param-modal{
+  width:460px;
+  max-width:92%;
+  max-height:80%;
+}
+.param-body{
+  padding:14px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.param-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  font-size:13px;
+  color:var(--ink);
+}
+.param-row input{
+  width:160px;
+  background:#17110c;
+  color:var(--ink);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:6px 8px;
+  font-family:var(--mono);
+  font-size:13px;
+}
+.param-hint{
+  font-size:12px;
+  color:rgba(239,230,213,.55);
+  line-height:1.35;
+}
+.param-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  padding:10px 14px 14px;
+}
+.param-actions button{
+  background:none;
+  border:1px solid var(--border);
+  border-radius:10px;
+  color:var(--paper);
+  padding:7px 12px;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+<header class="topbar">
+  <div class="leftControls">
+    <button class="iconBtn" id="collapseBtn" disabled title="Collapse workspace">&lt;&lt;</button>
+    <button class="iconBtn" id="storeBtn" disabled title="Copy for reference">+&gt;</button>
+  </div>
+
+  <div class="title">Structural analysis of Sentences</div>
+
+  <button class="settings" id="settingsBtn" aria-label="Settings">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+      <path d="M4 7h16M4 12h16M4 17h16"
+        stroke="rgba(231,215,182,.85)" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="9" cy="7" r="2.2" fill="#5a7a5c"/>
+      <circle cx="15" cy="12" r="2.2" fill="#e7d7b6"/>
+      <circle cx="11" cy="17" r="2.2" fill="#86a188"/>
+    </svg>
+  </button>
+</header>
+
+<main class="workspaces" id="workspaces">
+  <div class="workspaceWrap" id="workspaceWrap">
+    <section class="workspace" id="workspace">
+      <div class="top-panel">
+        <div class="row-1">
+          <div class="work-details">
+            <div class="work"></div>
+            <div class="author"></div>
+            <div class="choice"></div>
+          </div>
+          <select class="work-list" size="4"></select>
+        </div>
+
+        <div class="row-2">
+          <div class="comment"></div>
+          <button class="plus-btn" title="Open raw / excerpt panel">+</button>
+        </div>
+
+        <div class="sentence" id="sentenceArea"></div>
+      </div>
+
+      <div class="result-panel" id="resultPanel"></div>
+    </section>
+  </div>
+</main>
+
+<!-- ===== Plus modal ===== -->
+<div class="modal-backdrop" id="plusModal">
+  <div class="modal">
+    <div class="modal-header">
+      <button id="toggleView">Switch to original excerpt</button>
+      <button id="closePlus">×</button>
+    </div>
+    <div class="modal-content mono" id="plusContent"></div>
+  </div>
+</div>
+
+<!-- ===== Parameter modal ===== -->
+<div class="modal-backdrop" id="paramModal">
+  <div class="modal param-modal">
+    <div class="modal-header">
+      <div style="font-family:var(--serif); color:var(--paper); font-size:16px;">Parameters</div>
+      <button id="closeParam">×</button>
+    </div>
+
+    <div class="param-body">
+      <div class="param-row">
+        <div>Word cap:</div>
+        <input id="pWordCap" type="number" step="1" min="0"/>
+      </div>
+      <div class="param-hint">
+        Logical max span used for tree-span processing (grid divisions). Default 50. 0 = use max root span for current work.
+      </div>
+
+      <div class="param-row">
+        <div>Bar height:</div>
+        <input id="pBarHeight" type="number" step="1" min="1"/>
+      </div>
+      <div class="param-hint">
+        Height of the root rectangle when f=1. Final height is Bar height × f.
+      </div>
+
+      <div class="param-row">
+        <div>Bg color:</div>
+        <input id="pBgColor" type="text" />
+      </div>
+      <div class="param-hint">
+        Any CSS color value (e.g. #21160f, rgb(...), etc.). Applies to the result container.
+      </div>
+
+      <div class="param-row">
+        <div>Display width:</div>
+        <input id="pDisplayWidth" type="number" step="10" min="0"/>
+      </div>
+      <div class="param-hint">
+        0 = workspace fills available width. Any positive number fixes the workspace width (px) and keeps it centered.
+      </div>
+    </div>
+
+    <div class="param-actions">
+      <button id="pCancel">Cancel</button>
+      <button id="pApply">Validate &amp; process</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===================== v3.3 parameters (live) ===================== */
+let WORD_CAP = 50;         // grid divisions
+let BAR_HEIGHT = 45;       // px
+let RESULT_BG = getComputedStyle(document.documentElement).getPropertyValue('--panel').trim();
+let DISPLAY_WIDTH = 0;     // px; 0 = fluid
+
+/* ===================== corpus (exact) ===================== */
+const corpus = [
+  {
+    Metadata: {
+      Author: "George Eliot (Mary Ann Evans)",
+      Work: "Middlemarch",
+      Year: "1871–72",
+      Choice: "beginning of chapter one",
+      Comment: "This excerpt has very long sentences."
+    },
+
+    AnalyzedText: `
+Miss Brooke had that kind of beauty which seems to be thrown into relief by poor dress.
+(IC1 Miss Brooke had that kind of beauty
+~(DC2<1 which seems to be thrown into relief by poor dress.
+~)
+)
+
+Her hand and wrist were so finely formed that she could wear sleeves not less bare of style than those in which the Blessed Virgin appeared to Italian painters; and her profile as well as her stature and bearing seemed to gain the more dignity from her plain garments, which by the side of provincial fashion gave her the impressiveness of a fine quotation from the Bible,—or from one of our elder poets,—in a paragraph of to-day’s newspaper.
+(IC1 Her hand and wrist were so finely formed
+~(DC2<1 that she could wear sleeves not less bare of style than those
+~~(DC3<2 in which the Blessed Virgin appeared to Italian painters;
+~~)
+~)
+)
+(IC4 and her profile as well as her stature and bearing seemed to gain the more dignity from her plain garments,
+~(DC5<4 which by the side of provincial fashion gave her the impressiveness of a fine quotation from the Bible,—or from one of our elder poets,—in a paragraph of to-day’s newspaper.
+~)
+)
+
+She was usually spoken of as being remarkably clever, but with the addition that her sister Celia had more common-sense.
+(IC1 She was usually spoken of as being remarkably clever, but with the addition
+~(DC2<1 that her sister Celia had more common-sense.
+~)
+)
+
+Nevertheless, Celia wore scarcely more trimmings; and it was only to close observers that her dress differed from her sister’s, and had a shade of coquetry in its arrangements; for Miss Brooke’s plain dressing was due to mixed conditions, in most of which her sister shared.
+(IC1 Nevertheless, Celia wore scarcely more trimmings;
+)
+(IC2 and it was only to close observers
+~(DC3<2 that her dress differed from her sister’s,
+~[CP4 and had a shade of coquetry in its arrangements;
+~]
+~)
+)
+(IC5 for Miss Brooke’s plain dressing was due to mixed conditions,
+~(DC6<5 in most of which her sister shared.
+~)
+)
+
+The pride of being ladies had something to do with it: the Brooke connections, though not exactly aristocratic, were unquestionably “good:” if you inquired backward for a generation or two, you would not find any yard-measuring or parcel-tying forefathers—anything lower than an admiral or a clergyman; and there was even an ancestor discernible as a Puritan gentleman who served under Cromwell, but afterwards conformed, and managed to come out of all political troubles as the proprietor of a respectable family estate.
+(IC1 The pride of being ladies had something to do with it:
+)
+(IC2 the Brooke connections, though not exactly aristocratic, were unquestionably “good:”
+)
+(IC3
+~(DC4>3 if you inquired backward for a generation or two,
+~)
+ you would not find any yard-measuring or parcel-tying forefathers—anything lower than an admiral or a clergyman;
+)
+(IC5 and there was even an ancestor discernible as a Puritan gentleman
+~(DC6<5 who served under Cromwell,
+~)
+[CP7 but afterwards conformed,
+]
+[CP8 and managed to come out of all political troubles as the proprietor of a respectable family estate.
+]
+)
+
+Young women of such birth, living in a quiet country-house, and attending a village church hardly larger than a parlor, naturally regarded frippery as the ambition of a huckster’s daughter.
+(IC1 Young women of such birth,
+~(PP2<1 living in a quiet country-house,
+~[CP3 and attending a village church hardly larger than a parlor,
+~]
+~)
+ naturally regarded frippery as the ambition of a huckster’s daughter.
+)
+
+Then there was well-bred economy, which in those days made show in dress the first item to be deducted from, when any margin was required for expenses more distinctive of rank.
+(IC1 Then there was well-bred economy,
+~(DC2<1 which in those days made show in dress the first item to be deducted from,
+~~(DC3<2 when any margin was required for expenses more distinctive of rank.
+~~)
+~)
+)
+
+Such reasons would have been enough to account for plain dress, quite apart from religious feeling; but in Miss Brooke’s case, religion alone would have determined it; and Celia mildly acquiesced in all her sister’s sentiments, only infusing them with that common-sense which is able to accept momentous doctrines without any eccentric agitation.
+(IC1 Such reasons would have been enough to account for plain dress, quite apart from religious feeling;
+)
+(IC2 but in Miss Brooke’s case, religion alone would have determined it;
+)
+(IC3 and Celia mildly acquiesced in all her sister’s sentiments,
+~(PP4<3 only infusing them with that common-sense
+~~(DC5<4 which is able to accept momentous doctrines without any eccentric agitation.
+~~)
+~)
+)
+`
+  },
+
+  {
+    Metadata: {
+      Author: "Henry James",
+      Work: "The Portrait of a Lady",
+      Year: "1881",
+      Choice: "beginning of chapter one"
+    },
+
+    AnalyzedText: `
+Under certain circumstances there are few hours in life more agreeable than the hour dedicated to the ceremony known as afternoon tea.
+(IC1 Under certain circumstances there are few hours in life more agreeable than the hour
+~(PP2<1 dedicated to the ceremony
+~~(PP3<2 known as afternoon tea.
+~~)
+~)
+)
+There are circumstances in which, whether you partake of the tea or not—some people of course never do,—the situation is in itself delightful.
+(IC1 There are circumstances
+~(DC2<1 in which,
+~~(DC3<2 whether you partake of the tea or not
+~~~(DC4<3—some people of course never do,
+~~~)
+~~)
+~—the situation is in itself delightful.
+~)
+)
+Those that I have in mind in beginning to unfold this simple history offered an admirable setting to an innocent pastime.
+(IC1 Those
+~(DC2<1 that I have in mind
+~~(AP3<2 in beginning to unfold this simple history
+~~)
+~)
+ offered an admirable setting to an innocent pastime.
+)
+The implements of the little feast had been disposed upon the lawn of an old English country-house, in what I should call the perfect middle of a splendid summer afternoon.
+(IC1 The implements of the little feast had been disposed upon the lawn of an old English country-house,
+~(DC2<1 in what I should call the perfect middle of a splendid summer afternoon.
+~)
+)
+Part of the afternoon had waned, but much of it was left, and what was left was of the finest and rarest quality.
+(IC1 Part of the afternoon had waned,
+)
+(IC2 but much of it was left,
+)
+(IC3 and what was left was of the finest and rarest quality.
+)
+Real dusk would not arrive for many hours; but the flood of summer light had begun to ebb, the air had grown mellow, the shadows were long upon the smooth, dense turf.
+(IC1 Real dusk would not arrive for many hours;
+)
+(IC2 but the flood of summer light had begun to ebb,
+)
+(IC3 the air had grown mellow,
+)
+(IC4 the shadows were long upon the smooth, dense turf.
+)
+They lengthened slowly, however, and the scene expressed that sense of leisure still to come which is perhaps the chief source of one’s enjoyment of such a scene at such an hour.
+(IC1 They lengthened slowly, however,
+)
+(IC2 and the scene expressed that sense of leisure
+~(AP3<2 still to come
+~)
+~(DC4<2 which is perhaps the chief source of one’s enjoyment of such a scene at such an hour.
+~)
+)
+From five o’clock to eight is on certain occasions a little eternity; but on such an occasion as this the interval could be only an eternity of pleasure.
+(IC1 From five o’clock to eight is on certain occasions a little eternity;
+)
+(IC2 but on such an occasion as this the interval could be only an eternity of pleasure.
+)
+The persons concerned in it were taking their pleasure quietly, and they were not of the sex which is supposed to furnish the regular votaries of the ceremony I have mentioned.
+(IC1 The persons concerned in it were taking their pleasure quietly,
+)
+(IC2 and they were not of the sex
+~(DC3<2 which is supposed to furnish the regular votaries of the ceremony
+~~(DC4<3 I have mentioned.
+~~)
+~)
+)
+The shadows on the perfect lawn were straight and angular; they were the shadows of an old man sitting in a deep wicker-chair near the low table on which the tea had been served, and of two younger men strolling to and fro, in desultory talk, in front of him.
+(IC1 The shadows on the perfect lawn were straight and angular;
+)
+(IC2 they were the shadows of an old man
+~(PP3<2 sitting in a deep wicker-chair near the low table
+~~(DC4<3 on which the tea had been served,
+~~)
+~)
+ and of two younger men
+~(PP5<2 strolling to and fro, in desultory talk, in front of him.
+~)
+)
+The old man had his cup in his hand; it was an unusually large cup, of a different pattern from the rest of the set and painted in brilliant colours.
+(IC1 The old man had his cup in his hand;
+)
+(IC2 it was an unusually large cup,
+~(AP3<2 of a different pattern from the rest of the set
+~[CP4 and painted in brilliant colours.
+~]
+~)
+)
+He disposed of its contents with much circumspection, holding it for a long time close to his chin, with his face turned to the house.
+(IC1 He disposed of its contents with much circumspection,
+~(PP2<1 holding it for a long time close to his chin,
+~~(AP3<2 with his face turned to the house.
+~~)
+~)
+)
+His companions had either finished their tea or were indifferent to their privilege; they smoked cigarettes as they continued to stroll.
+(IC1 His companions had either finished their tea or were indifferent to their privilege;
+)
+(IC2 they smoked cigarettes
+~(DC3<2 as they continued to stroll.
+~)
+)
+One of them, from time to time, as he passed, looked with a certain attention at the elder man, who, unconscious of observation, rested his eyes upon the rich red front of his dwelling.
+(IC1 One of them, from time to time,
+~(DC2<1 as he passed,
+~)
+ looked with a certain attention at the elder man,
+~(DC3<1 who,
+~~(PP4<3 unconscious of observation,
+~~)
+~ rested his eyes upon the rich red front of his dwelling.
+~)
+)
+The house that rose beyond the lawn was a structure to repay such consideration and was the most characteristic object in the peculiarly English picture I have attempted to sketch.
+(IC1 The house
+~(DC2<1 that rose beyond the lawn
+~)
+ was a structure to repay such consideration
+[CP3 and was the most characteristic object in the peculiarly English picture
+~(DC4<3 I have attempted to sketch.
+~)
+]
+)
+`
+  }
+];
+
+/* ===================== parser (gold v3.0 behavior) + v3.3 text fields ===================== */
+let lastParsed = null;
+
+function parseAnalyzedText(analyzedText, reportError){
+  const lines = analyzedText.split(/\r?\n/);
+  let i = 0;
+  const results = [];
+
+  const isEmpty = (l) => !l || !l.trim();
+  const isWorthyComment = (l) => l.trim().startsWith("#");
+
+  const isSentenceLine = (l) => {
+    if (!l || !l.trim()) return false;
+    const tt = l.trim();
+    return !tt.startsWith("(") && !tt.startsWith("~") && !tt.startsWith(")") && !tt.startsWith("[") && !tt.startsWith("]");
+  };
+
+  const countWords = (t) => t.replace(/—/g, " ").trim().split(/\s+/).filter(Boolean).length;
+
+  function error(msg, ln){
+    reportError(`${msg}\nLine ${ln+1}: ${lines[ln] ?? ""}`);
+    throw new Error("stop");
+  }
+
+  function parseHeaderAndText(body){
+    const headMatch = body.match(/^([A-Z]{2}\d+(?:[<>]\d+)?)?/);
+    const head = (headMatch && headMatch[1]) ? headMatch[1] : "";
+    const rest = body.slice(head.length);
+
+    const tagMatch = head.match(/^([A-Z]{2})(\d+)([<>])?(\d+)?$/);
+    return {
+      tag: tagMatch ? tagMatch[1] : "",
+      id: tagMatch ? Number(tagMatch[2]) : null,
+      forward: tagMatch ? (tagMatch[3] === ">") : false,
+      ref: (tagMatch && tagMatch[4]) ? Number(tagMatch[4]) : null,
+      text: rest.length ? rest : null
+    };
+  }
+
+  function parseAnalysisBlock(){
+    const root = {
+      tag:"", id:null, ref:null, forward:false,
+      text:null, wCount:0, cCount:0, level:0,
+      nodes:[], wTreeCount:0, cTreeCount:0, wPos:0, cPos:0,
+      textTree:"", textSoFar:"", textAfter:""
+    };
+
+    const stack = [{ node: root, level: 0, kind: "root" }];
+    let parenBalance = 0;
+    let bracketBalance = 0;
+
+    while (i < lines.length){
+      const raw = lines[i];
+      if (isEmpty(raw)) { i++; continue; }
+
+      if (parenBalance === 0 && bracketBalance === 0) {
+        if (!raw.startsWith("(")) break;
+      }
+
+      let t = raw;
+      let tilde = 0;
+      while (t.startsWith("~")) { tilde++; t = t.slice(1); }
+      const level = tilde + 1;
+
+      const op = t[0];
+      const top = stack[stack.length - 1];
+
+      if (op === "("){
+        if (level !== top.level + 1) error("Indentation error", i);
+
+        parenBalance++;
+        const body = t.slice(1);
+        const parsed = parseHeaderAndText(body);
+
+        const node = {
+          tag: parsed.tag, id: parsed.id, ref: parsed.ref, forward: parsed.forward,
+          text: parsed.text,
+          wCount: parsed.text ? countWords(parsed.text) : 0,
+          cCount: parsed.text ? parsed.text.length : 0,
+          level,
+          nodes:[],
+          wTreeCount:0,cTreeCount:0,wPos:0,cPos:0,
+          textTree:"", textSoFar:"", textAfter:"",
+          _start:0, _end:0
+        };
+
+        top.node.nodes.push(node);
+        stack.push({ node, level, kind: "paren" });
+      }
+      else if (op === ")"){
+        if (stack.length <= 1) error("Check parentheses pairs", i);
+        const current = stack[stack.length - 1];
+        if (current.kind !== "paren") error("Check parentheses pairs", i);
+        if (level !== current.level) error("Indentation error", i);
+
+        parenBalance--;
+        if (parenBalance < 0) error("Check parentheses pairs", i);
+        stack.pop();
+      }
+      else if (op === "["){
+        if (level !== top.level) error("Indentation error", i);
+
+        bracketBalance++;
+        const body = t.slice(1);
+        const parsed = parseHeaderAndText(body);
+
+        const node = {
+          tag: parsed.tag, id: parsed.id, ref: parsed.ref, forward: parsed.forward,
+          text: parsed.text,
+          wCount: parsed.text ? countWords(parsed.text) : 0,
+          cCount: parsed.text ? parsed.text.length : 0,
+          level,
+          nodes:[],
+          wTreeCount:0,cTreeCount:0,wPos:0,cPos:0,
+          textTree:"", textSoFar:"", textAfter:"",
+          _start:0, _end:0
+        };
+
+        top.node.nodes.push(node);
+        stack.push({ node, level, kind: "bracket" });
+      }
+      else if (op === "]"){
+        if (stack.length <= 1) error("Check parentheses pairs", i);
+        const current = stack[stack.length - 1];
+        if (current.kind !== "bracket") error("Check parentheses pairs", i);
+        if (level !== current.level) error("Indentation error", i);
+
+        bracketBalance--;
+        if (bracketBalance < 0) error("Check parentheses pairs", i);
+        stack.pop();
+      }
+      else {
+        if (stack.length <= 1) error("Check parentheses pairs", i);
+        const current = stack[stack.length - 1];
+        if (level !== current.level) error("Indentation error", i);
+
+        const txt = t;
+        const leaf = {
+          tag:"", id:null, ref:null, forward:false,
+          text: txt,
+          wCount: countWords(txt),
+          cCount: txt.length,
+          level,
+          nodes:[],
+          wTreeCount:0,cTreeCount:0,wPos:0,cPos:0,
+          textTree:"", textSoFar:"", textAfter:"",
+          _start:0, _end:0
+        };
+        current.node.nodes.push(leaf);
+      }
+
+      i++;
+
+      if (parenBalance === 0 && bracketBalance === 0){
+        let j = i;
+        while (j < lines.length && isEmpty(lines[j])) j++;
+        if (j >= lines.length || !lines[j].startsWith("(")) break;
+      }
+    }
+
+    if (parenBalance !== 0 || bracketBalance !== 0) error("Check parentheses pairs", Math.max(0, i-1));
+    return root;
+  }
+
+  function walkCounts(node){
+    let w = node.wCount || 0;
+    let c = node.cCount || 0;
+    for (const ch of node.nodes){
+      walkCounts(ch);
+      w += ch.wTreeCount;
+      c += ch.cTreeCount;
+    }
+    node.wTreeCount = w;
+    node.cTreeCount = c;
+  }
+
+  function rebuild(node){
+    let out = node.text || "";
+    for (const ch of node.nodes) out += rebuild(ch);
+    return out;
+  }
+
+  function buildTextIndex(root){
+    // Build traversal sequence of text pieces (node.text and leaf.text), with subtree [start,end)
+    const pieces = [];
+    const lens = [0];
+
+    function dfs(n){
+      n._start = pieces.length;
+
+      if (n.text){
+        pieces.push(n.text);
+        lens.push(lens[lens.length-1] + n.text.length);
+      }
+      for (const ch of (n.nodes || [])) dfs(ch);
+
+      n._end = pieces.length;
+    }
+
+    dfs(root);
+
+    const full = pieces.join("");
+
+    function fillStrings(n){
+      const startPos = lens[n._start] || 0;
+      const endPos = lens[n._end] || 0;
+      n.textSoFar = full.slice(0, startPos);
+      n.textTree  = full.slice(startPos, endPos);
+      n.textAfter = full.slice(endPos);
+      for (const ch of (n.nodes || [])) fillStrings(ch);
+    }
+    fillStrings(root);
+
+    return full;
+  }
+
+  try {
+    while (i < lines.length){
+      if (isEmpty(lines[i])) { i++; continue; }
+
+      if (!isSentenceLine(lines[i])) error("Sentence expected", i);
+      const sentence = lines[i];
+      i++;
+
+      const worthy = [];
+      while (i < lines.length && isWorthyComment(lines[i])){
+        worthy.push(lines[i].slice(1).trim());
+        i++;
+      }
+
+      if (i >= lines.length || !lines[i].startsWith("(")) error("Analysis block expected", i);
+
+      const tree = parseAnalysisBlock();
+      walkCounts(tree);
+
+      const rebuilt = rebuild(tree).replace(/^\s+/, "");
+      if (rebuilt !== sentence.replace(/^\s+/, "")){
+        error("Mismatch sentence error: " + rebuilt, Math.max(0, i-1));
+      }
+
+      // Build textSoFar/textTree/textAfter once (root includes reconstructed sentence)
+      const fullSentence = buildTextIndex(tree);
+      tree._reconstructed = fullSentence;
+
+      results.push({ sentence, worthyComments: worthy, tree });
+
+      while (i < lines.length && isWorthyComment(lines[i])) i++;
+    }
+
+    return results;
+  } catch {
+    return null;
+  }
+}
+
+/* ===================== SVG rendering (percent widths; no viewBox scaling) ===================== */
+const IC_SHADES = ["#89CFF1","#6EB1D6","#5293BB","#3776A1","#1B5886","#003A6B"];
+const DC_BROWN  = ["#f2d6a6","#f0c493","#e59f7d","#d47557","#b75f4b","#9f4e3b","#7c3e29","#5a2a1e"];
+const DC_RED    = ["#e38989","#c55a5a","#ae3a3a"];
+const FG_PURPLE = ["#C7A3E6","#A884D2","#8A66BC"];
+const PP_GREEN  = ["#C7E9C0","#A1D99B","#74C476","#41AB5D"];
+const PP_GREEN_FWD = ["#6EE389","#34B75A","#0D8A37"];
+const AP_COLOR  = [ "#f8ed62", "#e9d700", "#dab600", "#a98600"]; // yellow for the moment
+
+function svgEl(name, attrs = {}) {
+  const el = document.createElementNS("http://www.w3.org/2000/svg", name);
+  for (const [k,v] of Object.entries(attrs)) el.setAttribute(k, String(v));
+  return el;
+}
+
+function buildPatterns(defs){
+  const p1 = svgEl("pattern", {id:"contrast_line1", patternUnits:"userSpaceOnUse", width:"6", height:"6"});
+  p1.appendChild(svgEl("line",{x1:"0",y1:"0",x2:"6",y2:"0",stroke:"#BBBBBB","stroke-width":"1.8"}));
+  p1.appendChild(svgEl("line",{x1:"0",y1:"3",x2:"6",y2:"3",stroke:"#444444","stroke-width":"1"}));
+  defs.appendChild(p1);
+
+  const mkRot = (id, deg) => {
+    const p = svgEl("pattern", {id, patternUnits:"userSpaceOnUse", width:"6", height:"6", patternTransform:`rotate(${deg})`});
+    p.appendChild(svgEl("line",{x1:"0",y1:"0",x2:"6",y2:"0",stroke:"#BBBBBB","stroke-width":"1.8"}));
+    p.appendChild(svgEl("line",{x1:"0",y1:"3",x2:"6",y2:"3",stroke:"#444444","stroke-width":"1"}));
+    defs.appendChild(p);
+  };
+  mkRot("contrast_line2", 90);
+  mkRot("contrast_line3", 45);
+  mkRot("contrast_line4", 135);
+}
+
+function pickFill(node, state){
+  const t = node.tag || "";
+  if (t === "IC") {
+    const col = IC_SHADES[state.ic % IC_SHADES.length];
+    state.ic++;
+    return { type:"solid", value: col };
+  }
+  if (t === "DC") {
+    if (node.forward) {
+      const col = DC_RED[state.dcF % DC_RED.length];
+      state.dcF++;
+      return { type:"solid", value: col };
+    } else {
+      const col = DC_BROWN[state.dc % DC_BROWN.length];
+      state.dc++;
+      return { type:"solid", value: col };
+    }
+  }
+  if (t === "FG") {
+    const col = FG_PURPLE[state.fg % FG_PURPLE.length];
+    state.fg++;
+    return { type:"solid", value: col };
+  }
+  if (t === "AP") {
+    const col = AP_COLOR[state.ap % AP_COLOR.length];
+    state.ap++;
+    return { type:"solid", value: col };
+  }
+  if (t === "PP") {
+    if (node.forward) {
+      const col = PP_GREEN_FWD[state.ppF % PP_GREEN_FWD.length];
+      state.ppF++;
+      return { type:"solid", value: col };
+    } else {
+      const col = PP_GREEN[state.pp % PP_GREEN.length];
+      state.pp++;
+      return { type:"solid", value: col };
+    }
+  }
+  if (t === "CP") {
+    const patterns = ["contrast_line1","contrast_line2","contrast_line3","contrast_line4"];
+    const p = patterns[state.cp % patterns.length];
+    state.cp++;
+    return { type:"pattern", value: p };
+  }
+  return { type:"solid", value: "rgba(231,215,182,.35)" };
+}
+
+function effectiveWordCap(parsed){
+  if (!parsed || parsed.length === 0) return WORD_CAP || 50;
+  if (WORD_CAP !== 0) return WORD_CAP;
+  let m = 0;
+  for (const e of parsed){
+    const span = e.tree?.wTreeCount || 0;
+    if (span > m) m = span;
+  }
+  return Math.max(1, m);
+}
+
+function setHighlightedSentence(node){
+  const sArea = document.getElementById("sentenceArea");
+  const so = node.textSoFar || "";
+  const tr = node.textTree || "";
+  const af = node.textAfter || "";
+  const len = so.length + tr.length + af.length;
+  let fontSize;
+
+  if (len < 120) {
+    fontSize = 24;
+  } else if (len > 400) {
+    fontSize = 12;
+  } else {
+    // linear interpolation using the same values
+    fontSize = 23 - ((len - 120) / (400 - 120))*(23-13);
+  }
+
+  sArea.style.fontSize = fontSize.toFixed(2) + "px";
+  sArea.innerHTML = `${escapeHtml(so)}<span class="hl">${escapeHtml(tr)}</span>${escapeHtml(af)}`;
+}
+function clearHighlightedSentence(){
+  const sArea = document.getElementById("sentenceArea");
+  sArea.textContent = "";
+}
+function escapeHtml(s){
+  return String(s)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function createAnalysisSVG(tree, cap){
+  const span = tree.wTreeCount || 0;
+  const f = span > cap ? (span / cap) : 1;
+
+  const mainH = BAR_HEIGHT * f;
+  const mainWdiv = span / f; // == min(span, cap)
+  const mainWpct = (mainWdiv / cap) * 100;
+
+  const svg = svgEl("svg", {
+    width: "100%",
+    height: mainH,
+    xmlns: "http://www.w3.org/2000/svg"
+  });
+
+  const defs = svgEl("defs");
+  buildPatterns(defs);
+  svg.appendChild(defs);
+
+  // outer rectangle in %
+  svg.appendChild(svgEl("rect",{
+    x:"0",
+    y:"0",
+    width: `${mainWpct}%`,
+    height: `${mainH}`,
+    rx:"10",
+    ry:"10",
+    fill:"#808080"
+  }));
+
+  const state = { ic:0, dc:0, dcF:0, fg:0, ap:0, pp:0, ppF:0, cp:0 };
+
+  function rectGeometry(node, cursorWords){
+    const xPct = ((cursorWords / f) / cap) * 100;
+    const wPct = (((node.wTreeCount || 0) / f) / cap) * 100;
+
+    const lvl = node.level || 1;
+    const topM = 5 * lvl;
+    const botM = 3 * lvl;
+    const y = topM;
+    const h = Math.max(0, mainH - topM - botM);
+    return { xPct, y, wPct, h };
+  }
+
+  function addRect(node, cursorWords){
+    const {xPct,y,wPct,h} = rectGeometry(node, cursorWords);
+    const fillSpec = pickFill(node, state);
+
+    if (fillSpec.type === "solid"){
+      const r = svgEl("rect",{
+        x: `${xPct}%`,
+        y: `${y}`,
+        width: `${wPct}%`,
+        height: `${h}`,
+        rx:"10",
+        ry:"10",
+        fill: fillSpec.value
+      });
+      // hover highlight
+      r.addEventListener("mouseenter", ()=>setHighlightedSentence(node));
+      svg.appendChild(r);
+    } else {
+      const r = svgEl("rect",{
+        x: `${xPct}%`,
+        y: `${y}`,
+        width: `${wPct}%`,
+        height: `${h}`,
+        rx:"10",
+        ry:"10",
+        fill: `url(#${fillSpec.value})`,
+        opacity:"0.5",
+        style:"mix-blend-mode:luminosity"
+      });
+      r.addEventListener("mouseenter", ()=>setHighlightedSentence(node));
+      svg.appendChild(r);
+    }
+  }
+
+  function walk(node, cursorWords){
+    for (const ch of (node.nodes || [])){
+      const isNode = (ch.tag && ch.tag.length > 0);
+      if (isNode){
+        addRect(ch, cursorWords);
+        cursorWords += (ch.wCount || 0);
+        cursorWords = walk(ch, cursorWords);
+      } else {
+        cursorWords += (ch.wCount || 0);
+      }
+    }
+    return cursorWords;
+  }
+
+  walk(tree, 0);
+
+  return svg;
+}
+
+function renderSVGs(parsed){
+  const panel = document.getElementById("resultPanel");
+  panel.innerHTML = "";
+  panel.style.background = RESULT_BG;
+
+  if (!parsed) return;
+
+  const cap = effectiveWordCap(parsed);
+
+  for (const entry of parsed){
+    const wrap = document.createElement("div");
+    wrap.className = "svgWrap";
+
+    const svg = createAnalysisSVG(entry.tree, cap);
+    // clear highlight when leaving this svg area
+    wrap.addEventListener("mouseleave", clearHighlightedSentence);
+
+    wrap.appendChild(svg);
+    panel.appendChild(wrap);
+  }
+}
+
+/* ===================== Store / Collapse management ===================== */
+const workspaces = document.getElementById("workspaces");
+const workspace = document.getElementById("workspace");
+const workspaceWrap = document.getElementById("workspaceWrap");
+const collapseBtn = document.getElementById("collapseBtn");
+const storeBtn = document.getElementById("storeBtn");
+
+let isCollapsed = false;
+
+function copyCount(){
+  return workspaces.querySelectorAll(".copyR").length;
+}
+function updateCollapseEnabled(){
+  const n = copyCount();
+  collapseBtn.disabled = (n === 0);
+  if (n === 0){
+    collapseBtn.textContent = "<<";
+    if (isCollapsed) uncollapseWorkspace(true);
+  }
+}
+function collapseWorkspace(){
+  if (isCollapsed) return;
+  isCollapsed = true;
+  collapseBtn.textContent = ">>";
+
+  workspaceWrap.classList.add("collapsingOut");
+  // after transition, hide
+  setTimeout(()=>{
+    workspaceWrap.classList.add("hidden");
+    workspaceWrap.classList.remove("collapsingOut");
+  }, 230);
+}
+function uncollapseWorkspace(forced){
+  if (!isCollapsed && !forced) return;
+  isCollapsed = false;
+  collapseBtn.textContent = "<<";
+
+  workspaceWrap.classList.remove("hidden");
+  // animate in
+  workspaceWrap.classList.add("collapsingOut");
+  requestAnimationFrame(()=>{
+    requestAnimationFrame(()=>{
+      workspaceWrap.classList.remove("collapsingOut");
+      workspaceWrap.style.opacity = "1";
+      workspaceWrap.style.transform = "translateX(0)";
+    });
+  });
+}
+collapseBtn.addEventListener("click", ()=>{
+  if (collapseBtn.disabled) return;
+  if (!isCollapsed) collapseWorkspace();
+  else uncollapseWorkspace(false);
+});
+
+/* ===================== UI wiring ===================== */
+const list = document.querySelector(".work-list");
+const work = document.querySelector(".work");
+const author = document.querySelector(".author");
+const choice = document.querySelector(".choice");
+const commentBox = document.querySelector(".comment");
+
+function hasError(){
+  return commentBox.classList.contains("error");
+}
+
+corpus.forEach((c,i)=>{
+  const o = document.createElement("option");
+  o.value = i;
+  o.textContent = `${c.Metadata.Work} — ${c.Metadata.Author}`;
+  list.appendChild(o);
+});
+
+function applyWorkspaceWidth(){
+  // per your hint: if display width is 0 => auto; else fixed px
+  if (DISPLAY_WIDTH && DISPLAY_WIDTH > 0){
+    workspace.style.width = DISPLAY_WIDTH + "px";
+    workspace.style.flex = "0 0 auto";
+    workspaceWrap.style.flex = "0 0 auto";
+
+  } else {
+    workspace.style.width = "100%";
+    workspace.style.flex = "1 1 0";
+    workspaceWrap.style.flex = "1 1 0"; }
+}
+
+function setStoreEnabled(enabled){
+  storeBtn.disabled = !enabled;
+}
+
+function show(idx){
+  // disable store immediately on selection, re-enable after SVG built (if no error)
+  setStoreEnabled(false);
+
+  const c = corpus[idx];
+
+  work.textContent = `${c.Metadata.Work} (${c.Metadata.Year})`;
+  author.textContent = `by ${c.Metadata.Author}`;
+  choice.textContent = `(${c.Metadata.Choice})`;
+
+  commentBox.classList.remove("error");
+  commentBox.textContent = c.Metadata.Comment || "";
+
+  clearHighlightedSentence();
+
+  lastParsed = parseAnalyzedText(c.AnalyzedText, (msg)=>{
+    commentBox.textContent = msg;
+    commentBox.classList.add("error");
+  });
+
+  renderSVGs(lastParsed);
+
+  // now enable store if parsing ok
+  if (!hasError()) setStoreEnabled(true);
+
+  updateCollapseEnabled();
+}
+
+list.addEventListener("change", (e)=>show(Number(e.target.value)));
+
+applyWorkspaceWidth();
+list.selectedIndex = Math.floor(Math.random() * corpus.length);
+show(Number(list.value));
+
+/* ===================== Store feature (+>) ===================== */
+storeBtn.addEventListener("click", ()=>{
+  if (storeBtn.disabled) return;
+  if (hasError()) return;
+
+  const idx = Number(list.value);
+  const c = corpus[idx];
+
+  const w = (DISPLAY_WIDTH && DISPLAY_WIDTH > 0) ? DISPLAY_WIDTH : 800;
+
+  const copy = document.createElement("section");
+  copy.className = "copyR";
+  copy.style.width = w + "px";
+
+  const info = document.createElement("div");
+  info.className = "infoR";
+
+  const xBtn = document.createElement("button");
+  xBtn.className = "xDel";
+  xBtn.textContent = "×";
+
+  const line1 = document.createElement("div");
+  line1.className = "line1";
+  line1.innerHTML = `by ${escapeHtml(c.Metadata.Author)} — <em>${escapeHtml(c.Metadata.Work)}</em>`;
+
+  const line2 = document.createElement("div");
+  line2.className = "line2";
+  line2.textContent = `(${c.Metadata.Choice})`;
+
+  info.appendChild(xBtn);
+  info.appendChild(line1);
+  info.appendChild(line2);
+
+  const main = document.createElement("div");
+  main.className = "mainR";
+  main.style.background = RESULT_BG;
+
+  // copy SVG stack: clone nodes (no event handlers are copied)
+  const resultPanel = document.getElementById("resultPanel");
+  const cloned = resultPanel.cloneNode(true);
+  // remove id to avoid duplicates
+  cloned.removeAttribute("id");
+  // keep only its children, but preserve wrapper structure
+  while (cloned.firstChild){
+    main.appendChild(cloned.firstChild);
+  }
+
+  copy.appendChild(info);
+  copy.appendChild(main);
+
+  // Insert immediately after workspaceWrap, before existing copyRs
+  const existing = workspaces.querySelector(".copyR");
+  if (existing){
+    workspaces.insertBefore(copy, existing);
+  } else {
+    workspaces.appendChild(copy);
+  }
+
+  xBtn.addEventListener("click", ()=>{
+    copy.remove();
+    updateCollapseEnabled();
+  });
+
+  // now collapse becomes active (more on this later)
+  updateCollapseEnabled();
+});
+
+/* ===================== Plus modal ===================== */
+const plusModal = document.getElementById("plusModal");
+const plusContent = document.getElementById("plusContent");
+const toggleView = document.getElementById("toggleView");
+const closePlus = document.getElementById("closePlus");
+let showingExcerpt = false;
+
+function buildExcerpt(parsed){
+  let out = "";
+  for (const entry of parsed || []){
+    const s = entry.sentence || "";
+    if (s.startsWith(" ")){
+      out += "\n\n" + s.trim();
+    } else {
+      out += (out ? " " : "") + s.trim();
+    }
+  }
+  return out;
+}
+
+document.querySelector(".plus-btn").addEventListener("click", ()=>{
+  const entry = corpus[Number(list.value)];
+  plusContent.textContent = entry.AnalyzedText;
+  plusContent.className = "modal-content mono";
+  toggleView.textContent = "Switch to original excerpt";
+  showingExcerpt = false;
+  plusModal.style.display = "flex";
+});
+
+toggleView.addEventListener("click", ()=>{
+  showingExcerpt = !showingExcerpt;
+  if (showingExcerpt){
+    plusContent.textContent = buildExcerpt(lastParsed);
+    plusContent.className = "modal-content serif";
+    toggleView.textContent = "Switch to structural analysis";
+  } else {
+    plusContent.textContent = corpus[Number(list.value)].AnalyzedText;
+    plusContent.className = "modal-content mono";
+    toggleView.textContent = "Switch to original excerpt";
+  }
+});
+
+closePlus.addEventListener("click", ()=>plusModal.style.display = "none");
+plusModal.addEventListener("click", (e)=>{ if (e.target === plusModal) plusModal.style.display = "none"; });
+
+/* ===================== Parameter modal ===================== */
+const settingsBtn = document.getElementById("settingsBtn");
+const paramModal = document.getElementById("paramModal");
+const closeParam = document.getElementById("closeParam");
+const pCancel = document.getElementById("pCancel");
+const pApply = document.getElementById("pApply");
+
+const pWordCap = document.getElementById("pWordCap");
+const pBarHeight = document.getElementById("pBarHeight");
+const pBgColor = document.getElementById("pBgColor");
+const pDisplayWidth = document.getElementById("pDisplayWidth");
+
+function openParamModal(){
+  pWordCap.value = WORD_CAP;
+  pBarHeight.value = BAR_HEIGHT;
+  pBgColor.value = RESULT_BG;
+  pDisplayWidth.value = DISPLAY_WIDTH;
+  paramModal.style.display = "flex";
+}
+function closeParamModal(){
+  paramModal.style.display = "none";
+}
+
+settingsBtn.addEventListener("click", openParamModal);
+closeParam.addEventListener("click", closeParamModal);
+pCancel.addEventListener("click", closeParamModal);
+paramModal.addEventListener("click", (e)=>{ if (e.target === paramModal) closeParamModal(); });
+
+pApply.addEventListener("click", ()=>{
+  const wc = Number(pWordCap.value);
+  const bh = Number(pBarHeight.value);
+  const bg = String(pBgColor.value || "").trim();
+  const dw = Number(pDisplayWidth.value);
+
+  WORD_CAP = Number.isFinite(wc) && wc >= 0 ? wc : 50;
+  BAR_HEIGHT = Number.isFinite(bh) && bh > 0 ? bh : 45;
+  RESULT_BG = bg.length ? bg : getComputedStyle(document.documentElement).getPropertyValue('--panel').trim();
+  DISPLAY_WIDTH = Number.isFinite(dw) && dw >= 0 ? dw : 0;
+
+  applyWorkspaceWidth();
+  closeParamModal();
+
+  // reprocess current selection
+  show(Number(list.value));
+});
+</script>
+</body>
+</html>
