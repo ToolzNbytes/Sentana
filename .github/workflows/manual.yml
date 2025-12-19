@@ -1,0 +1,66 @@
+name: Rebuild Corpus Index
+# When the action will run: Workflow runs when manually triggered using the UI
+on:
+  workflow_dispatch:
+    # (No Inputs needed)
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate metadata index with awk
+        run: |
+          mkdir -p gen
+          echo "[" > gen/texts.meta.json
+      
+          first_file=true
+          for file in data/*.txt; do
+            if [ "$first_file" = true ]; then
+              first_file=false
+            else
+              echo "," >> gen/texts.meta.json
+            fi
+      
+            awk '
+              BEGIN {
+                first = 1
+                print "  {"
+              }
+      
+              /^###$/ { exit }
+      
+              /^[^:]+:[[:space:]]*/ {
+                key = $0
+                sub(/:.*/, "", key)
+      
+                value = $0
+                sub(/^[^:]+:[[:space:]]*/, "", value)
+      
+                if (!first) print ","
+                first = 0
+      
+                printf "    \"%s\": \"%s\"", key, value
+              }
+      
+              END {
+                print ","
+                printf "    \"file\": \"%s\"\n", FILENAME
+                print "  }"
+              }
+            ' "$file" | sed "s|\"$file\"|\"$(basename "$file")\"|" \
+            >> gen/index.meta.json
+          done
+      
+          echo "]" >> gen/texts.meta.json
+          
+      - name: Commit generated files
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add gen/texts.meta.json
+          git commit -m "Rebuild gen/texts.meta.json" || echo "No changes"
+          git push
