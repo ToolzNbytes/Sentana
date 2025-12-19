@@ -1,6 +1,7 @@
 Format of the files in texts:
+name: *.txt
 
-1) Main sections: triple # is the separator
+1) Two Main sections: triple # is the separator
 
 Lines of meta data
 ###
@@ -17,6 +18,7 @@ Comment: This excerpt has very long sentences.
 3) Analyzed text:
 
 Sentence 1 on one line
+# Comment to display
 ( beginning of then structure analysis
 ...
  some text of sentence 1
@@ -25,8 +27,15 @@ Sentence 1 on one line
 (
 ...
 )
+# Comment ignored
 
 Sentence 2 on one line, after an empty line
 ( etc
 ...
 )
+
+4) More rules:
+Add a space before the sentence to mark a new paragraph in the original text
+
+5) Rules and syntax for the analyzed text
+That's another document (to come)
