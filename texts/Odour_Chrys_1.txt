@@ -5,9 +5,6 @@ Choice: beginning of chapter one
 Comment: This excerpt is praised for its glood flow.
 
 ###
-
-# The small locomotive engine, Number 4, came clanking, stumbling down from Selston--with seven full waggons. It appeared round the corner with loud threats of speed, but the colt that it startled from among the gorse, which still flickered indistinctly in the raw afternoon, outdistanced it at a canter. A woman, walking up the railway line to Underwood, drew back into the hedge, held her basket aside, and watched the footplate of the engine advancing. The trucks thumped heavily past, one by one, with slow inevitable movement, as she stood insignificantly trapped between the jolting black waggons and the hedge; then they curved away towards the coppice where the withered oak leaves dropped noiselessly, while the birds, pulling at the scarlet hips beside the track, made off into the dusk that had already crept into the spinney. In the open, the smoke from the engine sank and cleaved to the rough grass. The fields were dreary and forsaken, and in the marshy strip that led to the whimsey, a reedy pit-pond, the fowls had already abandoned their run among the alders, to roost in the tarred fowl-house. The pit-bank loomed up beyond the pond, flames like red sores licking its ashy sides, in the afternoon's stagnant light. Just beyond rose the tapering chimneys and the clumsy black head-stocks of Brinsley Colliery. The two wheels were spinning fast up against the sky, and the winding-engine rapped out its little spasms. The miners were being turned up.
-
 The small locomotive engine, Number 4, came clanking, stumbling down from Selston--with seven full waggons.
 (IC1 The small locomotive engine, Number 4, came
 ~(PP2<1 clanking,
@@ -97,3 +94,4 @@ The two wheels were spinning fast up against the sky, and the winding-engine rap
 The miners were being turned up.
 (IC1 The miners were being turned up.
 )
+
