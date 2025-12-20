@@ -1,10 +1,12 @@
 # Sentence Structure Explorer
 
+## A visual breakdown of sentence structure across authors.
+
 *README file*
 
 This is a free tool, without advertisement, without tracking, without cookies.
 
-IT's meant for:
+It's meant for:
 
 1- browsing and reviewing sentences structures
 
@@ -12,9 +14,9 @@ IT's meant for:
 
 Longer version:
 
-1- Study the prose of great writers by comparing sentence-level structural signatures.
+1- **Study the prose of great writers by comparing sentence-level structural signatures.**
 
-2- Explore how their sentences are crafted through varied building blocks and features, and how authors mix structures and sentence lengths to shape the flow of their prose.
+2- **Explore how their sentences are crafted through varied building blocks and features, and how authors mix structures and sentence lengths to shape the flow of their prose.**
 
 /
 
