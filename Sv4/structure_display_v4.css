@@ -54,20 +54,20 @@ body{
 
 .titleMain{
   font-family: var(--serif);
-  font-size: 19px;
+  font-size: 24px;
   color: var(--paper);
   white-space: nowrap;
 }
 
 .titleSub{
   font-family: var(--sans);
-  font-size: 14px;
+  font-size: 16px;
   color: rgba(239,230,213,.7);
   white-space: nowrap;
 }
 
 /* hide post-title part on narrow windows */
-@media (max-width: 840px){
+@media (max-width: 940px){
   .titleWrap{ padding: 0 86px; }
   .titleSub{ display:none; }
 }
