@@ -31,7 +31,7 @@ In the streets of London where beauty goes unregarded, eccentricity must pay the
 ~)
  eccentricity must pay the penalty,
 )
-(IC3  and it is better not to be very tall,
+(IC3 and it is better not to be very tall,
 [CP4 to wear a long blue cloak,
 ]
 [CP5 or to beat the air with your left hand.
@@ -49,11 +49,11 @@ Angry glances struck upon their backs.
 (IC1 Angry glances struck upon their backs.
 )
 
-The small, agitated figures—for in comparison with this couple most people looked small—decorated with fountain pens, and burdened with despatch-boxes, had appointments to keep, and drew a weekly salary, so that there was some reason for the unfriendly stare which was bestowed upon Mr Ambrose’s height and upon Mrs  Ambrose’s cloak.
+The small, agitated figures—for in comparison with this couple most people looked small—decorated with fountain pens, and burdened with despatch-boxes, had appointments to keep, and drew a weekly salary, so that there was some reason for the unfriendly stare which was bestowed upon Mr Ambrose’s height and upon Mrs Ambrose’s cloak.
 (IC1 The small, agitated figures
-~(DC2<1—for in comparison with this couple most people looked small—
+~(DC2<1—for in comparison with this couple most people looked small
 ~)
-~(PP3<1 decorated with fountain pens,
+~(PP3<1—decorated with fountain pens,
 ~[CP4 and burdened with despatch-boxes,
 ~]
 ~)
@@ -134,4 +134,3 @@ Mr Ambrose attempted consolation; he patted her shoulder; but she showed no sign
 [CP7 and took a turn along the pavement.
 ]
 )
-
