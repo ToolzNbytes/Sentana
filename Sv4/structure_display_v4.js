@@ -769,6 +769,12 @@ function setStoreEnabled(enabled){
   storeBtn.disabled = !enabled;
 }
 
+function setResultPanelLoadingMsg(msg = "Loading..."){
+  const panel = document.getElementById("resultPanel");
+  if (!panel) return;
+  panel.innerHTML = `<div class="loading">${escapeHtml(msg)}</div>`;
+}
+
 async function show(idx) {
   // disable store immediately on selection, re-enable after SVG built (if no error)
   setStoreEnabled(false);
@@ -784,6 +790,7 @@ async function show(idx) {
 
   const c = corpus[idx];
 
+  setResultPanelLoadingMsg();
   work.textContent = `${c.Work} (${c.Year})`;
   author.textContent = `by ${c.Author}`;
   choice.textContent = c.Choice ? `(${c.Choice})` : "";
@@ -800,6 +807,7 @@ async function show(idx) {
       console.error(e);
       commentBox.textContent = e.message;
       commentBox.classList.add("error");
+      setResultPanelLoadingMsg("No analysis (load error). ");
       return;
     }
   }

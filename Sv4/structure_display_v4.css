@@ -433,3 +433,8 @@ body{
   padding:7px 12px;
   cursor:pointer;
 }
+.loading{
+  padding: 14px;
+  opacity: 0.75;
+  font-style: italic;
+}
