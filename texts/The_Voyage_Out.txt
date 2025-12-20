@@ -1,0 +1,136 @@
+Author: Virginia Woolf
+Work: The Voyage Out
+Year: 1915
+Choice: beginning of chapter one
+Comment: 
+
+###
+
+As the streets that lead from the Strand to the Embankment are very narrow, it is better not to walk down them arm-in-arm.
+(IC1
+~(DC2>1 As the streets
+~~(DC3<2 that lead from the Strand to the Embankment
+~~)
+~ are very narrow,
+~)
+ it is better not to walk down them arm-in-arm.
+)
+
+If you persist, lawyers’ clerks will have to make flying leaps into the mud; young lady typists will have to fidget behind you.
+(IC1
+~(DC2>1 If you persist,
+~)
+ lawyers’ clerks will have to make flying leaps into the mud;
+)
+(IC3 young lady typists will have to fidget behind you.
+)
+
+In the streets of London where beauty goes unregarded, eccentricity must pay the penalty, and it is better not to be very tall, to wear a long blue cloak, or to beat the air with your left hand.
+(IC1 In the streets of London
+~(DC2<1 where beauty goes unregarded,
+~)
+ eccentricity must pay the penalty,
+)
+(IC3  and it is better not to be very tall,
+[CP4 to wear a long blue cloak,
+]
+[CP5 or to beat the air with your left hand.
+]
+)
+
+One afternoon in the beginning of October when the traffic was becoming brisk a tall man strode along the edge of the pavement with a lady on his arm.
+(IC1 One afternoon in the beginning of October
+~(DC2>1 when the traffic was becoming brisk
+~)
+ a tall man strode along the edge of the pavement with a lady on his arm.
+)
+
+Angry glances struck upon their backs.
+(IC1 Angry glances struck upon their backs.
+)
+
+The small, agitated figures—for in comparison with this couple most people looked small—decorated with fountain pens, and burdened with despatch-boxes, had appointments to keep, and drew a weekly salary, so that there was some reason for the unfriendly stare which was bestowed upon Mr Ambrose’s height and upon Mrs  Ambrose’s cloak.
+(IC1 The small, agitated figures
+~(DC2<1—for in comparison with this couple most people looked small—
+~)
+~(PP3<1 decorated with fountain pens,
+~[CP4 and burdened with despatch-boxes,
+~]
+~)
+ had appointments to keep,
+[CP5 and drew a weekly salary,
+]
+~(DC6<1 so that there was some reason for the unfriendly stare
+~~(DC7<6 which was bestowed upon Mr Ambrose’s height and upon Mrs Ambrose’s cloak.
+~~)
+~)
+)
+# Check these two past participial adjectives, the first is a PP and the second a compound continuation of that PP3, labeled as a CP.
+
+But some enchantment had put both man and woman beyond the reach of malice and unpopularity.
+(IC1 But some enchantment had put both man and woman beyond the reach of malice and unpopularity.
+)
+
+In his case one might guess from the moving lips that it was thought; and in hers from the eyes fixed stonily straight in front of her at a level above the eyes of most that it was sorrow.
+(IC1 In his case one might guess from the moving lips
+~(DC2<1 that it was thought;
+~)
+)
+(IC3 and in hers from the eyes
+~(PP4<3 fixed stonily straight in front of her at a level above the eyes of most
+~)
+~(DC5<3 that it was sorrow.
+~)
+)
+# Look at how far the DC5 refers back to IC3
+
+It was only by scorning all she met that she kept herself from tears, and the friction of people brushing past her was evidently painful.
+(IC1 It was only by scorning all she met
+~(DC2<1 that she kept herself from tears,
+~)
+)
+(IC3 and the friction of people brushing past her was evidently painful.
+)
+
+After watching the traffic on the Embankment for a minute or two with a stoical gaze she twitched her husband’s sleeve, and they crossed between the swift discharge of motor cars.
+(IC1
+~(DC2>1 After watching the traffic on the Embankment for a minute or two with a stoical gaze
+~)
+ she twitched her husband’s sleeve,
+)
+(IC3 and they crossed between the swift discharge of motor cars.
+)
+
+When they were safe on the further side, she gently withdrew her arm from his, allowing her mouth at the same time to relax, to tremble; then tears rolled down, and leaning her elbows on the balustrade, she shielded her face from the curious.
+(IC1
+~(DC2>1 When they were safe on the further side,
+~)
+ she gently withdrew her arm from his,
+~(PP3<1 allowing her mouth at the same time to relax, to tremble;
+~)
+)
+(IC4 then tears rolled down,
+)
+(IC5 and
+~(PP6>5 leaning her elbows on the balustrade,
+~)
+ she shielded her face from the curious.
+)
+# in IC5 the “and” starts the clause’s text, although grammatically it might not be seen as its own text
+
+Mr Ambrose attempted consolation; he patted her shoulder; but she showed no signs of admitting him, and feeling it awkward to stand beside a grief that was greater than his, he crossed his arms behind him, and took a turn along the pavement.
+(IC1 Mr Ambrose attempted consolation;
+)
+(IC2 he patted her shoulder;
+)
+(IC3 but she showed no signs of admitting him,
+)
+(IC4 and
+~(PP5>4 feeling it awkward to stand beside a grief
+~~(DC6<5 that was greater than his,
+~~)
+~)
+ he crossed his arms behind him,
+[CP7 and took a turn along the pavement.
+]
+)

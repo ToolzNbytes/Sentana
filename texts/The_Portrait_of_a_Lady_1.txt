@@ -12,6 +12,7 @@ Under certain circumstances there are few hours in life more agreeable than the 
 ~~)
 ~)
 )
+
 There are circumstances in which, whether you partake of the tea or not—some people of course never do,—the situation is in itself delightful.
 (IC1 There are circumstances
 ~(DC2<1 in which,
@@ -22,6 +23,7 @@ There are circumstances in which, whether you partake of the tea or not—some p
 ~—the situation is in itself delightful.
 ~)
 )
+
 Those that I have in mind in beginning to unfold this simple history offered an admirable setting to an innocent pastime.
 (IC1 Those
 ~(DC2<1 that I have in mind
@@ -30,11 +32,13 @@ Those that I have in mind in beginning to unfold this simple history offered an 
 ~)
  offered an admirable setting to an innocent pastime.
 )
+
 The implements of the little feast had been disposed upon the lawn of an old English country-house, in what I should call the perfect middle of a splendid summer afternoon.
 (IC1 The implements of the little feast had been disposed upon the lawn of an old English country-house,
 ~(DC2<1 in what I should call the perfect middle of a splendid summer afternoon.
 ~)
 )
+
 Part of the afternoon had waned, but much of it was left, and what was left was of the finest and rarest quality.
 (IC1 Part of the afternoon had waned,
 )
@@ -42,6 +46,7 @@ Part of the afternoon had waned, but much of it was left, and what was left was 
 )
 (IC3 and what was left was of the finest and rarest quality.
 )
+
 Real dusk would not arrive for many hours; but the flood of summer light had begun to ebb, the air had grown mellow, the shadows were long upon the smooth, dense turf.
 (IC1 Real dusk would not arrive for many hours;
 )
@@ -51,6 +56,7 @@ Real dusk would not arrive for many hours; but the flood of summer light had beg
 )
 (IC4 the shadows were long upon the smooth, dense turf.
 )
+
 They lengthened slowly, however, and the scene expressed that sense of leisure still to come which is perhaps the chief source of one’s enjoyment of such a scene at such an hour.
 (IC1 They lengthened slowly, however,
 )
