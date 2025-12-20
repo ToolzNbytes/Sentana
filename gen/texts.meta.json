@@ -1,10 +1,10 @@
 [
   {
-    "Author": "Charles Dickens",
-    "Work": "Bleak House",
-    "Year": "1852-53",
-    "Choice": "beginning of chapter one",
-    "Comment": "This excerpt is only fragments about fog (after this the novel switches to 'real' sentences).",
+    "Author": "Charles Dickens",
+    "Work": "Bleak House",
+    "Year": "1852-53",
+    "Choice": "beginning of chapter one",
+    "Comment": "This excerpt is only fragments about fog (after this the novel switches to 'real' sentences).",
     "file": "texts/Bleak_House_1.txt"
   }
 ,
@@ -18,11 +18,11 @@
   }
 ,
   {
-    "Author": "D. H. Lawrence",
-    "Work": "Odour of Chrysanthemums",
-    "Year": "1909",
-    "Choice": "beginning of chapter one",
-    "Comment": "This excerpt is praised for its glood flow.",
+    "Author": "D. H. Lawrence",
+    "Work": "Odour of Chrysanthemums",
+    "Year": "1909",
+    "Choice": "beginning of chapter one",
+    "Comment": "This excerpt is praised for its glood flow.",
     "file": "texts/Odour_Chrys_1.txt"
   }
 ,
@@ -35,10 +35,10 @@
   }
 ,
   {
-    "Author": "Virginia Woolf",
-    "Work": "The Voyage Out",
-    "Year": "1915",
-    "Choice": "beginning of chapter one",
+    "Author": "Virginia Woolf",
+    "Work": "The Voyage Out",
+    "Year": "1915",
+    "Choice": "beginning of chapter one",
     "Comment": "",
     "file": "texts/The_Voyage_Out_1.txt"
   }
