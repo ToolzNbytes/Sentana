@@ -14,15 +14,6 @@
     "Year": "1871–72",
     "Choice": "beginning of chapter one",
     "Comment": "This excerpt has very long sentences.",
-    "file": "texts/Middlemarch.txt"
-  }
-,
-  {
-    "Author": "George Eliot (Mary Ann Evans)",
-    "Work": "Middlemarch",
-    "Year": "1871–72",
-    "Choice": "beginning of chapter one",
-    "Comment": "This excerpt has very long sentences.",
     "file": "texts/Middlemarch_1.txt"
   }
 ,
@@ -32,7 +23,7 @@
     "Year": "1909",
     "Choice": "beginning of chapter one",
     "Comment": "This excerpt is praised for its glood flow.",
-    "file": "texts/Odour_Chrys.txt"
+    "file": "texts/Odour_Chrys_1.txt"
   }
 ,
   {
@@ -49,6 +40,6 @@
     "Year": "1915",
     "Choice": "beginning of chapter one",
     "Comment": "",
-    "file": "texts/The_Voyage_Out.txt"
+    "file": "texts/The_Voyage_Out_1.txt"
   }
 ]
