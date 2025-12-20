@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Sentence Structural Analysis</title>
+  <title>Sentence Structure Explorer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Markdown renderer -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
   <style>
     :root{
@@ -34,93 +37,259 @@
       color:var(--ink);
       font-family:var(--sans);
       display:flex;
-      align-items:center;
       justify-content:center;
     }
 
     .container{
-      background:var(--panel);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:48px 56px;
-      max-width:720px;
-      width:90%;
-      text-align:center;
+      width:100%;
+      max-width:900px;
+      padding:48px 24px 80px;
     }
 
     h1{
       margin:0;
+      text-align:center;
       font-family:var(--serif);
       font-size:2.4rem;
-      letter-spacing:.02em;
     }
 
     .subtitle{
+      text-align:center;
       margin-top:10px;
-      font-size:1.05rem;
       color:var(--muted);
     }
 
-    .versions{
-      margin-top:40px;
+    /* Explanatory box */
+    .intro-box{
+      margin:22px auto 0;
+      max-width:760px;
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:var(--radiusSm);
+      padding:16px 20px;
+      font-size:.95rem;
+      line-height:1.5;
       text-align:left;
     }
 
-    .versions h2{
-      font-size:1rem;
-      font-weight:600;
-      margin-bottom:14px;
-      color:var(--paper);
-      letter-spacing:.04em;
-      text-transform:uppercase;
+    /* Slideshow */
+    .slideshow{
+      margin:40px auto;
+      max-width:800px;
+      height:420px; /* fixed height prevents layout jump */
+      position:relative;
+      overflow:hidden;
     }
 
-    .version-link{
+    .slideshow img{
+      position:absolute;
+      inset:0;
+      margin:auto;
+      max-width:100%;
+      max-height:100%;
+      display:none;
+      object-fit:contain; /* shrink large images, don’t upscale small ones */
+    }
+
+    .slideshow img.active{
       display:block;
-      padding:14px 16px;
-      margin-bottom:10px;
+    }
+
+    /* Warning */
+    .warning{
+      display:none;
+      margin:30px auto;
+      padding:16px 20px;
+      max-width:760px;
+      background:var(--error);
+      color:var(--errorInk);
       border-radius:var(--radiusSm);
-      border:1px solid transparent;
-      color:var(--ink);
-      text-decoration:none;
-      transition:background .15s ease, border-color .15s ease;
-      font-family:var(--sans);
+      font-size:.95rem;
     }
 
-    .version-link:hover{
-      background:var(--hlBg);
-      border-color:var(--hlBd);
+/* CTA button */
+.cta-wrap{
+  margin-top:32px;
+  display:flex;
+  justify-content:center;
+}
+
+.cta-button{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  width:min(760px, 100%);
+  padding:22px 22px 20px;
+
+  /* “clickable” look */
+  background:linear-gradient(180deg, rgba(231,215,182,.14), rgba(0,0,0,.12));
+  border:1px solid rgba(231,215,182,.40);
+  border-radius:var(--radius);
+  box-shadow:
+    0 14px 28px rgba(0,0,0,.35),
+    0 2px 0 rgba(255,255,255,.06) inset,
+    0 -1px 0 rgba(0,0,0,.35) inset;
+
+  color:var(--paper);
+  text-decoration:none;
+  text-align:center;
+
+  transition:transform .08s ease, box-shadow .15s ease, border-color .15s ease, background .15s ease;
+  position:relative;
+  overflow:hidden;
+}
+
+/* subtle “sheen” */
+.cta-button::before{
+  content:"";
+  position:absolute;
+  inset:-40% -10% auto -10%;
+  height:60%;
+  transform:rotate(-8deg);
+  background:linear-gradient(90deg, transparent, rgba(231,215,182,.14), transparent);
+  pointer-events:none;
+}
+
+.cta-button:hover{
+  transform:translateY(-2px);
+  border-color:rgba(231,215,182,.60);
+  box-shadow:
+    0 18px 34px rgba(0,0,0,.42),
+    0 2px 0 rgba(255,255,255,.08) inset,
+    0 -1px 0 rgba(0,0,0,.35) inset;
+}
+
+.cta-button:active{
+  transform:translateY(1px);
+  box-shadow:
+    0 10px 20px rgba(0,0,0,.38),
+    0 1px 0 rgba(255,255,255,.05) inset,
+    0 -1px 0 rgba(0,0,0,.35) inset;
+}
+
+.cta-title{
+  font-family:var(--serif);
+  font-weight:800;
+  font-size:2.15rem;
+  letter-spacing:.02em;
+  line-height:1;
+}
+
+.cta-subtext{
+  margin-top:10px;
+  font-size:.95rem;
+  font-weight:600;
+  color:var(--muted);
+}
+
+
+    /* README */
+    .readme{
+      margin-top:50px;
+      padding:28px;
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      overflow:auto;
     }
 
-    .version-label{
-      font-weight:600;
+    .readme pre{
+      font-family:var(--mono);
+      white-space:pre-wrap;
+    }
+
+    .readme h1,
+    .readme h2,
+    .readme h3{
+      font-family:var(--serif);
       color:var(--paper);
     }
 
-    .version-desc{
-      display:block;
-      margin-top:4px;
-      font-size:.9rem;
-      color:var(--muted);
+    .readme code{
+      background:rgba(0,0,0,.35);
+      padding:2px 4px;
+      border-radius:6px;
+      font-family:var(--mono);
+    }
+
+    .readme a{
+      color:var(--paper);
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Sentence Structural Analysis</h1>
-    <div class="subtitle">Visual comparison tool</div>
 
-    <div class="versions">
-      <h2>Available versions</h2>
+    <h1>Sentence Structure Explorer</h1>
+    <div class="subtitle">A visual breakdown of sentence structure across authors.</div>
 
-      <a class="version-link" href="proto/Structure_display_v3.3.html">
-        <span class="version-label">ver. 3.3.2</span>
-        <span class="version-desc">
-          Two samples or works. Working with minor cosmetic glitches.
-        </span>
-      </a>
-
+    <div class="intro-box">
+      Study the prose of great writers by comparing sentence-level structural signatures.<br>
+      Explore how sentences are crafted using varied building blocks, and how authors mix
+      structures and sentence lengths to shape the flow of their prose.
     </div>
+
+    <!-- Slideshow -->
+    <div class="slideshow" id="slideshow">
+      <img src="img/screen1.png" class="active" alt="Screenshot 1">
+      <img src="img/screen2.png" alt="Screenshot 2">
+      <img src="img/screen3.png" alt="Screenshot 3">
+    </div>
+
+    <!-- Mobile warning -->
+    <div class="warning" id="mobileWarning">
+      <strong>Not ready for smartphones (half working).</strong><br>
+      Try on a big screen with a mouse.
+    </div>
+
+    <!-- Main button -->
+    <div class="cta-wrap">
+      <a class="cta-button" href="Sv4/Structure_display_v4.html" aria-label="Start Sentence Structure Explorer">
+        <div class="cta-title">Start!</div>
+        <div class="cta-subtext">Sentence Structure Explorer • More samples • Main glitches corrected</div>
+      </a>
+    </div>
+
+
+    <!-- README -->
+    <div class="readme" id="readme">
+      Loading README.md…
+    </div>
+
   </div>
+
+  <script>
+    /* Slideshow */
+    const slides = document.querySelectorAll('.slideshow img');
+    let slideIndex = 0;
+
+    setInterval(() => {
+      slides[slideIndex].classList.remove('active');
+      slideIndex = (slideIndex + 1) % slides.length;
+      slides[slideIndex].classList.add('active');
+    }, 3000);
+
+    /* Mobile detection */
+    if (window.innerWidth < 768 || /Mobi|Android/i.test(navigator.userAgent)) {
+      document.getElementById('mobileWarning').style.display = 'block';
+    }
+
+    /* README loader */
+    fetch('README.md')
+      .then(r => r.text())
+      .then(text => {
+        try {
+          document.getElementById('readme').innerHTML = marked.parse(text);
+        } catch {
+          document.getElementById('readme').innerHTML =
+            '<pre>' + text.replace(/[<>]/g, '') + '</pre>';
+        }
+      })
+      .catch(() => {
+        document.getElementById('readme').textContent =
+          'README.md could not be loaded.';
+      });
+  </script>
 </body>
 </html>
