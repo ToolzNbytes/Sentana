@@ -1,5 +1,14 @@
 [
   {
+    "Author": "Charles Dickens",
+    "Work": "Bleak House",
+    "Year": "1852-53",
+    "Choice": "beginning of chapter one",
+    "Comment": "This excerpt is only fragments about fog (after this the novel switches to 'real' sentences).",
+    "file": "texts/Bleak_House_1.txt"
+  }
+,
+  {
     "Author": "George Eliot (Mary Ann Evans)",
     "Work": "Middlemarch",
     "Year": "1871–72",
@@ -9,10 +18,37 @@
   }
 ,
   {
+    "Author": "George Eliot (Mary Ann Evans)",
+    "Work": "Middlemarch",
+    "Year": "1871–72",
+    "Choice": "beginning of chapter one",
+    "Comment": "This excerpt has very long sentences.",
+    "file": "texts/Middlemarch_1.txt"
+  }
+,
+  {
+    "Author": "D. H. Lawrence",
+    "Work": "Odour of Chrysanthemums",
+    "Year": "1909",
+    "Choice": "beginning of chapter one",
+    "Comment": "This excerpt is praised for its glood flow.",
+    "file": "texts/Odour_Chrys.txt"
+  }
+,
+  {
     "Author": "Henry James",
     "Work": "The Portrait of a Lady",
     "Year": "1881",
     "Choice": "beginning of chapter one",
     "file": "texts/The_Portrait_of_a_Lady_1.txt"
+  }
+,
+  {
+    "Author": "Virginia Woolf",
+    "Work": "The Voyage Out",
+    "Year": "1915",
+    "Choice": "beginning of chapter one",
+    "Comment": "",
+    "file": "texts/The_Voyage_Out.txt"
   }
 ]
