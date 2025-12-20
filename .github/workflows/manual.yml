@@ -30,6 +30,7 @@ jobs:
             fi
       
             awk '
+              { gsub(/\r/, "", $0) }
               BEGIN {
                 first = 1
                 print "  {"
