@@ -37,6 +37,6 @@ If you feel confident in your skills for:
 
 * Adding more pieces of works 'analyzed' for display
 
-Then you can reach me by posting a comment in a related post from me on reddit https://www.reddit.com/user/toolznbytes/
+Then you can reach me by posting a comment in a related post from me on reddit https://www.reddit.com/user/toolznbytes/submitted/
 
 *Done with free time I took from my other projects that suffered from this... but I'm happy with the result.*
