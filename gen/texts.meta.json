@@ -9,6 +9,37 @@
   }
 ,
   {
+    "Author": "Charles Dickens",
+    "Work": "Bleak House",
+    "Year": "1852-53",
+    "Choice": "chapter one, after the 'fog fragments'",
+    "Comment": "!! draft analysis to be reviewed !!",
+    "file": "texts/Bleak_House_2.txt"
+  }
+,
+  {
+    "Author": "Jane Austen",
+    "Work": "Emma",
+    "Year": "1810-1815",
+    "Choice": "beginning of chapter one",
+    "Comment": "!! draft analysis to be reviewed !!",
+    "The event had every promise of happiness for her friend. Mr. Weston was a man of unexceptionable character, easy fortune, suitable age, and pleasant manners; and there was some satisfaction in considering with what self-denying, generous friendship she had always wished and promoted the match; but it was a black morning’s work for her. The want of Miss Taylor would be felt every hour of every day. She recalled her past kindness—the kindness, the affection of sixteen years—how she had taught and how she had played with her from five years old—how she had devoted all her powers to attach and amuse her in health—and how nursed her through the various illnesses of childhood. A large debt of gratitude was owing here; but the intercourse of the last seven years, the equal footing and perfect unreserve which had soon followed Isabella’s marriage, on their being left to each other, was yet a dearer, tenderer recollection. She had been a friend and companion such as few possessed": "intelligent, well-informed, useful, gentle, knowing all the ways of the family, interested in all its concerns, and peculiarly interested in herself, in every pleasure, every scheme of hers—one to whom she could speak every thought as it arose, and who had such an affection for her as could never find fault.",
+    "file": "texts/Emma_1.txt"
+  }
+,
+  {
+    "Author": "Charlotte Brontë",
+    "Work": "Jane Eyre (3rd ed.)",
+    "Year": "-1847",
+    "Choice": "starting at last third of chapter one",
+    "Comment": "!! draft analysis to be reviewed !!",
+    "John Reed was a schoolboy of fourteen years old; four years older than I, for I was but ten": "large and stout for his age, with a dingy and unwholesome skin; thick lineaments in a spacious visage, heavy limbs and large extremities. He gorged himself habitually at table, which made him bilious, and gave him a dim and bleared eye and flabby cheeks. He ought now to have been at school; but his mama had taken him home for a month or two, “on account of his delicate health.” Mr. Miles, the master, affirmed that he would do very well if he had fewer cakes and sweetmeats sent him from home; but the mother’s heart turned from an opinion so harsh, and inclined rather to the more refined idea that John’s sallowness was owing to over-application and, perhaps, to pining after home.",
+    "John had not much affection for his mother and sisters, and an antipathy to me. He bullied and punished me; not two or three times in the week, nor once or twice in the day, but continually": "every nerve I had feared him, and every morsel of flesh in my bones shrank when he came near. There were moments when I was bewildered by the terror he inspired, because I had no appeal whatever against either his menaces or his inflictions; the servants did not like to offend their young master by taking my part against him, and Mrs. Reed was blind and deaf on the subject: she never saw him strike or heard him abuse me, though he did both now and then in her very presence, more frequently, however, behind her back.",
+    "Habitually obedient to John, I came up to his chair": "he spent some three minutes in thrusting out his tongue at me as far as he could without damaging the roots: I knew he would soon strike, and while dreading the blow, I mused on the disgusting and ugly appearance of him who would presently deal it. I wonder if he read that notion in my face; for, all at once, without speaking, he struck suddenly and strongly. I tottered, and on regaining my equilibrium retired back a step or two from his chair.",
+    "file": "texts/Jane_Eyre_1.txt"
+  }
+,
+  {
     "Author": "George Eliot (Mary Ann Evans)",
     "Work": "Middlemarch",
     "Year": "1871–72",
@@ -27,6 +58,18 @@
   }
 ,
   {
+    "Author": "Jane Austen",
+    "Work": "Pride and Prejudice",
+    "Year": "1795-96",
+    "Choice": "chapter 3 after a dialogue line",
+    "Comment": "!! draft analysis to be reviewed !!",
+    "An invitation to dinner was soon afterwards despatched; and already had Mrs. Bennet planned the courses that were to do credit to her housekeeping, when an answer arrived which deferred it all. Mr. Bingley was obliged to be in town the following day, and consequently unable to accept the honour of their invitation, etc. Mrs. Bennet was quite disconcerted. She could not imagine what business he could have in town so soon after his arrival in Hertfordshire; and she began to fear that he might always be flying about from one place to another, and never settled at Netherfield as he ought to be. Lady Lucas quieted her fears a little by starting the idea of his being gone to London only to get a large party for the ball; and a report soon followed that Mr. Bingley was to bring twelve ladies and seven gentlemen with him to the assembly. The girls grieved over such a number of{13} ladies; but were comforted the day before the ball by hearing that, instead of twelve, he had brought only six with him from London, his five sisters and a cousin. And when the party entered the assembly-room, it consisted of only five altogether": "Mr. Bingley, his two sisters, the husband of the eldest, and another young man.",
+    "Mr. Bingley was good-looking and gentlemanlike": "he had a pleasant countenance, and easy, unaffected manners. His sisters were fine women, with an air of decided fashion. His brother-in-law, Mr. Hurst, merely looked the gentleman; but his friend Mr. Darcy soon drew the attention of the room by his fine, tall person, handsome features, noble mien, and the report, which was in general circulation within five minutes after his entrance, of his having ten thousand a year. The gentlemen pronounced him to be a fine figure of a man, the ladies declared he was much handsomer than Mr. Bingley, and he was looked at with great admiration for about half the evening, till his manners gave a disgust which turned the tide of his popularity; for he was discovered to be proud, to be above his company, and above being pleased; and not all his large estate in Derbyshire could save him from having a most forbidding, disagreeable countenance, and being unworthy to be compared with his friend.",
+    "Mr. Bingley had soon made himself acquainted with all the principal people in the room": "he was lively and unreserved, danced every dance, was angry that the ball closed so early, and talked of giving one himself at Netherfield. Such amiable qualities must speak for themselves. What a contrast between him and his friend! Mr. Darcy danced only once with Mrs. Hurst and once with Miss Bingley, declined being introduced to{14} any other lady, and spent the rest of the evening in walking about the room, speaking occasionally to one of his own party. His character was decided. He was the proudest, most disagreeable man in the world, and everybody hoped that he would never come there again. Amongst the most violent against him was Mrs. Bennet, whose dislike of his general behaviour was sharpened into particular resentment by his having slighted one of her daughters.",
+    "file": "texts/Pride_and_Prejudice_1.txt"
+  }
+,
+  {
     "Author": "Henry James",
     "Work": "The Portrait of a Lady",
     "Year": "1881",
@@ -41,5 +84,17 @@
     "Choice": "beginning of chapter one",
     "Comment": "",
     "file": "texts/The_Voyage_Out_1.txt"
+  }
+,
+  {
+    "Author": "Emily Brontë",
+    "Work": "Wuthering Heights (1st ed.)",
+    "Year": "-1847",
+    "Choice": "chapter one, after the short initial dialogue",
+    "Comment": "This excerpt is with first person narration",
+    "Wuthering Heights is the name of Mr. Heathcliff's dwelling. "Wuthering" being a significant provincial adjective, descriptive of the atmospheric tumult to which its station is exposed, in stormy weather. Pure, bracing ventilation they must have up there, at all times, indeed": "one may guess the power of the north wind, blowing over the edge, by the excessive slant of a few, stunted firs at the end of the house; and by a range of gaunt thorns all stretching their limbs one way, as if craving alms of the sun. Happily, the architect had foresight to build it strong: the narrow windows are deeply set in the wall; and the corners defended with large jutting stones.",
+    "One step brought us into the family sitting-room, without any introductory lobby, or passage": "they call it here "the house" preeminently. It includes kitchen, and parlor, generally, but I believe at Wuthering Heights, the kitchen is forced to retreat altogether, into another quarter, at least I distinguished a chatter of tongues, and a clatter of culinary utensils, deep within; and I observed no signs of roasting, boiling, or baking, about the huge fire-place; nor any glitter of copper saucepans and tin cullenders on the walls. One end, indeed, reflected splendidly both light and heat, from ranks of immense pewter dishes; interspersed with silver jugs, and tankards, towering row after row, in a vast oak dresser, to the very roof. The latter had never been under-drawn, its entire anatomy lay bare to an inquiring eye, except where a frame of wood laden with oatcakes, and clusters of legs of beef, mutton and ham, concealed it. Above the chimney were sundry villanous old guns, and a couple of horse-pistols, and, by way of ornament, three gaudily painted canisters disposed along its ledge. The floor was of smooth, white stone: the chairs, high-backed, primitive structures, painted green: one or two heavy black ones lurking in the shade. In an arch, under the dresser, reposed a huge, liver-coloured bitch pointer surrounded by a swarm of squealing puppies, and other dogs, haunted other recesses.",
+    "The apartment, and furniture would have been nothing extraordinary as belonging to a homely, northern farmer with a stubborn countenance, and stalwart limbs, set out to advantage in knee-breeches, and gaiters. Such an individual, seated in his arm-chair, his mug of ale frothing on the round table before him, is to be seen in any circuit of five or six miles among these hills, if you go at the right time, after dinner. But, Mr. Heathcliff forms a singular contrast to his abode and style of living. He is a dark skinned gypsy, in aspect, in dress, and manners, a gentleman, that is, as much a gentleman as many a country squire": "rather slovenly, perhaps, yet not looking amiss, with his negligence, because he has an erect and handsome figure—and rather morose—possibly, some people might suspect him of a degree of under-bred pride—I have a sympathetic chord within that tells me it is nothing of the sort; I know, by instinct, his reserve springs from an aversion to showy displays of feeling—to manifestations of mutual kindliness. He'll love and hate, equally under cover, and esteem it a species of impertinence, to be loved or hated again—No, I'm running on too fast—I bestow my own attributes over liberally on him. Mr. Heathcliff may have entirely dissimilar reasons for keeping his hand out of the way, when he meets a would be acquaintance, to those which actuate me. Let me hope my constitution is almost peculiar: my dear mother used to say I should never have a comfortable home, and only last summer, I proved myself perfectly unworthy of one.",
+    "file": "texts/Wuthering_Heights_1.txt"
   }
 ]
