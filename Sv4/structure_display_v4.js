@@ -839,6 +839,25 @@ async function show(idx) {
 list.addEventListener("change", (e)=>show(Number(e.target.value)));
 
 /* ===================== Store feature (+>) ===================== */
+
+function computeCopyRWidth(){
+  // largeur fixée par paramètres
+  if (DISPLAY_WIDTH && DISPLAY_WIDTH > 0) {
+    return DISPLAY_WIDTH;
+  }
+
+  // mode auto : s'il existe déjà un copyR, on réutilise sa largeur
+  const firstCopy = workspaces.querySelector(".copyR");
+  if (firstCopy) {
+    return firstCopy.getBoundingClientRect().width;
+  }
+
+  // sinon, premier copyR : calcul initial
+  const resultPanel = document.getElementById("resultPanel");
+  const rpWidth = resultPanel.getBoundingClientRect().width;
+  return Math.max(520, (rpWidth - 12) / 2);
+}
+
 storeBtn.addEventListener("click", ()=>{
   if (storeBtn.disabled) return;
   if (hasError()) return;
@@ -846,9 +865,8 @@ storeBtn.addEventListener("click", ()=>{
   const idx = Number(list.value);
   const c = corpus[idx];
 
-  const resultPanel = document.getElementById("resultPanel");
-  const rpWidth = resultPanel.getBoundingClientRect().width;
-  const w = Math.max(520, (rpWidth - 12) / 2);
+  const w = computeCopyRWidth();
+  const resultPanel = document.getElementById("resultPanel"); // conservé pour le clone
 
   const copy = document.createElement("section");
   copy.className = "copyR";
