@@ -46,10 +46,25 @@ async function init() {
 
 function populateList() {
   list.innerHTML = "";
-  corpus.forEach((c,i)=>{
+
+  // count occurrences per work title
+  const workCounts = new Map();
+
+  corpus.forEach((c, i) => {
+    const base = c.Work;
+
+    const n = (workCounts.get(base) || 0) + 1;
+    workCounts.set(base, n);
+
     const o = document.createElement("option");
     o.value = i;
-    o.textContent = `${c.Work} — ${c.Author}`;
+
+    // first occurrence: plain title
+    // subsequent ones: "Title (n)"
+    const title =
+      n === 1 ? base : `${base} (${n})`;
+
+    o.textContent = `${title} — ${c.Author}`;
     list.appendChild(o);
   });
 }
