@@ -385,6 +385,10 @@ body{
   font-size:16px;
   line-height:1.5;
 }
+.modal-content.serif p {
+  margin: 0 0 0.8em 0;
+  text-indent: 1.6em;
+}
 
 /* ===== Parameter panel modal ===== */
 .param-modal{

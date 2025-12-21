@@ -982,17 +982,31 @@ const closePlus = document.getElementById("closePlus");
 let showingExcerpt = false;
 
 function buildExcerpt(parsed){
-  let out = "";
-  for (const entry of parsed || []){
+  const paras = [];
+  let current = [];
+
+  for (const entry of parsed || []) {
     const s = entry.sentence || "";
-    if (s.startsWith(" ")){
-      out += "\n\n" + s.trim();
+
+    if (s.startsWith(" ")) {
+      // start new paragraph
+      if (current.length) {
+        paras.push(current.join(" "));
+        current = [];
+      }
+      current.push(s.trim());
     } else {
-      out += (out ? " " : "") + s.trim();
+      current.push(s.trim());
     }
   }
-  return out;
+
+  if (current.length) {
+    paras.push(current.join(" "));
+  }
+
+  return paras;
 }
+
 
 document.querySelector(".plus-btn").addEventListener("click", ()=>{
   const entry = corpus[Number(list.value)];
@@ -1006,8 +1020,14 @@ document.querySelector(".plus-btn").addEventListener("click", ()=>{
 toggleView.addEventListener("click", ()=>{
   showingExcerpt = !showingExcerpt;
   if (showingExcerpt){
-    plusContent.textContent = buildExcerpt(lastParsed);
+    const paras = buildExcerpt(lastParsed);
+    plusContent.innerHTML = "";
     plusContent.className = "modal-content serif";
+    for (const p of paras) {
+      const el = document.createElement("p");
+      el.textContent = p;
+      plusContent.appendChild(el);
+    }
     toggleView.textContent = "Switch to structural analysis";
   } else {
     plusContent.textContent = corpus[Number(list.value)].AnalyzedText;
