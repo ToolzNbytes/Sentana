@@ -702,18 +702,19 @@ function copyCount(){
 function updateCollapseEnabled(){
   const n = copyCount();
   collapseBtn.disabled = (n === 0);
-  if (n === 0){
-    collapseBtn.textContent = "<<";
-    if (isCollapsed) uncollapseWorkspace(true);
+
+  if (n === 0 && isCollapsed){
+    uncollapseWorkspace(true);
+    return;
   }
+  setCollapseIcon();
 }
 function collapseWorkspace(){
   if (isCollapsed) return;
   isCollapsed = true;
-  collapseBtn.textContent = ">>";
+  setCollapseIcon();
 
   workspaceWrap.classList.add("collapsingOut");
-  // after transition, hide
   setTimeout(()=>{
     workspaceWrap.classList.add("hidden");
     workspaceWrap.classList.remove("collapsingOut");
@@ -722,10 +723,9 @@ function collapseWorkspace(){
 function uncollapseWorkspace(forced){
   if (!isCollapsed && !forced) return;
   isCollapsed = false;
-  collapseBtn.textContent = "<<";
+  setCollapseIcon();
 
   workspaceWrap.classList.remove("hidden");
-  // animate in
   workspaceWrap.classList.add("collapsingOut");
   requestAnimationFrame(()=>{
     requestAnimationFrame(()=>{
@@ -747,6 +747,18 @@ const work = document.querySelector(".work");
 const author = document.querySelector(".author");
 const choice = document.querySelector(".choice");
 const commentBox = document.querySelector(".comment"); // REVIEW! why not the id?
+
+function setCollapseIcon(){
+  const useEl = collapseBtn.querySelector("use");
+  if (!useEl) return;
+
+  const target = isCollapsed
+    ? "../icons/panel_restore.svg#icon"
+    : "../icons/panel_hide.svg#icon";
+
+  useEl.setAttribute("href", target);
+  useEl.setAttribute("xlink:href", target);
+}
 
 function hasError(){
   return commentBox.classList.contains("error");
@@ -834,7 +846,9 @@ storeBtn.addEventListener("click", ()=>{
   const idx = Number(list.value);
   const c = corpus[idx];
 
-  const w = (DISPLAY_WIDTH && DISPLAY_WIDTH > 0) ? DISPLAY_WIDTH : 800;
+  const resultPanel = document.getElementById("resultPanel");
+  const rpWidth = resultPanel.getBoundingClientRect().width;
+  const w = Math.max(520, (rpWidth - 12) / 2);
 
   const copy = document.createElement("section");
   copy.className = "copyR";
@@ -864,7 +878,6 @@ storeBtn.addEventListener("click", ()=>{
   main.style.background = RESULT_BG;
 
   // copy SVG stack: clone nodes (no event handlers are copied)
-  const resultPanel = document.getElementById("resultPanel");
   const cloned = resultPanel.cloneNode(true);
   // remove id to avoid duplicates
   cloned.removeAttribute("id");
