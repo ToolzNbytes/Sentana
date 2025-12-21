@@ -1,0 +1,144 @@
+Author: Charlotte Brontë
+Work: Jane Eyre (3rd ed.)
+Year: -1847
+Choice: starting at last third of chapter one
+Comment: !! draft analysis to be reviewed !!
+
+John Reed was a schoolboy of fourteen years old; four years older than I, for I was but ten: large and stout for his age, with a dingy and unwholesome skin; thick lineaments in a spacious visage, heavy limbs and large extremities. He gorged himself habitually at table, which made him bilious, and gave him a dim and bleared eye and flabby cheeks. He ought now to have been at school; but his mama had taken him home for a month or two, “on account of his delicate health.” Mr. Miles, the master, affirmed that he would do very well if he had fewer cakes and sweetmeats sent him from home; but the mother’s heart turned from an opinion so harsh, and inclined rather to the more refined idea that John’s sallowness was owing to over-application and, perhaps, to pining after home.
+
+John had not much affection for his mother and sisters, and an antipathy to me. He bullied and punished me; not two or three times in the week, nor once or twice in the day, but continually: every nerve I had feared him, and every morsel of flesh in my bones shrank when he came near. There were moments when I was bewildered by the terror he inspired, because I had no appeal whatever against either his menaces or his inflictions; the servants did not like to offend their young master by taking my part against him, and Mrs. Reed was blind and deaf on the subject: she never saw him strike or heard him abuse me, though he did both now and then in her very presence, more frequently, however, behind her back.
+
+Habitually obedient to John, I came up to his chair: he spent some three minutes in thrusting out his tongue at me as far as he could without damaging the roots: I knew he would soon strike, and while dreading the blow, I mused on the disgusting and ugly appearance of him who would presently deal it. I wonder if he read that notion in my face; for, all at once, without speaking, he struck suddenly and strongly. I tottered, and on regaining my equilibrium retired back a step or two from his chair.
+
+###
+
+John Reed was a schoolboy of fourteen years old; four years older than I, for I was but ten: large and stout for his age, with a dingy and unwholesome skin; thick lineaments in a spacious visage, heavy limbs and large extremities.
+(IC1 John Reed was a schoolboy of fourteen years old;
+~(AP2<1 four years older than I,
+~~(DC3<2 for I was but ten:
+~~)
+~)
+~(AP4<1 large and stout for his age,
+~~(AP5<4 with a dingy and unwholesome skin;
+~~)
+~)
+~(AP6<1 thick lineaments in a spacious visage, heavy limbs and large extremities.
+~)
+)
+
+He gorged himself habitually at table, which made him bilious, and gave him a dim and bleared eye and flabby cheeks.
+(IC1 He gorged himself habitually at table,
+~(DC2<1 which made him bilious,
+~[CP3 and gave him a dim and bleared eye and flabby cheeks.
+~]
+~)
+)
+
+He ought now to have been at school; but his mama had taken him home for a month or two, “on account of his delicate health.”
+(IC1 He ought now to have been at school;
+)
+(IC2 but his mama had taken him home for a month or two,
+~(AP3<2 “on account of his delicate health.”
+~)
+)
+
+Mr. Miles, the master, affirmed that he would do very well if he had fewer cakes and sweetmeats sent him from home; but the mother’s heart turned from an opinion so harsh, and inclined rather to the more refined idea that John’s sallowness was owing to over-application and, perhaps, to pining after home.
+(IC1 Mr. Miles,
+~(AP2<1 the master,
+~)
+ affirmed
+~(DC3<1 that he would do very well
+~~(DC4<3 if he had fewer cakes and sweetmeats sent him from home;
+~~)
+~)
+)
+(IC5 but the mother’s heart turned from an opinion so harsh,
+[CP6 and inclined rather to the more refined idea
+~(DC7<6 that John’s sallowness was owing to over-application and, perhaps, to pining after home.
+~)
+]
+)
+
+John had not much affection for his mother and sisters, and an antipathy to me.
+(IC1 John had not much affection for his mother and sisters, and an antipathy to me.
+)
+
+He bullied and punished me; not two or three times in the week, nor once or twice in the day, but continually: every nerve I had feared him, and every morsel of flesh in my bones shrank when he came near.
+(IC1 He bullied
+[CP2 and punished me;
+]
+~(AP3<1 not two or three times in the week, nor once or twice in the day, but continually:
+~)
+)
+(IC4 every nerve I had feared him,
+)
+(IC5 and every morsel of flesh in my bones shrank
+~(DC6<5 when he came near.
+~)
+)
+
+There were moments when I was bewildered by the terror he inspired, because I had no appeal whatever against either his menaces or his inflictions; the servants did not like to offend their young master by taking my part against him, and Mrs. Reed was blind and deaf on the subject: she never saw him strike or heard him abuse me, though he did both now and then in her very presence, more frequently, however, behind her back.
+(IC1 There were moments
+~(DC2<1 when I was bewildered by the terror
+~~(DC3<2 he inspired,
+~~)
+~~(DC4<2 because I had no appeal whatever against either his menaces or his inflictions;
+~~)
+~)
+)
+(IC5 the servants did not like to offend their young master
+~(AP6<5 by taking my part against him,
+~)
+)
+(IC7 and Mrs. Reed was blind and deaf on the subject:
+)
+(IC8 she never saw him strike
+[CP9 or heard him abuse me,
+]
+~(DC10<8 though he did both now and then in her very presence,
+~ more frequently, however, behind her back.
+~)
+)
+
+Habitually obedient to John, I came up to his chair: he spent some three minutes in thrusting out his tongue at me as far as he could without damaging the roots: I knew he would soon strike, and while dreading the blow, I mused on the disgusting and ugly appearance of him who would presently deal it.
+(IC1 Habitually obedient to John, I came up to his chair:
+)
+(IC2 he spent some three minutes
+~(AP3<2 in thrusting out his tongue at me
+~~(DC4<3 as far as he could
+~~)
+~~(AP5<3 without damaging the roots:
+~~)
+~)
+)
+(IC6 I knew
+~(DC7<6 he would soon strike,
+~)
+[CP8 and
+~(PP9<6 while dreading the blow,
+~)
+ I mused on the disgusting and ugly appearance of him
+~(DC10<6 who would presently deal it.
+~)
+]
+)
+
+I wonder if he read that notion in my face; for, all at once, without speaking, he struck suddenly and strongly.
+(IC1 I wonder
+~(DC2<1 if he read that notion in my face;
+~)
+)
+(IC3 for,
+~(AP4<3 all at once, without speaking,
+~)
+ he struck suddenly and strongly.
+)
+
+I tottered, and on regaining my equilibrium retired back a step or two from his chair.
+(IC1 I tottered,
+[CP2 and
+~(PP3<1 on regaining my equilibrium
+~)
+ retired back a step or two from his chair.
+]
+)

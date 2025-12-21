@@ -7,7 +7,7 @@ Comment: This excerpt is only fragments about fog (after this, the novel switche
 ###
 
 
-London.
+ London.
 (FG1 London.
 )
 Michaelmas term lately over, and the Lord Chancellor sitting in Lincoln’s Inn Hall.
@@ -65,7 +65,7 @@ Foot passengers, jostling one another’s umbrellas in a general infection of il
 ~]
 ~)
 )
-Fog everywhere.
+ Fog everywhere.
 (FG1 Fog everywhere.
 )
 Fog up the river, where it flows among green aits and meadows; fog down the river, where it rolls defiled among the tiers of shipping and the waterside pollutions of a great (and dirty) city.
@@ -73,8 +73,8 @@ Fog up the river, where it flows among green aits and meadows; fog down the rive
 ~(DC2<1 where it flows among green aits and meadows;
 ~)
 )
-(FG2 fog down the river,
-~(DC3<2 where it rolls defiled among the tiers of shipping and the waterside pollutions of a great (and dirty) city.
+(FG3 fog down the river,
+~(DC4<3 where it rolls defiled among the tiers of shipping and the waterside pollutions of a great (and dirty) city.
 ~)
 )
 Fog on the Essex marshes, fog on the Kentish heights.
@@ -113,7 +113,7 @@ Chance people on the bridges peeping over the parapets into a nether sky of fog,
 ~]
 ~)
 )
-Gas looming through the fog in divers places in the streets, much as the sun may, from the spongey fields, be seen to loom by husbandman and ploughboy.
+ Gas looming through the fog in divers places in the streets, much as the sun may, from the spongey fields, be seen to loom by husbandman and ploughboy.
 (FG1 Gas looming through the fog in divers places in the streets,
 ~(DC2<1 much as the sun may, from the spongey fields, be seen to loom by husbandman and ploughboy.
 ~)

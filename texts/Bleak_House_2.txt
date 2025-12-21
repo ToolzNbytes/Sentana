@@ -1,0 +1,152 @@
+Author: Charles Dickens
+Work: Bleak House
+Year: 1852-53
+Choice: chapter one, after the 'fog fragments'
+Comment: !! draft analysis to be reviewed !!
+
+The raw afternoon is rawest, and the dense fog is densest, and the muddy streets are muddiest near that leaden-headed old obstruction, appropriate ornament for the threshold of a leaden-headed old corporation, Temple Bar. And hard by Temple Bar, in Lincoln’s Inn Hall, at the very heart of the fog, sits the Lord High Chancellor in his High Court of Chancery.
+
+Never can there come fog too thick, never can there come mud and mire too deep, to assort with the groping and floundering condition which this High Court of Chancery, most pestilent of hoary sinners, holds this day in the sight of heaven and earth.
+
+On such an afternoon, if ever, the Lord High Chancellor ought to be sitting here—as here he is—with a foggy glory round his head, softly fenced in with crimson cloth and curtains, addressed by a large advocate with great whiskers, a little voice, and an interminable brief, and outwardly directing his contemplation to the lantern in the roof, where he can see nothing but fog. On such an afternoon some score of members of the High Court of Chancery bar ought to be—as here they are—mistily engaged in one of the ten thousand stages of an endless cause, tripping one another up on slippery precedents, groping knee-deep in technicalities, running their goat-hair and horsehair warded heads against walls of words and making a pretence of equity with serious faces, as players might. On such an afternoon the various solicitors in the cause, some two or three of whom have inherited it from their fathers, who made a fortune by it, ought to be—as are they not?—ranged in a line, in a long matted well (but you might look in vain for truth at the bottom of it) between the registrar’s red table and the silk gowns, with bills, cross-bills, answers, rejoinders, injunctions, affidavits, issues, references to masters, masters’ reports, mountains of costly nonsense, piled before them. Well may the court be dim, with wasting candles here and there; well may the fog hang heavy in it, as if it would never get out; well may the stained-glass windows lose their colour and admit no light of day into the place; well may the uninitiated from the streets, who peep in through the glass panes in the door, be deterred from entrance by its owlish aspect and by the drawl, languidly echoing to the roof from the padded dais where the Lord High Chancellor looks into the lantern that has no light in it and where the attendant wigs are all stuck in a fog-bank! This is the Court of Chancery, which has its decaying houses and its blighted lands in every shire, which has its worn-out lunatic in every madhouse and its dead in every churchyard, which has its ruined suitor with his slipshod heels and threadbare dress borrowing and begging through the round of every man’s acquaintance, which gives to monied might the means abundantly of wearying out the right, which so exhausts finances, patience, courage, hope, so overthrows the brain and breaks the heart, that there is not an honourable man among its practitioners who would not give—who does not often give—the warning, “Suffer any wrong that can be done you rather than come here!”
+
+###
+
+The raw afternoon is rawest, and the dense fog is densest, and the muddy streets are muddiest near that leaden-headed old obstruction, appropriate ornament for the threshold of a leaden-headed old corporation, Temple Bar.
+(IC1 The raw afternoon is rawest,
+)
+(IC2 and the dense fog is densest,
+)
+(IC3 and the muddy streets are muddiest near that leaden-headed old obstruction,
+~(AP4<3 appropriate ornament for the threshold of a leaden-headed old corporation,
+~)
+ Temple Bar.
+)
+
+And hard by Temple Bar, in Lincoln’s Inn Hall, at the very heart of the fog, sits the Lord High Chancellor in his High Court of Chancery.
+(IC1 And hard by Temple Bar, in Lincoln’s Inn Hall, at the very heart of the fog, sits the Lord High Chancellor in his High Court of Chancery.
+)
+
+Never can there come fog too thick, never can there come mud and mire too deep, to assort with the groping and floundering condition which this High Court of Chancery, most pestilent of hoary sinners, holds this day in the sight of heaven and earth.
+(IC1 Never can there come fog too thick,
+[CP2 never can there come mud and mire too deep,
+]
+ to assort with the groping and floundering condition
+~(DC3<1 which this High Court of Chancery,
+~~(AP4<3 most pestilent of hoary sinners,
+~~)
+~ holds this day in the sight of heaven and earth.
+~)
+)
+
+On such an afternoon, if ever, the Lord High Chancellor ought to be sitting here—as here he is—with a foggy glory round his head, softly fenced in with crimson cloth and curtains, addressed by a large advocate with great whiskers, a little voice, and an interminable brief, and outwardly directing his contemplation to the lantern in the roof, where he can see nothing but fog.
+(IC1 On such an afternoon, if ever, the Lord High Chancellor ought to be sitting here
+~(DC2<1—as here he is
+~)
+—with a foggy glory round his head,
+~(PP3<1 softly fenced in with crimson cloth and curtains,
+~[CP4 addressed by a large advocate with great whiskers, a little voice, and an interminable brief,
+~]
+~[CP5 and outwardly directing his contemplation to the lantern in the roof,
+~~(DC6<5 where he can see nothing but fog.
+~~)
+~]
+~)
+)
+
+On such an afternoon some score of members of the High Court of Chancery bar ought to be—as here they are—mistily engaged in one of the ten thousand stages of an endless cause, tripping one another up on slippery precedents, groping knee-deep in technicalities, running their goat-hair and horsehair warded heads against walls of words and making a pretence of equity with serious faces, as players might.
+(IC1 On such an afternoon some score of members of the High Court of Chancery bar ought to be
+~(DC2<1—as here they are
+~)
+—mistily engaged in one of the ten thousand stages of an endless cause,
+~(PP3<1 tripping one another up on slippery precedents,
+~[CP4 groping knee-deep in technicalities,
+~]
+~[CP5 running their goat-hair and horsehair warded heads against walls of words
+~]
+~[CP6 and making a pretence of equity with serious faces,
+~~(DC7<6 as players might.
+~~)
+~]
+~)
+)
+# DC7 attachment (“as players might.”) could arguably scope over more than just CP6.
+
+On such an afternoon the various solicitors in the cause, some two or three of whom have inherited it from their fathers, who made a fortune by it, ought to be—as are they not?—ranged in a line, in a long matted well (but you might look in vain for truth at the bottom of it) between the registrar’s red table and the silk gowns, with bills, cross-bills, answers, rejoinders, injunctions, affidavits, issues, references to masters, masters’ reports, mountains of costly nonsense, piled before them.
+(IC1 On such an afternoon the various solicitors in the cause,
+~(AP2<1 some two or three
+~~(DC3<2 of whom have inherited it from their fathers,
+~~~(DC4<3 who made a fortune by it,
+~~~)
+~~)
+~)
+ ought to be
+~(DC5<1—as are they not?
+~)
+—ranged in a line, in a long matted well
+~(AP6<1 (but you might look in vain for truth at the bottom of it)
+~)
+ between the registrar’s red table and the silk gowns, with bills, cross-bills, answers, rejoinders, injunctions, affidavits, issues, references to masters, masters’ reports, mountains of costly nonsense,
+~(PP7<1 piled before them.
+~)
+)
+# AP2 could alternatively be treated as a DC modifying “solicitors” rather than an appositive AP.
+
+Well may the court be dim, with wasting candles here and there; well may the fog hang heavy in it, as if it would never get out; well may the stained-glass windows lose their colour and admit no light of day into the place; well may the uninitiated from the streets, who peep in through the glass panes in the door, be deterred from entrance by its owlish aspect and by the drawl, languidly echoing to the roof from the padded dais where the Lord High Chancellor looks into the lantern that has no light in it and where the attendant wigs are all stuck in a fog-bank!
+(IC1 Well may the court be dim, with wasting candles here and there;
+)
+(IC2 well may the fog hang heavy in it,
+~(DC3<2 as if it would never get out;
+~)
+)
+(IC4 well may the stained-glass windows lose their colour
+[CP5 and admit no light of day into the place;
+]
+)
+(IC6 well may the uninitiated from the streets,
+~(DC7<6 who peep in through the glass panes in the door,
+~)
+ be deterred from entrance by its owlish aspect and by the drawl,
+~(PP8<6 languidly echoing to the roof from the padded dais
+~~(DC9<8 where the Lord High Chancellor looks into the lantern
+~~~(DC10<9 that has no light in it
+~~~)
+~~)
+~~(DC11<8 and where the attendant wigs are all stuck in a fog-bank!
+~~)
+~)
+)
+# PP8 (“languidly echoing…”) is attached to IC6 though it most directly describes “the drawl,”.
+
+This is the Court of Chancery, which has its decaying houses and its blighted lands in every shire, which has its worn-out lunatic in every madhouse and its dead in every churchyard, which has its ruined suitor with his slipshod heels and threadbare dress borrowing and begging through the round of every man’s acquaintance, which gives to monied might the means abundantly of wearying out the right, which so exhausts finances, patience, courage, hope, so overthrows the brain and breaks the heart, that there is not an honourable man among its practitioners who would not give—who does not often give—the warning, “Suffer any wrong that can be done you rather than come here!”
+(IC1 This is the Court of Chancery,
+~(DC2<1 which has its decaying houses and its blighted lands in every shire,
+~)
+~(DC3<1 which has its worn-out lunatic in every madhouse and its dead in every churchyard,
+~)
+~(DC4<1 which has its ruined suitor with his slipshod heels and threadbare dress
+~~(PP5<4 borrowing and begging through the round of every man’s acquaintance,
+~~)
+~)
+~(DC6<1 which gives to monied might the means abundantly of wearying out the right,
+~)
+~(DC7<1 which so exhausts finances, patience, courage, hope,
+~[CP8 so overthrows the brain
+~]
+~[CP9 and breaks the heart,
+~~(DC10<7 that there is not an honourable man among its practitioners
+~~~(DC11<10 who would not give
+~~~~(DC12<11—who does not often give
+~~~~)
+~~~—the warning,
+~~~~(AP13<11 “Suffer any wrong
+~~~~~(DC14<13 that can be done you
+~~~~~)
+~~~~ rather than come here!”
+~~~~)
+~~~)
+~~)
+~]
+~)
+)
+# The dash-delimited “who does not often give” is treated as a nested DC12; it could also be read as a parenthetical/appositive interruption within DC11.
