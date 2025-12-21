@@ -119,6 +119,7 @@ function parseAnalyzedText(analyzedText, reportError){
       tag:"", id:null, ref:null, forward:false,
       text:null, wCount:0, cCount:0, level:0,
       nodes:[], wTreeCount:0, cTreeCount:0, wPos:0, cPos:0,
+      maxLevel:0,
       textTree:"", textSoFar:"", textAfter:"",
       comment: null
     };
@@ -243,16 +244,19 @@ function parseAnalyzedText(analyzedText, reportError){
     return root;
   }
 
-  function walkCounts(node){
+  function walkCounts(node, root = node){
     let w = node.wCount || 0;
     let c = node.cCount || 0;
     for (const ch of node.nodes){
-      walkCounts(ch);
+      walkCounts(ch, root);
       w += ch.wTreeCount;
       c += ch.cTreeCount;
     }
     node.wTreeCount = w;
     node.cTreeCount = c;
+    if (node.level > root.maxLevel) {// update max level
+      root.maxLevel = node.level;
+    }
   }
 
   function rebuild(node){
@@ -665,6 +669,28 @@ function createAnalysisSVG(tree, cap){
   return svg;
 }
 
+function enoughOrMinimumBarHeightForTree(tree, cap){
+  // minimum viable inner rectangle height (px)
+  const MIN_INNER_H = 5;
+
+  if (!tree) return MIN_INNER_H;
+
+  const span = tree.wTreeCount || 0;
+  if (span <= 0) return MIN_INNER_H;
+
+  // same scaling factor as createAnalysisSVG
+  const f = span > cap ? (span / cap) : 1;
+
+  const maxLevel = tree.maxLevel || 0;
+  // hard-coded margins exactly as in rectGeometry()
+  const requiredMainH =
+    (5 * maxLevel) + (3 * maxLevel) + MIN_INNER_H;
+  const requiredBarHeight = Math.ceil(requiredMainH / f);
+
+  // 0 means "current BAR_HEIGHT is sufficient"
+  return (BAR_HEIGHT >= requiredBarHeight) ? 0 : requiredBarHeight;
+}
+
 function renderSVGs(parsed){
   const panel = document.getElementById("resultPanel");
   panel.innerHTML = "";
@@ -678,11 +704,20 @@ function renderSVGs(parsed){
     const wrap = document.createElement("div");
     wrap.className = "svgWrap";
 
-    const svg = createAnalysisSVG(entry.tree, cap);
-    // clear highlight when leaving this svg area
-    wrap.addEventListener("mouseleave", clearHoveringDisplay);
+    const suggested = enoughOrMinimumBarHeightForTree(entry.tree, cap);
 
-    wrap.appendChild(svg);
+    if (suggested === 0) {
+      const svg = createAnalysisSVG(entry.tree, cap);
+      wrap.addEventListener("mouseleave", clearHoveringDisplay);
+      wrap.appendChild(svg);
+    } else {
+      const msg = document.createElement("div");
+      msg.className = "svgError";
+      msg.textContent =
+        `Sentence structure rendering failed: increase bar height (suggested ≥ ${suggested}) or reduce word cap.`;
+      wrap.appendChild(msg);
+    }
+
     panel.appendChild(wrap);
   }
 }

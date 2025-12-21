@@ -449,3 +449,10 @@ body{
   display: block;
   pointer-events: none;
 }
+.svgError {
+  padding: 12px;
+  font-style: italic;
+  color: #fb3333;
+  background: rgba(0,0,0,0.04);
+  border-radius: 6px;
+}
