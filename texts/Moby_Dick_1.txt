@@ -1,0 +1,219 @@
+Author: Herman Melville
+Work: Moby-Dick; or, The Whale.
+Year: 1850-1851
+Choice: beginning of chapter one
+Comment: !! draft analysis to review !!
+
+###
+
+ Call me Ishmael.
+(IC1 Call me Ishmael.
+)
+
+Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.
+(IC1 Some years ago—never mind how long precisely
+~(PP2<1—having little or no money in my purse, and nothing particular to interest me on shore,
+~)
+ I thought
+~(DC3<1 I would sail about a little
+~[CP4 and see the watery part of the world.
+~]
+~)
+)
+
+It is a way I have of driving off the spleen and regulating the circulation.
+(IC1 It is a way I have of driving off the spleen
+[CP2 and regulating the circulation.
+]
+)
+
+Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people’s hats off—then, I account it high time to get to sea as soon as I can.
+# Such a delayed subject for the independent clause!
+(IC1 
+~(DC2>1 Whenever I find myself growing grim about the mouth;
+~)
+~(DC3>1 whenever it is a damp, drizzly November in my soul;
+~)
+~(DC4>1 whenever I find myself involuntarily pausing before coffin warehouses,
+~~(PP5<4 and bringing up the rear of every funeral I meet;
+~~)
+~)
+~(DC6>1 and especially whenever my hypos get such an upper hand of me,
+~~(DC7<6 that it requires a strong moral principle
+~~~(AP8<7 to prevent me from deliberately stepping into the street,
+~~~~(PP9<8 and methodically knocking people’s hats off—then,
+~~~~)
+~~~)
+~~)
+~)
+ I account it high time
+~(AP10<1 to get to sea
+~~(DC11<10 as soon as I can.
+~~)
+~)
+)
+# The long DC chain is treated as a series of fronted conditionals feeding IC1; “then,” is left inside the PP9 continuation to preserve dash attachment.
+
+This is my substitute for pistol and ball.
+(IC1 This is my substitute for pistol and ball.
+)
+
+With a philosophical flourish Cato throws himself upon his sword; I quietly take to the ship.
+(IC1 With a philosophical flourish Cato throws himself upon his sword;
+)
+(IC2 I quietly take to the ship.
+)
+
+There is nothing surprising in this.
+(IC1 There is nothing surprising in this.
+)
+
+If they but knew it, almost all men in their degree, some time or other, cherish very nearly the same feelings towards the ocean with me.
+(IC1 
+~(DC2>1If they but knew it,
+~)
+ almost all men in their degree, some time or other, cherish very nearly the same feelings towards the ocean with me.
+)
+
+ There now is your insular city of the Manhattoes, belted round by wharves as Indian isles by coral reefs—commerce surrounds it with her surf.
+(IC1 There now is your insular city of the Manhattoes,
+~(PP2<1 belted round by wharves
+~~(AP3<2 as Indian isles by coral reefs—commerce surrounds it with her surf.
+~~)
+~)
+)
+# “—commerce surrounds it with her surf.” could also be split as a new IC; it is kept inside AP3 to preserve the dash-bound apposition.
+
+Right and left, the streets take you waterward.
+(IC1 Right and left, the streets take you waterward.
+)
+
+Its extreme downtown is the battery, where that noble mole is washed by waves, and cooled by breezes, which a few hours previous were out of sight of land.
+(IC1 Its extreme downtown is the battery,
+~(DC2<1 where that noble mole is washed by waves,
+~[CP3 and cooled by breezes,
+~~(DC4<3 which a few hours previous were out of sight of land.
+~~)
+~]
+~)
+)
+
+Look at the crowds of water-gazers there.
+(IC1 Look at the crowds of water-gazers there.
+)
+
+ Circumambulate the city of a dreamy Sabbath afternoon.
+(IC1 Circumambulate the city of a dreamy Sabbath afternoon.
+)
+
+Go from Corlears Hook to Coenties Slip, and from thence, by Whitehall, northward.
+(IC1 Go from Corlears Hook to Coenties Slip,
+[CP2 and from thence, by Whitehall, northward.
+]
+)
+
+What do you see?—Posted like silent sentinels all around the town, stand thousands upon thousands of mortal men fixed in ocean reveries.
+(IC1 What do you see?
+)
+(IC2—Posted like silent sentinels all around the town, stand thousands upon thousands of mortal men
+~(PP3<2 fixed in ocean reveries.
+~)
+)
+# IC2 begins with an em-dash attached to “Posted”; treated as its own clause for the inverted “stand …”.
+
+Some leaning against the spiles; some seated upon the pier-heads; some looking over the bulwarks of ships from China; some high aloft in the rigging, as if striving to get a still better seaward peep.
+(FG1 Some leaning against the spiles;
+)
+(FG2 some seated upon the pier-heads;
+)
+(FG3 some looking over the bulwarks of ships from China;
+)
+(FG4 some high aloft in the rigging,
+~(DC5<4 as if striving to get a still better seaward peep.
+~)
+)
+
+But these are all landsmen; of week days pent up in lath and plaster—tied to counters, nailed to benches, clinched to desks.
+(IC1 But these are all landsmen;
+~(PP2<1 of week days pent up in lath and plaster—tied to counters, nailed to benches, clinched to desks.
+~)
+)
+# PP2 includes the dash-series as integrated participial description.
+
+How then is this?
+(IC1 How then is this?
+)
+
+Are the green fields gone?
+(IC1 Are the green fields gone?
+)
+
+What do they here?
+(IC1 What do they here?
+)
+
+ But look! here come more crowds, pacing straight for the water, and seemingly bound for a dive.
+(IC1 But look!
+)
+(IC2 here come more crowds,
+~(PP3<2 pacing straight for the water,
+~[CP4 and seemingly bound for a dive.
+~]
+~)
+)
+
+Strange!
+(FG1 Strange!
+)
+
+Nothing will content them but the extremest limit of the land; loitering under the shady lee of yonder warehouses will not suffice.
+(IC1 Nothing will content them but the extremest limit of the land;
+)
+(IC2 loitering under the shady lee of yonder warehouses will not suffice.
+)
+
+No.
+(FG1 No.
+)
+
+They must get just as nigh the water as they possibly can without falling in.
+(IC1 They must get just as nigh the water
+~(AP2<1 as they possibly can
+~)
+~(AP3<1 without falling in.
+~)
+)
+# “as they possibly can” is treated as optional scalar adjunct; could also be integrated.
+
+And there they stand—miles of them—leagues.
+(IC1 And there they stand
+~(AP2<1—miles of them—leagues.
+~)
+)
+
+Inlanders all, they come from lanes and alleys, streets and avenues—north, east, south, and west.
+(IC1 Inlanders all, they come from lanes and alleys, streets and avenues
+~(AP2<1—north, east, south, and west.
+~)
+)
+
+Yet here they all unite.
+(IC1 Yet here they all unite.
+)
+
+Tell me, does the magnetic virtue of the needles of the compasses of all those ships attract them thither?
+(IC1 Tell me,
+)
+(IC2 does the magnetic virtue of the needles of the compasses of all those ships attract them thither?
+)
+
+
+###
+
+Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world. It is a way I have of driving off the spleen and regulating the circulation. Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people’s hats off—then, I account it high time to get to sea as soon as I can. This is my substitute for pistol and ball. With a philosophical flourish Cato throws himself upon his sword; I quietly take to the ship. There is nothing surprising in this. If they but knew it, almost all men in their degree, some time or other, cherish very nearly the same feelings towards the ocean with me.
+
+There now is your insular city of the Manhattoes, belted round by wharves as Indian isles by coral reefs—commerce surrounds it with her surf. Right and left, the streets take you waterward. Its extreme downtown is the battery, where that noble mole is washed by waves, and cooled by breezes, which a few hours previous were out of sight of land. Look at the crowds of water-gazers there.
+
+Circumambulate the city of a dreamy Sabbath afternoon. Go from Corlears Hook to Coenties Slip, and from thence, by Whitehall, northward. What do you see?—Posted like silent sentinels all around the town, stand thousands upon thousands of mortal men fixed in ocean reveries. Some leaning against the spiles; some seated upon the pier-heads; some looking over the bulwarks of ships from China; some high aloft in the rigging, as if striving to get a still better seaward peep. But these are all landsmen; of week days pent up in lath and plaster—tied to counters, nailed to benches, clinched to desks. How then is this? Are the green fields gone? What do they here?
+
+But look! here come more crowds, pacing straight for the water, and seemingly bound for a dive. Strange! Nothing will content them but the extremest limit of the land; loitering under the shady lee of yonder warehouses will not suffice. No. They must get just as nigh the water as they possibly can without falling in. And there they stand—miles of them—leagues. Inlanders all, they come from lanes and alleys, streets and avenues—north, east, south, and west. Yet here they all unite. Tell me, does the magnetic virtue of the needles of the compasses of all those ships attract them thither?

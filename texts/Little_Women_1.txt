@@ -1,0 +1,181 @@
+Author: Louisa May Alcott
+Work: Little Women; Or, Meg, Jo, Beth, and Amy
+Year: -1868
+Choice: middle of chapter two
+Comment: !! draft analysis to review !!
+
+###
+
+ Beth played her gayest march, Amy threw open the door, and Meg enacted escort with great dignity.
+(IC1 Beth played her gayest march,
+)
+(IC2 Amy threw open the door,
+)
+(IC3 and Meg enacted escort with great dignity.
+)
+
+Mrs. March was both surprised and touched; and smiled with her eyes full as she examined her presents, and read the little notes which accompanied them.
+(IC1 Mrs. March was both surprised and touched;
+[CP2 and smiled with her eyes full
+~(DC3<2 as she examined her presents,
+~)
+]
+[CP4 and read the little notes
+~(DC5<4 which accompanied them.
+~)
+]
+)
+
+The slippers went on at once, a new handkerchief was slipped into her pocket, well scented with Amy's cologne, the rose was fastened in her bosom, and the nice gloves were pronounced a "perfect fit."
+(IC1 The slippers went on at once,
+)
+(IC2 a new handkerchief was slipped into her pocket,
+~(PP3<2 well scented with Amy's cologne,
+~)
+)
+(IC4 the rose was fastened in her bosom,
+)
+(IC5 and the nice gloves were pronounced a "perfect fit."
+)
+
+ There was a good deal of laughing and kissing and explaining, in the simple, loving fashion which makes these home-festivals so pleasant at the time, so sweet to remember long afterward, and then all fell to work.
+(IC1 There was a good deal of laughing and kissing and explaining,
+~(AP2<1 in the simple, loving fashion
+~~(DC3<2 which makes these home-festivals so pleasant at the time, so sweet to remember long afterward,
+~~)
+~)
+)
+(IC4 and then all fell to work.
+)
+
+ The morning charities and ceremonies took so much time that the rest of the day was devoted to preparations for the evening festivities.
+(IC1 The morning charities and ceremonies took so much time
+~(DC2<1 that the rest of the day was devoted to preparations for the evening festivities.
+~)
+)
+
+Being still too young to go often to the theatre, and not rich enough to afford any great outlay for private performances, the girls put their wits to work, and—necessity being the mother of invention,—made whatever they needed.
+(IC1
+~(PP2>1 Being still too young
+~~(AP3<2 to go often to the theatre,
+~~)
+~[CP4 and not rich enough
+~~(AP5<4 to afford any great outlay for private performances,
+~~)
+~]
+~)
+ the girls put their wits to work,
+[CP6 and
+~(PP7<6—necessity being the mother of invention,
+~)
+—made whatever they needed.
+]
+)
+
+Very clever were some of their productions,—pasteboard guitars, antique lamps made of old-fashioned butter-boats covered with silver paper, gorgeous robes of old cotton, glittering with tin spangles from a pickle factory, and armor covered with the same useful diamond-shaped bits, left in sheets when the lids of tin preserve-pots were cut out.
+(IC1 Very clever were some of their productions,
+~(AP2<1—pasteboard guitars, antique lamps
+~~(PP3<2 made of old-fashioned butter-boats
+~~~(PP4<3 covered with silver paper,
+~~~)
+~~)
+~~(AP5<2 gorgeous robes of old cotton,
+~~)
+~~(PP6<2 glittering with tin spangles from a pickle factory,
+~~)
+~[CP7 and armor
+~~(PP8<7 covered with the same useful diamond-shaped bits,
+~~~(PP9<8 left in sheets
+~~~~(DC10<9 when the lids of tin preserve-pots were cut out.
+~~~~)
+~~~)
+~~)
+~]
+~)
+)
+
+The furniture was used to being turned topsy-turvy, and the big chamber was the scene of many innocent revels.
+(IC1 The furniture was used to being turned topsy-turvy,
+)
+(IC2 and the big chamber was the scene of many innocent revels.
+)
+
+ No gentlemen were admitted; so Jo played male parts to her heart's content, and took immense satisfaction in a pair of russet-leather boots given her by a friend, who knew a lady who knew an actor.
+(IC1 No gentlemen were admitted;
+)
+(IC2 so Jo played male parts to her heart's content,
+[CP3 and took immense satisfaction in a pair of russet-leather boots
+~(PP4<3 given her by a friend,
+~~(DC5<4 who knew a lady
+~~~(DC6<5 who knew an actor.
+~~~)
+~~)
+~)
+]
+)
+
+These boots, an old foil, and a slashed doublet once used by an artist for some picture, were Jo's chief treasures, and appeared on all occasions.
+(IC1 These boots, an old foil, and a slashed doublet
+~(PP2<1 once used by an artist for some picture,
+~)
+ were Jo's chief treasures,
+[CP3 and appeared on all occasions.
+]
+)
+
+The smallness of the company made it necessary for the two principal actors to take several parts apiece; and they certainly deserved some credit for the hard work they did in learning three or four different parts, whisking in and out of various costumes, and managing the stage besides.
+(IC1 The smallness of the company made it necessary for the two principal actors to take several parts apiece;
+)
+(IC2 and they certainly deserved some credit for the hard work
+~(DC3<2 they did in learning three or four different parts,
+~[CP4 whisking in and out of various costumes,
+~]
+~[CP5 and managing the stage besides.
+~]
+~)
+)
+
+It was excellent drill for their memories, a harmless amusement, and employed many hours which otherwise would have been idle, lonely, or spent in less profitable society.
+(IC1 It was excellent drill for their memories, a harmless amusement,
+[CP2 and employed many hours
+~(DC3<2 which otherwise would have been idle, lonely, or spent in less profitable society.
+~)
+]
+)
+
+ On Christmas night, a dozen girls piled on to the bed which was the dress-circle, and sat before the blue and yellow chintz curtains in a most flattering state of expectancy.
+(IC1 On Christmas night, a dozen girls piled on to the bed
+~(DC2<1 which was the dress-circle,
+~)
+[CP3 and sat before the blue and yellow chintz curtains in a most flattering state of expectancy.
+]
+)
+
+There was a good deal of rustling and whispering behind the curtain, a trifle of lamp-smoke, and an occasional giggle from Amy, who was apt to get hysterical in the excitement of the moment.
+(IC1 There was a good deal of rustling and whispering behind the curtain, a trifle of lamp-smoke,
+[CP2 and an occasional giggle from Amy,
+~(DC3<2 who was apt to get hysterical in the excitement of the moment.
+~)
+]
+)
+
+Presently a bell sounded, the curtains flew apart, and the Operatic Tragedy began.
+(IC1 Presently a bell sounded,
+)
+(IC2 the curtains flew apart,
+)
+(IC3 and the Operatic Tragedy began.
+)
+
+
+###
+
+Beth played her gayest march, Amy threw open the door, and Meg enacted escort with great dignity. Mrs. March was both surprised and touched; and smiled with her eyes full as she examined her presents, and read the little notes which accompanied them. The slippers went on at once, a new handkerchief was slipped into her pocket, well scented with Amy's cologne, the rose was fastened in her bosom, and the nice gloves were pronounced a "perfect fit."
+
+There was a good deal of laughing and kissing and explaining, in the simple, loving fashion which makes these home-festivals so pleasant at the time, so sweet to remember long afterward, and then all fell to work.
+
+The morning charities and ceremonies took so much time that the rest of the day was devoted to preparations for the evening festivities. Being still too young to go often to the theatre, and not rich enough to afford any great outlay for private performances, the girls put their wits to work, and—necessity being the mother of invention,—made whatever they needed. Very clever were some of their productions,—pasteboard guitars, antique lamps made of old-fashioned butter-boats covered with silver paper, gorgeous robes of old cotton, glittering with tin spangles from a pickle factory, and armor covered with the same useful diamond-shaped bits, left in sheets when the lids of tin preserve-pots were cut out. The furniture was used to being turned topsy-turvy, and the big chamber was the scene of many innocent revels.
+
+No gentlemen were admitted; so Jo played male parts to her heart's content, and took immense satisfaction in a pair of russet-leather boots given her by a friend, who knew a lady who knew an actor. These boots, an old foil, and a slashed doublet once used by an artist for some picture, were Jo's chief treasures, and appeared on all occasions. The smallness of the company made it necessary for the two principal actors to take several parts apiece; and they certainly deserved some credit for the hard work they did in learning three or four different parts, whisking in and out of various costumes, and managing the stage besides. It was excellent drill for their memories, a harmless amusement, and employed many hours which otherwise would have been idle, lonely, or spent in less profitable society.
+
+On Christmas night, a dozen girls piled on to the bed which was the dress-circle, and sat before the blue and yellow chintz curtains in a most flattering state of expectancy. There was a good deal of rustling and whispering behind the curtain, a trifle of lamp-smoke, and an occasional giggle from Amy, who was apt to get hysterical in the excitement of the moment. Presently a bell sounded, the curtains flew apart, and the Operatic Tragedy began.

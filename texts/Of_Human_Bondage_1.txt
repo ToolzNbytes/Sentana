@@ -1,0 +1,234 @@
+Author: W. Somerset Maugham
+Work: Of Human Bondage
+Year: -1915
+Choice: end of chapter 3
+Comment:
+
+###
+
+Philip went downstairs slowly and found the door open.
+(IC1 Philip went downstairs slowly
+[CP2 and found the door open.
+]
+)
+
+Mr. Carey had left the room.
+(IC1 Mr. Carey had left the room.
+)
+
+Philip walked slowly round.
+(IC1 Philip walked slowly round.
+)
+
+They had been in the house so short a time that there was little in it that had a particular interest to him.
+(IC1 They had been in the house so short a time
+~(DC2<1 that there was little in it
+~~(DC3<2 that had a particular interest to him.
+~~)
+~)
+)
+
+It was a stranger’s room, and Philip saw nothing that struck his fancy.
+(IC1 It was a stranger’s room,
+)
+(IC2 and Philip saw nothing
+~(DC3<2 that struck his fancy.
+~)
+)
+
+But he knew which were his mother’s things and which belonged to the landlord, and presently fixed on a little clock that he had once heard his mother say she liked.
+(IC1 But he knew
+~(DC2<1 which were his mother’s things
+~)
+~(DC3<1 and which belonged to the landlord,
+~)
+[CP4 and presently fixed on a little clock
+~(DC5<4 that he had once heard his mother say
+~~(DC6<5 she liked.
+~~)
+~)
+]
+)
+# The two “which…” clauses (DC2/DC3) are parallel complements of “knew”; DC3 begins with “and” as part of the complement coordination.
+
+With this he walked again rather disconsolately upstairs.
+(IC1 With this he walked again rather disconsolately upstairs.
+)
+
+Outside the door of his mother’s bed-room he stopped and listened.
+(IC1 Outside the door of his mother’s bed-room he stopped
+[CP2 and listened.
+]
+)
+
+Though no one had told him not to go in, he had a feeling that it would be wrong to do so; he was a little frightened, and his heart beat uncomfortably; but at the same time something impelled him to turn the handle.
+(IC1 
+~(DC2>1Though no one had told him not to go in,
+~)
+ he had a feeling
+~(DC3<1 that it would be wrong to do so;
+~)
+)
+(IC4 he was a little frightened,
+)
+(IC5 and his heart beat uncomfortably;
+)
+(IC6 but at the same time something impelled him
+~(AP7<6 to turn the handle.
+~)
+)
+
+He turned it very gently, as if to prevent anyone within from hearing, and then slowly pushed the door open.
+(IC1 He turned it very gently,
+~(DC2<1 as if
+~~(AP3<2 to prevent anyone within from hearing,
+~~)
+~)
+[CP4 and then slowly pushed the door open.
+]
+)
+
+He stood on the threshold for a moment before he had the courage to enter.
+(IC1 He stood on the threshold for a moment
+~(DC2<1 before he had the courage to enter.
+~)
+)
+
+He was not frightened now, but it seemed strange.
+(IC1 He was not frightened now,
+)
+(IC2 but it seemed strange.
+)
+
+He closed the door behind him.
+(IC1 He closed the door behind him.
+)
+
+The blinds were drawn, and the room, in the cold light of a January afternoon, was dark.
+(IC1 The blinds were drawn,
+)
+(IC2 and the room,
+~(AP3<2 in the cold light of a January afternoon,
+~)
+ was dark.
+)
+
+On the dressing-table were Mrs. Carey’s brushes and the hand mirror.
+(IC1 On the dressing-table were Mrs. Carey’s brushes and the hand mirror.
+)
+
+In a little tray were hairpins.
+(IC1 In a little tray were hairpins.
+)
+
+There was a photograph of himself on the chimney-piece and one of his father.
+(IC1 There was a photograph of himself on the chimney-piece
+[CP2 and one of his father.
+]
+)
+
+He had often been in the room when his mother was not in it, but now it seemed different.
+(IC1 He had often been in the room
+~(DC2<1 when his mother was not in it,
+~)
+)
+(IC3 but now it seemed different.
+)
+
+There was something curious in the look of the chairs.
+(IC1 There was something curious in the look of the chairs.
+)
+
+The bed was made as though someone were going to sleep in it that night, and in a case on the pillow was a night-dress.
+(IC1 The bed was made
+~(DC2<1 as though someone were going to sleep in it that night,
+~)
+)
+(IC3 and in a case on the pillow was a night-dress.
+)
+
+Philip opened a large cupboard filled with dresses and, stepping in, took as many of them as he could in his arms and buried his face in them.
+(IC1 Philip opened a large cupboard
+~(PP2<1 filled with dresses
+~)
+[CP3 and,
+~(PP4<1 stepping in,
+~)
+ took as many of them
+~(DC5<3 as he could in his arms
+~)
+ and buried his face in them.
+]
+)
+# PP2 (“filled with dresses”) could alternatively be AP (postposed descriptive) on “cupboard”; PP is used because it’s an -ed participial modifier.
+
+They smelt of the scent his mother used.
+(IC1 They smelt of the scent
+~(DC2<1 his mother used.
+~)
+)
+
+Then he pulled open the drawers, filled with his mother’s things, and looked at them: there were lavender bags among the linen, and their scent was fresh and pleasant.
+(IC1 Then he pulled open the drawers,
+~(PP2<1 filled with his mother’s things,
+~)
+[CP3 and looked at them:
+]
+)
+(IC4 there were lavender bags among the linen,
+)
+(IC5 and their scent was fresh and pleasant.
+)
+
+The strangeness of the room left it, and it seemed to him that his mother had just gone out for a walk.
+(IC1 The strangeness of the room left it,
+)
+(IC2 and it seemed to him
+~(DC3<2 that his mother had just gone out for a walk.
+~)
+)
+
+She would be in presently and would come upstairs to have nursery tea with him.
+(IC1 She would be in presently
+[CP2 and would come upstairs
+~(AP3<2 to have nursery tea with him.
+~)
+]
+)
+
+And he seemed to feel her kiss on his lips.
+(IC1 And he seemed
+~(AP2<1 to feel her kiss on his lips.
+~)
+)
+
+It was not true that he would never see her again.
+(IC1 It was not true
+~(DC2<1 that he would never see her again.
+~)
+)
+
+It was not true simply because it was impossible.
+(IC1 It was not true simply
+~(DC2<1 because it was impossible.
+~)
+)
+
+He climbed up on the bed and put his head on the pillow.
+(IC1 He climbed up on the bed
+[CP2 and put his head on the pillow.
+]
+)
+
+He lay there quite still.
+(IC1 He lay there quite still.
+)
+
+
+###
+
+Philip went downstairs slowly and found the door open. Mr. Carey had left the room. Philip walked slowly round. They had been in the house so short a time that there was little in it that had a particular interest to him. It was a stranger’s room, and Philip saw nothing that struck his fancy. But he knew which were his mother’s things and which belonged to the landlord, and presently fixed on a little clock that he had once heard his mother say she liked. With this he walked again rather disconsolately upstairs. Outside the door of his mother’s bed-room he stopped and listened. Though no one had told him not to go in, he had a feeling that it would be wrong to do so; he was a little frightened, and his heart beat uncomfortably; but at the same time something impelled him to turn the handle. He turned it very gently, as if to prevent anyone within from hearing, and then slowly pushed the door open. He stood on the threshold for a moment before he had the courage to enter. He was not frightened now, but it seemed strange. He closed the door behind him. The blinds were drawn, and the room, in the cold light of a January afternoon, was dark. On the dressing-table were Mrs. Carey’s brushes and the hand mirror. In a little tray were hairpins. There was a photograph of himself on the chimney-piece and one of his father. He had often been in the room when his mother was not in it, but now it seemed different. There was something curious in the look of the chairs. The bed was made as though someone were going to sleep in it that night, and in a case on the pillow was a night-dress.
+
+Philip opened a large cupboard filled with dresses and, stepping in, took as many of them as he could in his arms and buried his face in them. They smelt of the scent his mother used. Then he pulled open the drawers, filled with his mother’s things, and looked at them: there were lavender bags among the linen, and their scent was fresh and pleasant. The strangeness of the room left it, and it seemed to him that his mother had just gone out for a walk. She would be in presently and would come upstairs to have nursery tea with him. And he seemed to feel her kiss on his lips.
+
+It was not true that he would never see her again. It was not true simply because it was impossible. He climbed up on the bed and put his head on the pillow. He lay there quite still.

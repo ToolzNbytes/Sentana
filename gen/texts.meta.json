@@ -1,5 +1,14 @@
 [
   {
+    "Author": "Lucy Maud Montgomery",
+    "Work": "Anne of Green Gables",
+    "Year": "-1908",
+    "Choice": "beginning of chapter one",
+    "Comment": "!! draft analysis to review !!",
+    "file": "texts/Anne_of_Green_Gables_1.txt"
+  }
+,
+  {
     "Author": "Charles Dickens",
     "Work": "Bleak House",
     "Year": "1852-53",
@@ -13,7 +22,7 @@
     "Work": "Bleak House",
     "Year": "1852-53",
     "Choice": "chapter one, after the 'fog fragments'",
-    "Comment": "!! draft analysis to be reviewed !!",
+    "Comment": "Great passage with features of repetition and increasing sentence length for a dramatic effect.",
     "file": "texts/Bleak_House_2.txt"
   }
 ,
@@ -27,12 +36,39 @@
   }
 ,
   {
+    "Author": "Mary Wollstonecraft Shelley",
+    "Work": "Frankenstein; Or, The Modern Prometheus",
+    "Year": "1818",
+    "Choice": "beginning of chapter one",
+    "Comment": "!! draft analysis to review !!",
+    "file": "texts/Frankenstein_1.txt"
+  }
+,
+  {
+    "Author": "Joseph Conrad",
+    "Work": "Heart of Darkness",
+    "Year": "1899",
+    "Choice": "beginning of chapter one",
+    "Comment": "!! draft analysis to review !!",
+    "file": "texts/Heart_of-Darkness_1.txt"
+  }
+,
+  {
     "Author": "Charlotte Brontë",
     "Work": "Jane Eyre (3rd ed.)",
     "Year": "-1847",
     "Choice": "starting at last third of chapter one",
     "Comment": "!! draft analysis to be reviewed !!",
     "file": "texts/Jane_Eyre_1.txt"
+  }
+,
+  {
+    "Author": "Louisa May Alcott",
+    "Work": "Little Women; Or, Meg, Jo, Beth, and Amy",
+    "Year": "-1868",
+    "Choice": "middle of chapter two",
+    "Comment": "!! draft analysis to review !!",
+    "file": "texts/Little_Women_1.txt"
   }
 ,
   {
@@ -45,12 +81,30 @@
   }
 ,
   {
+    "Author": "Herman Melville",
+    "Work": "Moby-Dick; or, The Whale.",
+    "Year": "1850-1851",
+    "Choice": "beginning of chapter one",
+    "Comment": "!! draft analysis to review !!",
+    "file": "texts/Moby_Dick_1.txt"
+  }
+,
+  {
     "Author": "D. H. Lawrence",
     "Work": "Odour of Chrysanthemums",
     "Year": "1909",
     "Choice": "beginning of chapter one",
-    "Comment": "This excerpt is praised for its glood flow.",
+    "Comment": "This excerpt is praised for its glood flow. !! draft to be reviewed !!",
     "file": "texts/Odour_Chrys_1.txt"
+  }
+,
+  {
+    "Author": "W. Somerset Maugham",
+    "Work": "Of Human Bondage",
+    "Year": "-1915",
+    "Choice": "end of chapter 3",
+    "Comment": "",
+    "file": "texts/Of_Human_Bondage_1.txt"
   }
 ,
   {
@@ -60,6 +114,24 @@
     "Choice": "chapter 3 after a dialogue line",
     "Comment": "",
     "file": "texts/Pride_and_Prejudice_1.txt"
+  }
+,
+  {
+    "Author": "Theodore Dreiser",
+    "Work": "Sister Carrie",
+    "Year": "-1900 ",
+    "Choice": "beginning of chapter one",
+    "Comment": "Sentences might be on the short side (style criticised) !! draft analysis to be reviewed - several issues spotted !!",
+    "file": "texts/Sister_Carrie_1.txt"
+  }
+,
+  {
+    "Author": "F. Scott Fitzgerald",
+    "Work": "The Great Gatsby",
+    "Year": "1924",
+    "Choice": "beginning of chapter one",
+    "Comment": "(Feature a quote that is not yet handled in this format) !! draft analysis to review !!",
+    "file": "texts/The_Great_Gatsby_1.txt"
   }
 ,
   {
@@ -84,7 +156,7 @@
     "Work": "Wuthering Heights (1st ed.)",
     "Year": "-1847",
     "Choice": "chapter one, after the short initial dialogue",
-    "Comment": "This excerpt is with first person narration",
+    "Comment": "This excerpt is with first person narration.  !! draft analysis to be reviewed !!",
     "file": "texts/Wuthering_Heights_1.txt"
   }
 ]

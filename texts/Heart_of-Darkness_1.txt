@@ -1,0 +1,226 @@
+Author: 	Joseph Conrad
+Work: Heart of Darkness
+Year: 1899
+Choice: beginning of chapter one
+Comment: !! draft analysis to review !!
+
+###
+
+The *Nellie*, a cruising yawl, swung to her anchor without a flutter of the sails, and was at rest.
+(IC1 The *Nellie*,
+~(AP2<1 a cruising yawl,
+~)
+ swung to her anchor without a flutter of the sails,
+[CP3 and was at rest.
+]
+)
+
+The flood had made, the wind was nearly calm, and being bound down the river, the only thing for it was to come to and wait for the turn of the tide.
+(IC1 The flood had made,
+)
+(IC2 the wind was nearly calm,
+)
+(IC3 and
+~(PP4<3 being bound down the river,
+~)
+ the only thing for it was to come to
+[CP5 and wait for the turn of the tide.
+]
+)
+
+The sea–reach of the Thames stretched before us like the beginning of an interminable waterway.
+(IC1 The sea–reach of the Thames stretched before us like the beginning of an interminable waterway.
+)
+
+In the offing the sea and the sky were welded together without a joint, and in the luminous space the tanned sails of the barges drifting up with the tide seemed to stand still in red clusters of canvas sharply peaked, with gleams of varnished sprits.
+(IC1 In the offing the sea and the sky were welded together without a joint,
+)
+(IC2 and
+~(AP3<2 in the luminous space
+~)
+ the tanned sails of the barges
+~(PP4<2 drifting up with the tide
+~)
+ seemed to stand still in red clusters of canvas
+~(PP5<2 sharply peaked,
+~)
+~(AP6<2 with gleams of varnished sprits.
+~)
+)
+
+A haze rested on the low shores that ran out to sea in vanishing flatness.
+(IC1 A haze rested on the low shores
+~(DC2<1 that ran out to sea
+~~(AP3<2 in vanishing flatness.
+~~)
+~)
+)
+
+The air was dark above Gravesend, and farther back still seemed condensed into a mournful gloom, brooding motionless over the biggest, and the greatest, town on earth.
+(IC1 The air was dark above Gravesend,
+[CP2 and farther back still seemed condensed into a mournful gloom,
+~(PP3<2 brooding motionless over the biggest, and the greatest, town on earth.
+~)
+]
+)
+
+The Director of Companies was our captain and our host.
+(IC1 The Director of Companies was our captain and our host.
+)
+
+We four affectionately watched his back as he stood in the bows looking to seaward.
+(IC1 We four affectionately watched his back
+~(DC2<1 as he stood in the bows
+~~(PP3<2 looking to seaward.
+~~)
+~)
+)
+
+On the whole river there was nothing that looked half so nautical.
+(IC1 On the whole river there was nothing
+~(DC2<1 that looked half so nautical.
+~)
+)
+
+He resembled a pilot, which to a seaman is trustworthiness personified.
+(IC1 He resembled a pilot,
+~(DC2<1 which to a seaman is trustworthiness personified.
+~)
+)
+
+It was difficult to realize his work was not out there in the luminous estuary, but behind him, within the brooding gloom.
+(IC1 It was difficult to realize
+~(DC2<1 his work was not out there in the luminous estuary, but behind him, within the brooding gloom.
+~)
+)
+
+Between us there was, as I have already said somewhere, the bond of the sea.
+(IC1 Between us there was,
+~(DC2<1 as I have already said somewhere,
+~)
+ the bond of the sea.
+)
+
+Besides holding our hearts together through long periods of separation, it had the effect of making us tolerant of each other’s yarns—and even convictions.
+(IC1
+~(PP2>1 Besides holding our hearts together through long periods of separation,
+~)
+ it had the effect of making us tolerant of each other’s yarns—and even convictions.
+)
+
+The Lawyer—the best of old fellows—had, because of his many years and many virtues, the only cushion on deck, and was lying on the only rug.
+(IC1 The Lawyer—the best of old fellows—had,
+~(AP2<1 because of his many years and many virtues,
+~)
+ the only cushion on deck,
+[CP3 and was lying on the only rug.
+]
+)
+
+The Accountant had brought out already a box of dominoes, and was toying architecturally with the bones.
+(IC1 The Accountant had brought out already a box of dominoes,
+[CP2 and was toying architecturally with the bones.
+]
+)
+
+Marlow sat cross–legged right aft, leaning against the mizzenmast.
+(IC1 Marlow sat cross–legged right aft,
+~(PP2<1 leaning against the mizzenmast.
+~)
+)
+
+He had sunken cheeks, a yellow complexion, a straight back, an ascetic aspect, and, with his arms dropped, the palms of hands outwards, resembled an idol.
+(IC1 He had sunken cheeks, a yellow complexion, a straight back, an ascetic aspect,
+[CP2 and,
+~(AP3<2 with his arms dropped, the palms of hands outwards,
+~)
+ resembled an idol.
+]
+)
+
+The Director, satisfied the anchor had good hold, made his way aft and sat down amongst us.
+(IC1 The Director,
+~(PP2<1 satisfied
+~~(DC3<2 the anchor had good hold,
+~~)
+~)
+ made his way aft
+[CP4 and sat down amongst us.
+]
+)
+
+We exchanged a few words lazily.
+(IC1 We exchanged a few words lazily.
+)
+
+Afterwards there was silence on board the yacht.
+(IC1 Afterwards there was silence on board the yacht.
+)
+
+For some reason or other we did not begin that game of dominoes.
+(IC1 For some reason or other we did not begin that game of dominoes.
+)
+
+We felt meditative, and fit for nothing but placid staring.
+(IC1 We felt meditative,
+[CP2 and fit for nothing but placid staring.
+]
+)
+
+The day was ending in a serenity of still and exquisite brilliance.
+(IC1 The day was ending in a serenity of still and exquisite brilliance.
+)
+
+The water shone pacifically; the sky, without a speck, was a benign immensity of unstained light; the very mist on the Essex marsh was like a gauzy and radiant fabric, hung from the wooded rises inland, and draping the low shores in diaphanous folds.
+(IC1 The water shone pacifically;
+)
+(IC2 the sky,
+~(AP3<2 without a speck,
+~)
+ was a benign immensity of unstained light;
+)
+(IC4 the very mist on the Essex marsh was like a gauzy and radiant fabric,
+~(PP5<4 hung from the wooded rises inland,
+~[CP6 and draping the low shores in diaphanous folds.
+~]
+~)
+)
+
+Only the gloom to the west, brooding over the upper reaches, became more sombre every minute, as if angered by the approach of the sun.
+(IC1 Only the gloom to the west,
+~(PP2<1 brooding over the upper reaches,
+~)
+ became more sombre every minute,
+~(DC3<1 as if angered by the approach of the sun.
+~)
+)
+
+And at last, in its curved and imperceptible fall, the sun sank low, and from glowing white changed to a dull red without rays and without heat, as if about to go out suddenly, stricken to death by the touch of that gloom brooding over a crowd of men.
+(IC1 And at last,
+~(AP2<1 in its curved and imperceptible fall,
+~)
+ the sun sank low,
+[CP3 and from glowing white changed to a dull red
+~(AP4<3 without rays and without heat,
+~)
+~(DC5<3 as if about to go out suddenly,
+~)
+]
+~(PP6<1 stricken to death by the touch of that gloom
+~~(PP7<6 brooding over a crowd of men.
+~~)
+~)
+)
+
+
+###
+
+The *Nellie*, a cruising yawl, swung to her anchor without a flutter of the sails, and was at rest. The flood had made, the wind was nearly calm, and being bound down the river, the only thing for it was to come to and wait for the turn of the tide.
+
+The sea–reach of the Thames stretched before us like the beginning of an interminable waterway. In the offing the sea and the sky were welded together without a joint, and in the luminous space the tanned sails of the barges drifting up with the tide seemed to stand still in red clusters of canvas sharply peaked, with gleams of varnished sprits. A haze rested on the low shores that ran out to sea in vanishing flatness. The air was dark above Gravesend, and farther back still seemed condensed into a mournful gloom, brooding motionless over the biggest, and the greatest, town on earth.
+
+The Director of Companies was our captain and our host. We four affectionately watched his back as he stood in the bows looking to seaward. On the whole river there was nothing that looked half so nautical. He resembled a pilot, which to a seaman is trustworthiness personified. It was difficult to realize his work was not out there in the luminous estuary, but behind him, within the brooding gloom.
+
+Between us there was, as I have already said somewhere, the bond of the sea. Besides holding our hearts together through long periods of separation, it had the effect of making us tolerant of each other’s yarns—and even convictions. The Lawyer—the best of old fellows—had, because of his many years and many virtues, the only cushion on deck, and was lying on the only rug. The Accountant had brought out already a box of dominoes, and was toying architecturally with the bones. Marlow sat cross–legged right aft, leaning against the mizzenmast. He had sunken cheeks, a yellow complexion, a straight back, an ascetic aspect, and, with his arms dropped, the palms of hands outwards, resembled an idol. The Director, satisfied the anchor had good hold, made his way aft and sat down amongst us. We exchanged a few words lazily. Afterwards there was silence on board the yacht. For some reason or other we did not begin that game of dominoes. We felt meditative, and fit for nothing but placid staring. The day was ending in a serenity of still and exquisite brilliance. The water shone pacifically; the sky, without a speck, was a benign immensity of unstained light; the very mist on the Essex marsh was like a gauzy and radiant fabric, hung from the wooded rises inland, and draping the low shores in diaphanous folds. Only the gloom to the west, brooding over the upper reaches, became more sombre every minute, as if angered by the approach of the sun.
+
+And at last, in its curved and imperceptible fall, the sun sank low, and from glowing white changed to a dull red without rays and without heat, as if about to go out suddenly, stricken to death by the touch of that gloom brooding over a crowd of men.
