@@ -1,0 +1,269 @@
+Author: Theodore Dreiser
+Work: Sister Carrie
+Year: -1900 
+Choice: beginning of chapter one
+Comment: Sentences might be on the short side (style criticised) !! draft analysis to be reviewed - several issues spotted !!
+
+###
+
+When Caroline Meeber boarded the afternoon train for Chicago, her total outfit consisted of a small trunk, a cheap imitation alligator-skin satchel, a small lunch in a paper box, and a yellow leather snap purse, containing her ticket, a scrap of paper with her sister’s address in Van Buren Street, and four dollars in money.
+(IC1 
+~(DC2>1When Caroline Meeber boarded the afternoon train for Chicago,
+~)
+ her total outfit consisted of a small trunk, a cheap imitation alligator-skin satchel, a small lunch in a paper box, and a yellow leather snap purse,
+~(PP3<1 containing her ticket, a scrap of paper
+~~(AP4<3 with her sister’s address in Van Buren Street,
+~~)
+~ and four dollars in money.
+~)
+)
+
+It was in August, 1889.
+(IC1 It was in August, 1889.
+)
+
+She was eighteen years of age, bright, timid, and full of the illusions of ignorance and youth.
+(IC1 She was eighteen years of age,
+~(AP2<1 bright, timid, and full of the illusions of ignorance and youth.
+~)
+)
+
+Whatever touch of regret at parting characterised her thoughts, it was certainly not for advantages now being given up.
+(IC1 
+~(DC2>1Whatever touch of regret at parting characterised her thoughts,
+~)
+ it was certainly not for advantages
+~(PP3<1 now being given up.
+~)
+)
+
+A gush of tears at her mother’s farewell kiss, a touch in her throat when the cars clacked by the flour mill where her father worked by the day, a pathetic sigh as the familiar green environs of the village passed in review, and the threads which bound her so lightly to girlhood and home were irretrievably broken.
+(IC1 A gush of tears at her mother’s farewell kiss,
+[CP2 a touch in her throat
+~(DC3<2 when the cars clacked by the flour mill
+~~(DC4<3 where her father worked by the day,
+~~)
+~)
+]
+[CP5 a pathetic sigh
+~(DC6<5 as the familiar green environs of the village passed in review,
+~)
+]
+[CP7 and the threads
+~(DC8<7 which bound her so lightly to girlhood and home
+~)
+ were irretrievably broken.
+]
+)
+# CP2/CP5/CP7 are a comma-series with only the last introduced by “and”; CP is used here as “coordinated parallel constituent” for the subject bundle.
+
+To be sure there was always the next station, where one might descend and return.
+(IC1 To be sure there was always the next station,
+~(DC2<1 where one might descend and return.
+~)
+)
+
+There was the great city, bound more closely by these very trains which came up daily.
+(IC1 There was the great city,
+~(PP2<1 bound more closely by these very trains
+~~(DC3<2 which came up daily.
+~~)
+~)
+)
+
+Columbia City was not so very far away, even once she was in Chicago.
+(IC1 Columbia City was not so very far away,
+~(DC2<1 even once she was in Chicago.
+~)
+)
+# “even once she was in Chicago” could be read as elliptical “even when once…”, i.e., a temporal frame.
+
+What, pray, is a few hours—a few hundred miles?
+(IC1 What,
+~(AP2<1 pray,
+~)
+ is a few hours—a few hundred miles?
+)
+
+She looked at the little slip bearing her sister’s address and wondered.
+(IC1 She looked at the little slip
+~(PP2<1 bearing her sister’s address
+~)
+[CP3 and wondered.
+]
+)
+
+She gazed at the green landscape, now passing in swift review, until her swifter thoughts replaced its impression with vague conjectures of what Chicago might be.
+(IC1 She gazed at the green landscape,
+~(PP2<1 now passing in swift review,
+~)
+~(DC3<1 until her swifter thoughts replaced its impression with vague conjectures
+~~(DC4<3 of what Chicago might be.
+~~)
+~)
+)
+
+When a girl leaves her home at eighteen, she does one of two things.
+(IC1
+~(DC2>1 When a girl leaves her home at eighteen,
+~)
+ she does one of two things.
+)
+
+Either she falls into saving hands and becomes better, or she rapidly assumes the cosmopolitan standard of virtue and becomes worse.
+(IC1 Either she falls into saving hands and becomes better,
+[CP2 or she rapidly assumes the cosmopolitan standard of virtue and becomes worse.
+]
+)
+
+Of an intermediate balance, under the circumstances, there is no possibility.
+(IC1 Of an intermediate balance,
+~(AP2<1 under the circumstances,
+~)
+ there is no possibility.
+)
+
+The city has its cunning wiles, no less than the infinitely smaller and more human tempter.
+(IC1 The city has its cunning wiles,
+~(AP2<1 no less than the infinitely smaller and more human tempter.
+~)
+)
+
+There are large forces which allure with all the soulfulness of expression possible in the most cultured human.
+(IC1 There are large forces
+~(DC2<1 which allure with all the soulfulness of expression possible in the most cultured human.
+~)
+)
+
+The gleam of a thousand lights is often as effective as the persuasive light in a wooing and fascinating eye.
+(IC1 The gleam of a thousand lights is often as effective as the persuasive light in a wooing and fascinating eye.
+)
+
+Half the undoing of the unsophisticated and natural mind is accomplished by forces wholly superhuman.
+(IC1 Half the undoing
+~(AP2<1 of the unsophisticated and natural mind
+~)
+ is accomplished by forces wholly superhuman.
+)
+
+A blare of sound, a roar of life, a vast array of human hives, appeal to the astonished senses in equivocal terms.
+(IC1 A blare of sound, a roar of life, a vast array of human hives, appeal to the astonished senses in equivocal terms.
+)
+
+Without a counsellor at hand to whisper cautious interpretations, what falsehoods may not these things breathe into the unguarded ear!
+(IC1 Without a counsellor at hand
+~(AP2<1 to whisper cautious interpretations,
+~)
+ what falsehoods may not these things breathe into the unguarded ear!
+)
+
+Unrecognised for what they are, their beauty, like music, too often relaxes, then weakens, then perverts the simpler human perceptions.
+(IC1 
+~(PP2>1Unrecognised for what they are,
+~)
+ their beauty,
+~(AP3<1 like music,
+~)
+ too often relaxes,
+[CP4 then weakens,
+]
+[CP5 then perverts the simpler human perceptions.
+]
+)
+
+Caroline, or Sister Carrie, as she had been half affectionately termed by the family, was possessed of a mind rudimentary in its power of observation and analysis.
+(IC1 Caroline,
+~(AP2<1 or Sister Carrie,
+~)
+~(DC3<1 as she had been half affectionately termed by the family,
+~)
+ was possessed of a mind rudimentary in its power of observation and analysis.
+)
+
+Self-interest with her was high, but not strong.
+(IC1 Self-interest with her was high,
+~(AP2<1 but not strong.
+~)
+)
+
+It was, nevertheless, her guiding characteristic.
+(IC1 It was,
+~(AP2<1 nevertheless,
+~)
+ her guiding characteristic.
+)
+
+Warm with the fancies of youth, pretty with the insipid prettiness of the formative period, possessed of a figure promising eventual shapeliness and an eye alight with certain native intelligence, she was a fair example of the middle American class—two generations removed from the emigrant.
+(IC1 
+~(PP2>1Warm with the fancies of youth,
+~)
+~(PP3<1 pretty with the insipid prettiness of the formative period,
+~)
+~(PP4<1 possessed of a figure
+~~(PP5<4 promising eventual shapeliness
+~~)
+~ and an eye alight with certain native intelligence,
+~)
+ she was a fair example of the middle American class
+~(AP6<1—two generations removed from the emigrant.
+~)
+)
+# PP2/PP3/PP4 are a fronted participial series; each is optional and can be paraphrased with “being/while”.
+
+Books were beyond her interest—knowledge a sealed book.
+(IC1 Books were beyond her interest
+~(AP2<1—knowledge a sealed book.
+~)
+)
+
+In the intuitive graces she was still crude.
+(IC1 In the intuitive graces she was still crude.
+)
+
+She could scarcely toss her head gracefully.
+(IC1 She could scarcely toss her head gracefully.
+)
+
+Her hands were almost ineffectual.
+(IC1 Her hands were almost ineffectual.
+)
+
+The feet, though small, were set flatly.
+(IC1 The feet,
+~(DC2<1 though small,
+~)
+ were set flatly.
+)
+
+And yet she was interested in her charms, quick to understand the keener pleasures of life, ambitious to gain in material things.
+(IC1 And yet she was interested in her charms,
+~(AP2<1 quick to understand the keener pleasures of life,
+~)
+~(AP3<1 ambitious to gain in material things.
+~)
+)
+
+A half-equipped little knight she was, venturing to reconnoitre the mysterious city and dreaming wild dreams of some vague, far-off supremacy, which should make it prey and subject—the proper penitent, grovelling at a woman’s slipper.
+(IC1 A half-equipped little knight she was,
+~(PP2<1 venturing to reconnoitre the mysterious city
+~)
+~(PP3<1 and dreaming wild dreams of some vague, far-off supremacy,
+~~(DC4<3 which should make it prey and subject
+~~~(AP5<4—the proper penitent,
+~~~~(PP6<5 grovelling at a woman’s slipper.
+~~~~)
+~~~)
+~~)
+~)
+)
+
+
+###
+
+When Caroline Meeber boarded the afternoon train for Chicago, her total outfit consisted of a small trunk, a cheap imitation alligator-skin satchel, a small lunch in a paper box, and a yellow leather snap purse, containing her ticket, a scrap of paper with her sister’s address in Van Buren Street, and four dollars in money. It was in August, 1889. She was eighteen years of age, bright, timid, and full of the illusions of ignorance and youth. Whatever touch of regret at parting characterised her thoughts, it was certainly not for advantages now being given up. A gush of tears at her mother’s farewell kiss, a touch in her throat when the cars clacked by the flour mill where her father worked by the day, a pathetic sigh as the familiar green environs of the village passed in review, and the threads which bound her so lightly to girlhood and home were irretrievably broken.
+
+To be sure there was always the next station, where one might descend and return. There was the great city, bound more closely by these very trains which came up daily. Columbia City was not so very far away, even once she was in Chicago. What, pray, is a few hours—a few hundred miles? She looked at the little slip bearing her sister’s address and wondered. She gazed at the green landscape, now passing in swift review, until her swifter thoughts replaced its impression with vague conjectures of what Chicago might be.
+
+When a girl leaves her home at eighteen, she does one of two things. Either she falls into saving hands and becomes better, or she rapidly assumes the cosmopolitan standard of virtue and becomes worse. Of an intermediate balance, under the circumstances, there is no possibility. The city has its cunning wiles, no less than the infinitely smaller and more human tempter. There are large forces which allure with all the soulfulness of expression possible in the most cultured human. The gleam of a thousand lights is often as effective as the persuasive light in a wooing and fascinating eye. Half the undoing of the unsophisticated and natural mind is accomplished by forces wholly superhuman. A blare of sound, a roar of life, a vast array of human hives, appeal to the astonished senses in equivocal terms. Without a counsellor at hand to whisper cautious interpretations, what falsehoods may not these things breathe into the unguarded ear! Unrecognised for what they are, their beauty, like music, too often relaxes, then weakens, then perverts the simpler human perceptions.
+
+Caroline, or Sister Carrie, as she had been half affectionately termed by the family, was possessed of a mind rudimentary in its power of observation and analysis. Self-interest with her was high, but not strong. It was, nevertheless, her guiding characteristic. Warm with the fancies of youth, pretty with the insipid prettiness of the formative period, possessed of a figure promising eventual shapeliness and an eye alight with certain native intelligence, she was a fair example of the middle American class—two generations removed from the emigrant. Books were beyond her interest—knowledge a sealed book. In the intuitive graces she was still crude. She could scarcely toss her head gracefully. Her hands were almost ineffectual. The feet, though small, were set flatly. And yet she was interested in her charms, quick to understand the keener pleasures of life, ambitious to gain in material things. A half-equipped little knight she was, venturing to reconnoitre the mysterious city and dreaming wild dreams of some vague, far-off supremacy, which should make it prey and subject—the proper penitent, grovelling at a woman’s slipper.
