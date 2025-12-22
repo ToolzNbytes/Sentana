@@ -2,11 +2,11 @@ Author: Jane Austen
 Work: Emma
 Year: 1810-1815
 Choice: beginning of chapter one
-Comment: !! draft analysis to be reviewed !!
+Comment: Many variations of the sentences' structure.
 
 ###
 
-Emma Woodhouse, handsome, clever, and rich, with a comfortable home and happy disposition, seemed to unite some of the best blessings of existence; and had lived nearly twenty-one years in the world with very little to distress or vex her.
+ Emma Woodhouse, handsome, clever, and rich, with a comfortable home and happy disposition, seemed to unite some of the best blessings of existence; and had lived nearly twenty-one years in the world with very little to distress or vex her.
 (IC1 Emma Woodhouse,
 ~(AP2<1 handsome, clever, and rich,
 ~)
@@ -19,7 +19,7 @@ Emma Woodhouse, handsome, clever, and rich, with a comfortable home and happy di
 ]
 )
 
-She was the youngest of the two daughters of a most affectionate, indulgent father; and had, in consequence of her sister’s marriage, been mistress of his house from a very early period.
+ She was the youngest of the two daughters of a most affectionate, indulgent father; and had, in consequence of her sister’s marriage, been mistress of his house from a very early period.
 (IC1 She was the youngest of the two daughters of a most affectionate, indulgent father;
 [CP2 and had,
 ~(AP3<2 in consequence of her sister’s marriage,
@@ -38,11 +38,13 @@ Her mother had died too long ago for her to have more than an indistinct remembr
 ~)
 )
 
-Sixteen years had Miss Taylor been in Mr. Woodhouse’s family, less as a governess than a friend, very fond of both daughters, but particularly of Emma.
+ Sixteen years had Miss Taylor been in Mr. Woodhouse’s family, less as a governess than a friend, very fond of both daughters, but particularly of Emma.
 (IC1 Sixteen years had Miss Taylor been in Mr. Woodhouse’s family,
 ~(AP2<1 less as a governess than a friend,
 ~)
-~(AP3<1 very fond of both daughters, but particularly of Emma.
+~(AP3<1 very fond of both daughters,
+~~(AP4<3 but particularly of Emma.
+~~)
 ~)
 )
 
@@ -68,7 +70,7 @@ Even before Miss Taylor had ceased to hold the nominal office of governess, the 
 ~)
 )
 
-The real evils, indeed, of Emma’s situation were the power of having rather too much her own way, and a disposition to think a little too well of herself; these were the disadvantages which threatened alloy to her many enjoyments.
+ The real evils, indeed, of Emma’s situation were the power of having rather too much her own way, and a disposition to think a little too well of herself; these were the disadvantages which threatened alloy to her many enjoyments.
 (IC1 The real evils, indeed, of Emma’s situation were the power of having rather too much her own way, and a disposition to think a little too well of herself;
 )
 (IC2 these were the disadvantages
@@ -82,7 +84,7 @@ The danger, however, was at present so unperceived, that they did not by any mea
 ~)
 )
 
-Sorrow came—a gentle sorrow—but not at all in the shape of any disagreeable consciousness.
+ Sorrow came—a gentle sorrow—but not at all in the shape of any disagreeable consciousness.
 (IC1 Sorrow came
 ~(AP2<1—a gentle sorrow—
 ~)
@@ -90,6 +92,7 @@ but not at all in the shape of any disagreeable consciousness.
 )
 
 —Miss Taylor married.
+# Not sure how to read this one
 (IC1 —Miss Taylor married.
 )
 
@@ -106,12 +109,15 @@ It was on the wedding-day of this beloved friend that Emma first sat in mournful
 )
 
 The wedding over, and the bride-people gone, her father and herself were left to dine together, with no prospect of a third to cheer a long evening.
-(IC1 The wedding over,
-[CP2 and the bride-people gone,
-]
+#2 Omission of "being" over
+(IC1
+~(PP2>1 The wedding over,
+~[CP3 and the bride-people gone,
+~]
+~)
  her father and herself were left to dine together,
-~(AP3<1 with no prospect of a third
-~~(AP4<3 to cheer a long evening.
+~(AP4<1 with no prospect of a third
+~~(AP5<4 to cheer a long evening.
 ~~)
 ~)
 )
@@ -126,7 +132,7 @@ Her father composed himself to sleep after dinner, as usual, and she had then on
 ~)
 )
 
-The event had every promise of happiness for her friend.
+ The event had every promise of happiness for her friend.
 (IC1 The event had every promise of happiness for her friend.
 )
 
@@ -173,6 +179,7 @@ A large debt of gratitude was owing here; but the intercourse of the last seven 
 )
 
 She had been a friend and companion such as few possessed: intelligent, well-informed, useful, gentle, knowing all the ways of the family, interested in all its concerns, and peculiarly interested in herself, in every pleasure, every scheme of hers—one to whom she could speak every thought as it arose, and who had such an affection for her as could never find fault.
+# The last parts could be investigated further
 (IC1 She had been a friend and companion
 ~(DC2<1 such as few possessed:
 ~)
