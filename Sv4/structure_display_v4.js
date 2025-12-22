@@ -314,10 +314,11 @@ function parseAnalyzedText(analyzedText, reportError){
     return full;
   }
 
-  let rootWorthyComment = null;
-  const nodeComments = new Map();
   try {
     while (i < lines.length){
+      let rootWorthyComment = null;
+      const nodeComments = new Map();
+
       if (isEmpty(lines[i])) { i++; continue; }
 
       if (!isSentenceLine(lines[i])) error("Sentence expected", i);
@@ -535,7 +536,7 @@ if (chosenFont === MIN_FONT && !fits(MIN_FONT)) {
 }
 
 
-function setHighlightedSentence(node){
+function setHighlightedSentence(node, noHl=false){
   const sArea = document.getElementById("sentenceArea");
   const so = node.textSoFar || "";
   const tr = node.textTree || "";
@@ -543,7 +544,8 @@ function setHighlightedSentence(node){
   const len = so.length + tr.length + af.length;
 
   fitStringInSentenceArea(len);
-  sArea.innerHTML = `${escapeHtml(so)}<span class="hl">${escapeHtml(tr)}</span>${escapeHtml(af)}`;
+  let hlClass= noHl ? "" : "hl";
+    sArea.innerHTML = `${escapeHtml(so)}<span class="${hlClass}">${escapeHtml(tr)}</span>${escapeHtml(af)}`;
 }
 function clearHighlightedSentence(){
   const sArea = document.getElementById("sentenceArea");
@@ -568,7 +570,7 @@ function buildHoverComment(tree, node) {
 }
 
 function setHoveringDisplay(tree, node){
-  setHighlightedSentence(node);
+  setHighlightedSentence(node, tree===node);
   commentBox.textContent = buildHoverComment(tree, node);
 }
 
@@ -608,7 +610,7 @@ function createAnalysisSVG(tree, cap){
   svg.appendChild(defs);
 
   // outer rectangle in %
-  svg.appendChild(svgEl("rect",{
+   const outerRect= svgEl("rect",{
     x:"0",
     y:"0",
     width: `${mainWpct}%`,
@@ -616,7 +618,9 @@ function createAnalysisSVG(tree, cap){
     rx:"10",
     ry:"10",
     fill:"#808080"
-  }));
+  })
+  outerRect.addEventListener("mouseenter", ()=>setHoveringDisplay(tree,tree)); // tree from outer function
+  svg.appendChild(outerRect);
 
   const state = { ic:0, dc:0, dcF:0, fg:0, ap:0, pp:0, ppF:0, cp:0 };
 
