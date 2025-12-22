@@ -2,7 +2,7 @@ Author: Charles Dickens
 Work: Bleak House
 Year: 1852-53
 Choice: chapter one, after the 'fog fragments'
-Comment: !! draft analysis to be reviewed !!
+Comment: Great passage with features of repetition and increasing sentence length for a dramatic effect.
 
 ###
 
@@ -67,6 +67,7 @@ On such an afternoon some score of members of the High Court of Chancery bar oug
 # DC7 attachment (“as players might.”) could arguably scope over more than just CP6.
 
 On such an afternoon the various solicitors in the cause, some two or three of whom have inherited it from their fathers, who made a fortune by it, ought to be—as are they not?—ranged in a line, in a long matted well (but you might look in vain for truth at the bottom of it) between the registrar’s red table and the silk gowns, with bills, cross-bills, answers, rejoinders, injunctions, affidavits, issues, references to masters, masters’ reports, mountains of costly nonsense, piled before them.
+# Third repetition of "On such an afternoon" to start a sentence (see before)
 (IC1 On such an afternoon the various solicitors in the cause,
 ~(AP2<1 some two or three
 ~~(DC3<2 of whom have inherited it from their fathers,
@@ -87,6 +88,7 @@ On such an afternoon the various solicitors in the cause, some two or three of w
 # AP2 could alternatively be treated as a DC modifying “solicitors” rather than an appositive AP.
 
 Well may the court be dim, with wasting candles here and there; well may the fog hang heavy in it, as if it would never get out; well may the stained-glass windows lose their colour and admit no light of day into the place; well may the uninitiated from the streets, who peep in through the glass panes in the door, be deterred from entrance by its owlish aspect and by the drawl, languidly echoing to the roof from the padded dais where the Lord High Chancellor looks into the lantern that has no light in it and where the attendant wigs are all stuck in a fog-bank!
+# "Well may" starting four independent clauses 
 (IC1 Well may the court be dim, with wasting candles here and there;
 )
 (IC2 well may the fog hang heavy in it,
@@ -113,6 +115,7 @@ Well may the court be dim, with wasting candles here and there; well may the fog
 # PP8 (“languidly echoing…”) is attached to IC6 though it most directly describes “the drawl,”.
 
 This is the Court of Chancery, which has its decaying houses and its blighted lands in every shire, which has its worn-out lunatic in every madhouse and its dead in every churchyard, which has its ruined suitor with his slipshod heels and threadbare dress borrowing and begging through the round of every man’s acquaintance, which gives to monied might the means abundantly of wearying out the right, which so exhausts finances, patience, courage, hope, so overthrows the brain and breaks the heart, that there is not an honourable man among its practitioners who would not give—who does not often give—the warning, “Suffer any wrong that can be done you rather than come here!”
+# Final bouquet with an even longer sentence, repeating "which" five times in five dependent clause, the last of which also having a complex implementation
 (IC1 This is the Court of Chancery,
 ~(DC2<1 which has its decaying houses and its blighted lands in every shire,
 ~)
