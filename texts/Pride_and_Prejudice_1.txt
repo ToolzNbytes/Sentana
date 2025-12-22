@@ -2,7 +2,7 @@ Author: Jane Austen
 Work: Pride and Prejudice
 Year: 1795-96
 Choice: chapter 3 after a dialogue line
-Comment: !! draft analysis to be reviewed !!
+Comment:
 
 ###
 
@@ -22,15 +22,18 @@ He had entertained hopes of being admitted to a sight of the young ladies, of wh
 
 The ladies were somewhat more fortunate, for they had the advantage of ascertaining, from an upper window, that he wore a blue coat and rode a black horse.
 (IC1 The ladies were somewhat more fortunate,
-~(DC2<1 for they had the advantage of ascertaining, from an upper window,
-~~(DC3<2 that he wore a blue coat
-~~[CP4 and rode a black horse.
-~~]
-~~)
+)
+(IC2 for they had the advantage of ascertaining,
+~(AP3<2 from an upper window,
+~)
+~(DC4<2 that he wore a blue coat
+~[CP5 and rode a black horse.
+~]
 ~)
 )
 
  An invitation to dinner was soon afterwards despatched; and already had Mrs. Bennet planned the courses that were to do credit to her housekeeping, when an answer arrived which deferred it all.
+#2 Auxiliary inversion here. It foregrounds "already" and setup the "when"
 (IC1 An invitation to dinner was soon afterwards despatched;
 )
 (IC2 and already had Mrs. Bennet planned the courses
@@ -78,8 +81,8 @@ Lady Lucas quieted her fears a little by starting the idea of his being gone to 
 ~)
 )
 
-The girls grieved over such a number of{13} ladies; but were comforted the day before the ball by hearing that, instead of twelve, he had brought only six with him from London, his five sisters and a cousin.
-(IC1 The girls grieved over such a number of{13} ladies;
+The girls grieved over such a number of ladies; but were comforted the day before the ball by hearing that, instead of twelve, he had brought only six with him from London, his five sisters and a cousin.
+(IC1 The girls grieved over such a number of ladies;
 [CP2 but were comforted the day before the ball
 ~(AP3<2 by hearing
 ~~(DC4<3 that, instead of twelve, he had brought only six with him from London,
@@ -112,6 +115,7 @@ His sisters were fine women, with an air of decided fashion.
 )
 
 His brother-in-law, Mr. Hurst, merely looked the gentleman; but his friend Mr. Darcy soon drew the attention of the room by his fine, tall person, handsome features, noble mien, and the report, which was in general circulation within five minutes after his entrance, of his having ten thousand a year.
+#5 This dependent clause is not nested, so we jump back over the previous dependent clause to refer to its matter.
 (IC1 His brother-in-law,
 ~(AP2<1 Mr. Hurst,
 ~)
