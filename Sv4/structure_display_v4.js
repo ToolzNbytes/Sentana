@@ -75,16 +75,14 @@ async function loadAnalyzedText(file) {
 
   const raw = await res.text();
 
-  const markerIndex = raw.indexOf("###");
-  if (markerIndex === -1) {
+  // separator = line starting with ### (line is consummed)
+  const parts = raw.split(/^###[^\r\n]*(?:\r?\n|$)/m);
+
+  if (parts.length < 2) {
     throw new Error(`Missing ### marker in ${file}`);
   }
-
-  const analyzedText = raw
-    .slice(markerIndex + 3)
-    .trim();
-
-  return analyzedText;
+  // parts[0] = metadata, parts[1] = analyzed text, parts[2] = original (optionnal, ignored)
+  return parts[1].trim();
 }
 
 function parseAnalyzedText(analyzedText, reportError){
@@ -559,7 +557,7 @@ function buildHoverComment(tree, node) {
     lines.push(tree.comment);
   }
   // 2) node-specific comment OR default
-  if (node.comment) {
+  if (node.comment && node !== tree) {
     lines.push(node.comment);
   } else if (node.tag) {
     const key = node.forward ? node.tag + "f" : node.tag;
