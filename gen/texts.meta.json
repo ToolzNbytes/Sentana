@@ -13,7 +13,7 @@
     "Work": "Bleak House",
     "Year": "1852-53",
     "Choice": "chapter one, after the 'fog fragments'",
-    "Comment": "!! draft analysis to be reviewed !!",
+    "Comment": "Great passage with features of repetition and increasing sentence length for a dramatic effect.",
     "file": "texts/Bleak_House_2.txt"
   }
 ,
@@ -49,8 +49,17 @@
     "Work": "Odour of Chrysanthemums",
     "Year": "1909",
     "Choice": "beginning of chapter one",
-    "Comment": "This excerpt is praised for its glood flow.",
+    "Comment": "This excerpt is praised for its glood flow. !! draft to be reviewed !!",
     "file": "texts/Odour_Chrys_1.txt"
+  }
+,
+  {
+    "Author": "W. Somerset Maugham",
+    "Work": "Of Human Bondage",
+    "Year": "-1915",
+    "Choice": "end of chapter 3",
+    "Comment": "",
+    "file": "texts/Of_Human_Bondage_1.txt"
   }
 ,
   {
