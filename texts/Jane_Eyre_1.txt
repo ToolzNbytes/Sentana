@@ -6,7 +6,7 @@ Comment: !! draft analysis to be reviewed !!
 
 ###
 
-John Reed was a schoolboy of fourteen years old; four years older than I, for I was but ten: large and stout for his age, with a dingy and unwholesome skin; thick lineaments in a spacious visage, heavy limbs and large extremities.
+ John Reed was a schoolboy of fourteen years old; four years older than I, for I was but ten: large and stout for his age, with a dingy and unwholesome skin; thick lineaments in a spacious visage, heavy limbs and large extremities.
 (IC1 John Reed was a schoolboy of fourteen years old;
 ~(AP2<1 four years older than I,
 ~~(DC3<2 for I was but ten:
@@ -53,7 +53,7 @@ Mr. Miles, the master, affirmed that he would do very well if he had fewer cakes
 ]
 )
 
-John had not much affection for his mother and sisters, and an antipathy to me.
+ John had not much affection for his mother and sisters, and an antipathy to me.
 (IC1 John had not much affection for his mother and sisters, and an antipathy to me.
 )
 
@@ -94,7 +94,7 @@ There were moments when I was bewildered by the terror he inspired, because I ha
 ~)
 )
 
-Habitually obedient to John, I came up to his chair: he spent some three minutes in thrusting out his tongue at me as far as he could without damaging the roots: I knew he would soon strike, and while dreading the blow, I mused on the disgusting and ugly appearance of him who would presently deal it.
+ Habitually obedient to John, I came up to his chair: he spent some three minutes in thrusting out his tongue at me as far as he could without damaging the roots: I knew he would soon strike, and while dreading the blow, I mused on the disgusting and ugly appearance of him who would presently deal it.
 (IC1 Habitually obedient to John, I came up to his chair:
 )
 (IC2 he spent some three minutes
