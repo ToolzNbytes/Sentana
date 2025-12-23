@@ -2,14 +2,18 @@ name: Rebuild Corpus Index
 # When the action will run: Workflow runs when manually triggered using the UI
 
 on:
+  pull_request:
+    types: [closed]
+    branches: [main]
   workflow_dispatch:
-    # (No Inputs needed)
+
 
 permissions:
   contents: write
   
 jobs:
-  build:
+  rebuild:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true }}
     runs-on: ubuntu-latest
 
     steps:
