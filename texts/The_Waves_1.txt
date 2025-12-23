@@ -1,0 +1,169 @@
+Author: Virginia Woolf
+Work: The Waves
+Year: 1931
+Choice: prose before the first dialogue
+Comment: !! draft analysis to review !!
+Rights: asking
+
+###
+
+ The sun had not yet risen.
+(IC1 The sun had not yet risen.
+)
+
+The sea was indistinguishable from the sky, except that the sea was slightly creased as if a cloth had wrinkles in it.
+(IC1 The sea was indistinguishable from the sky,
+~(DC2<1 except that the sea was slightly creased
+~~(DC3<2 as if a cloth had wrinkles in it.
+~~)
+~)
+)
+
+Gradually as the sky whitened a dark line lay on the horizon dividing the sea from the sky and the grey cloth became barred with thick strokes moving, one after another, beneath the surface, following each other, pursuing each other, perpetually.
+(IC1 Gradually
+~(DC2>1 as the sky whitened
+~)
+ a dark line lay on the horizon
+~(PP3<1 dividing the sea from the sky
+~)
+)
+(IC4 and the grey cloth became barred with thick strokes
+~(PP5<4 moving, one after another, beneath the surface,
+~[CP6 following each other,
+~]
+~[CP7 pursuing each other,
+~]
+~[CP8 perpetually.
+~]
+~)
+)
+
+ As they neared the shore each bar rose, heaped itself, broke and swept a thin veil of white water across the sand.
+(IC1
+~(DC2>1 As they neared the shore
+~)
+ each bar rose,
+[CP3 heaped itself,
+]
+[CP4 broke
+]
+[CP5 and swept a thin veil of white water across the sand.
+]
+)
+
+The wave paused, and then drew out again, sighing like a sleeper whose breath comes and goes unconsciously.
+(IC1 The wave paused,
+[CP2 and then drew out again,
+]
+~(PP3<1 sighing like a sleeper
+~~(DC4<3 whose breath comes
+~~[CP5 and goes unconsciously.
+~~]
+~~)
+~)
+)
+
+Gradually the dark bar on the horizon became clear as if the sediment in an old wine-bottle had sunk and left the glass green.
+(IC1 Gradually the dark bar on the horizon became clear
+~(DC2<1 as if the sediment in an old wine-bottle had sunk
+~[CP3 and left the glass green.
+~]
+~)
+)
+
+Behind it, too, the sky cleared as if the white sediment there had sunk, or as if the arm of a woman couched beneath the horizon had raised a lamp and flat bars of white, green and yellow spread across the sky like the blades of a fan.
+(IC1 Behind it, too, the sky cleared
+~(DC2<1 as if the white sediment there had sunk,
+~)
+~(DC3<1 or as if the arm of a woman
+~~(PP4<3 couched beneath the horizon
+~~)
+~ had raised a lamp
+~[CP5 and flat bars of white, green and yellow spread across the sky
+~~(AP6<5 like the blades of a fan.
+~~)
+~]
+~)
+)
+
+Then she raised her lamp higher and the air seemed to become fibrous and to tear away from the green surface flickering and flaming in red and yellow fibres like the smoky fire that roars from a bonfire.
+(IC1 Then she raised her lamp higher
+)
+(IC2 and the air seemed
+~(AP3<2 to become fibrous
+~)
+[CP4 and to tear away from the green surface
+]
+~(PP5<2 flickering and flaming in red and yellow fibres like the smoky fire
+~~(DC6<5 that roars from a bonfire.
+~~)
+~)
+)
+
+Gradually the fibres of the burning bonfire were fused into one haze, one incandescence which lifted the weight of the woollen grey sky on top of it and turned it to a million atoms of soft blue.
+(IC1 Gradually the fibres of the burning bonfire were fused into one haze, one incandescence
+~(DC2<1 which lifted the weight of the woollen grey sky on top of it
+~[CP3 and turned it to a million atoms of soft blue.
+~]
+~)
+)
+
+The surface of the sea slowly became transparent and lay rippling and sparkling until the dark stripes were almost rubbed out.
+(IC1 The surface of the sea slowly became transparent
+[CP2 and lay
+~(PP3<2 rippling and sparkling
+~)
+~(DC4<2 until the dark stripes were almost rubbed out.
+~)
+]
+)
+
+Slowly the arm that held the lamp raised it higher and then higher until a broad flame became visible; an arc of fire burnt on the rim of the horizon, and all round it the sea blazed gold.
+(IC1 Slowly the arm
+~(DC2<1 that held the lamp
+~)
+ raised it higher and then higher
+~(DC3<1 until a broad flame became visible;
+~)
+)
+(IC4 an arc of fire burnt on the rim of the horizon,
+)
+(IC5 and all round it the sea blazed gold.
+)
+
+ The light struck upon the trees in the garden, making one leaf transparent and then another.
+(IC1 The light struck upon the trees in the garden,
+~(PP2<1 making one leaf transparent and then another.
+~)
+)
+
+One bird chirped high up; there was a pause; another chirped lower down.
+(IC1 One bird chirped high up;
+)
+(IC2 there was a pause;
+)
+(IC3 another chirped lower down.
+)
+
+The sun sharpened the walls of the house, and rested like the tip of a fan upon a white blind and made a blue finger-print of shadow under the leaf by the bedroom window.
+(IC1 The sun sharpened the walls of the house,
+[CP2 and rested
+~(AP3<2 like the tip of a fan
+~)
+~(AP4<2 upon a white blind
+~)
+]
+[CP5 and made a blue finger-print of shadow under the leaf by the bedroom window.
+]
+)
+
+The blind stirred slightly, but all within was dim and unsubstantial.
+(IC1 The blind stirred slightly,
+)
+(IC2 but all within was dim and unsubstantial.
+)
+
+The birds sang their blank melody outside.
+(IC1 The birds sang their blank melody outside.
+)
+
