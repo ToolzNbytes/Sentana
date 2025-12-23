@@ -557,7 +557,7 @@ function buildHoverComment(tree, node) {
     lines.push(tree.comment);
   }
   // 2) node-specific comment OR default
-  if (node.comment) {
+  if (node.comment && node !== tree) {
     lines.push(node.comment);
   } else if (node.tag) {
     const key = node.forward ? node.tag + "f" : node.tag;

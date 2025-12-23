@@ -1,0 +1,278 @@
+Author: Ernest Hemingway
+Work: The Old Man and the Sea
+Year: 1950-51
+Choice: prose after that the old man set sails
+Comment: Let's see it he is as terse as some say. !! draft analysis to review !! "big quote needs special handle not yet supported"
+
+###
+
+ Sometimes someone would speak in a boat.
+(IC1 Sometimes someone would speak in a boat.
+)
+
+But most of the boats were silent except for the dip of the oars.
+(IC1 But most of the boats were silent except for the dip of the oars.
+)
+
+They spread apart after they were out of the mouth of the harbour and each one headed for the part of the ocean where he hoped to find fish.
+(IC1 They spread apart
+~(DC2<1 after they were out of the mouth of the harbour
+~)
+[CP3 and each one headed for the part of the ocean
+~(DC4<3 where he hoped to find fish.
+~)
+]
+)
+
+The old man knew he was going far out and he left the smell of the land behind and rowed out into the clean early morning smell of the ocean.
+(IC1 The old man knew
+~(DC2<1 he was going far out
+~)
+[CP3 and he left the smell of the land behind
+]
+[CP4 and rowed out into the clean early morning smell of the ocean.
+]
+)
+
+He saw the phosphorescence of the Gulf weed in the water as he rowed over the part of the ocean that the fishermen called the great well because there was a sudden deep of seven hundred fathoms where all sorts of fish congregated because of the swirl the current made against the steep walls of the floor of the ocean.
+(IC1 He saw the phosphorescence of the Gulf weed in the water
+~(DC2<1 as he rowed over the part of the ocean
+~~(DC3<2 that the fishermen called the great well
+~~~(DC4<3 because there was a sudden deep of seven hundred fathoms
+~~~~(DC5<4 where all sorts of fish congregated
+~~~~~(AP6<5 because of the swirl
+~~~~~~(DC7<6 the current made against the steep walls of the floor of the ocean.
+~~~~~~)
+~~~~~)
+~~~~)
+~~~)
+~~)
+~)
+)
+
+Here there were concentrations of shrimp and bait fish and sometimes schools of squid in the deepest holes and these rose close to the surface at night where all the wandering fish fed on them.
+(IC1 Here there were concentrations of shrimp and bait fish and sometimes schools of squid in the deepest holes
+[CP2 and these rose close to the surface at night
+~(DC3<2 where all the wandering fish fed on them.
+~)
+]
+)
+
+ In the dark the old man could feel the morning coming and as he rowed he heard the trembling sound as flying fish left the water and the hissing that their stiff set wings made as they soared away in the darkness.
+(IC1 In the dark the old man could feel the morning coming
+[CP2 and
+~(DC3<2 as he rowed
+~)
+ he heard the trembling sound
+~(DC4<2 as flying fish left the water
+~)
+[CP5 and the hissing
+~(DC6<5 that their stiff set wings made
+~~(DC7<6 as they soared away in the darkness.
+~~)
+~)
+]
+]
+)
+
+He was very fond of flying fish as they were his principal friends on the ocean.
+(IC1 He was very fond of flying fish
+~(DC2<1 as they were his principal friends on the ocean.
+~)
+)
+
+He was sorry for the birds, especially the small delicate dark terns that were always flying and looking and almost never finding, and he thought, "The birds have a harder life than we do except for the robber birds and the heavy strong ones. Why did they make birds so delicate and fine as those sea swallows when the ocean can be so cruel? She is kind and very beautiful. But she can be so cruel and it comes so suddenly and such birds that fly, dipping and hunting, with their small sad voices are made too delicately for the sea."
+(IC1 He was sorry for the birds,
+~(AP2<1 especially the small delicate dark terns
+~~(DC3<2 that were always flying
+~~[CP4 and looking
+~~]
+~~[CP5 and almost never finding,
+~~]
+~~)
+~)
+[CP6 and he thought,
+~(AP7<6 "The birds have a harder life than we do except for the robber birds and the heavy strong ones. Why did they make birds so delicate and fine as those sea swallows when the ocean can be so cruel? She is kind and very beautiful. But she can be so cruel and it comes so suddenly and such birds that fly, dipping and hunting, with their small sad voices are made too delicately for the sea."
+~)
+]
+)
+
+ He always thought of the sea as la mar which is what people call her in Spanish when they love her.
+(IC1 He always thought of the sea as la mar
+~(DC2<1 which is what people call her in Spanish
+~~(DC3<2 when they love her.
+~~)
+~)
+)
+
+Sometimes those who love her say bad things of her but they are always said as though she were a woman.
+(IC1 Sometimes those
+~(DC2<1 who love her
+~)
+ say bad things of her
+)
+(IC3 but they are always said
+~(DC4<3 as though she were a woman.
+~)
+)
+
+Some of the younger fishermen, those who used buoys as floats for their lines and had motorboats, bought when the shark livers had brought much money, spoke of her as *el mar* which is masculine.
+(IC1 Some of the younger fishermen,
+~(DC2<1 those
+~~(DC3<2 who used buoys as floats for their lines
+~~)
+~[CP4 and had motorboats,
+~]
+~)
+~(PP5<1 bought
+~~(DC6<5 when the shark livers had brought much money,
+~~)
+~)
+ spoke of her as *el mar*
+~(DC7<1 which is masculine.
+~)
+)
+
+They spoke of her as a contestant or a place or even an enemy.
+(IC1 They spoke of her as a contestant or a place or even an enemy.
+)
+
+But the old man always thought of her as feminine and as something that gave or withheld great favours, and if she did wild or wicked things it was because she could not help them.
+(IC1 But the old man always thought of her as feminine and as something
+~(DC2<1 that gave or withheld great favours,
+~)
+[CP3 and
+~(DC4>3 if she did wild or wicked things
+~)
+ it was
+~(DC5<3 because she could not help them.
+~)
+]
+)
+
+The moon affects her as it does a woman, he thought.
+(IC1 The moon affects her
+~(DC2<1 as it does a woman,
+~)
+~(AP3<1 he thought.
+~)
+)
+
+ He was rowing steadily and it was no effort for him since he kept well within his speed and the surface of the ocean was flat except for the occasional swirls of the current.
+(IC1 He was rowing steadily
+)
+(IC2 and it was no effort for him
+~(DC3<2 since he kept well within his speed
+~)
+)
+(IC4 and the surface of the ocean was flat
+~(AP5<4 except for the occasional swirls of the current.
+~)
+)
+
+He was letting the current do a third of the work and as it started to be light he saw he was already further out than he had hoped to be at this hour.
+(IC1 He was letting the current do a third of the work
+)
+(IC2 and
+~(DC3<2 as it started to be light
+~)
+ he saw
+~(DC4<2 he was already further out
+~~(DC5<4 than he had hoped to be at this hour.
+~~)
+~)
+)
+
+ I worked the deep wells for a week and did nothing, he thought.
+(IC1 I worked the deep wells for a week
+[CP2 and did nothing,
+]
+~(AP3<1 he thought.
+~)
+)
+
+Today I'll work out where the schools of bonita and albacore are and maybe there will be a big one with them.
+(IC1 Today I'll work out
+~(DC2<1 where the schools of bonita and albacore are
+~)
+[CP3 and maybe there will be a big one with them.
+]
+)
+
+ Before it was really light he had his baits out and was drifting with the current.
+(IC1
+~(DC2>1 Before it was really light
+~)
+ he had his baits out
+[CP3 and was drifting with the current.
+]
+)
+
+One bait was down forty fathoms.
+(IC1 One bait was down forty fathoms.
+)
+
+The second was at seventy-five and the third and fourth were down in the blue water at one hundred and one hundred and twenty-five fathoms.
+(IC1 The second was at seventy-five
+[CP2 and the third and fourth were down in the blue water at one hundred and one hundred and twenty-five fathoms.
+]
+)
+
+Each bait hung head down with the shank of the hook inside the bait fish, tied and sewed solid and all the projecting part of the hook, the curve and the point, was covered with fresh sardines.
+(IC1 Each bait hung head down
+~(AP2<1 with the shank of the hook inside the bait fish,
+~)
+~(PP3<1 tied and sewed solid
+~)
+[CP4 and all the projecting part of the hook, the curve and the point, was covered with fresh sardines.
+]
+)
+
+Each sardine was hooked through both eyes so that they made a half-garland on the projecting steel.
+(IC1 Each sardine was hooked through both eyes
+~(DC2<1 so that they made a half-garland on the projecting steel.
+~)
+)
+
+There was no part of the hook that a great fish could feel which was not sweet smelling and good tasting.
+(IC1 There was no part of the hook
+~(DC2<1 that a great fish could feel
+~~(DC3<2 which was not sweet smelling and good tasting.
+~~)
+~)
+)
+
+ The boy had given him two fresh small tunas, or albacores, which hung on the two deepest lines like plummets and, on the others, he had a big blue runner and a yellow jack that had been used before; but they were in good condition still and had the excellent sardines to give them scent and attractiveness.
+(IC1 The boy had given him two fresh small tunas, or albacores,
+~(DC2<1 which hung on the two deepest lines like plummets
+~)
+)
+(IC3 and, on the others, he had a big blue runner and a yellow jack
+~(DC4<3 that had been used before;
+~)
+)
+(IC5 but they were in good condition still
+[CP6 and had the excellent sardines
+~(AP7<6 to give them scent and attractiveness.
+~)
+]
+)
+
+Each line, as thick around as a big pencil, was looped onto a green-sapped stick so that any pull or touch on the bait would make the stick dip and each line had two forty-fathom coils which could be made fast to the other spare coils so that, if it were necessary, a fish could take out over three hundred fathoms of line.
+(IC1 Each line,
+~(AP2<1 as thick around as a big pencil,
+~)
+ was looped onto a green-sapped stick
+~(DC3<1 so that any pull or touch on the bait would make the stick dip
+~)
+[CP4 and each line had two forty-fathom coils
+~(DC5<4 which could be made fast to the other spare coils
+~~(DC6<5 so that,
+~~~(AP7<6 if it were necessary,
+~~~)
+~~ a fish could take out over three hundred fathoms of line.
+~~)
+~)
+]
+)
+
