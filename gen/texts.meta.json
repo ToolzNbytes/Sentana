@@ -140,6 +140,7 @@
     "Year": "1950-51",
     "Choice": "prose after that the old man set sails",
     "Comment": "Let's see it he is as terse as some say. !! draft analysis to review !! + Big quote needs special handle not yet supported.",
+    "Rights": "asking",
     "file": "texts/The_Old_Man_and_the_Sea_1.txt"
   }
 ,
@@ -158,6 +159,16 @@
     "Choice": "beginning of chapter one",
     "Comment": "",
     "file": "texts/The_Voyage_Out_1.txt"
+  }
+,
+  {
+    "Author": "Virginia Woolf",
+    "Work": "The Waves",
+    "Year": "1931",
+    "Choice": "prose before the first dialogue",
+    "Comment": "!! draft analysis to review !!",
+    "Rights": "asking",
+    "file": "texts/The_Waves_1.txt"
   }
 ,
   {
