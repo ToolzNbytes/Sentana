@@ -6,7 +6,7 @@ Comment: Sentences might be on the short side (style criticised) !! draft analys
 
 ###
 
-When Caroline Meeber boarded the afternoon train for Chicago, her total outfit consisted of a small trunk, a cheap imitation alligator-skin satchel, a small lunch in a paper box, and a yellow leather snap purse, containing her ticket, a scrap of paper with her sister’s address in Van Buren Street, and four dollars in money.
+ When Caroline Meeber boarded the afternoon train for Chicago, her total outfit consisted of a small trunk, a cheap imitation alligator-skin satchel, a small lunch in a paper box, and a yellow leather snap purse, containing her ticket, a scrap of paper with her sister’s address in Van Buren Street, and four dollars in money.
 (IC1 
 ~(DC2>1When Caroline Meeber boarded the afternoon train for Chicago,
 ~)
@@ -57,7 +57,7 @@ A gush of tears at her mother’s farewell kiss, a touch in her throat when the 
 )
 # CP2/CP5/CP7 are a comma-series with only the last introduced by “and”; CP is used here as “coordinated parallel constituent” for the subject bundle.
 
-To be sure there was always the next station, where one might descend and return.
+ To be sure there was always the next station, where one might descend and return.
 (IC1 To be sure there was always the next station,
 ~(DC2<1 where one might descend and return.
 ~)
@@ -103,7 +103,7 @@ She gazed at the green landscape, now passing in swift review, until her swifter
 ~)
 )
 
-When a girl leaves her home at eighteen, she does one of two things.
+ When a girl leaves her home at eighteen, she does one of two things.
 (IC1
 ~(DC2>1 When a girl leaves her home at eighteen,
 ~)
@@ -171,7 +171,7 @@ Unrecognised for what they are, their beauty, like music, too often relaxes, the
 ]
 )
 
-Caroline, or Sister Carrie, as she had been half affectionately termed by the family, was possessed of a mind rudimentary in its power of observation and analysis.
+ Caroline, or Sister Carrie, as she had been half affectionately termed by the family, was possessed of a mind rudimentary in its power of observation and analysis.
 (IC1 Caroline,
 ~(AP2<1 or Sister Carrie,
 ~)
