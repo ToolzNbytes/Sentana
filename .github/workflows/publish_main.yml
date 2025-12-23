@@ -4,7 +4,6 @@ on:
   workflow_run:
     workflows: ["Rebuild Corpus Index"]
     types: [completed]
-    branches: [main]
 
 permissions:
   contents: read
