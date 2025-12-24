@@ -1,0 +1,216 @@
+Author: Jordan Meadows
+Work: Not Just Friends
+Year: 2024
+Choice: before end of ch 8
+Comment: First person narrator is young, so the voice matches this. !! draft analysis to review !!
+
+###
+
+ After negotiating that, I went and sat at the desk, feeling excited about finding an art store and ignoring the other reason I was there.
+(IC1
+~(PP2>1 After negotiating that,
+~)
+ I went and sat at the desk,
+~(PP3<1 feeling excited about finding an art store
+~[CP4 and ignoring the other reason I was there.
+~]
+~)
+)
+
+I found a small independent shop in Aurora, which wasn’t too far.
+(IC1 I found a small independent shop in Aurora,
+~(DC2<1 which wasn’t too far.
+~)
+)
+
+I just hoped they’d have something that wasn’t out of my mom’s price range.
+(IC1 I just hoped
+~(DC2<1 they’d have something
+~~(DC3<2 that wasn’t out of my mom’s price range.
+~~)
+~)
+)
+
+However, I did have some money saved up that I’d be willing to spend on getting set up.
+(IC1 However, I did have some money
+~(PP2<1 saved up
+~)
+~(DC3<1 that I’d be willing to spend on getting set up.
+~)
+)
+
+Watching all the arty TikToks had me wanting to try a few things.
+(IC1 Watching all the arty TikToks had me wanting to try a few things.
+)
+
+ I clicked around a bit, looking at what sorts of pencils I should get and stuff, but the store closed at five on Sundays and we’d have to leave by four to have time to look around.
+(IC1 I clicked around a bit,
+~(PP2<1 looking at
+~~(DC3<2 what sorts of pencils I should get
+~~)
+~ and stuff,
+~)
+)
+(IC4 but the store closed at five on Sundays
+[CP5 and we’d have to leave by four
+~(AP6<5 to have time to look around.
+~)
+]
+)
+
+I reluctantly navigated to my inbox.
+(IC1 I reluctantly navigated to my inbox.
+)
+
+Mom had forwarded the email, but I’d never looked at it.
+(IC1 Mom had forwarded the email,
+)
+(IC2 but I’d never looked at it.
+)
+
+I didn’t really look at email at all usually, so it had been easy to avoid.
+(IC1 I didn’t really look at email at all usually,
+)
+(IC2 so it had been easy to avoid.
+)
+
+ I taped my fingers on the laptop case for a while before finally clicking on the email with the subject line Fw: Reaching out about Jenica.
+(IC1 I taped my fingers on the laptop case for a while
+~(PP2<1 before finally clicking on the email with the subject line Fw: Reaching out about Jenica.
+~)
+)
+
+ Even the subject line annoyed me.
+(IC1 Even the subject line annoyed me.
+)
+
+My full name was Jenica Estes Nichols.
+(IC1 My full name was Jenica Estes Nichols.
+)
+
+The last name was easy enough, but I had good ol’ Dad to thank for the rest of that name.
+(IC1 The last name was easy enough,
+)
+(IC2 but I had good ol’ Dad to thank for the rest of that name.
+)
+
+Dad had wanted a J name to go with his and he chose Jenica, which meant God is gracious.
+(IC1 Dad had wanted a J name to go with his
+[CP2 and he chose Jenica,
+~(DC3<2 which meant God is gracious.
+~)
+]
+)
+
+This was both annoying for an atheist like me and often tripped teachers up on the first day of school, meaning I’d have to raise my hand and say Jen in front of the whole class.
+(IC1 This was both annoying for an atheist like me
+[CP2 and often tripped teachers up on the first day of school,
+]
+~(PP3<1 meaning
+~~(DC4<3 I’d have to raise my hand
+~~[CP5 and say Jen in front of the whole class.
+~~]
+~~)
+~)
+)
+
+It was embarrassing.
+(IC1 It was embarrassing.
+)
+
+Estes was because of Estes Park in the Rocky Mountain National Park.
+(IC1 Estes was because of Estes Park in the Rocky Mountain National Park.
+)
+
+ My dad had wanted to live in Colorado because of the mountains.
+(IC1 My dad had wanted to live in Colorado
+~(AP2<1 because of the mountains.
+~)
+)
+
+He had dreams of hiking in the mountains, bagging fourteeners.
+(IC1 He had dreams of hiking in the mountains,
+~(PP2<1 bagging fourteeners.
+~)
+)
+
+He and my mom had married right after high school and moved to Colorado.
+(IC1 He and my mom had married right after high school
+[CP2 and moved to Colorado.
+]
+)
+
+He’d been disappointed to settle in Prairie View, which was a good drive away from the mountains, but Mom had gotten a job at the airport and it was where they could afford to live in striking distance of the airport.
+(IC1 He’d been disappointed to settle in Prairie View,
+~(DC2<1 which was a good drive away from the mountains,
+~)
+)
+(IC3 but Mom had gotten a job at the airport
+[CP4 and it was
+~(DC5<4 where they could afford to live in striking distance of the airport.
+~)
+]
+)
+
+On her days off, they’d drive to the mountains and hike, which more or less worked until Mom got pregnant with me.
+(IC1 On her days off, they’d drive to the mountains
+[CP2 and hike,
+]
+~(DC3<1 which more or less worked
+~~(DC4<3 until Mom got pregnant with me.
+~~)
+~)
+)
+
+Or more accurately, until Mom was very, very pregnant with me and couldn’t hike anymore.
+(FG1 Or more accurately, until Mom was very, very pregnant with me and couldn’t hike anymore.
+)
+
+Dad, who’d not gotten a job, started going more and more by himself, camping overnight on longer and longer trips.
+(IC1 Dad,
+~(DC2<1 who’d not gotten a job,
+~)
+ started going more and more by himself,
+~(PP3<1 camping overnight on longer and longer trips.
+~)
+)
+
+When I was a few months old, Mom gave him an ultimatum.
+(IC1
+~(DC2>1 When I was a few months old,
+~)
+ Mom gave him an ultimatum.
+)
+
+Either he found a job and stayed home at least twenty nights a month or she was divorcing him.
+(IC1 Either he found a job
+[CP2 and stayed home at least twenty nights a month
+]
+)
+(IC3 or she was divorcing him.
+)
+
+He chose the mountains.
+(IC1 He chose the mountains.
+)
+
+ This was the first either of us had heard from him since, and yet my name was all about him from beginning to end.
+(IC1 This was the first
+~(DC2<1 either of us had heard from him since,
+~)
+)
+(IC3 and yet my name was all about him from beginning to end.
+)
+
+It was gross.
+(IC1 It was gross.
+)
+
+###
+
+After negotiating that, I went and sat at the desk, feeling excited about finding an art store and ignoring the other reason I was there. I found a small independent shop in Aurora, which wasn’t too far. I just hoped they’d have something that wasn’t out of my mom’s price range. However, I did have some money saved up that I’d be willing to spend on getting set up. Watching all the arty TikToks had me wanting to try a few things.
+I clicked around a bit, looking at what sorts of pencils I should get and stuff, but the store closed at five on Sundays and we’d have to leave by four to have time to look around. I reluctantly navigated to my inbox. Mom had forwarded the email, but I’d never looked at it. I didn’t really look at email at all usually, so it had been easy to avoid.
+I taped my fingers on the laptop case for a while before finally clicking on the email with the subject line Fw: Reaching out about Jenica.
+Even the subject line annoyed me. My full name was Jenica Estes Nichols. The last name was easy enough, but I had good ol’ Dad to thank for the rest of that name. Dad had wanted a J name to go with his and he chose Jenica, which meant God is gracious. This was both annoying for an atheist like me and often tripped teachers up on the first day of school, meaning I’d have to raise my hand and say Jen in front of the whole class. It was embarrassing. Estes was because of Estes Park in the Rocky Mountain National Park.
+My dad had wanted to live in Colorado because of the mountains. He had dreams of hiking in the mountains, bagging fourteeners. He and my mom had married right after high school and moved to Colorado. He’d been disappointed to settle in Prairie View, which was a good drive away from the mountains, but Mom had gotten a job at the airport and it was where they could afford to live in striking distance of the airport. On her days off, they’d drive to the mountains and hike, which more or less worked until Mom got pregnant with me. Or more accurately, until Mom was very, very pregnant with me and couldn’t hike anymore. Dad, who’d not gotten a job, started going more and more by himself, camping overnight on longer and longer trips. When I was a few months old, Mom gave him an ultimatum. Either he found a job and stayed home at least twenty nights a month or she was divorcing him. He chose the mountains.
+This was the first either of us had heard from him since, and yet my name was all about him from beginning to end. It was gross.

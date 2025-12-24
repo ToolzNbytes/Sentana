@@ -1,0 +1,146 @@
+Author: Jordan Meadows
+Work: Not Just Friends
+Year: 2024
+Choice: beginning of chapter two
+Comment: First person narrator is young, so the voice matches this. !! draft analysis to review !!
+
+###
+
+ Deanna dropped me off around noon.
+(IC1 Deanna dropped me off around noon.
+)
+
+My mom was out and had sent me a text.
+(IC1 My mom was out
+[CP2 and had sent me a text.
+]
+)
+
+Running club.
+(FG1 Running club.
+)
+
+Then lunch with the girls.
+(FG1 Then lunch with the girls.
+)
+
+Back around 2.
+(FG1 Back around 2.
+)
+
+ It was Sunday and I had chores to do.
+(IC1 It was Sunday
+[CP2 and I had chores to do.
+]
+)
+
+We had a living room, a small dining room, a kitchen, two bedrooms and a shared bathroom.
+(IC1 We had a living room, a small dining room, a kitchen, two bedrooms and a shared bathroom.
+)
+
+I was supposed to keep my room tidy, change my sheets once a week, vacuum, dust, clean the bathroom, and I was on dish duty on the weekends.
+(IC1 I was supposed to keep my room tidy, change my sheets once a week, vacuum, dust, clean the bathroom,
+[CP2 and I was on dish duty on the weekends.
+]
+)
+
+My mom did weekday dishes, most of the cooking, and the laundry.
+(IC1 My mom did weekday dishes, most of the cooking, and the laundry.
+)
+
+Well, and her own room, I guessed.
+(IC1 Well, and her own room, I guessed.
+)
+
+ I got to work, then showered and washed my hair.
+(IC1 I got to work,
+[CP2 then showered
+]
+[CP3 and washed my hair.
+]
+)
+
+It had a party smell to it, so it was in need of washing.
+(IC1 It had a party smell to it,
+)
+(IC2 so it was in need of washing.
+)
+
+After the shower, I looked at myself in the mirror to take care of my hair.
+(IC1 After the shower, I looked at myself in the mirror
+~(AP2<1 to take care of my hair.
+~)
+)
+
+I applied leave-in conditioner to my rather unruly curls, then scrunched in some product to help define the curls.
+(IC1 I applied leave-in conditioner to my rather unruly curls,
+[CP2 then scrunched in some product
+~(AP3<2 to help define the curls.
+~)
+]
+)
+
+I made a little effort to make the bob look purposefully messy instead of just messy, but it was only a little.
+(IC1 I made a little effort
+~(AP2<1 to make the bob look purposefully messy instead of just messy,
+~)
+)
+(IC3 but it was only a little.
+)
+
+ When I was a kid, my mom, who also had blond hair, but of the straight and fine variety, was always trying to smooth my hair out to make it look tidy, and since she washed her hair every day, she thought I should, too.
+(IC1
+~(DC2>1 When I was a kid,
+~)
+ my mom,
+~(DC3<1 who also had blond hair,
+~~(AP4<3 but of the straight and fine variety,
+~~)
+~)
+ was always trying to smooth my hair out
+~(AP5<1 to make it look tidy,
+~)
+[CP6 and
+~(DC7<6 since she washed her hair every day,
+~)
+ she thought I should, too.
+]
+)
+
+I finally got tired of it and took matters into my own hands when I was twelve.
+(IC1 I finally got tired of it
+[CP2 and took matters into my own hands
+~(DC3<2 when I was twelve.
+~)
+]
+)
+
+I looked up what to do with curly hair, opted for a messy bob, and it was what I rocked to this day, for better or worse.
+(IC1 I looked up
+~(DC2<1 what to do with curly hair,
+~)
+[CP3 opted for a messy bob,
+]
+)
+(IC4 and it was what I rocked to this day,
+~(AP5<4 for better or worse.
+~)
+)
+
+My mom wasn’t fond of how it looked like I’d just gotten out of bed all the time, but it was easy and that was what I needed in a hairstyle.
+(IC1 My mom wasn’t fond of
+~(DC2<1 how it looked like I’d just gotten out of bed all the time,
+~)
+)
+(IC3 but it was easy
+[CP4 and that was what I needed in a hairstyle.
+]
+)
+
+
+###
+
+Deanna dropped me off around noon. My mom was out and had sent me a text. Running club. Then lunch with the girls. Back around 2.
+It was Sunday and I had chores to do. We had a living room, a small dining room, a kitchen, two bedrooms and a shared bathroom. I was supposed to keep my room tidy, change my sheets once a week, vacuum, dust, clean the bathroom, and I was on dish duty on the weekends. My mom did weekday dishes, most of the cooking, and the laundry. Well, and her own room, I guessed.
+I got to work, then showered and washed my hair. It had a party smell to it, so it was in need of washing. After the shower, I looked at myself in the mirror to take care of my hair. I applied leave-in conditioner to my rather unruly curls, then scrunched in some product to help define the curls. I made a little effort to make the bob look purposefully messy instead of just messy, but it was only a little.
+When I was a kid, my mom, who also had blond hair, but of the straight and fine variety, was always trying to smooth my hair out to make it look tidy, and since she washed her hair every day, she thought I should, too. I finally got tired of it and took matters into my own hands when I was twelve. I looked up what to do with curly hair, opted for a messy bob, and it was what I rocked to this day, for better or worse. My mom wasn’t fond of how it looked like I’d just gotten out of bed all the time, but it was easy and that was what I needed in a hairstyle.
