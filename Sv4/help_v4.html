@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Help and documentation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="structure_display_v4.css">
+
+  <!-- Small additions for markdown rendering (still relying on the common theme variables) -->
+  <style>
+    .helpWrap{ width:100%; }
+    .helpPage{ max-width: 1100px; margin: 0 auto; }
+    .helpTitle{
+      font-family: var(--serif);
+      color: var(--paper);
+      font-size: 22px;
+      margin: 4px 0 6px;
+    }
+    .helpFigure{
+      margin: 6px 0 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #17110c;
+    }
+    .helpFigure img{
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .helpMd{
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: #17110c;
+      padding: 14px;
+      color: var(--ink);
+      line-height: 1.55;
+    }
+    .helpMd h1,.helpMd h2,.helpMd h3{
+      font-family: var(--serif);
+      color: var(--paper);
+      margin: 14px 0 8px;
+      line-height: 1.2;
+    }
+    .helpMd h1{ font-size: 22px; }
+    .helpMd h2{ font-size: 18px; }
+    .helpMd h3{ font-size: 16px; }
+    .helpMd p{ margin: 8px 0; }
+    .helpMd ul,.helpMd ol{ margin: 8px 0 8px 22px; }
+    .helpMd li{ margin: 4px 0; }
+    .helpMd a{ color: var(--paper); text-decoration: underline; }
+    .helpMd code{
+      font-family: var(--mono);
+      font-size: 12.5px;
+      padding: 1px 5px;
+      border: 1px solid rgba(231,215,182,.18);
+      border-radius: 8px;
+      background: rgba(231,215,182,.06);
+    }
+    .helpMd pre{
+      margin: 10px 0;
+      padding: 10px 12px;
+      overflow: auto;
+      border: 1px solid rgba(231,215,182,.18);
+      border-radius: 12px;
+      background: rgba(0,0,0,.12);
+    }
+    .helpMd pre code{
+      padding: 0;
+      border: none;
+      background: transparent;
+      display: block;
+      white-space: pre;
+    }
+    .helpNotice{
+      opacity: .75;
+      font-style: italic;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+
+<body>
+<header class="topbar">
+  <div class="leftControls">
+    <button class="topIconBtn" id="backBtn" title="Back to explorer" aria-label="Back to explorer">
+      <svg class="icon" aria-hidden="true"><use href="../icons/exit_left.svg#icon"></use></svg>
+    </button>
+  </div>
+
+  <div class="titleWrap">
+    <span class="titleMain">Help and documentation</span>
+    <span class="titleSub">— Syntax and usage notes.</span>
+  </div>
+</header>
+
+<main class="workspaces helpWrap">
+  <section class="workspace helpPage">
+    <div class="top-panel">
+      <div class="helpTitle">Main interface tour</div>
+
+      <figure class="helpFigure" aria-label="Tool screenshot with captions">
+        <img src="../img/Caption_v4.png" alt="Sentence Structure Explorer help screenshot with captions">
+      </figure>
+    </div>
+    <div class="helpTitle">How to write a sentence breakdown v4 code</div>
+      <div id="mdContent" class="helpMd" aria-label="Documentation content">
+        <div class="helpNotice">Loading documentation…</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  const backBtn = document.getElementById("backBtn");
+  const mdHost = document.getElementById("mdContent");
+
+  backBtn.addEventListener("click", () => {
+    window.location.href = "structure_display_v4.html";
+  });
+
+function escapeHtml(s){
+  const entities = [];
+  // Protect existing HTML entities like &lt; &gt; &amp; &#123; &#x1F;
+  const protectedText = String(s).replace(
+    /&(#\d+|#x[0-9a-fA-F]+|[a-zA-Z][a-zA-Z0-9]+);/g,
+    (m) => {
+      const key = `@@ENT_${entities.length}@@`;
+      entities.push(m);
+      return key;
+    }
+  );
+
+  let out = protectedText
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+  // Restore the protected entities unchanged
+  entities.forEach((ent, i) => {
+    out = out.replaceAll(`@@ENT_${i}@@`, ent);
+  });
+
+  return out;
+}
+
+  // Minimal Markdown → HTML (headings, paragraphs, lists, code fences, inline code, bold/italic, links).
+  // It’s intentionally conservative (escapes HTML first).
+  function mdToHtml(md){
+    md = (md || "").replace(/\r\n/g, "\n");
+
+    // Extract fenced code blocks first
+    const codeBlocks = [];
+    md = md.replace(/```([^\n]*)\n([\s\S]*?)```/g, (_, lang, code) => {
+      const idx = codeBlocks.length;
+      codeBlocks.push({ lang: (lang || "").trim(), code: code });
+      return `@@CODEBLOCK_${idx}@@`;
+    });
+
+    const lines = md.split("\n");
+    let out = [];
+    let inUl = false;
+    let inOl = false;
+
+    const closeLists = () => {
+      if (inUl){ out.push("</ul>"); inUl = false; }
+      if (inOl){ out.push("</ol>"); inOl = false; }
+    };
+
+    const inline = (text) => {
+      let t = escapeHtml(text);
+
+      // inline code
+      t = t.replace(/`([^`]+)`/g, (_, c) => `<code>${escapeHtml(c)}</code>`);
+
+      // links [text](url)
+      t = t.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, label, url) => {
+        const safeLabel = escapeHtml(label);
+        const safeUrl = escapeHtml(url);
+        return `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer">${safeLabel}</a>`;
+      });
+
+      // bold then italic
+      t = t.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+      t = t.replace(/\*([^*]+)\*/g, "<em>$1</em>");
+
+      return t;
+    };
+
+    for (let i = 0; i < lines.length; i++){
+      const raw = lines[i];
+
+      // placeholder for code blocks
+      const cb = raw.match(/^@@CODEBLOCK_(\d+)@@$/);
+      if (cb){
+        closeLists();
+        const b = codeBlocks[Number(cb[1])];
+        const codeHtml = escapeHtml(b.code).replaceAll("\t","  ");
+        out.push(`<pre><code>${codeHtml}</code></pre>`);
+        continue;
+      }
+
+      // headings
+      const h = raw.match(/^(#{1,3})\s+(.*)$/);
+      if (h){
+        closeLists();
+        const lvl = h[1].length;
+        out.push(`<h${lvl}>${inline(h[2].trim())}</h${lvl}>`);
+        continue;
+      }
+
+      // unordered list
+      const ul = raw.match(/^\s*[-*]\s+(.*)$/);
+      if (ul){
+        if (inOl){ out.push("</ol>"); inOl = false; }
+        if (!inUl){ out.push("<ul>"); inUl = true; }
+        out.push(`<li>${inline(ul[1].trim())}</li>`);
+        continue;
+      }
+
+      // ordered list
+      const ol = raw.match(/^\s*\d+\.\s+(.*)$/);
+      if (ol){
+        if (inUl){ out.push("</ul>"); inUl = false; }
+        if (!inOl){ out.push("<ol>"); inOl = true; }
+        out.push(`<li>${inline(ol[1].trim())}</li>`);
+        continue;
+      }
+
+      // blank line
+      if (!raw.trim()){
+        closeLists();
+        continue;
+      }
+
+      // paragraph
+      closeLists();
+      out.push(`<p>${inline(raw.trim())}</p>`);
+    }
+
+    closeLists();
+
+    return out.join("\n");
+  }
+
+  async function loadMd(){
+    try{
+      const res = await fetch("../doc_syntax_v4.md");
+      if (!res.ok) throw new Error("Cannot load documentation markdown.");
+      const md = await res.text();
+      mdHost.innerHTML = mdToHtml(md);
+    }catch(e){
+      mdHost.innerHTML = `<div class="helpNotice">${escapeHtml(e.message || "Load error.")}</div>`;
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", loadMd);
+})();
+</script>
+</body>
+</html>
