@@ -23,10 +23,6 @@ Longer version:
 
 Improvements I'm thinking of:
 
-* parsing panel to help validating the analyzed text syntax
-
-* local storage in the user's browser to add personal excerpts of own works (thus two list, wwww list and local list)
-
 * Special support of dialogues (avoiding those at the moment): attribution, who is speaking, insertion and action tags.
 
 
