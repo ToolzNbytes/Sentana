@@ -60,7 +60,7 @@ async function loadRemoteCorpus() {
 
 /* ===================== Corpus sources (remote/local) ===================== */
 let remoteList, localList;
-let corpusRemoteBtn, corpusLocalBtn, localDataBtn;
+let corpusRemoteBtn, corpusLocalBtn, localDataBtn, helpBtn;
 let activeSource = "remote";
 
 function wireDom(){
@@ -69,6 +69,7 @@ function wireDom(){
   corpusRemoteBtn = document.getElementById("corpusRemoteBtn");
   corpusLocalBtn = document.getElementById("corpusLocalBtn");
   localDataBtn = document.getElementById("localDataBtn");
+  helpBtn = document.getElementById("helpBtn");
 }
 
 function setActiveSource(source, opts = {}){
@@ -771,10 +772,14 @@ if (corpusLocalBtn){
     activateLocalCorpus();
   });
 }
-
 if (localDataBtn){
   localDataBtn.addEventListener("click", ()=>{
     window.location.href = "local_corpus.html";
+  });
+}
+if (helpBtn){
+  helpBtn.addEventListener("click", ()=>{
+    window.location.href = "help_v4.html";
   });
 }
 
