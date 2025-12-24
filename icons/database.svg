@@ -1,7 +1,5 @@
-<svg id="icon" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewBox="0 0 14 14" id="Database--Streamline-Core" height="14" width="14">
-  <g id="database">
-    <path id="Vector" d="M7 5.5c3.5899 0 6.5 -1.11929 6.5 -2.5S10.5899 0.5 7 0.5C3.41015 0.5 0.5 1.61929 0.5 3S3.41015 5.5 7 5.5Z"></path>
-    <path id="Vector_2" d="M0.5 3v8c0 1.38 2.91 2.5 6.5 2.5s6.5 -1.12 6.5 -2.5V3"></path>
-    <path id="Vector_3" d="M13.5 7c0 1.38 -2.91 2.5 -6.5 2.5S0.5 8.38 0.5 7"></path>
-  </g>
+<svg id="icon" xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 14 14" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" height="90%" width="90%">
+  <path d="M7 5.5c3.5899 0 6.5 -1.11929 6.5 -2.5S10.5899 0.5 7 0.5C3.41015 0.5 0.5 1.61929 0.5 3S3.41015 5.5 7 5.5Z"></path>
+  <path d="M0.5 3v8c0 1.38 2.91 2.5 6.5 2.5s6.5 -1.12 6.5 -2.5V3"></path>
+  <path d="M13.5 7c0 1.38 -2.91 2.5 -6.5 2.5S0.5 8.38 0.5 7"></path>
 </svg>

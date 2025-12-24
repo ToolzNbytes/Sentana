@@ -15,6 +15,11 @@
   --mono:ui-monospace, Menlo, Consolas, monospace;
   --hlBg:rgba(231,215,182,.22);
   --hlBd:rgba(231,215,182,.35);
+  --hlBtn:rgba(138, 118, 82, 0.2); /* for hover */
+}
+
+html{
+  scrollbar-gutter: stable;
 }
 
 *{box-sizing:border-box}
@@ -32,7 +37,7 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
-  background:linear-gradient(180deg,#261a12,#21160f);
+  background: linear-gradient(180deg,#261a12,#21160f);
   /*position:sticky;
   top:0;*/
   z-index:10;
@@ -81,44 +86,51 @@ body{
   align-items:center;
   gap:10px;
 }
-.iconBtn{
-  width:44px;
-  height:44px;
-  border-radius:12px;
-  border:1px solid rgba(231,215,182,.18);
-  background:transparent;
-  color: var(--paper);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  user-select:none;
-  /* neutralise tout héritage texte */
-  font-size:0;
-  line-height:0;
-}
-.iconBtn:disabled{
-  opacity:.35;
-  cursor:default;
-}
-.iconBtn.ghost{
-  border-style:dashed;
-  pointer-events:none;
-}
 
-/* Settings on right */
-.settings{
+/* Right controls (settings + local data) */
+.rightControls{
   position:absolute;
   right:14px;
-  width:56px;
-  height:56px;
-  border-radius:14px;
-  display:grid;
-  place-items:center;
-  background:none;
-  border:none;
-  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+/* ===== Topbar icon buttons (SVG <use>) ===== */
+.topIconBtn{
+  width: 40px;
+  height: 40px;
+  box-sizing: border-box; /* include padding */
+  padding: 8px;
+  /* in html if needed preserveAspectRatio="xMidYMid meet" */
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  user-select: none;
+
   color: var(--paper);
+}
+
+/* Force the svg to fill the button box */
+.topIconBtn > svg.icon{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+/* hover when active */
+.topIconBtn:not(:disabled):hover{
+  background: var(--hlBtn);
+}
+
+.topIconBtn:disabled{
+  opacity: 0.45;
+  cursor: default;
 }
 
 /* ===== Layout ===== */
@@ -238,6 +250,76 @@ body{
   padding:6px;
 }
 
+/* Corpus switch + dual lists */
+.listBlock{
+  display:flex;
+  gap:8px;
+  align-items:stretch;
+}
+.corpusSwitch{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.corpusSwitch .iconBtn{
+  width:38px;
+  height:38px;
+  border-radius:10px;
+}
+.listBlock .work-list{
+  flex:1;
+  min-height:96px; /* keep aligned with 2 buttons */
+}
+
+
+.iconBtn{
+  width:44px;
+  height:44px;
+  border-radius:12px;
+  border:1px solid rgba(231,215,182,.18);
+  background:transparent;
+  color: var(--paper);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  user-select:none;
+  /* no text inherit  */
+  font-size:0;
+  line-height:0;
+}
+.iconBtn:not(:disabled):hover{
+  background: var(--hlBtn);
+}
+.iconBtn:disabled{
+  opacity:.35;
+  cursor:default;
+}
+.iconBtn.listSelectBtn:disabled{
+  opacity:1; /* higher priority because more specific */
+  /* Gradient from left (solid) to right (50% opacity) */
+  background: linear-gradient(
+    to right,
+    var(--hlBtn) 0%,
+    var(--hlBtn) 100%);
+  color: (var --bg)!important;
+  /* Square on the left, rounded on the right */
+  border-radius: 10px 0 0 10px;
+
+  /* Remove left border to "merge" with the list area */
+  border-left: none;
+
+  /* Keep other borders (or tune if needed) */
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  border-right: 1px solid rgba(255, 255, 255, 0.25);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+.iconBtn.ghost{
+  border-style:dashed;
+  pointer-events:none;
+}
+
+
 #explorerArea{
   position: sticky;
   top: 0;
@@ -282,6 +364,9 @@ body{
   color:var(--paper);
   font-size:20px;
   cursor:pointer;
+}
+.plus-btn:not(:disabled):hover{
+  background: var(--hlBtn);
 }
 
 .sentence{
@@ -362,6 +447,11 @@ body{
   align-items:center;
   padding:10px;
   gap:10px;
+}
+.modalHeaderLeft{
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 .modal-header button{
   background:none;
@@ -446,8 +536,7 @@ body{
 }
 
 .iconBtn svg,
-.plus-btn svg,
-.settings svg{
+.plus-btn svg{
   width: 22px;
   height: 22px;
   display: block;
@@ -459,4 +548,179 @@ body{
   color: #fb3333;
   background: rgba(0,0,0,0.04);
   border-radius: 6px;
+}
+
+
+/* Utility */
+.hidden{display:none !important;}
+
+
+/* ===== Local corpus manager ===== */
+.localManagerWrap{
+  width: 100%;
+}
+.localManager{
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.localSectionTitle{
+  font-family: var(--serif);
+  color: var(--paper);
+  font-size: 14px;
+  opacity: 0.95;
+  margin-top: 2px;
+}
+
+.localEntryList{
+  margin-top: 6px;
+  border: 1px solid var(--border);
+  border-radius: var(--radiusSm);
+  background: #17110c;
+  overflow: auto;
+  max-height: 220px;
+}
+
+.entryRow{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:8px 10px;
+  border-bottom: 1px solid rgba(231,215,182,.14);
+  cursor:pointer;
+}
+.entryRow:last-child{ border-bottom: none; }
+
+.entryRow.active{
+  background: rgba(231,215,182,.08);
+}
+
+.entryRowEmpty{
+  cursor: default;
+  color: rgba(239,230,213,.6);
+  font-style: italic;
+}
+
+.entryLabel{
+  flex:1;
+  font-size: 13px;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.entryDelete{
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--paper);
+  cursor: pointer;
+  line-height: 26px;
+  font-size: 18px;
+}
+.entryDelete:hover{
+  background: var(--hlBtn);
+}
+
+.localMetaRow{
+  margin-top: 6px;
+  display:flex;
+  gap:12px;
+  align-items:stretch;
+}
+
+.localMetaGrid{
+  flex: 1 1 auto;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radiusSm);
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  font-size: 12.5px;
+  color: rgba(239,230,213,.8);
+}
+.fieldFull{ grid-column: 1 / -1; }
+
+.localMetaGrid input,
+.localMetaGrid textarea{
+  background:#17110c;
+  color:var(--ink);
+  border:1px solid rgba(231,215,182,.22);
+  border-radius: 10px;
+  padding:7px 9px;
+  font-family: var(--mono);
+  font-size: 13px;
+}
+
+.localMetaGrid textarea{
+  resize: vertical;
+  min-height: 54px;
+}
+
+.localControlBox{
+  width: 220px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radiusSm);
+}
+
+.localControlButtons{
+  display:flex;
+  gap:10px;
+}
+
+.statusMsg{
+  flex:1;
+  border: 1px solid rgba(231,215,182,.22);
+  border-radius: 10px;
+  padding: 8px 10px;
+  background: transparent;
+  font-family: var(--mono);
+  font-size: 13px;
+  white-space: pre-wrap;
+  color: rgba(239,230,213,.75);
+  min-height: 70px;
+}
+.statusMsg.valid{
+  color: rgba(199,233,192,.95);
+}
+.statusMsg.error{
+  color: var(--errorInk);
+  background: rgba(122,31,27,.2);
+  border-color: rgba(122,31,27,.6);
+}
+
+.analysisInput{
+  margin-top: 6px;
+  width: 100%;
+  min-height: 420px;
+  resize: vertical;
+  border: 1px solid var(--border);
+  border-radius: var(--radiusSm);
+  background: #17110c;
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.35;
+  padding: 10px 12px;
+  white-space: pre;
+  overflow: auto;
+}
+
+.hoverBtn:not(:disabled):hover{
+  background: var(--hlBtn);
 }

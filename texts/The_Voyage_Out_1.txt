@@ -94,7 +94,7 @@ It was only by scorning all she met that she kept herself from tears, and the fr
 
 After watching the traffic on the Embankment for a minute or two with a stoical gaze she twitched her husband’s sleeve, and they crossed between the swift discharge of motor cars.
 (IC1
-~(DC2>1 After watching the traffic on the Embankment for a minute or two with a stoical gaze
+~(PP2>1 After watching the traffic on the Embankment for a minute or two with a stoical gaze
 ~)
  she twitched her husband’s sleeve,
 )
