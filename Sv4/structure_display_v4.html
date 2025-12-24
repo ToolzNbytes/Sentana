@@ -11,18 +11,17 @@
 <body>
 <header class="topbar">
   <div class="leftControls">
-    <button class="iconBtn" id="collapseBtn" disabled title="Collapse workspace"><svg class="icon" aria-hidden="true"><use href="../icons/panel_hide.svg#icon"></use></svg></button>
-    <button class="iconBtn" id="storeBtn" disabled title="Copy for reference"><svg class="icon" aria-hidden="true"><use href="../icons/doc_plus.svg#icon"></use></svg></button>
+    <button class="topIconBtn" id="collapseBtn" disabled title="Collapse workspace" aria-label="Collapse workspace"><svg class="icon" aria-hidden="true"><use href="../icons/panel_hide.svg?#icon"></use></svg></button>
+    <button class="topIconBtn" id="storeBtn"    disabled title="Copy for reference" aria-label="Copy for reference"><svg class="icon" aria-hidden="true"><use href="../icons/doc_plus.svg?#icon"  ></use></svg></button>
   </div>
-
-<div class="titleWrap">
-  <span class="titleMain">Sentence Structure Explorer</span>
-  <span class="titleSub">— A visual breakdown of sentence structure across authors.</span>
-</div>
-
-  <button class="settings" id="settingsBtn" aria-label="Settings">
-     <svg class="icon" aria-hidden="true"><use href="../icons/settings.svg#icon"></use></svg>
-  </button>
+  <div class="titleWrap">
+    <span class="titleMain">Sentence Structure Explorer</span>
+    <span class="titleSub">— A visual breakdown of sentence structure across authors.</span>
+  </div>
+  <div class="rightControls">
+    <button class="topIconBtn" id="localDataBtn" aria-label="Local corpus data" title="Local corpus data"><svg class="icon" aria-hidden="true"><use href="../icons/database.svg?#icon"></use></svg></button>
+    <button class="topIconBtn" id="settingsBtn"  aria-label="Settings"          title="Settings"         ><svg class="icon" aria-hidden="true"><use href="../icons/settings.svg?#icon"></use></svg></button>
+  </div>
 </header>
 
 <main class="workspaces" id="workspaces">
@@ -35,13 +34,24 @@
             <div class="author"></div>
             <div class="choice"></div>
           </div>
-          <select class="work-list" size="4"></select>
+          <div class="listBlock">
+  <div class="corpusSwitch" aria-label="Corpus switch">
+    <button class="iconBtn listSelectBtn" id="corpusRemoteBtn" disabled title="Remote corpus">
+      <svg class="icon" aria-hidden="true"><use href="../icons/world_network.svg?#icon"></use></svg>
+    </button>
+    <button class="iconBtn listSelectBtn" id="corpusLocalBtn" title="Local corpus">
+      <svg class="icon" aria-hidden="true"><use href="../icons/hard-drive.svg?#icon"></use></svg>
+    </button>
+  </div>
+  <select class="work-list" id="workListRemote" size="4"></select>
+  <select class="work-list hidden" id="workListLocal" size="4"></select>
+</div>
         </div>
       </div>
       <div id="explorerArea">
         <div class="row-2">
           <div class="comment" id="commentArea"></div>
-          <button class="plus-btn" title="Open raw / excerpt panel"><svg class="icon" aria-hidden="true"><use href="../icons/dive-in_doc.svg#icon"></use></svg></button>
+          <button class="plus-btn" title="Open raw / excerpt panel"><svg class="icon" aria-hidden="true"><use href="../icons/dive-in_doc.svg?#icon"></use></svg></button>
         </div>
         <div class="sentence" id="sentenceArea"></div>
       </div>
@@ -54,8 +64,12 @@
 <div class="modal-backdrop" id="plusModal">
   <div class="modal">
     <div class="modal-header">
-      <button id="toggleView">Switch to original excerpt</button>
-      <button id="closePlus">×</button>
+      <div class="modalHeaderLeft">
+        <button id="toggleView" style="width:200px; white-space: nowrap;" class="hoverBtn">Switch to original excerpt</button>
+        <button id="copyClipboardBtn" style="width:200px; white-space: nowrap;" class="hoverBtn">Copy to clipboard</button>
+        <button id="cloneLocalBtn" class="hoverBtn">Clone to local corpus</button>
+      </div>
+      <button id="closePlus" class="hoverBtn">×</button>
     </div>
     <div class="modal-content mono" id="plusContent"></div>
   </div>
@@ -66,7 +80,7 @@
   <div class="modal param-modal">
     <div class="modal-header">
       <div class="param-title">Parameters</div>
-      <button id="closeParam">×</button>
+      <button id="closeParam" class="hoverBtn">×</button>
     </div>
 
     <div class="param-body">
@@ -92,12 +106,13 @@
     </div>
 
     <div class="param-actions">
-      <button id="pCancel">Cancel</button>
-      <button id="pApply">Validate &amp; process</button>
+      <button id="pCancel" class="hoverBtn">Cancel</button>
+      <button id="pApply" class="hoverBtn">Validate &amp; process</button>
     </div>
   </div>
 </div>
 
+<script src="sse_common.js"></script>
 <script src="structure_display_v4.js"></script>
 </body>
 </html>

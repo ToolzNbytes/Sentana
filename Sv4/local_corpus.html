@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Local Corpus Management</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="structure_display_v4.css">
+</head>
+
+<body>
+<header class="topbar">
+  <div class="leftControls">
+    <button class="topIconBtn" id="backBtn" title="Back to explorer" aria-label="Back to explorer">
+      <svg class="icon" aria-hidden="true"><use href="../icons/exit_left.svg#icon"></use></svg>
+    </button>
+  </div>
+
+  <div class="titleWrap">
+    <span class="titleMain">Local Corpus Management</span>
+    <span class="titleSub">— Manage your own local excerpts.</span>
+  </div>
+</header>
+
+<main class="workspaces localManagerWrap">
+  <section class="workspace localManager">
+    <div class="top-panel">
+
+      <div class="localSectionTitle">Local entries</div>
+      <div class="localEntryList" id="entryList" aria-label="Local corpus entries"></div>
+
+      <div class="localSectionTitle">Metadata</div>
+      <div class="localMetaRow">
+        <div class="localMetaGrid" aria-label="Metadata fields">
+          <label class="field">
+            <span>Work *</span>
+            <input id="fWork" type="text" autocomplete="off"/>
+          </label>
+
+          <label class="field">
+            <span>Author *</span>
+            <input id="fAuthor" type="text" autocomplete="off"/>
+          </label>
+
+          <label class="field">
+            <span>Year</span>
+            <input id="fYear" type="text" autocomplete="off"/>
+          </label>
+
+          <label class="field">
+            <span>Choice</span>
+            <input id="fChoice" type="text" autocomplete="off"/>
+          </label>
+
+          <label class="field fieldFull">
+            <span>Entry comment</span>
+            <textarea id="fComment" rows="2"></textarea>
+          </label>
+        </div>
+
+        <div class="localControlBox" aria-label="Controls">
+          <div class="localControlButtons">
+            <button class="iconBtn" id="storeBtnLocal" disabled title="Store in local corpus" aria-label="Store in local corpus">
+              <svg class="icon" aria-hidden="true"><use href="../icons/hard-drive-save.svg#icon"></use></svg>
+            </button>
+
+            <button class="iconBtn" id="newEntryBtn" title="New entry" aria-label="New entry">
+              <svg class="icon" aria-hidden="true"><use href="../icons/new_entry.svg#icon"></use></svg>
+            </button>
+
+            <button class="iconBtn" id="verifyBtn" title="Verify analyzed text" aria-label="Verify analyzed text">
+              <svg class="icon" aria-hidden="true"><use href="../icons/check_content.svg#icon"></use></svg>
+            </button>
+          </div>
+
+          <div class="statusMsg" id="statusMsg" aria-label="Validation status"> ? ? ? ? ? </div>
+        </div>
+      </div>
+
+      <div class="localSectionTitle">Analyzed text</div>
+      <textarea class="analysisInput" id="analysisInput" wrap="off" spellcheck="false"></textarea>
+
+    </div>
+  </section>
+</main>
+
+<script src="sse_common.js"></script>
+<script src="local_corpus.js"></script>
+</body>
+</html>

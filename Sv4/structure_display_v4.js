@@ -1,4 +1,9 @@
-let corpus = [];
+// Active corpus + list are kept in the legacy globals `corpus` and `list`.
+// They are reassigned when switching between remote and local corpora.
+let corpusRemote = [];
+let corpusLocal = [];
+
+let corpus = corpusRemote; // active corpus (remote by default)
 let lastParsed = null;
 
 /* ===================== Default values ===================== */
@@ -7,6 +12,29 @@ let BAR_HEIGHT = 45;
 let RESULT_BG = getComputedStyle(document.documentElement)
   .getPropertyValue('--panel').trim();
 let DISPLAY_WIDTH = 0;
+
+
+/* ===================== Shared utilities (storage + parsing) ===================== */
+const SSE = window.SSE;
+const LS_KEY_PREFS = SSE?.LS_KEY_PREFS;
+const LS_KEY_LOCAL_CORPUS = SSE?.LS_KEY_LOCAL_CORPUS;
+
+
+function loadPrefsFromStorage(){
+  if (!SSE || !LS_KEY_PREFS) return;
+  const p = SSE.storageGet(LS_KEY_PREFS, null);
+  if (!p || typeof p !== "object") return;
+
+  if (Number.isFinite(p.WORD_CAP) && p.WORD_CAP >= 0) WORD_CAP = p.WORD_CAP;
+  if (Number.isFinite(p.BAR_HEIGHT) && p.BAR_HEIGHT > 0) BAR_HEIGHT = p.BAR_HEIGHT;
+  if (typeof p.RESULT_BG === "string" && p.RESULT_BG.trim().length) RESULT_BG = p.RESULT_BG.trim();
+  if (Number.isFinite(p.DISPLAY_WIDTH) && p.DISPLAY_WIDTH >= 0) DISPLAY_WIDTH = p.DISPLAY_WIDTH;
+}
+
+function savePrefsToStorage(){
+  if (!SSE || !LS_KEY_PREFS) return;
+  SSE.storageSet(LS_KEY_PREFS, { WORD_CAP, BAR_HEIGHT, RESULT_BG, DISPLAY_WIDTH });
+}
 
 /* SVG hovering tips */
 /* ===================== Default tag comments ===================== */
@@ -23,34 +51,141 @@ const DEFAULT_TAG_COMMENTS = {
 
 
 /* ===================== Load corpus ===================== */
-async function loadCorpus() {
+async function loadRemoteCorpus() {
   const res = await fetch("../gen/texts.meta.json");
   if (!res.ok) throw new Error("Cannot load metadata of the corpus");
-  corpus = await res.json();
+  corpusRemote = await res.json();
+}
+
+
+/* ===================== Corpus sources (remote/local) ===================== */
+let remoteList, localList;
+let corpusRemoteBtn, corpusLocalBtn, localDataBtn;
+let activeSource = "remote";
+
+function wireDom(){
+  remoteList = document.getElementById("workListRemote");
+  localList = document.getElementById("workListLocal");
+  corpusRemoteBtn = document.getElementById("corpusRemoteBtn");
+  corpusLocalBtn = document.getElementById("corpusLocalBtn");
+  localDataBtn = document.getElementById("localDataBtn");
+}
+
+function setActiveSource(source, opts = {}){
+  const {
+    skipPopulate = false,
+    skipShow = false,
+    idx = null,
+    random = true
+  } = opts;
+
+  activeSource = source;
+  const isRemote = (source === "remote");
+
+  corpus = isRemote ? corpusRemote : corpusLocal;
+  list = isRemote ? remoteList : localList;
+
+  // toggle visible list
+  if (remoteList && localList){
+    remoteList.classList.toggle("hidden", !isRemote);
+    localList.classList.toggle("hidden", isRemote);
+  }
+
+  // toggle button enabled state
+  if (corpusRemoteBtn && corpusLocalBtn){
+    corpusRemoteBtn.disabled = isRemote;
+    corpusLocalBtn.disabled = !isRemote;
+  }
+
+  if (!skipPopulate){
+    populateList(list, corpus);
+  }
+
+  if (skipShow) return;
+
+  if (!Array.isArray(corpus) || corpus.length === 0){
+    setStoreEnabled(false);
+    setResultPanelLoadingMsg("No entries in corpus.");
+    if (work) work.textContent = "";
+    if (author) author.textContent = "";
+    if (choice) choice.textContent = "";
+    if (commentBox) commentBox.textContent = "";
+    clearHighlightedSentence();
+    updateCollapseEnabled();
+    return;
+  }
+
+  if (idx !== null && Number.isFinite(idx) && corpus[idx]){
+    list.value = String(idx);
+  } else if (list.selectedIndex >= 0){
+    // keep current selection of this list
+  } else if (random){
+    list.selectedIndex = Math.floor(Math.random() * corpus.length);
+  } else {
+    list.selectedIndex = 0;
+  }
+
+  show(Number(list.value));
+}
+
+async function ensureLocalCorpusLoaded(){
+  const saved = SSE.storageGet(LS_KEY_LOCAL_CORPUS, null);
+  if (!Array.isArray(saved) || saved.length === 0) return false;
+  corpusLocal = saved;
+  return true;
+}
+
+async function activateLocalCorpus(){
+  const ok = await ensureLocalCorpusLoaded();
+  if (!ok){
+    alert("Empty local corpus, opening local data page.");
+    window.location.href = "local_corpus.html";
+    return;
+  }
+  populateList(localList, corpusLocal);
+  setActiveSource("local", { skipPopulate: true });
+}
+
+function activateRemoteCorpus(){
+  setActiveSource("remote", { skipPopulate: true });
 }
 
 /* ===================== INIT ===================== */
 async function init() {
+  // restore user preferences first (if any)
+  loadPrefsFromStorage();
+
+  // DOM references (lists + buttons)
+  wireDom();
+
   try {
-    await loadCorpus();
+    await loadRemoteCorpus();
   } catch (e) {
     alert(e.message);
     return;
   }
 
-  populateList();
+  // Remote is the default active source
+  setActiveSource("remote", { skipPopulate: true, skipShow: true });
+
+  populateList(remoteList, corpusRemote);
+
   applyWorkspaceWidth();
-  list.selectedIndex = Math.floor(Math.random() * corpus.length);
-  show(Number(list.value));
+
+  if (corpusRemote.length) {
+    remoteList.selectedIndex = Math.floor(Math.random() * corpusRemote.length);
+    show(Number(remoteList.value));
+  }
 }
 
-function populateList() {
-  list.innerHTML = "";
+function populateList(listEl, corpusData) {
+  if (!listEl) return;
+  listEl.innerHTML = "";
 
   // count occurrences per work title
   const workCounts = new Map();
 
-  corpus.forEach((c, i) => {
+  (corpusData || []).forEach((c, i) => {
     const base = c.Work;
 
     const n = (workCounts.get(base) || 0) + 1;
@@ -61,13 +196,13 @@ function populateList() {
 
     // first occurrence: plain title
     // subsequent ones: "Title (n)"
-    const title =
-      n === 1 ? base : `${base} (${n})`;
+    const title = n === 1 ? base : `${base} (${n})`;
 
     o.textContent = `${title} — ${c.Author}`;
-    list.appendChild(o);
+    listEl.appendChild(o);
   });
 }
+
 
 async function loadAnalyzedText(file) {
   const res = await fetch(`../${file}`);
@@ -85,295 +220,6 @@ async function loadAnalyzedText(file) {
   return parts[1].trim();
 }
 
-function parseAnalyzedText(analyzedText, reportError){
-  const lines = analyzedText.split(/\r?\n/);
-  let i = 0;
-  const results = [];
-
-  const isEmpty = (l) => !l || !l.trim();
-  const isComment = (l) => l.trim().startsWith("#");
-
-  const isSentenceLine = (l) => {
-    if (!l || !l.trim()) return false;
-    const tt = l.trim();
-    return !tt.startsWith("(") && !tt.startsWith("~") && !tt.startsWith(")") && !tt.startsWith("[") && !tt.startsWith("]");
-  };
-
-  const parseNumberedComment = (l) => {
-    const m = l.trim().match(/^#(\d+)\s*(.*)$/);
-    return m ? { id: Number(m[1]), text: m[2] || "" } : null;
-  };
-
-  const countWords = (t) => t.replace(/—/g, " ").trim().split(/\s+/).filter(Boolean).length;
-
-  function error(msg, ln){
-    reportError(`${msg}\nLine ${ln+1}: ${lines[ln] ?? ""}`);
-    throw new Error("stop");
-  }
-
-  function parseHeaderAndText(body){
-    const headMatch = body.match(/^([A-Z]{2}\d+(?:[<>]\d+)?)?/);
-    const head = (headMatch && headMatch[1]) ? headMatch[1] : "";
-    const rest = body.slice(head.length);
-
-    const tagMatch = head.match(/^([A-Z]{2})(\d+)([<>])?(\d+)?$/);
-    return {
-      tag: tagMatch ? tagMatch[1] : "",
-      id: tagMatch ? Number(tagMatch[2]) : null,
-      forward: tagMatch ? (tagMatch[3] === ">") : false,
-      ref: (tagMatch && tagMatch[4]) ? Number(tagMatch[4]) : null,
-      text: rest.length ? rest : null,
-      comment: null
-    };
-  }
-
-  function parseAnalysisBlock(){
-    const root = {
-      tag:"", id:null, ref:null, forward:false,
-      text:null, wCount:0, cCount:0, level:0,
-      nodes:[], wTreeCount:0, cTreeCount:0, wPos:0, cPos:0,
-      maxLevel:0,
-      textTree:"", textSoFar:"", textAfter:"",
-      comment: null
-    };
-
-    const stack = [{ node: root, level: 0, kind: "root" }];
-    let parenBalance = 0;
-    let bracketBalance = 0;
-
-    while (i < lines.length){
-      const raw = lines[i];
-      if (isEmpty(raw)) { i++; continue; }
-
-      if (parenBalance === 0 && bracketBalance === 0) {
-        if (!raw.startsWith("(")) break;
-      }
-
-      let t = raw;
-      let tilde = 0;
-      while (t.startsWith("~")) { tilde++; t = t.slice(1); }
-      const level = tilde + 1;
-
-      const op = t[0];
-      const top = stack[stack.length - 1];
-
-      if (op === "("){
-        if (level !== top.level + 1) error("Indentation error", i);
-
-        parenBalance++;
-        const body = t.slice(1);
-        const parsed = parseHeaderAndText(body);
-
-        const node = {
-          tag: parsed.tag, id: parsed.id, ref: parsed.ref, forward: parsed.forward,
-          text: parsed.text,
-          wCount: parsed.text ? countWords(parsed.text) : 0,
-          cCount: parsed.text ? parsed.text.length : 0,
-          level,
-          nodes:[],
-          wTreeCount:0,cTreeCount:0,wPos:0,cPos:0,
-          textTree:"", textSoFar:"", textAfter:"",
-          _start:0, _end:0,
-          comment: null
-        };
-
-        top.node.nodes.push(node);
-        stack.push({ node, level, kind: "paren" });
-      }
-      else if (op === ")"){
-        if (stack.length <= 1) error("Check parentheses pairs", i);
-        const current = stack[stack.length - 1];
-        if (current.kind !== "paren") error("Check parentheses pairs", i);
-        if (level !== current.level) error("Indentation error", i);
-
-        parenBalance--;
-        if (parenBalance < 0) error("Check parentheses pairs", i);
-        stack.pop();
-      }
-      else if (op === "["){
-        if (level !== top.level) error("Indentation error", i);
-
-        bracketBalance++;
-        const body = t.slice(1);
-        const parsed = parseHeaderAndText(body);
-
-        const node = {
-          tag: parsed.tag, id: parsed.id, ref: parsed.ref, forward: parsed.forward,
-          text: parsed.text,
-          wCount: parsed.text ? countWords(parsed.text) : 0,
-          cCount: parsed.text ? parsed.text.length : 0,
-          level,
-          nodes:[],
-          wTreeCount:0,cTreeCount:0,wPos:0,cPos:0,
-          textTree:"", textSoFar:"", textAfter:"",
-          _start:0, _end:0,
-          comment: null
-        };
-
-        top.node.nodes.push(node);
-        stack.push({ node, level, kind: "bracket" });
-      }
-      else if (op === "]"){
-        if (stack.length <= 1) error("Check parentheses pairs", i);
-        const current = stack[stack.length - 1];
-        if (current.kind !== "bracket") error("Check parentheses pairs", i);
-        if (level !== current.level) error("Indentation error", i);
-
-        bracketBalance--;
-        if (bracketBalance < 0) error("Check parentheses pairs", i);
-        stack.pop();
-      }
-      else {
-        if (stack.length <= 1) error("Check parentheses pairs", i);
-        const current = stack[stack.length - 1];
-        if (level !== current.level) error("Indentation error", i);
-
-        const txt = t;
-        const leaf = {
-          tag:"", id:null, ref:null, forward:false,
-          text: txt,
-          wCount: countWords(txt),
-          cCount: txt.length,
-          level,
-          nodes:[],
-          wTreeCount:0,cTreeCount:0,wPos:0,cPos:0,
-          textTree:"", textSoFar:"", textAfter:"",
-          _start:0, _end:0,
-          comment: null
-        };
-        current.node.nodes.push(leaf);
-      }
-
-      i++;
-
-      if (parenBalance === 0 && bracketBalance === 0){
-        let j = i;
-        while (j < lines.length && isEmpty(lines[j])) j++;
-        if (j >= lines.length || !lines[j].startsWith("(")) break;
-      }
-    }
-
-    if (parenBalance !== 0 || bracketBalance !== 0) error("Check parentheses pairs", Math.max(0, i-1));
-    return root;
-  }
-
-  function walkCounts(node, root = node){
-    let w = node.wCount || 0;
-    let c = node.cCount || 0;
-    for (const ch of node.nodes){
-      walkCounts(ch, root);
-      w += ch.wTreeCount;
-      c += ch.cTreeCount;
-    }
-    node.wTreeCount = w;
-    node.cTreeCount = c;
-    if (node.level > root.maxLevel) {// update max level
-      root.maxLevel = node.level;
-    }
-  }
-
-  function rebuild(node){
-    let out = node.text || "";
-    for (const ch of node.nodes) out += rebuild(ch);
-    return out;
-  }
-
-  function buildTextIndex(root){
-    // Build traversal sequence of text pieces (node.text and leaf.text), with subtree [start,end)
-    const pieces = [];
-    const lens = [0];
-
-    function dfs(n){
-      n._start = pieces.length;
-
-      if (n.text){
-        pieces.push(n.text);
-        lens.push(lens[lens.length-1] + n.text.length);
-      }
-      for (const ch of (n.nodes || [])) dfs(ch);
-
-      n._end = pieces.length;
-    }
-
-    dfs(root);
-
-    const full = pieces.join("");
-
-    function fillStrings(n){
-      const startPos = lens[n._start] || 0;
-      const endPos = lens[n._end] || 0;
-      n.textSoFar = full.slice(0, startPos);
-      n.textTree  = full.slice(startPos, endPos);
-      n.textAfter = full.slice(endPos);
-      for (const ch of (n.nodes || [])) fillStrings(ch);
-    }
-    fillStrings(root);
-
-    return full;
-  }
-
-  try {
-    while (i < lines.length){
-      let rootWorthyComment = null;
-      const nodeComments = new Map();
-
-      if (isEmpty(lines[i])) { i++; continue; }
-
-      if (!isSentenceLine(lines[i])) error("Sentence expected", i);
-      const sentence = lines[i];
-      i++;
-
-      while (i < lines.length && (lines[i].trim().startsWith("#")||isEmpty(lines[i]))) {
-        if (isEmpty(lines[i])) { i++; continue; }
-        const line = lines[i];
-        const numbered = parseNumberedComment(line);
-
-        if (numbered) {
-          // numbered comments are NOT worthy for root
-          // last one wins
-          nodeComments.set(numbered.id, numbered.text);
-        } else {
-          // unnumbered → worthy, but keep only the first
-          if (rootWorthyComment === null) {
-            rootWorthyComment = line.slice(1).trim(); // remove leading #
-          }
-        }
-        i++;
-      }
-
-
-      if (i >= lines.length || !lines[i].startsWith("(")) error("Analysis block expected", i);
-
-      const tree = parseAnalysisBlock();
-      // additional data to add to the tree
-      tree.comment = rootWorthyComment;
-      walkCounts(tree);
-      (function attach(node) { // adding the numbered comments to the node
-        if (node.id != null && nodeComments.has(node.id)) {
-          node.comment = nodeComments.get(node.id);
-        }
-        for (const ch of (node.nodes || [])) attach(ch);
-      })(tree);
-
-      const rebuilt = rebuild(tree).replace(/^\s+/, "");
-      if (rebuilt !== sentence.replace(/^\s+/, "")){
-        error("Mismatch sentence error: " + rebuilt, Math.max(0, i-1));
-      }
-
-      // Build textSoFar/textTree/textAfter once (root includes reconstructed sentence)
-      const fullSentence = buildTextIndex(tree);
-      tree._reconstructed = fullSentence;
-
-      results.push({ sentence, tree });
-
-      while (i < lines.length && (isComment(lines[i])||isEmpty(lines[i]))) i++;
-    }
-
-    return results;
-  } catch {
-    return null;
-  }
-}
 
 /* ===================== SVG rendering (percent widths; no viewBox scaling) ===================== */
 const IC_SHADES = ["#89CFF1","#6EB1D6","#5293BB","#3776A1","#1B5886","#003A6B"];
@@ -794,12 +640,16 @@ collapseBtn.addEventListener("click", ()=>{
 });
 
 /* ===================== UI wiring ===================== */
-const list = document.querySelector(".work-list");
+// Lists + corpus switch buttons
+wireDom();
+
+// Active list (remote by default)
+let list = remoteList;
+
 const work = document.querySelector(".work");
 const author = document.querySelector(".author");
 const choice = document.querySelector(".choice");
-const commentBox = document.querySelector(".comment"); // REVIEW! why not the id?
-
+const commentBox = document.getElementById("commentArea");
 function setCollapseIcon(){
   const useEl = collapseBtn.querySelector("use");
   if (!useEl) return;
@@ -855,7 +705,7 @@ async function show(idx) {
   const c = corpus[idx];
 
   setResultPanelLoadingMsg();
-  work.textContent = `${c.Work} (${c.Year})`;
+  work.textContent = (c.Year || c.Year === 0) ? `${c.Work} (${c.Year})` : `${c.Work}`;
   author.textContent = `by ${c.Author}`;
   choice.textContent = c.Choice ? `(${c.Choice})` : "";
 
@@ -875,7 +725,7 @@ async function show(idx) {
       return;
     }
   }
-  lastParsed = parseAnalyzedText(c.AnalyzedText, (msg) => {
+  lastParsed = SSE.parseAnalyzedText(c.AnalyzedText, (msg) => {
     commentBox.textContent = msg;
     commentBox.classList.add("error");
   });
@@ -888,7 +738,45 @@ async function show(idx) {
   updateCollapseEnabled();
 }
 
-list.addEventListener("change", (e)=>show(Number(e.target.value)));
+if (remoteList){
+  remoteList.addEventListener("change", (e)=>{
+    if (activeSource !== "remote") {
+      setActiveSource("remote", { skipPopulate: true, skipShow: true });
+    }
+    list = remoteList;
+    corpus = corpusRemote;
+    show(Number(e.target.value));
+  });
+}
+if (localList){
+  localList.addEventListener("change", (e)=>{
+    if (activeSource !== "local") {
+      setActiveSource("local", { skipPopulate: true, skipShow: true });
+    }
+    list = localList;
+    corpus = corpusLocal;
+    show(Number(e.target.value));
+  });
+}
+
+
+/* ===================== Corpus switching buttons ===================== */
+if (corpusRemoteBtn){
+  corpusRemoteBtn.addEventListener("click", ()=>{
+    activateRemoteCorpus();
+  });
+}
+if (corpusLocalBtn){
+  corpusLocalBtn.addEventListener("click", ()=>{
+    activateLocalCorpus();
+  });
+}
+
+if (localDataBtn){
+  localDataBtn.addEventListener("click", ()=>{
+    window.location.href = "local_corpus.html";
+  });
+}
 
 /* ===================== Store feature (+>) ===================== */
 
@@ -981,7 +869,26 @@ const plusModal = document.getElementById("plusModal");
 const plusContent = document.getElementById("plusContent");
 const toggleView = document.getElementById("toggleView");
 const closePlus = document.getElementById("closePlus");
+const cloneLocalBtn = document.getElementById("cloneLocalBtn");
+const copyClipboardBtn = document.getElementById("copyClipboardBtn");
+
 let showingExcerpt = false;
+
+// Keep this in sync with your local-corpus storage key.
+
+function isRemoteCorpusActive(){ return corpus === corpusRemote; }
+
+function shouldShowCloneBtn(){
+  // Show ONLY when:
+  // 1) we are on remote corpus, and
+  // 2) the modal is showing structural analysis (i.e. toggle says "Switch to original excerpt")
+  return isRemoteCorpusActive() && !showingExcerpt;
+}
+
+function updateCloneBtnVisibility(){
+  // You can use classList if you have .hidden, or style.display.
+  cloneLocalBtn.classList.toggle("hidden", !shouldShowCloneBtn());
+}
 
 function buildExcerpt(parsed){
   const paras = [];
@@ -1016,6 +923,7 @@ document.querySelector(".plus-btn").addEventListener("click", ()=>{
   plusContent.className = "modal-content mono";
   toggleView.textContent = "Switch to original excerpt";
   showingExcerpt = false;
+  updateCloneBtnVisibility();
   plusModal.style.display = "flex";
 });
 
@@ -1036,10 +944,97 @@ toggleView.addEventListener("click", ()=>{
     plusContent.className = "modal-content mono";
     toggleView.textContent = "Switch to original excerpt";
   }
+  updateCloneBtnVisibility();
+});
+
+function getPlusPanelText(){
+  const el = document.getElementById("plusContent");
+  if (!el) return "";
+  // If it is a textarea in your version, use value; otherwise use innerText.
+  const text = (typeof el.value === "string") ? el.value : el.innerText;
+  return (text || "").replace(/\r\n/g, "\n");
+}
+
+// Clipboard helper with fallback for non-secure contexts.
+async function copyToClipboard(text){
+  if (!text) return;
+
+  if (navigator.clipboard && window.isSecureContext){
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+
+  // Fallback
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.setAttribute("readonly", "");
+  ta.style.position = "fixed";
+  ta.style.left = "-9999px";
+  ta.style.top = "0";
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  document.execCommand("copy");
+  document.body.removeChild(ta);
+}
+
+copyClipboardBtn.addEventListener("click", async () => {
+  try{
+    await copyToClipboard(getPlusPanelText());
+    /*alert("Copied to clipboard.");*/
+  }catch(e){
+    alert("Copy failed.");
+  }
 });
 
 closePlus.addEventListener("click", ()=>plusModal.style.display = "none");
 plusModal.addEventListener("click", (e)=>{ if (e.target === plusModal) plusModal.style.display = "none"; });
+
+/* ==== clone to local storage ==== */
+
+function readLocalCorpus(){
+  try{
+    const raw = localStorage.getItem(LS_KEY_LOCAL_CORPUS);
+    if (!raw) return [];
+    const arr = JSON.parse(raw);
+    return Array.isArray(arr) ? arr : [];
+  }catch(e){
+    // If corrupted, reset to empty
+    return [];
+  }
+}
+
+function writeLocalCorpus(arr){
+  localStorage.setItem(LS_KEY_LOCAL_CORPUS, JSON.stringify(arr));
+}
+
+function cloneCurrentRemoteEntryToLocal(){
+  const idx = Number(list.value);
+  const src = corpus[idx];
+  if (!src) return;
+
+  // Clone exactly what's needed by your local-corpus format
+  const entry = {
+    Work: src.Work || "",
+    Author: src.Author || "",
+    Year: src.Year || "",
+    Choice: src.Choice || "",
+    Comment: src.Comment || "",
+    // Store the full loaded file text (your AnalyzedText should already be the full file content)
+    AnalyzedText: src.AnalyzedText || ""
+  };
+
+  const local = readLocalCorpus();
+  local.push(entry);
+  writeLocalCorpus(local);
+
+  alert("Saved to local corpus.");
+}
+
+
+cloneLocalBtn.addEventListener("click", ()=>{
+  cloneCurrentRemoteEntryToLocal();
+});
 
 /* ===================== Parameter modal ===================== */
 const settingsBtn = document.getElementById("settingsBtn");
@@ -1082,6 +1077,9 @@ pApply.addEventListener("click", ()=>{
 
   applyWorkspaceWidth();
   closeParamModal();
+
+  // persist user prefs
+  savePrefsToStorage();
 
   // reprocess current selection
   show(Number(list.value));
