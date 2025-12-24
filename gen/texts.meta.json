@@ -36,7 +36,7 @@
   }
 ,
   {
-    "Author": "Mary Wollstonecraft Shelley",
+    "Author": "Mary W. Shelley",
     "Work": "Frankenstein; Or, The Modern Prometheus",
     "Year": "1818",
     "Choice": "beginning of chapter one",
@@ -90,6 +90,33 @@
   }
 ,
   {
+    "Author": "Jordan Meadows",
+    "Work": "Not Just Friends",
+    "Year": "2024",
+    "Choice": "beginning of chapter two",
+    "Comment": "First person narrator is young, so the voice matches this. !! draft analysis to review !!",
+    "file": "texts/Not_Just_Friend_1.txt"
+  }
+,
+  {
+    "Author": "Jordan Meadows",
+    "Work": "Not Just Friends",
+    "Year": "2024",
+    "Choice": "before end of ch 8",
+    "Comment": "First person narrator is young, so the voice matches this. !! draft analysis to review !!",
+    "file": "texts/Not_Just_Friend_2.txt"
+  }
+,
+  {
+    "Author": "Jordan Meadows",
+    "Work": "Not Just Friends",
+    "Year": "2024",
+    "Choice": "mid ch 11",
+    "Comment": "Third excerpt, trying to find longer sentences. !! draft analysis to review !!",
+    "file": "texts/Not_Just_Friend_3.txt"
+  }
+,
+  {
     "Author": "D. H. Lawrence",
     "Work": "Odour of Chrysanthemums",
     "Year": "1909",
@@ -105,6 +132,18 @@
     "Choice": "end of chapter 3",
     "Comment": "Known for shorter sentences. !! draft analysis to be reviewed !!",
     "file": "texts/Of_Human_Bondage_1.txt"
+  }
+,
+  {
+    "Author": "Jae",
+    "Work": "Perfect Rhythm",
+    "Year": "2017",
+    "Choice": "ch 2 p3",
+    "Comment": "First person narrator, with her voice. !! draft analysis to review !!",
+    "It was only after a few minutes of silent staring that she detected some changes": "The weathered windowsill on the dormer window jutting out from the roof had been replaced; the house had gotten a new paint job, and the trees shading the front lawn had grown taller.",
+    "~(DC2<1 that she detected some changes": "",
+    "Reluctant to leave the sanctuary of her rental car, she stared through the windshield toward the house. Like the town, her childhood home was almost exactly the same as Leo remembered. Despite the money she had sent her parents over the years, they hadn’t added to their two-story house. It was only after a few minutes of silent staring that she detected some changes": "The weathered windowsill on the dormer window jutting out from the roof had been replaced; the house had gotten a new paint job, and the trees shading the front lawn had grown taller.",
+    "file": "texts/Perfect_Rhythm_1.txt"
   }
 ,
   {
@@ -169,6 +208,15 @@
     "Comment": "!! draft analysis to review !!",
     "Rights": "asking",
     "file": "texts/The_Waves_1.txt"
+  }
+,
+  {
+    "Author": "Thea Astley",
+    "Work": "The Well Dressed Explorer",
+    "Year": "1962",
+    "Choice": "beginning of chapter one",
+    "Comment": "!! draft analysis to review !!",
+    "file": "texts/The_Well_Dressed_Explorer_1.txt"
   }
 ,
   {
