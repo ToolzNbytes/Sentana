@@ -1,0 +1,311 @@
+Author: Jae
+Work: Perfect Rhythm
+Year: 2017
+Choice: ch 2 p3
+Comment: First person narrator, with her voice. !! draft analysis to review !!
+
+####
+
+Just as she passed the two signs, the opening lines of “Butterfly Kisses” drifted through the car’s speakers.
+(IC1 Just
+~(DC2<1 as she passed the two signs,
+~)
+ the opening lines of “Butterfly Kisses” drifted through the car’s speakers.
+)
+
+Groaning, she turned off the radio and drove through town in silence.
+(IC1
+~(PP2>1 Groaning,
+~)
+ she turned off the radio
+[CP3 and drove through town in silence.
+]
+)
+
+It had been five years since she had been back for her grandmother’s funeral.
+(IC1 It had been five years
+~(DC2<1 since she had been back for her grandmother’s funeral.
+~)
+)
+
+Fair Oaks hadn’t changed much, but somehow it felt foreign—so different from the skyscrapers and bright lights of New York City.
+(IC1 Fair Oaks hadn’t changed much,
+)
+(IC2 but somehow it felt foreign
+~(AP3<2—so different from the skyscrapers and bright lights of New York City.
+~)
+)
+
+The water tower carrying the faded high school mascot appeared on the left, while the red brick spire of the courthouse towered over the town on the right.
+(IC1 The water tower
+~(PP2<1 carrying the faded high school mascot
+~)
+ appeared on the left,
+)
+(IC3 while the red brick spire of the courthouse towered over the town on the right.
+)
+
+Several buildings at the edge of town appeared to be abandoned, their windows boarded up.
+(IC1 Several buildings at the edge of town appeared to be abandoned,
+~(PP2<1 their windows boarded up.
+~)
+)
+
+Leo halfway expected a tumbleweed to blow through.
+(IC1 Leo halfway expected a tumbleweed to blow through.
+)
+
+She encountered only a white pickup truck that pulled into Ruth’s Diner.
+(IC1 She encountered only a white pickup truck
+~(DC2<1 that pulled into Ruth’s Diner.
+~)
+)
+
+The guy behind the wheel stared at her, probably because he didn’t recognize her car, which gave her away as an out-of-towner.
+(IC1 The guy behind the wheel stared at her,
+~(AP2<1 probably
+~~(DC3<2 because he didn’t recognize her car,
+~~~(DC4<3 which gave her away as an out-of-towner.
+~~~)
+~~)
+~)
+)
+
+Her fingers around the steering wheel grew damp as she approached her childhood home.
+(IC1 Her fingers around the steering wheel grew damp
+~(DC2<1 as she approached her childhood home.
+~)
+)
+
+It was right across the street from her old high school.
+(IC1 It was right across the street from her old high school.
+)
+
+The sight of the brick building with the brass bell displayed on the front lawn didn’t make her feel any better.
+(IC1 The sight of the brick building
+~(AP2<1 with the brass bell displayed on the front lawn
+~)
+ didn’t make her feel any better.
+)
+
+She hadn’t fit in with her small class any better than she fit into town now.
+(IC1 She hadn’t fit in with her small class any better
+~(DC2<1 than she fit into town now.
+~)
+)
+
+Gravel crunched as she turned into her parents’ driveway.
+(IC1 Gravel crunched
+~(DC2<1 as she turned into her parents’ driveway.
+~)
+)
+
+When she turned off the engine, the sudden silence felt strangely loud.
+(IC1
+~(DC2>1 When she turned off the engine,
+~)
+ the sudden silence felt strangely loud.
+)
+
+Reluctant to leave the sanctuary of her rental car, she stared through the windshield toward the house.
+(IC1
+~(AP2>1 Reluctant to leave the sanctuary of her rental car,
+~)
+ she stared through the windshield toward the house.
+)
+
+Like the town, her childhood home was almost exactly the same as Leo remembered.
+(IC1 Like the town, her childhood home was almost exactly the same as Leo remembered.
+)
+
+Despite the money she had sent her parents over the years, they hadn’t added to their two-story house.
+(IC1 Despite the money
+~(DC2<1 she had sent her parents over the years,
+~)
+ they hadn’t added to their two-story house.
+)
+
+It was only after a few minutes of silent staring that she detected some changes: The weathered windowsill on the dormer window jutting out from the roof had been replaced; the house had gotten a new paint job, and the trees shading the front lawn had grown taller.
+(IC1 It was only after a few minutes of silent staring
+~(DC2<1 that she detected some changes:
+~)
+)
+(IC3 The weathered windowsill on the dormer window
+~(PP4<3 jutting out from the roof
+~)
+ had been replaced;
+)
+(IC5 the house had gotten a new paint job,
+)
+(IC6 and the trees
+~(PP7<6 shading the front lawn
+~)
+ had grown taller.
+)
+
+She took a deep breath, as if about to go underwater, and opened the driver’s side door.
+(IC1 She took a deep breath,
+~(AP2<1 as if about to go underwater,
+~)
+[CP3 and opened the driver’s side door.
+]
+)
+
+The July heat slapped her in the face, but she couldn’t hide out in the air-conditioned car for the rest of the day, so she braced herself and climbed out.
+(IC1 The July heat slapped her in the face,
+)
+(IC2 but she couldn’t hide out in the air-conditioned car for the rest of the day,
+)
+(IC3 so she braced herself
+[CP4 and climbed out.
+]
+)
+
+The sound of the car door slamming shut was like a rifle crack, making her flinch.
+(IC1 The sound of the car door
+~(PP2<1 slamming shut
+~)
+ was like a rifle crack,
+~(PP3<1 making her flinch.
+~)
+)
+
+Leo opened the trunk and lifted out her suitcase and her battered guitar case.
+(IC1 Leo opened the trunk
+[CP2 and lifted out her suitcase and her battered guitar case.
+]
+)
+
+The porch swing creaked in the breeze as she walked up the path toward the house.
+(IC1 The porch swing creaked in the breeze
+~(DC2<1 as she walked up the path toward the house.
+~)
+)
+
+The lawn she had mowed every Saturday throughout her teenage years was neatly trimmed, and she wondered who was taking care of it now.
+(IC1 The lawn
+~(DC2<1 she had mowed every Saturday throughout her teenage years
+~)
+ was neatly trimmed,
+)
+(IC3 and she wondered
+~(DC4<3 who was taking care of it now.
+~)
+)
+
+On the porch, she set down the suitcase but kept gripping the guitar case.
+(IC1 On the porch, she set down the suitcase
+)
+(IC2 but kept gripping the guitar case.
+)
+
+She needed its familiar weight to calm her down.
+(IC1 She needed its familiar weight
+~(AP2<1 to calm her down.
+~)
+)
+
+Ringing the doorbell felt strange, but even if she still had a key, she couldn’t imagine just walking in, especially since she had no idea what would greet her inside.
+(IC1 Ringing the doorbell felt strange,
+)
+(IC2 but even if she still had a key, she couldn’t imagine just walking in,
+~(AP3<2 especially
+~~(DC4<3 since she had no idea
+~~~(DC5<4 what would greet her inside.
+~~~)
+~~)
+~)
+)
+
+Bleak mental images of her father being attached to beeping machines assaulted her, and she shoved them aside.
+(IC1 Bleak mental images of her father being attached to beeping machines assaulted her,
+)
+(IC2 and she shoved them aside.
+)
+
+If he were that bad off, the doctors wouldn’t have released him from the hospital.
+(IC1
+~(DC2>1 If he were that bad off,
+~)
+ the doctors wouldn’t have released him from the hospital.
+)
+
+Her father had never been sick.
+(IC1 Her father had never been sick.
+)
+
+In his forty-year career as a music professor and concert violinist, he had never missed a single day of work or a Sunday playing the organ at church.
+(IC1 In his forty-year career as a music professor and concert violinist, he had never missed a single day of work or a Sunday
+~(PP2<1 playing the organ at church.
+~)
+)
+
+Mind over matter; that was what he always said.
+(IC1 Mind over matter;
+)
+(IC2 that was what he always said.
+)
+
+Whatever had happened, he would make a full recovery.
+(IC1 Whatever had happened, he would make a full recovery.
+)
+
+Before she knew it, he would drive her crazy with his opinions on her songs and popular music in general, his disparaging glances at her guitar calluses that would mess up her violin playing, and his none-too-subtle nudges for her to go out with one of the Wilson boys, no matter how often she told him she was a lesbian.
+(IC1 Before she knew it, he would drive her crazy
+~(AP2<1 with his opinions on her songs and popular music in general,
+~)
+~(AP3<1 his disparaging glances at her guitar calluses
+~~(DC4<3 that would mess up her violin playing,
+~~)
+~)
+~(AP5<1 and his none-too-subtle nudges for her
+~~(AP6<5 to go out with one of the Wilson boys,
+~~)
+~~(DC7<5 no matter how often she told him
+~~~(DC8<7 she was a lesbian.
+~~~)
+~~)
+~)
+)
+
+With a hand raised toward the doorbell, she hesitated.
+(IC1 With a hand raised toward the doorbell, she hesitated.
+)
+
+Come on.
+(FG1 Come on.
+)
+
+You’ve sung in the biggest arenas in the country—you can do this.
+(IC1 You’ve sung in the biggest arenas in the country
+)
+(IC2—you can do this.
+)
+
+Her heart beat a crazy staccato as she rang the bell.
+(IC1 Her heart beat a crazy staccato
+~(DC2<1 as she rang the bell.
+~)
+)
+
+Her knuckles on the handle of the guitar case turned white while she waited for her mother to answer.
+(IC1 Her knuckles on the handle of the guitar case turned white
+~(DC2<1 while she waited for her mother to answer.
+~)
+)
+
+####
+Just as she passed the two signs, the opening lines of “Butterfly Kisses” drifted through the car’s speakers. Groaning, she turned off the radio and drove through town in silence.
+It had been five years since she had been back for her grandmother’s funeral. Fair Oaks hadn’t changed much, but somehow it felt foreign—so different from the skyscrapers and bright lights of New York City. The water tower carrying the faded high school mascot appeared on the left, while the red brick spire of the courthouse towered over the town on the right. Several buildings at the edge of town appeared to be abandoned, their windows boarded up.
+Leo halfway expected a tumbleweed to blow through. She encountered only a white pickup truck that pulled into Ruth’s Diner. The guy behind the wheel stared at her, probably because he didn’t recognize her car, which gave her away as an out-of-towner.
+Her fingers around the steering wheel grew damp as she approached her childhood home. It was right across the street from her old high school. The sight of the brick building with the brass bell displayed on the front lawn didn’t make her feel any better. She hadn’t fit in with her small class any better than she fit into town now.
+Gravel crunched as she turned into her parents’ driveway. When she turned off the engine, the sudden silence felt strangely loud.
+Reluctant to leave the sanctuary of her rental car, she stared through the windshield toward the house. Like the town, her childhood home was almost exactly the same as Leo remembered. Despite the money she had sent her parents over the years, they hadn’t added to their two-story house. It was only after a few minutes of silent staring that she detected some changes: The weathered windowsill on the dormer window jutting out from the roof had been replaced; the house had gotten a new paint job, and the trees shading the front lawn had grown taller.
+She took a deep breath, as if about to go underwater, and opened the driver’s side door. The July heat slapped her in the face, but she couldn’t hide out in the air-conditioned car for the rest of the day, so she braced herself and climbed out. The sound of the car door slamming shut was like a rifle crack, making her flinch.
+Leo opened the trunk and lifted out her suitcase and her battered guitar case.
+The porch swing creaked in the breeze as she walked up the path toward the house. The lawn she had mowed every Saturday throughout her teenage years was neatly trimmed, and she wondered who was taking care of it now.
+On the porch, she set down the suitcase but kept gripping the guitar case. She needed its familiar weight to calm her down. Ringing the doorbell felt strange, but even if she still had a key, she couldn’t imagine just walking in, especially since she had no idea what would greet her inside.
+Bleak mental images of her father being attached to beeping machines assaulted her, and she shoved them aside. If he were that bad off, the doctors wouldn’t have released him from the hospital.
+Her father had never been sick. In his forty-year career as a music professor and concert violinist, he had never missed a single day of work or a Sunday playing the organ at church. Mind over matter; that was what he always said.
+Whatever had happened, he would make a full recovery. Before she knew it, he would drive her crazy with his opinions on her songs and popular music in general, his disparaging glances at her guitar calluses that would mess up her violin playing, and his none-too-subtle nudges for her to go out with one of the Wilson boys, no matter how often she told him she was a lesbian.
+With a hand raised toward the doorbell, she hesitated. Come on. You’ve sung in the biggest arenas in the country—you can do this. Her heart beat a crazy staccato as she rang the bell. Her knuckles on the handle of the guitar case turned white while she waited for her mother to answer.

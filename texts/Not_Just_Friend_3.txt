@@ -1,0 +1,178 @@
+Author: Jordan Meadows
+Work: Not Just Friends
+Year: 2024
+Choice: mid ch 11
+Comment: Third excerpt, trying to find longer sentences. !! draft analysis to review !!
+
+###
+
+ Prairie View was a small town.
+(IC1 Prairie View was a small town.
+)
+
+Nothing was too far, as long as you stayed in town.
+(IC1 Nothing was too far,
+~(DC2<1 as long as you stayed in town.
+~)
+)
+
+If you actually wanted to go someplace that wasn’t one of the restaurants, gas stations, or hotels along the interstate, school, a friend’s house, or the small collection of places along Main Street, then things were different.
+(IC1
+~(DC2>1 If you actually wanted to go someplace
+~~(DC3<2 that wasn’t one of the restaurants, gas stations, or hotels along the interstate, school, a friend’s house, or the small collection of places along Main Street,
+~~)
+~)
+ then things were different.
+)
+
+Then you were looking at some distance.
+(IC1 Then you were looking at some distance.
+)
+
+ There was a city park near the elementary school.
+(IC1 There was a city park near the elementary school.
+)
+
+I rode over and around the path that circled the park, considering where to stop.
+(IC1 I rode over and around the path
+~(DC2<1 that circled the park,
+~)
+~(PP3<1 considering
+~~(DC4<3 where to stop.
+~~)
+~)
+)
+
+It was ten thirty on a warm spring Saturday morning, so there were plenty of kids playing on the playground that took up one end of the triple block that made up the park.
+(IC1 It was ten thirty on a warm spring Saturday morning,
+)
+(IC2 so there were plenty of kids
+~(PP3<2 playing on the playground
+~~(DC4<3 that took up one end of the triple block
+~~~(DC5<4 that made up the park.
+~~~)
+~~)
+~)
+)
+
+Parents sat on benches with to-go cups of coffee or chased after their children.
+(IC1 Parents sat on benches
+~(AP2<1 with to-go cups of coffee
+~)
+[CP3 or chased after their children.
+]
+)
+
+The middle part of the park was mostly grass with a few trees along one side.
+(IC1 The middle part of the park was mostly grass
+~(AP2<1 with a few trees along one side.
+~)
+)
+
+At the opposite end from the playground, there were a few of the large red rocks that Colorado is known for.
+(IC1
+~(AP2>1 At the opposite end from the playground,
+~)
+ there were a few of the large red rocks
+~(DC3<1 that Colorado is known for.
+~)
+)
+
+We were in the middle of prairie here, so the red rocks were not from here.
+(IC1 We were in the middle of prairie here,
+)
+(IC2 so the red rocks were not from here.
+)
+
+They’d been brought in when the town was founded from the other side of Denver.
+(IC1 They’d been brought in
+~(DC2<1 when the town was founded from the other side of Denver.
+~)
+)
+
+Still, they were cool.
+(IC1 Still, they were cool.
+)
+
+A few kids were scrambling around on them.
+(IC1 A few kids were scrambling around on them.
+)
+
+ I stopped at a bench on the red rocks end of the park and got out my sketchbook.
+(IC1 I stopped at a bench
+~(AP2<1 on the red rocks end of the park
+~)
+[CP3 and got out my sketchbook.
+]
+)
+
+Then I got out my phone and snapped a picture which I sent to my dad.
+(IC1 Then I got out my phone
+[CP2 and snapped a picture
+~(DC3<2 which I sent to my dad.
+~)
+]
+)
+
+I hadn’t even put my phone away yet when I got a picture back of green trees with snow around them.
+(IC1 I hadn’t even put my phone away yet
+~(DC2<1 when I got a picture back of green trees with snow around them.
+~)
+)
+
+The snow is starting to melt.
+(IC1 The snow is starting to melt.
+)
+
+He added a sad face emoji.
+(IC1 He added a sad face emoji.
+)
+
+ I ran my thumb along the side of the phone case for a minute, staring off into space.
+(IC1 I ran my thumb along the side of the phone case for a minute,
+~(PP2<1 staring off into space.
+~)
+)
+
+Then I quickly typed.
+(IC1 Then I quickly typed.
+)
+
+*Sorry, but I’m enjoying the warm weather.*
+(IC1 *Sorry,
+[CP2 but I’m enjoying the warm weather.*
+]
+)
+
+ Then I put my phone away before I could see if he was going to answer.
+(IC1 Then I put my phone away
+~(DC2<1 before I could see
+~~(DC3<2 if he was going to answer.
+~~)
+~)
+)
+
+ I was sketching the rock closest to me, rising up out of the sand when someone sat down next to me.
+(IC1 I was sketching the rock closest to me,
+~(PP2<1 rising up out of the sand
+~)
+~(DC3<1 when someone sat down next to me.
+~)
+)
+
+I was only vaguely aware that there was a person there until she spoke.
+(IC1 I was only vaguely aware
+~(DC2<1 that there was a person there
+~)
+~(DC3<1 until she spoke.
+~)
+)
+
+###
+
+Prairie View was a small town. Nothing was too far, as long as you stayed in town. If you actually wanted to go someplace that wasn’t one of the restaurants, gas stations, or hotels along the interstate, school, a friend’s house, or the small collection of places along Main Street, then things were different. Then you were looking at some distance.
+There was a city park near the elementary school. I rode over and around the path that circled the park, considering where to stop. It was ten thirty on a warm spring Saturday morning, so there were plenty of kids playing on the playground that took up one end of the triple block that made up the park. Parents sat on benches with to-go cups of coffee or chased after their children. The middle part of the park was mostly grass with a few trees along one side. At the opposite end from the playground, there were a few of the large red rocks that Colorado is known for. We were in the middle of prairie here, so the red rocks were not from here. They’d been brought in when the town was founded from the other side of Denver. Still, they were cool. A few kids were scrambling around on them.
+I stopped at a bench on the red rocks end of the park and got out my sketchbook. Then I got out my phone and snapped a picture which I sent to my dad. I hadn’t even put my phone away yet when I got a picture back of green trees with snow around them. The snow is starting to melt. He added a sad face emoji.
+I ran my thumb along the side of the phone case for a minute, staring off into space. Then I quickly typed. *Sorry, but I’m enjoying the warm weather.*
+Then I put my phone away before I could see if he was going to answer.
+I was sketching the rock closest to me, rising up out of the sand when someone sat down next to me. I was only vaguely aware that there was a person there until she spoke.
