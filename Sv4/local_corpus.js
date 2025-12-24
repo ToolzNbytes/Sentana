@@ -16,6 +16,7 @@ const analysisInput = document.getElementById("analysisInput");
 const newEntryBtn = document.getElementById("newEntryBtn");
 const verifyBtn = document.getElementById("verifyBtn");
 const storeBtn = document.getElementById("storeBtnLocal");
+const downloadBtn = document.getElementById("downloadBtn");
 const statusMsg = document.getElementById("statusMsg");
 
 let corpusLocal = [];
@@ -155,6 +156,7 @@ function updateStoreEnabled(){
   const okMeta = fWork.value.trim().length > 0 && fAuthor.value.trim().length > 0;
   const okText = analysisInput.value.trim().length > 0;
   storeBtn.disabled = !(okMeta && okText);
+  downloadBtn.disabled = (selectedIndex == null);
 }
 
 function clearForm(){
@@ -283,6 +285,73 @@ storeBtn.addEventListener("click", () => {
   } else {
     alert("Stored in local corpus, but invalid. Please run the verification and fix the reported line.");
   }
+});
+
+function sanitizeFilenameBase(s){
+  // Remove characters that often break filenames on Windows/macOS/Linux.
+  // Also collapse spaces to underscores.
+  let base = (s || "").trim();
+  if (!base) base = "entry";
+
+  base = base.replace(/[\/\\:*?"<>|]/g, ""); // forbidden characters
+  base = base.replace(/\s+/g, "_");          // spaces -> underscores
+  base = base.replace(/_+/g, "_");           // collapse underscores
+  base = base.replace(/^\.+/, "");           // no leading dots
+  base = base.replace(/\.+$/, "");           // no trailing dots
+  if (!base) base = "entry";
+  return base;
+}
+
+function buildTextFileContent(){
+  // Build header in the required order, then "###", then textarea content.
+  const author  = (fAuthor.value  || "").trim();
+  const work    = (fWork.value    || "").trim();
+  const year    = (fYear.value    || "").trim();
+  const choice  = (fChoice.value  || "").trim();
+  const comment = (fComment.value || "").trim();
+
+  const headerLines = [
+    `Author: ${author}`,
+    `Work: ${work}`,
+    `Year: ${year}`,
+    `Choice: ${choice}`,
+    `Comment: ${comment}`,
+    "",
+    "###",
+    ""
+  ];
+
+  // Keep the textarea content as-is (normalize line endings).
+  const body = (analysisInput.value || "").replace(/\r\n/g, "\n");
+
+  // Ensure file ends with a newline (nice for git diffs).
+  return headerLines.join("\n") + body + (body.endsWith("\n") ? "" : "\n");
+}
+
+function triggerDownload(filename, content){
+  const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+
+  // Revoke later (avoid revoking too early on some browsers).
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+downloadBtn.addEventListener("click", () => {
+  if (selectedIndex == null) return;
+
+  const work = (fWork.value || "").trim();
+  const base = sanitizeFilenameBase(work);
+  const filename = `${base}_1.txt`;
+
+  const content = buildTextFileContent();
+  triggerDownload(filename, content);
 });
 
 function init(){
