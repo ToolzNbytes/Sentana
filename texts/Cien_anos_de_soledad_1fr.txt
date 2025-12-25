@@ -1,0 +1,181 @@
+Author: Gabriel García Márquez
+Work: Cien años de soledad
+Year: 1965-66
+Choice: first paragraph of chapter one (French version by Claude and Carmen Durand)
+Tags: Ref,ToReview
+Language: fr/es
+Comment: !! draft analysis to review !!
+
+###
+
+ Bien des années plus tard, face au peloton d’exécution, le colonel Aureliano Buendia devait se rappeler ce lointain après-midi au cours duquel son père l’emmena faire connaissance avec la glace.
+(IC1 Bien des années plus tard, face au peloton d’exécution, le colonel Aureliano Buendia devait se rappeler ce lointain après-midi
+~(DC2<1 au cours duquel son père l’emmena faire connaissance avec la glace.
+~)
+)
+
+Macondo était alors un village d’une vingtaine de maisons en glaise et en roseaux, construites au bord d’une rivière dont les eaux diaphanes roulaient sur un lit de pierres polies, blanches, énormes comme des œufs préhistoriques.
+(IC1 Macondo était alors un village d’une vingtaine de maisons en glaise et en roseaux,
+~(PP2<1 construites au bord d’une rivière
+~~(DC3<2 dont les eaux diaphanes roulaient sur un lit de pierres polies, blanches, énormes comme des œufs préhistoriques.
+~~)
+~)
+)
+
+Le monde était si récent que beaucoup de choses n’avaient pas encore de nom et pour les mentionner, il fallait les montrer du doigt.
+(IC1 Le monde était si récent
+~(DC2<1 que beaucoup de choses n’avaient pas encore de nom
+~)
+)
+(IC3 et
+~(AP4>3 pour les mentionner,
+~)
+ il fallait les montrer du doigt.
+)
+
+Tous les ans, au mois de mars, une famille de gitans déguenillés plantait sa tente près du village et, dans un grand tintamarre de fifres et de tambourins, faisait part des nouvelles inventions.
+(IC1 Tous les ans, au mois de mars, une famille de gitans déguenillés plantait sa tente près du village
+[CP2 et, dans un grand tintamarre de fifres et de tambourins, faisait part des nouvelles inventions.
+]
+)
+
+Ils commencèrent par apporter l’aimant.
+(IC1 Ils commencèrent par apporter l’aimant.
+)
+
+Un gros gitan à la barbe broussailleuse et aux mains de moineau, qui répondait au nom de Melquiades, fit en public une truculente démonstration de ce que lui-même appelait la huitième merveille des savants alchimistes de Macédoine.
+(IC1 Un gros gitan à la barbe broussailleuse et aux mains de moineau,
+~(DC2<1 qui répondait au nom de Melquiades,
+~)
+ fit en public une truculente démonstration
+~(DC3<1 de ce que lui-même appelait la huitième merveille des savants alchimistes de Macédoine.
+~)
+)
+
+Il passa de maison en maison, traînant avec lui deux lingots de métal, et tout le monde fut saisi de terreur à voir les chaudrons, les poêles, les tenailles et les chaufferettes tomber tout seuls de la place où ils étaient, le bois craquer à cause des clous et des vis qui essayaient désespérément de s’en arracher, et même les objets perdus depuis longtemps apparaissaient là où on les avait le plus cherchés, et se traînaient en débandade turbulente derrière les fers magiques de Melquiades.
+(IC1 Il passa de maison en maison,
+~(PP2<1 traînant avec lui deux lingots de métal,
+~)
+)
+(IC3 et tout le monde fut saisi de terreur
+~(AP4<3 à voir
+~~(DC5<4 les chaudrons, les poêles, les tenailles et les chaufferettes tomber tout seuls de la place
+~~~(DC6<5 où ils étaient,
+~~~)
+~~)
+~[CP7 le bois craquer à cause des clous et des vis
+~~(DC8<7 qui essayaient désespérément de s’en arracher,
+~~)
+~]
+~[CP9 et même les objets perdus depuis longtemps apparaissaient là
+~~(DC10<9 où on les avait le plus cherchés,
+~~)
+~]
+~[CP11 et se traînaient
+~~(AP12<11 en débandade turbulente derrière les fers magiques de Melquiades.
+~~)
+~]
+~)
+)
+
+« Les choses ont une vie bien à elles, clamait le gitan avec un accent guttural ; il faut réveiller leur âme, toute la question est là. »
+(IC1 « Les choses ont une vie bien à elles,
+~(AP2<1 clamait le gitan avec un accent guttural ;
+~)
+)
+(IC3 il faut réveiller leur âme,
+)
+(IC4 toute la question est là. »
+)
+
+José Arcadio Buendia, dont l’imagination audacieuse allait toujours plus loin que le génie même de la Nature, quand ce n’était pas plus loin que les miracles et la magie, pensa qu’il était possible de se servir de cette invention inutile pour extraire l’or des entrailles de la terre.
+(IC1 José Arcadio Buendia,
+~(DC2<1 dont l’imagination audacieuse allait toujours plus loin que le génie même de la Nature,
+~)
+~(AP3<1 quand ce n’était pas plus loin que les miracles et la magie,
+~)
+ pensa
+~(DC4<1 qu’il était possible de se servir de cette invention inutile
+~~(AP5<4 pour extraire l’or des entrailles de la terre.
+~~)
+~)
+)
+
+Melquiades, qui était un homme honnête, le mit en garde « Ça ne sert pas à ça. »
+(IC1 Melquiades,
+~(DC2<1 qui était un homme honnête,
+~)
+ le mit en garde
+~(AP3<1 « Ça ne sert pas à ça. »
+~)
+)
+
+Mais José Arcadio Buendia, en ce temps-là, ne croyait pas à l’honnêteté des gitans, et il troqua son mulet et un troupeau de chèvres contre les deux lingots aimantés.
+(IC1 Mais José Arcadio Buendia, en ce temps-là, ne croyait pas à l’honnêteté des gitans,
+[CP2 et il troqua son mulet et un troupeau de chèvres contre les deux lingots aimantés.
+]
+)
+
+Ursula Iguaran, sa femme, qui comptait sur ces animaux pour agrandir le patrimoine domestique en régression, ne parvint pas à l’en dissuader.
+(IC1 Ursula Iguaran,
+~(AP2<1 sa femme,
+~)
+~(DC3<1 qui comptait sur ces animaux
+~~(AP4<3 pour agrandir le patrimoine domestique en régression,
+~~)
+~)
+ ne parvint pas à l’en dissuader.
+)
+
+« Très vite on aura plus d’or qu’il n’en faut pour paver toute la maison », rétorqua son mari.
+(IC1
+~(AP2>1 « Très vite on aura plus d’or qu’il n’en faut pour paver toute la maison »,
+~)
+ rétorqua son mari.
+)
+
+Pendant plusieurs mois, il s’obstina à vouloir démontrer le bien-fondé de ses prévisions.
+(IC1 Pendant plusieurs mois, il s’obstina
+~(AP2<1 à vouloir démontrer le bien-fondé de ses prévisions.
+~)
+)
+
+Il fouilla la région pied à pied, sans oublier le fond de la rivière, traînant les deux lingots de fer et récitant à haute voix les formules qu’avait employées Melquiades.
+(IC1 Il fouilla la région pied à pied,
+~(AP2<1 sans oublier le fond de la rivière,
+~)
+~(PP3<1 traînant les deux lingots de fer
+~[CP4 et récitant à haute voix les formules
+~~(DC5<4 qu’avait employées Melquiades.
+~~)
+~]
+~)
+)
+
+La seule chose qu’il réussit à déterrer, ce fut une armure du XVe siècle dont tous les éléments étaient soudés par une carapace de rouille et qui sonnait le creux comme une énorme calebasse pleine de cailloux.
+(IC1 La seule chose
+~(DC2<1 qu’il réussit à déterrer,
+~)
+ ce fut une armure du XVe siècle
+~(DC3<1 dont tous les éléments étaient soudés par une carapace de rouille
+~[CP4 et qui sonnait le creux
+~~(AP5<4 comme une énorme calebasse pleine de cailloux.
+~~)
+~]
+~)
+)
+
+Quand José Arcadio Buendia et les quatre hommes de son expédition parvinrent à désarticuler l’armure, ils trouvèrent à l’intérieur un squelette calcifié qui portait à son cou un médaillon en cuivre contenant une mèche de cheveux de femme.
+(IC1
+~(DC2>1 Quand José Arcadio Buendia et les quatre hommes de son expédition parvinrent à désarticuler l’armure,
+~)
+ ils trouvèrent à l’intérieur un squelette calcifié
+~(DC3<1 qui portait à son cou un médaillon en cuivre
+~~(PP4<3 contenant une mèche de cheveux de femme.
+~~)
+~)
+)
+
+###
+
+Bien des années plus tard, face au peloton d’exécution, le colonel Aureliano Buendia devait se rappeler ce lointain après-midi au cours duquel son père l’emmena faire connaissance avec la glace. Macondo était alors un village d’une vingtaine de maisons en glaise et en roseaux, construites au bord d’une rivière dont les eaux diaphanes roulaient sur un lit de pierres polies, blanches, énormes comme des œufs préhistoriques. Le monde était si récent que beaucoup de choses n’avaient pas encore de nom et pour les mentionner, il fallait les montrer du doigt. Tous les ans, au mois de mars, une famille de gitans déguenillés plantait sa tente près du village et, dans un grand tintamarre de fifres et de tambourins, faisait part des nouvelles inventions. Ils commencèrent par apporter l’aimant. Un gros gitan à la barbe broussailleuse et aux mains de moineau, qui répondait au nom de Melquiades, fit en public une truculente démonstration de ce que lui-même appelait la huitième merveille des savants alchimistes de Macédoine. Il passa de maison en maison, traînant avec lui deux lingots de métal, et tout le monde fut saisi de terreur à voir les chaudrons, les poêles, les tenailles et les chaufferettes tomber tout seuls de la place où ils étaient, le bois craquer à cause des clous et des vis qui essayaient désespérément de s’en arracher, et même les objets perdus depuis longtemps apparaissaient là où on les avait le plus cherchés, et se traînaient en débandade turbulente derrière les fers magiques de Melquiades. « Les choses ont une vie bien à elles, clamait le gitan avec un accent guttural ; il faut réveiller leur âme, toute la question est là. » José Arcadio Buendia, dont l’imagination audacieuse allait toujours plus loin que le génie même de la Nature, quand ce n’était pas plus loin que les miracles et la magie, pensa qu’il était possible de se servir de cette invention inutile pour extraire l’or des entrailles de la terre. Melquiades, qui était un homme honnête, le mit en garde « Ça ne sert pas à ça. » Mais José Arcadio Buendia, en ce temps-là, ne croyait pas à l’honnêteté des gitans, et il troqua son mulet et un troupeau de chèvres contre les deux lingots aimantés. Ursula Iguaran, sa femme, qui comptait sur ces animaux pour agrandir le patrimoine domestique en régression, ne parvint pas à l’en dissuader. « Très vite on aura plus d’or qu’il n’en faut pour paver toute la maison », rétorqua son mari. Pendant plusieurs mois, il s’obstina à vouloir démontrer le bien-fondé de ses prévisions. Il fouilla la région pied à pied, sans oublier le fond de la rivière, traînant les deux lingots de fer et récitant à haute voix les formules qu’avait employées Melquiades. La seule chose qu’il réussit à déterrer, ce fut une armure du XVe siècle dont tous les éléments étaient soudés par une carapace de rouille et qui sonnait le creux comme une énorme calebasse pleine de cailloux. Quand José Arcadio Buendia et les quatre hommes de son expédition parvinrent à désarticuler l’armure, ils trouvèrent à l’intérieur un squelette calcifié qui portait à son cou un médaillon en cuivre contenant une mèche de cheveux de femme.
