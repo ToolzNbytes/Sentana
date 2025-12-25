@@ -25,8 +25,7 @@ Improvements I'm thinking of:
 
 * Special support of dialogues (avoiding those at the moment): attribution, who is speaking, insertion and action tags.
 * A mark so that we can see where we made a special comment on a sentence or a phrase
-* Other languages for the excerpts, and compare their translations
-* Filter on work list
+* More translations and languages other than English
 
 
 /
