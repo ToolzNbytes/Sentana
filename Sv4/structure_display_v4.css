@@ -235,7 +235,39 @@ body{
   padding:10px 12px;
   border:1px solid var(--border);
   border-radius:var(--radiusSm);
+  position: relative;
 }
+
+/* ===== Remote corpus filter panel (inside work-details) ===== */
+.filterPanel{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.filterTitle{
+  font-family: var(--serif);
+  color: var(--paper);
+  font-size: 14px;
+  line-height: 1.2;
+}
+.filterSelect{
+  width:100%;
+  background:#17110c;
+  color: var(--ink);
+  border:none;
+  border-radius: var(--radiusSm);
+  padding:6px;
+  resize: vertical;
+  min-height: 160px;
+}
+.filterSelect:disabled{
+  opacity: 0.65;
+}
+/* highlight the filter button when panel is open */
+.iconBtn.isActive{
+  background: var(--hlBtn);
+}
+
 .work{font-family:var(--serif);font-size:16px;color:var(--paper)}
 .author{font-size:13px;color:var(--muted)}
 .choice{font-size:13px;color:var(--green)}
@@ -268,7 +300,7 @@ body{
 }
 .listBlock .work-list{
   flex:1;
-  min-height:96px; /* keep aligned with 2 buttons */
+  min-height:140px; /* keep aligned with 2 buttons */
 }
 
 
