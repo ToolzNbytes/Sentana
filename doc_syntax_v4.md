@@ -1,4 +1,4 @@
-## TO BE REVIEWED
+## Document v0.1 TO BE REVIEWED
 
 Below is a practical, step-by-step **user documentation** for doing a **manual sentence structural analysis** with the notation and tags defined in the rules document. It’s meant to be used like a small workflow/checklist, not like a grammar textbook—this method takes a few liberties on purpose to stay useful for “sentence-building” structure. 
 
@@ -257,4 +257,5 @@ What to notice:
 3. **Forgetting that ids are global across the sentence** (you can have IC1, DC2, IC3… and that’s fine).
 4. **Over-tagging participles**: PP is only for optional participial phrases, not for noun-like gerunds or obligatory constructions. 
 5. **Attaching a DC to the wrong anchor id**: if scope is unclear, it’s okay to pick one and leave a `#` note.
+
 
