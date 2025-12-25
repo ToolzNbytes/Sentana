@@ -271,9 +271,6 @@
     "Tags": "Pop,ToReview",
     "Language": "en",
     "Comment": "First person narrator, with her voice. !! draft analysis to review !!",
-    "It was only after a few minutes of silent staring that she detected some changes": "The weathered windowsill on the dormer window jutting out from the roof had been replaced; the house had gotten a new paint job, and the trees shading the front lawn had grown taller.",
-    "~(DC2<1 that she detected some changes": "",
-    "Reluctant to leave the sanctuary of her rental car, she stared through the windshield toward the house. Like the town, her childhood home was almost exactly the same as Leo remembered. Despite the money she had sent her parents over the years, they hadn’t added to their two-story house. It was only after a few minutes of silent staring that she detected some changes": "The weathered windowsill on the dormer window jutting out from the roof had been replaced; the house had gotten a new paint job, and the trees shading the front lawn had grown taller.",
     "file": "texts/Perfect_Rhythm_1.txt"
   }
 ,
@@ -315,6 +312,8 @@
     "Work": "The Magus",
     "Year": "1977 (1965)",
     "Choice": "beginning of chapter one",
+    "Tags": "ToReview",
+    "Language": "en",
     "Comment": "!! draft analysis to review !!",
     "Rights": "asking",
     "file": "texts/The_Magus_1.txt"
