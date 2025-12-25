@@ -1,0 +1,209 @@
+Author: Gabriel García Márquez
+Work: Cien años de soledad
+Year: 1965-66
+Choice: first paragraph of chapter three (English version by Gregory Rabassa)
+Tags: Ref,ToReview
+Language: en/es
+Comment: !! draft analysis to review !!
+
+###
+
+ Pilar Ternera’s son was brought to his grand parents’ house two weeks after he was born.
+(IC1  Pilar Ternera’s son was brought to his grand parents’ house two weeks after he was born.
+)
+
+Úrsula admitted him grudgingly, conquered once more by the obstinacy of her husband, who could not tolerate the idea that an offshoot of his blood should be adrift, but he imposed the condition that the child should never know his true identity.
+(IC1  Úrsula admitted him grudgingly,
+~(PP2<1 conquered once more by the obstinacy of her husband,
+~~(DC3<2 who could not tolerate the idea
+~~~(DC4<3 that an offshoot of his blood should be adrift,
+~~~)
+~~)
+~)
+)
+(IC5 but he imposed the condition
+~(DC6<5 that the child should never know his true identity.
+~)
+)
+
+Although he was given the name José Arcadio, they ended up calling him simply Arcadio so as to avoid confusion.
+(IC1
+~(DC2>1  Although he was given the name José Arcadio,
+~)
+ they ended up calling him simply Arcadio
+~(AP3<1 so as to avoid confusion.
+~)
+)
+
+At that time there was so much activity in the town and so much bustle in the house that the care of the children was relegated to a secondary level.
+(IC1  At that time there was so much activity in the town
+[CP2 and so much bustle in the house
+]
+~(DC3<1 that the care of the children was relegated to a secondary level.
+~)
+)
+
+They were put in the care of Visitación, a Guajiro Indian woman who had arrived in town with a brother in flight from a plague of insomnia that had been scourging their tribe for several years.
+(IC1  They were put in the care of Visitación,
+~(AP2<1 a Guajiro Indian woman
+~~(DC3<2 who had arrived in town with a brother
+~~~(AP4<3 in flight from a plague of insomnia
+~~~~(DC5<4 that had been scourging their tribe for several years.
+~~~~)
+~~~)
+~~)
+~)
+)
+
+They were both so docile and willing to help that Úrsula took them on to help her with her household chores.
+(IC1  They were both so docile
+[CP2 and willing
+~(AP3<2 to help
+~)
+]
+~(DC4<1 that Úrsula took them on
+~~(AP5<4 to help her with her household chores.
+~~)
+~)
+)
+
+That was how Arcadio and Amaranta came to speak the Guajiro language before Spanish, and they learned to drink lizard broth and eat spider eggs without Úrsula’s knowing it, for she was too busy with a promising business in candy animals.
+(IC1  That was how Arcadio and Amaranta came to speak the Guajiro language before Spanish,
+[CP2 and they learned
+~(AP3<2 to drink lizard broth
+~[CP4 and eat spider eggs
+~]
+~)
+~(PP5<2 without Úrsula’s knowing it,
+~)
+]
+~(DC6<1 for she was too busy
+~~(AP7<6 with a promising business in candy animals.
+~~)
+~)
+)
+
+Macondo had changed.
+(IC1  Macondo had changed.
+)
+
+The people who had come with Úrsula spread the news of the good quality of its soil and its privileged position with respect to the swamp, so that from the narrow village of past times it changed into an active town with stores and workshops and a permanent commercial route over which the first Arabs arrived with their baggy pants and rings in their ears, swapping glass beads for macaws.
+(IC1  The people
+~(DC2<1 who had come with Úrsula
+~)
+ spread the news of the good quality of its soil
+[CP3 and its privileged position with respect to the swamp,
+]
+~(DC4<1 so that from the narrow village of past times it changed into an active town
+~~(AP5<4 with stores and workshops
+~~)
+~~(AP6<4 and a permanent commercial route
+~~~(DC7<6 over which the first Arabs arrived
+~~~~(AP8<7 with their baggy pants and rings in their ears,
+~~~~)
+~~~~(PP9<7 swapping glass beads for macaws.
+~~~~)
+~~~)
+~~)
+~)
+)
+
+José Arcadio Buendía did not have a moment’s rest.
+(IC1  José Arcadio Buendía did not have a moment’s rest.
+)
+
+Fascinated by an immediate reality that came to be more fantastic than the vast universe of his imagination, he lost all interest in the alchemist’s laboratory, put to rest the material that had become attenuated with months of manipulation, and went back to being the enterprising man of earlier days when he had decided upon the layout of the streets and the location of the new houses so that no one would enjoy privileges that everyone did not have.
+(IC1
+~(PP2>1  Fascinated by an immediate reality
+~~(DC3<2 that came to be more fantastic than the vast universe of his imagination,
+~~)
+~)
+ he lost all interest in the alchemist’s laboratory,
+[CP4 put to rest the material
+~(DC5<4 that had become attenuated
+~~(AP6<5 with months of manipulation,
+~~)
+~)
+]
+[CP7 and went back to being the enterprising man of earlier days
+~(DC8<7 when he had decided upon the layout of the streets and the location of the new houses
+~~(DC9<8 so that no one would enjoy privileges
+~~~(DC10<9 that everyone did not have.
+~~~)
+~~)
+~)
+]
+)
+
+He acquired such authority among the new arrivals that foundations were not laid or walls built without his being consulted, and it was decided that he should be the one in charge of the distribution of the land.
+(IC1  He acquired such authority among the new arrivals
+~(DC2<1 that foundations were not laid
+~[CP3 or walls built
+~]
+~~(PP4<2 without his being consulted,
+~~)
+~)
+)
+(IC5 and it was decided
+~(DC6<5 that he should be the one in charge of the distribution of the land.
+~)
+)
+
+When the acrobat gypsies returned, with their vagabond carnival transformed now into a gigantic organization of games of luck and chance, they were received with great joy, for it was thought that José Arcadio would be coming back with them.
+(IC1
+~(DC2>1  When the acrobat gypsies returned,
+~)
+~(AP3<1 with their vagabond carnival
+~~(PP4<3 transformed now into a gigantic organization of games of luck and chance,
+~~)
+~)
+ they were received with great joy,
+~(DC5<1 for it was thought
+~~(DC6<5 that José Arcadio would be coming back with them.
+~~)
+~)
+)
+
+But José Arcadio did not return, nor did they come with the snake-man, who, according to what Úrsula thought, was the only one who could tell them about their son, so the gypsies were not allowed to camp in town or set foot in it in the future, for they were considered the bearers of concupiscence and perversion.
+(IC1  But José Arcadio did not return,
+)
+(IC2 nor did they come with the snake-man,
+~(DC3<2 who,
+~~(AP4<3 according to what Úrsula thought,
+~~)
+~ was the only one
+~~(DC5<3 who could tell them about their son,
+~~)
+~)
+)
+(IC6 so the gypsies were not allowed to camp in town or set foot in it in the future,
+~(DC7<6 for they were considered the bearers of concupiscence and perversion.
+~)
+)
+
+José Arcadio Buendía, however, was explicit in maintaining that the old tribe of Melquíades, who had contributed so much to the growth of the village with his age-old wisdom and his fabulous inventions, would always find the gates open.
+(IC1  José Arcadio Buendía,
+~(AP2<1 however,
+~)
+ was explicit in maintaining
+~(DC3<1 that the old tribe of Melquíades,
+~~(DC4<3 who had contributed so much to the growth of the village
+~~~(AP5<4 with his age-old wisdom and his fabulous inventions,
+~~~)
+~~)
+~ would always find the gates open.
+~)
+)
+
+But Melquíades’ tribe, according to what the wanderers said, had been wiped off the face of the earth because they had gone beyond the limits of human knowledge.  
+(IC1  But Melquíades’ tribe,
+~(AP2<1 according to what the wanderers said,
+~)
+ had been wiped off the face of the earth
+~(DC3<1 because they had gone beyond the limits of human knowledge.  
+~)
+)
+
+###
+
+Pilar Ternera’s son was brought to his grand parents’ house two weeks after he was born. Úrsula admitted him grudgingly, conquered once more by the obstinacy of her husband, who could not tolerate the idea that an offshoot of his blood should be adrift, but he imposed the condition that the child should never know his true identity. Although he was given the name José Arcadio, they ended up calling him simply Arcadio so as to avoid confusion. At that time there was so much activity in the town and so much bustle in the house that the care of the children was relegated to a secondary level. They were put in the care of Visitación, a Guajiro Indian woman who had arrived in town with a brother in flight from a plague of insomnia that had been scourging their tribe for several years. They were both so docile and willing to help that Úrsula took them on to help her with her household chores. That was how Arcadio and Amaranta came to speak the Guajiro language before Spanish, and they learned to drink lizard broth and eat spider eggs without Úrsula’s knowing it, for she was too busy with a promising business in candy animals. Macondo had changed. The people who had come with Úrsula spread the news of the good quality of its soil and its privileged position with respect to the swamp, so that from the narrow village of past times it changed into an active town with stores and workshops and a permanent commercial route over which the first Arabs arrived with their baggy pants and rings in their ears, swapping glass beads for macaws. José Arcadio Buendía did not have a moment’s rest. Fascinated by an immediate reality that came to be more fantastic than the vast universe of his imagination, he lost all interest in the alchemist’s laboratory, put to rest the material that had become attenuated with months of manipulation, and went back to being the enterprising man of earlier days when he had decided upon the layout of the streets and the location of the new houses so that no one would enjoy privileges that everyone did not have. He acquired such authority among the new arrivals that foundations were not laid or walls built without his being consulted, and it was decided that he should be the one in charge of the distribution of the land. When the acrobat gypsies returned, with their vagabond carnival transformed now into a gigantic organization of games of luck and chance, they were received with great joy, for it was thought that José Arcadio would be coming back with them. But José Arcadio did not return, nor did they come with the snake-man, who, according to what Úrsula thought, was the only one who could tell them about their son, so the gypsies were not allowed to camp in town or set foot in it in the future, for they were considered the bearers of concupiscence and perversion. José Arcadio Buendía, however, was explicit in maintaining that the old tribe of Melquíades, who had contributed so much to the growth of the village with his age-old wisdom and his fabulous inventions, would always find the gates open. But Melquíades’ tribe, according to what the wanderers said, had been wiped off the face of the earth because they had gone beyond the limits of human knowledge. 

@@ -1,0 +1,205 @@
+Author: Gabriel García Márquez
+Work: Cien años de soledad
+Year: 1965-66
+Choice: first paragraph of chapter three (French version by Claude and Carmen Durand)
+Tags: Ref,ToReview
+Language: fr/es
+Comment: !! draft analysis to review !!
+
+###
+
+ Deux semaines après sa naissance, on apporta le fils de Pilar Ternera chez ses grands-parents.
+(IC1 Deux semaines après sa naissance, on apporta le fils de Pilar Ternera chez ses grands-parents.
+)
+
+Ursula l’accepta bien à contrecœur, cédant une fois de plus à l’obstination de son mari qui ne pouvait se faire à l’idée qu’un rejeton de son sang restât abandonné à la dérive, mais elle fit admettre qu’on cacherait à l’enfant sa véritable identité.
+(IC1 Ursula l’accepta bien à contrecœur,
+~(PP2<1 cédant une fois de plus à l’obstination de son mari
+~~(DC3<2 qui ne pouvait se faire à l’idée
+~~~(DC4<3 qu’un rejeton de son sang restât abandonné à la dérive,
+~~~)
+~~)
+~)
+[CP5 mais elle fit admettre
+~(DC6<5 qu’on cacherait à l’enfant sa véritable identité.
+~)
+]
+)
+
+Bien qu’il reçût le nom de José Arcadio, ils finirent l’appeler plus simplement Arcadio pour éviter toute confusions.
+(IC1
+~(DC2>1 Bien qu’il reçût le nom de José Arcadio,
+~)
+ ils finirent l’appeler plus simplement Arcadio
+~(AP3<1 pour éviter toute confusions.
+~)
+)
+
+À cette époque régnait une activité si intense au village, et la maison était en proie à un tel remue-ménage que le soin d’élever les enfants se trouva relégué au second plan.
+(IC1 À cette époque régnait une activité si intense au village,
+[CP2 et la maison était en proie à un tel remue-ménage
+~(DC3<2 que le soin d’élever les enfants se trouva relégué au second plan.
+~)
+]
+)
+
+On les confia à Visitacion, une Indienne guajira qui était venue au village accompagnée d’un frère, fuyant une peste de l’insomnie qui frappait sa tribu depuis plusieurs années.
+(IC1 On les confia à Visitacion,
+~(AP2<1 une Indienne guajira
+~~(DC3<2 qui était venue au village accompagnée d’un frère,
+~~~(PP4<3 fuyant une peste de l’insomnie
+~~~~(DC5<4 qui frappait sa tribu depuis plusieurs années.
+~~~~)
+~~~)
+~~)
+~)
+)
+
+Ils étaient tous deux si obéissants et si serviables qu’Ursula les prit à son service pour l’aider aux travaux domestiques.
+(IC1 Ils étaient tous deux si obéissants
+[CP2 et si serviables
+]
+~(DC3<1 qu’Ursula les prit à son service
+~~(AP4<3 pour l’aider aux travaux domestiques.
+~~)
+~)
+)
+
+C’est ainsi qu’Arcadio et Amaranta surent parler l’idiome des Indiens guajiros avant le castillan, et apprirent à boire du bouillon de lézard et à manger des œufs d’araignée sans qu’Ursula se doutât de rien, trop occupée elle-même par un commerce prometteur de petits animaux en caramel.
+(IC1 C’est ainsi qu’Arcadio et Amaranta surent parler l’idiome des Indiens guajiros avant le castillan,
+[CP2 et apprirent à boire du bouillon de lézard et à manger des œufs d’araignée
+~(DC3<2 sans qu’Ursula se doutât de rien,
+~~(PP4<3 trop occupée elle-même par un commerce prometteur de petits animaux en caramel.
+~~)
+~)
+]
+)
+
+Macondo était métamorphosé.
+(IC1 Macondo était métamorphosé.
+)
+
+Les gens qui avaient escorté Ursula révélèrent la bonne qualité de son sol et sa position privilégiée par rapport au marigot, de sorte que le hameau nu et sauvage eut vite fait de se changer en un village plein d’activité avec des magasins, des ateliers d’artisans, et une route où le trafic devint incessant, par laquelle arrivèrent les premiers Arabes chaussés de babouches, des anneaux aux oreilles, troquant des colliers de verroterie contre des perroquets.
+(IC1 Les gens
+~(DC2<1 qui avaient escorté Ursula
+~)
+ révélèrent la bonne qualité de son sol
+[CP3 et sa position privilégiée par rapport au marigot,
+]
+~(DC4<1 de sorte que le hameau nu et sauvage eut vite fait de se changer en un village plein d’activité
+~~(AP5<4 avec des magasins, des ateliers d’artisans,
+~~)
+~~(AP6<4 et une route
+~~~(DC7<6 où le trafic devint incessant,
+~~~)
+~~~(DC8<6 par laquelle arrivèrent les premiers Arabes
+~~~~(PP9<8 chaussés de babouches, des anneaux aux oreilles,
+~~~~[CP10 troquant des colliers de verroterie contre des perroquets.
+~~~~]
+~~~~)
+~~~)
+~~)
+~)
+)
+
+José Arcadio Buendia ne connut pas un instant de répit.
+(IC1 José Arcadio Buendia ne connut pas un instant de répit.
+)
+
+Fasciné par une réalité immédiate qui lui parut dès lors plus fantastique que le vaste univers de sa propre imagination, il se désintéressa complètement du laboratoire d’alchimie, laissa dormir la matière exténuée par de longs mois de manipulation et redevint l’homme entreprenant des débuts, celui qui décidait du tracé des rues et de la disposition des nouvelles maisons afin que nul ne profitât d’avantages dont les autres n’eussent pas bénéficié également.
+(IC1
+~(PP2>1 Fasciné par une réalité immédiate
+~~(DC3<2 qui lui parut dès lors plus fantastique que le vaste univers de sa propre imagination,
+~~)
+~)
+ il se désintéressa complètement du laboratoire d’alchimie,
+[CP4 laissa dormir la matière
+~(PP5<4 exténuée par de longs mois de manipulation
+~)
+]
+[CP6 et redevint l’homme entreprenant des débuts,
+~(AP7<6 celui
+~~(DC8<7 qui décidait du tracé des rues et de la disposition des nouvelles maisons
+~~~(DC9<8 afin que nul ne profitât d’avantages
+~~~~(DC10<9 dont les autres n’eussent pas bénéficié également.
+~~~~)
+~~~)
+~~)
+~)
+]
+)
+
+Il se tailla une telle autorité parmi les nouveaux arrivants qu’il ne se jeta de fondations ni ne se dressa de clôtures sans que son avis fût pris, et il fut décidé que ce serait lui qui présiderait à la distribution des terres.
+(IC1 Il se tailla une telle autorité parmi les nouveaux arrivants
+~(DC2<1 qu’il ne se jeta de fondations ni ne se dressa de clôtures
+~~(DC3<2 sans que son avis fût pris,
+~~)
+~)
+[CP4 et il fut décidé
+~(DC5<4 que ce serait lui
+~~(DC6<5 qui présiderait à la distribution des terres.
+~~)
+~)
+]
+)
+
+Lorsque revinrent les gitans saltimbanques, avec leur foire ambulante transformée à présent en un énorme établissement de jeux de hasard, ils furent accueillis avec allégresse dans la mesure où l’on pensait que José Arcadio s’en revenait avec eux.
+(IC1
+~(DC2>1 Lorsque revinrent les gitans saltimbanques,
+~)
+~(AP3<1 avec leur foire ambulante
+~~(PP4<3 transformée à présent en un énorme établissement de jeux de hasard,
+~~)
+~)
+ ils furent accueillis avec allégresse
+~(DC5<1 dans la mesure où l’on pensait
+~~(DC6<5 que José Arcadio s’en revenait avec eux.
+~~)
+~)
+)
+
+Mais José Arcadio n’était pas de retour et ils ne ramenaient pas l’homme-vipère qui, d’après Ursula, était le seul à pouvoir donner des nouvelles de leur fils, si bien qu’on n’autorisa pas les gitans à s’installer au village, non plus qu’à y remettre les pieds à l’avenir, car on les considéra comme des ambassadeurs de la concupiscence et du pervertissement.
+(IC1 Mais José Arcadio n’était pas de retour
+[CP2 et ils ne ramenaient pas l’homme-vipère
+~(DC3<2 qui,
+~~(AP4<3 d’après Ursula,
+~~)
+~ était le seul
+~~(AP5<3 à pouvoir donner des nouvelles de leur fils,
+~~)
+~)
+]
+~(DC6<1 si bien qu’on n’autorisa pas les gitans à s’installer au village,
+~~(CP7 non plus qu’à y remettre les pieds à l’avenir,
+~~)
+~~(DC8<6 car on les considéra comme des ambassadeurs de la concupiscence et du pervertissement.
+~~)
+~)
+)
+
+José Arcadio Buendia, cependant, déclara formellement que l’ancienne tribu de Melquiades, qui avait tant contribué à l’épanouissement du village avec son savoir millénaire et ses fabuleuses inventions, trouverait toujours portes ouvertes.
+(IC1 José Arcadio Buendia,
+~(AP2<1 cependant,
+~)
+ déclara formellement
+~(DC3<1 que l’ancienne tribu de Melquiades,
+~~(DC4<3 qui avait tant contribué à l’épanouissement du village
+~~~(AP5<4 avec son savoir millénaire et ses fabuleuses inventions,
+~~~)
+~~)
+~ trouverait toujours portes ouvertes.
+~)
+)
+
+Mais la tribu de Melquiades, à ce que racontèrent les gens du voyage, avait été gommée de la face de la terre pour avoir outrepassé les limites de la connaissance humaine.
+(IC1 Mais la tribu de Melquiades,
+~(AP2<1 à ce que racontèrent les gens du voyage,
+~)
+ avait été gommée de la face de la terre
+~(AP3<1 pour avoir outrepassé les limites de la connaissance humaine.
+~)
+)
+
+###
+
+Deux semaines après sa naissance, on apporta le fils de Pilar Ternera chez ses grands-parents. Ursula l’accepta bien à contrecœur, cédant une fois de plus à l’obstination de son mari qui ne pouvait se faire à l’idée qu’un rejeton de son sang restât abandonné à la dérive, mais elle fit admettre qu’on cacherait à l’enfant sa véritable identité. Bien qu’il reçût le nom de José Arcadio, ils finirent l’appeler plus simplement Arcadio pour éviter toute confusions. À cette époque régnait une activité si intense au village, et la maison était en proie à un tel remue-ménage que le soin d’élever les enfants se trouva relégué au second plan. On les confia à Visitacion, une Indienne guajira qui était venue au village accompagnée d’un frère, fuyant une peste de l’insomnie qui frappait sa tribu depuis plusieurs années. Ils étaient tous deux si obéissants et si serviables qu’Ursula les prit à son service pour l’aider aux travaux domestiques. C’est ainsi qu’Arcadio et Amaranta surent parler l’idiome des Indiens guajiros avant le castillan, et apprirent à boire du bouillon de lézard et à manger des œufs d’araignée sans qu’Ursula se doutât de rien, trop occupée elle-même par un commerce prometteur de petits animaux en caramel. Macondo était métamorphosé. Les gens qui avaient escorté Ursula révélèrent la bonne qualité de son sol et sa position privilégiée par rapport au marigot, de sorte que le hameau nu et sauvage eut vite fait de se changer en un village plein d’activité avec des magasins, des ateliers d’artisans, et une route où le trafic devint incessant, par laquelle arrivèrent les premiers Arabes chaussés de babouches, des anneaux aux oreilles, troquant des colliers de verroterie contre des perroquets. José Arcadio Buendia ne connut pas un instant de répit. Fasciné par une réalité immédiate qui lui parut dès lors plus fantastique que le vaste univers de sa propre imagination, il se désintéressa complètement du laboratoire d’alchimie, laissa dormir la matière exténuée par de longs mois de manipulation et redevint l’homme entreprenant des débuts, celui qui décidait du tracé des rues et de la disposition des nouvelles maisons afin que nul ne profitât d’avantages dont les autres n’eussent pas bénéficié également. Il se tailla une telle autorité parmi les nouveaux arrivants qu’il ne se jeta de fondations ni ne se dressa de clôtures sans que son avis fût pris, et il fut décidé que ce serait lui qui présiderait à la distribution des terres. Lorsque revinrent les gitans saltimbanques, avec leur foire ambulante transformée à présent en un énorme établissement de jeux de hasard, ils furent accueillis avec allégresse dans la mesure où l’on pensait que José Arcadio s’en revenait avec eux. Mais José Arcadio n’était pas de retour et ils ne ramenaient pas l’homme-vipère qui, d’après Ursula, était le seul à pouvoir donner des nouvelles de leur fils, si bien qu’on n’autorisa pas les gitans à s’installer au village, non plus qu’à y remettre les pieds à l’avenir, car on les considéra comme des ambassadeurs de la concupiscence et du pervertissement. José Arcadio Buendia, cependant, déclara formellement que l’ancienne tribu de Melquiades, qui avait tant contribué à l’épanouissement du village avec son savoir millénaire et ses fabuleuses inventions, trouverait toujours portes ouvertes. Mais la tribu de Melquiades, à ce que racontèrent les gens du voyage, avait été gommée de la face de la terre pour avoir outrepassé les limites de la connaissance humaine.
