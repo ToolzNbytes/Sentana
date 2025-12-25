@@ -422,7 +422,10 @@ function wireDom(){
   filterPanel = document.getElementById("filterPanel");
   corpusFilterSelect = document.getElementById("corpusFilterSelect");
 }
-
+function updateFilterBtnDecoration(){
+  const v = (corpusFilterSelect.value || "All");
+  corpusFilterBtn.classList.toggle("hasFilter", v !== "All");
+}
 function setActiveSource(source, opts = {}){
   const {
     skipPopulate = false,
@@ -455,6 +458,7 @@ function setActiveSource(source, opts = {}){
   if (!skipPopulate){
     populateList(list, corpus);
   }
+  updateFilterBtnDecoration();
 
   if (skipShow) return;
 
@@ -1143,6 +1147,7 @@ if (corpusFilterSelect){
     remoteFilterValue = e.target.value || "All";
     applyRemoteFilter(remoteFilterValue, { preserveSelection: true });
     // keep panel open by design
+    updateFilterBtnDecoration();
   });
 }
 if (localDataBtn){

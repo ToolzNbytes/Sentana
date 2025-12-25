@@ -16,6 +16,7 @@
   --hlBg:rgba(231,215,182,.22);
   --hlBd:rgba(231,215,182,.35);
   --hlBtn:rgba(138, 118, 82, 0.2); /* for hover */
+  --listJoinBg:#15270e;
 }
 
 html{
@@ -282,27 +283,56 @@ body{
   padding:6px;
 }
 
+/*-----*/
 /* Corpus switch + dual lists */
 .listBlock{
   display:flex;
-  gap:8px;
+  gap:0;                /* gap 0 for special fx */
   align-items:stretch;
 }
+
 .corpusSwitch{
   display:flex;
   flex-direction:column;
   gap:8px;
 }
+
 .corpusSwitch .iconBtn{
   width:38px;
   height:38px;
   border-radius:10px;
-}
-.listBlock .work-list{
-  flex:1;
-  min-height:140px; /* keep aligned with 2 buttons */
+  margin-right:8px; /* compensate gap 0 */
+  justify-content:flex-start;
+  padding-left:8px;
+  padding-right:8px;
 }
 
+.corpusSwitch .iconBtn.listSelectBtn:disabled{
+  margin-right:0;
+  width:46px;                 /* 38 + 8*/
+  background:var(--listJoinBg);
+  border-right:none;
+  border-radius:10px 0 0 10px;
+  opacity:1;
+}
+
+
+.listBlock .work-list{
+  flex:1;
+  min-height:140px;
+  border-radius:0;
+}
+
+
+.listBlock .work-list:not(.hidden){
+  background:var(--listJoinBg);
+}
+
+#corpusFilterBtn.hasFilter{
+  border-style: dashed;
+  border-width: 3px; /* 3x thicker than the default 1px border */
+  border-color: rgba(231,215,182,.55);
+}
 
 .iconBtn{
   width:44px;
@@ -327,25 +357,7 @@ body{
   opacity:.35;
   cursor:default;
 }
-.iconBtn.listSelectBtn:disabled{
-  opacity:1; /* higher priority because more specific */
-  /* Gradient from left (solid) to right (50% opacity) */
-  background: linear-gradient(
-    to right,
-    var(--hlBtn) 0%,
-    var(--hlBtn) 100%);
-  color: (var --bg)!important;
-  /* Square on the left, rounded on the right */
-  border-radius: 10px 0 0 10px;
 
-  /* Remove left border to "merge" with the list area */
-  border-left: none;
-
-  /* Keep other borders (or tune if needed) */
-  border-top: 1px solid rgba(255, 255, 255, 0.25);
-  border-right: 1px solid rgba(255, 255, 255, 0.25);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-}
 .iconBtn.ghost{
   border-style:dashed;
   pointer-events:none;
