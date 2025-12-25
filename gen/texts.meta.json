@@ -44,6 +44,27 @@
   }
 ,
   {
+    "Author": "Gabriel García Márquez Work: Cien años de soledad",
+    "Year": "1965-66",
+    "Choice": "first paragraph of chapter one (English version by Gregory Rabassa)",
+    "Tags": "Ref,ToReview",
+    "Language": "en/es",
+    "Comment": "!! draft analysis to review !!",
+    "file": "texts/Cien_anos_de_soledad_1en.txt"
+  }
+,
+  {
+    "Author": "Gabriel García Márquez",
+    "Work": "Cien años de soledad",
+    "Year": "1965-66",
+    "Choice": "first paragraph of chapter one (French version by Claude and Carmen Durand)",
+    "Tags": "Ref,ToReview",
+    "Language": "fr/es",
+    "Comment": "!! draft analysis to review !!",
+    "file": "texts/Cien_anos_de_soledad_1fr.txt"
+  }
+,
+  {
     "Author": "Gabriel García Márquez",
     "Work": "Cien años de soledad",
     "Year": "1965-66",
@@ -52,6 +73,28 @@
     "Language": "es",
     "Comment": "!! draft analysis to review !!",
     "file": "texts/Cien_anos_de_soledad_2.txt"
+  }
+,
+  {
+    "Author": "Gabriel García Márquez",
+    "Work": "Cien años de soledad",
+    "Year": "1965-66",
+    "Choice": "first paragraph of chapter three (English version by Gregory Rabassa)",
+    "Tags": "Ref,ToReview",
+    "Language": "en/es",
+    "Comment": "!! draft analysis to review !!",
+    "file": "texts/Cien_anos_de_soledad_2en.txt"
+  }
+,
+  {
+    "Author": "Gabriel García Márquez",
+    "Work": "Cien años de soledad",
+    "Year": "1965-66",
+    "Choice": "first paragraph of chapter three (French version by Claude and Carmen Durand)",
+    "Tags": "Ref,ToReview",
+    "Language": "fr/es",
+    "Comment": "!! draft analysis to review !!",
+    "file": "texts/Cien_anos_de_soledad_2fr.txt"
   }
 ,
   {
