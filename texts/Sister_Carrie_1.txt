@@ -1,7 +1,9 @@
 Author: Theodore Dreiser
 Work: Sister Carrie
 Year: -1900 
-Choice: beginning of chapter one
+Choice: beginning of chapter one*
+Tags: Errors
+Language: en
 Comment: Sentences might be on the short side (style criticised) !! draft analysis to be reviewed - several issues spotted !!
 
 ###

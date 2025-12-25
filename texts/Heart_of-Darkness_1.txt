@@ -2,6 +2,9 @@ Author: 	Joseph Conrad
 Work: Heart of Darkness
 Year: 1899
 Choice: beginning of chapter one
+Tags: Classic,ToReview
+Language: en
+
 Comment: !! draft analysis to review !!
 
 ###

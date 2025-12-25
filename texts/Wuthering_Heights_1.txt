@@ -2,6 +2,8 @@ Author: Emily Brontë
 Work: Wuthering Heights (1st ed.)
 Year: -1847
 Choice: chapter one, after the short initial dialogue
+Tags: Classic,Ref,ToReview
+Language: en
 Comment: This excerpt is with first person narration.  !! draft analysis to be reviewed !!
 
 ###

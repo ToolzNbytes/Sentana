@@ -2,6 +2,8 @@ Author: Jane Austen
 Work: Pride and Prejudice
 Year: 1795-96
 Choice: chapter 3 after a dialogue line
+Tags: Classic,Ref,Valid
+Language: en
 Comment:
 
 ###

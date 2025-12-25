@@ -2,6 +2,8 @@ Author: Lucy Maud Montgomery
 Work: Anne of Green Gables
 Year: -1908
 Choice: beginning of chapter one
+Tags: Classic,Ref,ToReview
+Language: en
 Comment: !! draft analysis to review !!
 
 ###

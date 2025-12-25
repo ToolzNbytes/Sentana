@@ -2,6 +2,8 @@ Author: Charles Dickens
 Work: Bleak House
 Year: 1852-53
 Choice: chapter one, after the 'fog fragments'
+Tags: Classic,Ref
+Language: en
 Comment: Great passage with features of repetition and increasing sentence length for a dramatic effect.
 
 ###

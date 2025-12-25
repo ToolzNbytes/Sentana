@@ -2,6 +2,8 @@ Author: Charles Dickens
 Work: Bleak House
 Year: 1852-53
 Choice: beginning of chapter one
+Tags: Classic
+Language: en
 Comment: This excerpt is only fragments about fog (after this, the novel switches to 'real' sentences).
 
 ###

@@ -1,0 +1,358 @@
+Author: Elmore Leonard
+Work: Out of Sight
+Year: 1996
+Choice: at two third of chapter one
+Tags: Pop,ToReview
+Language: en
+Comment: Author praised for realistic dialogues, but here is a bit of prose. !! draft analysis to review !!
+
+###
+
+ Buddy saw convicts in there gathering, looking this way, hundreds of them bunched in groups, but no hacks in sight.
+(IC1 Buddy saw convicts in there
+~(PP2<1 gathering,
+~[CP3 looking this way,
+~]
+~)
+~(AP4<1 hundreds of them
+~~(PP5<4 bunched in groups,
+~~)
+~)
+)
+(IC6 but no hacks in sight.
+)
+
+He told himself he’d better get out of the car, be ready.
+(IC1 He told himself
+~(DC2<1 he’d better get out of the car,
+~[CP3 be ready.
+~]
+~)
+)
+
+Whether he wanted to or not.
+(FG1 Whether he wanted to or not.
+)
+
+ Once he was out he saw the girl, still by the front of her car, had the shotgun on two more cons, both filthy dirty, standing by the hole they must’ve come out of, the girl telling them to get their hands in the air.
+(IC1
+~(DC2>1 Once he was out
+~)
+ he saw the girl,
+~(AP3<1 still by the front of her car,
+~)
+~(AP4<1 had the shotgun on two more cons,
+~)
+~(AP5<1 both filthy dirty,
+~)
+~(PP6<1 standing by the hole
+~~(DC7<6 they must’ve come out of,
+~~)
+~)
+~(AP8<1 the girl
+~~(PP9<8 telling them to get their hands in the air.
+~~)
+~)
+)
+
+She sure as hell wasn’t here to help anybody escape.
+(IC1 She sure as hell wasn’t here
+~(AP2<1 to help anybody escape.
+~)
+)
+
+So who was she?
+(IC1 So who was she?
+)
+
+Buddy could see the two cons making up their minds, couple of Latinos, already edging away – shit, they’d come this far.
+(IC1 Buddy could see the two cons making up their minds, couple of Latinos, already edging away – shit,
+~(IC2 they’d come this far.
+~)
+)
+
+They looked out at that spotlight sweeping around in the dark, then looked the other way, along the fence toward the main gate, to see armed hacks coming out on the run, and that decided it for the two cons.
+(IC1 They looked out at that spotlight
+~(PP2<1 sweeping around in the dark,
+~)
+)
+(IC3 then looked the other way,
+~(AP4<3 along the fence toward the main gate,
+~)
+~(AP5<3 to see armed hacks coming out on the run,
+~)
+)
+(IC6 and that decided it for the two cons.
+)
+
+They took off toward the road.
+(IC1 They took off toward the road.
+)
+
+Buddy saw the woman, this good-looking girl in a short skirt, put her pump gun on them and knew she couldn’t miss, but she didn’t fire.
+(IC1 Buddy saw the woman,
+~(AP2<1 this good-looking girl in a short skirt,
+~)
+ put her pump gun on them
+[CP3 and knew
+~(DC4<3 she couldn’t miss,
+~)
+]
+)
+(IC5 but she didn’t fire.
+)
+
+No, the hacks coming from the main gate, five of them with rifles and shotguns, they beat her to it, opened up all at once and kept firing and Buddy saw the two convicts cut down as they ran.
+(IC1 No, the hacks
+~(PP2<1 coming from the main gate,
+~)
+~(AP3<1 five of them with rifles and shotguns,
+~)
+ they beat her to it,
+[CP4 opened up all at once
+]
+[CP5 and kept firing
+]
+)
+(IC6 and Buddy saw the two convicts cut down
+~(DC7<6 as they ran.
+~)
+)
+
+The hacks were looking this way now; they couldn’t miss seeing the girl standing there in her headlights, but they didn’t bother with her – Buddy realizing they knew who she was.
+(IC1 The hacks were looking this way now;
+)
+(IC2 they couldn’t miss seeing the girl
+~(PP3<2 standing there in her headlights,
+~)
+)
+(IC4 but they didn’t bother with her –
+~(PP5<4 Buddy realizing
+~~(DC6<5 they knew who she was.
+~~)
+~)
+)
+
+They were more interested in the hole the convicts had come out of.
+(IC1 They were more interested in the hole
+~(DC2<1 the convicts had come out of.
+~)
+)
+
+Now they were standing by it peering in, edging closer with their weapons ready, then all stepped back at once, bumping into each other.
+(IC1 Now they were standing by it
+~(PP2<1 peering in,
+~)
+~(PP3<1 edging closer
+~~(AP4<3 with their weapons ready,
+~~)
+~)
+[CP5 then all stepped back at once,
+~(PP6<5 bumping into each other.
+~)
+]
+)
+
+ A head appeared wearing a guard’s baseball cap, head and shoulders now coming out of the hole, the guy saying something to them, his face beneath the cap smeared with muck, shaking his head now, excited.
+(IC1 A head appeared
+~(PP2<1 wearing a guard’s baseball cap,
+~[CP3 head and shoulders now coming out of the hole,
+~]
+~[CP4 the guy saying something to them,
+~]
+~[CP5 his face beneath the cap smeared with muck,
+~]
+~[CP6 shaking his head now,
+~]
+~)
+~(AP7<1 excited.
+~)
+)
+
+One of the hacks was speaking into his radio.
+(IC1 One of the hacks was speaking into his radio.
+)
+
+Another extended his rifle for the one in the hole to grab the barrel and get pulled out.
+(IC1 Another extended his rifle
+~(AP2<1 for the one in the hole
+~~(AP3<2 to grab the barrel
+~~[CP4 and get pulled out.
+~~]
+~~)
+~)
+)
+
+But the one in the hole kept yelling and pointing out at the dark, toward the orange grove.
+(IC1 But the one in the hole kept yelling
+[CP2 and pointing out at the dark,
+~(AP3<2 toward the orange grove.
+~)
+]
+)
+
+Finally when the hacks moved off they checked the two convicts they’d shot, kicked at them to see if they were still alive and then kept going, and the one in the hole climbed out.
+(IC1 Finally
+~(DC2>1 when the hacks moved off
+~)
+ they checked the two convicts
+~(DC3<1 they’d shot,
+~)
+[CP4 kicked at them
+~(AP5<4 to see
+~~(DC6<5 if they were still alive
+~~)
+~)
+]
+[CP7 and then kept going,
+]
+)
+(IC8 and the one in the hole climbed out.
+)
+
+ Buddy knew it was Foley, taking his time now to put on a show, standing with his hands on his hips like an honest-to-God hack, that serious cap down on his eyes.
+(IC1 Buddy knew
+~(DC2<1 it was Foley,
+~)
+~(PP3<1 taking his time now
+~~(AP4<3 to put on a show,
+~~)
+~)
+~(PP5<1 standing
+~~(AP6<5 with his hands on his hips
+~~)
+~~(AP7<5 like an honest-to-God hack,
+~~)
+~)
+~(AP8<1 that serious cap down on his eyes.
+~)
+)
+
+Buddy moved up to his headlights, raising his arm and waving at Foley to come on, and saw the girl turn enough to put the shotgun on him.
+(IC1 Buddy moved up to his headlights,
+~(PP2<1 raising his arm
+~[CP3 and waving at Foley
+~~(AP4<3 to come on,
+~~)
+~]
+~)
+)
+(IC5 and saw the girl turn enough
+~(AP6<5 to put the shotgun on him.
+~)
+)
+
+Buddy raised the palm of his hand to her saying, ‘It’s okay, honey, we’re good guys.’
+(IC1 Buddy raised the palm of his hand to her
+~(PP2<1 saying,
+~~(AP3<2 ‘It’s okay, honey, we’re good guys.’
+~~)
+~)
+)
+
+Buddy wanting to appear calm, wanting to believe he’d have no problem with this cute-looking blonde – maybe a probation officer, though he didn’t think probation officers were ever armed.
+(FG1 Buddy
+~(PP2<1 wanting to appear calm,
+~[CP3 wanting to believe
+~~(DC4<3 he’d have no problem with this cute-looking blonde – maybe a probation officer,
+~~~(DC5<4 though he didn’t think probation officers were ever armed.
+~~~)
+~~)
+~]
+~)
+)
+
+ She said, ‘What’re you doing here?’
+(IC1 She said,
+~(AP2<1 ‘What’re you doing here?’
+~)
+)
+
+Not so much asking, putting it to him the way cops did when they were already pretty sure of what you were doing.
+(FG1
+~(PP2>1 Not so much asking,
+~[CP3 putting it to him
+~~(AP4<3 the way cops did
+~~~(DC5<4 when they were already pretty sure
+~~~~(DC6<5 of what you were doing.
+~~~~)
+~~~)
+~~)
+~]
+~)
+)
+
+She glanced around to include Foley.
+(IC1 She glanced around
+~(AP2<1 to include Foley.
+~)
+)
+
+She knew, all right, but with the two of them to watch was too late making her move.
+(IC1 She knew, all right,
+)
+(IC2 but
+~(AP3<2 with the two of them
+~~(AP4<3 to watch
+~~)
+~)
+ was too late
+~(PP5<2 making her move.
+~)
+)
+
+She saw Foley coming at her filthy dirty, like a creature out of the swamp, giving Buddy time to take her around the neck.
+(IC1 She saw Foley
+~(PP2<1 coming at her filthy dirty,
+~~(AP3<2 like a creature out of the swamp,
+~~)
+~)
+~(PP4<1 giving Buddy time
+~~(AP5<4 to take her around the neck.
+~~)
+~)
+)
+
+She fought him, jabbing him in the gut with the butt end of the shotgun, before Foley got in there to wrench it from her grip.
+(IC1 She fought him,
+~(PP2<1 jabbing him in the gut
+~~(AP3<2 with the butt end of the shotgun,
+~~)
+~)
+~(DC4<1 before Foley got in there
+~~(AP5<4 to wrench it from her grip.
+~~)
+~)
+)
+
+They dragged her to the rear end of the Chevy, the trunk lid still up, and crouched there as some hacks came running along the fence past the dark gun tower and crossed the road toward the orange grove.
+(IC1 They dragged her to the rear end of the Chevy,
+~(AP2<1 the trunk lid still up,
+~)
+[CP3 and crouched there
+~(DC4<3 as some hacks came running along the fence past the dark gun tower
+~[CP5 and crossed the road toward the orange grove.
+~]
+~)
+]
+)
+
+Pretty soon they heard bursts of gunfire, then silence.
+#2 Verb ommitted
+(IC1 Pretty soon they heard bursts of gunfire,
+[CP2 then silence.
+]
+)
+
+
+###
+
+Buddy saw convicts in there gathering, looking this way, hundreds of them bunched in groups, but no hacks in sight. He told himself he’d better get out of the car, be ready. Whether he wanted to or not.
+
+Once he was out he saw the girl, still by the front of her car, had the shotgun on two more cons, both filthy dirty, standing by the hole they must’ve come out of, the girl telling them to get their hands in the air. She sure as hell wasn’t here to help anybody escape. So who was she? Buddy could see the two cons making up their minds, couple of Latinos, already edging away – shit, they’d come this far. They looked out at that spotlight sweeping around in the dark, then looked the other way, along the fence toward the main gate, to see armed hacks coming out on the run, and that decided it for the two cons. They took off toward the road. Buddy saw the woman, this good-looking girl in a short skirt, put her pump gun on them and knew she couldn’t miss, but she didn’t fire. No, the hacks coming from the main gate, five of them with rifles and shotguns, they beat her to it, opened up all at once and kept firing and Buddy saw the two convicts cut down as they ran. The hacks were looking this way now; they couldn’t miss seeing the girl standing there in her headlights, but they didn’t bother with her – Buddy realizing they knew who she was. They were more interested in the hole the convicts had come out of. Now they were standing by it peering in, edging closer with their weapons ready, then all stepped back at once, bumping into each other.
+
+A head appeared wearing a guard’s baseball cap, head and shoulders now coming out of the hole, the guy saying something to them, his face beneath the cap smeared with muck, shaking his head now, excited. One of the hacks was speaking into his radio. Another extended his rifle for the one in the hole to grab the barrel and get pulled out. But the one in the hole kept yelling and pointing out at the dark, toward the orange grove. Finally when the hacks moved off they checked the two convicts they’d shot, kicked at them to see if they were still alive and then kept going, and the one in the hole climbed out.
+
+Buddy knew it was Foley, taking his time now to put on a show, standing with his hands on his hips like an honest-to-God hack, that serious cap down on his eyes. Buddy moved up to his headlights, raising his arm and waving at Foley to come on, and saw the girl turn enough to put the shotgun on him. Buddy raised the palm of his hand to her saying, ‘It’s okay, honey, we’re good guys.’ Buddy wanting to appear calm, wanting to believe he’d have no problem with this cute-looking blonde – maybe a probation officer, though he didn’t think probation officers were ever armed.
+
+She said, ‘What’re you doing here?’ Not so much asking, putting it to him the way cops did when they were already pretty sure of what you were doing. She glanced around to include Foley. She knew, all right, but with the two of them to watch was too late making her move. She saw Foley coming at her filthy dirty, like a creature out of the swamp, giving Buddy time to take her around the neck. She fought him, jabbing him in the gut with the butt end of the shotgun, before Foley got in there to wrench it from her grip. They dragged her to the rear end of the Chevy, the trunk lid still up, and crouched there as some hacks came running along the fence past the dark gun tower and crossed the road toward the orange grove. Pretty soon they heard bursts of gunfire, then silence.

@@ -2,10 +2,12 @@ Author: George Eliot (Mary Ann Evans)
 Work: Middlemarch
 Year: 1871–72
 Choice: beginning of chapter one
+Tags: Classic,Ref,Valid
+Language: en
 Comment: This excerpt has very long sentences.
 ###
 
-Miss Brooke had that kind of beauty which seems to be thrown into relief by poor dress.
+ Miss Brooke had that kind of beauty which seems to be thrown into relief by poor dress.
 (IC1 Miss Brooke had that kind of beauty
 ~(DC2<1 which seems to be thrown into relief by poor dress.
 ~)

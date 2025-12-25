@@ -2,6 +2,8 @@ Author: F. Scott Fitzgerald
 Work:   The Great Gatsby
 Year: 1924
 Choice: beginning of chapter one
+Tags: Classic,ToReview
+Language: en
 Comment: (Feature a quote that is not yet handled in format v4) !! draft analysis to review !!
 
 ###

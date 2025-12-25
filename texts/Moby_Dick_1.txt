@@ -2,6 +2,8 @@ Author: Herman Melville
 Work: Moby-Dick; or, The Whale.
 Year: 1850-1851
 Choice: beginning of chapter one
+Tags: Classic,Ref,ToReview
+Language: en
 Comment: !! draft analysis to review !!
 
 ###

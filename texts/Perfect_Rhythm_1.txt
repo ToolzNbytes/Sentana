@@ -2,11 +2,13 @@ Author: Jae
 Work: Perfect Rhythm
 Year: 2017
 Choice: ch 2 p3
+Tags: Pop,ToReview
+Language: en
 Comment: First person narrator, with her voice. !! draft analysis to review !!
 
 ####
 
-Just as she passed the two signs, the opening lines of “Butterfly Kisses” drifted through the car’s speakers.
+ Just as she passed the two signs, the opening lines of “Butterfly Kisses” drifted through the car’s speakers.
 (IC1 Just
 ~(DC2<1 as she passed the two signs,
 ~)
@@ -22,7 +24,7 @@ Groaning, she turned off the radio and drove through town in silence.
 ]
 )
 
-It had been five years since she had been back for her grandmother’s funeral.
+ It had been five years since she had been back for her grandmother’s funeral.
 (IC1 It had been five years
 ~(DC2<1 since she had been back for her grandmother’s funeral.
 ~)
@@ -51,7 +53,7 @@ Several buildings at the edge of town appeared to be abandoned, their windows bo
 ~)
 )
 
-Leo halfway expected a tumbleweed to blow through.
+ Leo halfway expected a tumbleweed to blow through.
 (IC1 Leo halfway expected a tumbleweed to blow through.
 )
 
@@ -71,7 +73,7 @@ The guy behind the wheel stared at her, probably because he didn’t recognize h
 ~)
 )
 
-Her fingers around the steering wheel grew damp as she approached her childhood home.
+ Her fingers around the steering wheel grew damp as she approached her childhood home.
 (IC1 Her fingers around the steering wheel grew damp
 ~(DC2<1 as she approached her childhood home.
 ~)
@@ -94,7 +96,7 @@ She hadn’t fit in with her small class any better than she fit into town now.
 ~)
 )
 
-Gravel crunched as she turned into her parents’ driveway.
+ Gravel crunched as she turned into her parents’ driveway.
 (IC1 Gravel crunched
 ~(DC2<1 as she turned into her parents’ driveway.
 ~)
@@ -107,7 +109,7 @@ When she turned off the engine, the sudden silence felt strangely loud.
  the sudden silence felt strangely loud.
 )
 
-Reluctant to leave the sanctuary of her rental car, she stared through the windshield toward the house.
+ Reluctant to leave the sanctuary of her rental car, she stared through the windshield toward the house.
 (IC1
 ~(AP2>1 Reluctant to leave the sanctuary of her rental car,
 ~)
@@ -143,7 +145,7 @@ It was only after a few minutes of silent staring that she detected some changes
  had grown taller.
 )
 
-She took a deep breath, as if about to go underwater, and opened the driver’s side door.
+ She took a deep breath, as if about to go underwater, and opened the driver’s side door.
 (IC1 She took a deep breath,
 ~(AP2<1 as if about to go underwater,
 ~)
@@ -170,13 +172,13 @@ The sound of the car door slamming shut was like a rifle crack, making her flinc
 ~)
 )
 
-Leo opened the trunk and lifted out her suitcase and her battered guitar case.
+ Leo opened the trunk and lifted out her suitcase and her battered guitar case.
 (IC1 Leo opened the trunk
 [CP2 and lifted out her suitcase and her battered guitar case.
 ]
 )
 
-The porch swing creaked in the breeze as she walked up the path toward the house.
+ The porch swing creaked in the breeze as she walked up the path toward the house.
 (IC1 The porch swing creaked in the breeze
 ~(DC2<1 as she walked up the path toward the house.
 ~)
@@ -193,7 +195,7 @@ The lawn she had mowed every Saturday throughout her teenage years was neatly tr
 ~)
 )
 
-On the porch, she set down the suitcase but kept gripping the guitar case.
+ On the porch, she set down the suitcase but kept gripping the guitar case.
 (IC1 On the porch, she set down the suitcase
 )
 (IC2 but kept gripping the guitar case.
@@ -217,7 +219,7 @@ Ringing the doorbell felt strange, but even if she still had a key, she couldn�
 ~)
 )
 
-Bleak mental images of her father being attached to beeping machines assaulted her, and she shoved them aside.
+ Bleak mental images of her father being attached to beeping machines assaulted her, and she shoved them aside.
 (IC1 Bleak mental images of her father being attached to beeping machines assaulted her,
 )
 (IC2 and she shoved them aside.
@@ -230,7 +232,7 @@ If he were that bad off, the doctors wouldn’t have released him from the hospi
  the doctors wouldn’t have released him from the hospital.
 )
 
-Her father had never been sick.
+ Her father had never been sick.
 (IC1 Her father had never been sick.
 )
 
@@ -246,7 +248,7 @@ Mind over matter; that was what he always said.
 (IC2 that was what he always said.
 )
 
-Whatever had happened, he would make a full recovery.
+ Whatever had happened, he would make a full recovery.
 (IC1 Whatever had happened, he would make a full recovery.
 )
 
@@ -268,7 +270,7 @@ Before she knew it, he would drive her crazy with his opinions on her songs and 
 ~)
 )
 
-With a hand raised toward the doorbell, she hesitated.
+ With a hand raised toward the doorbell, she hesitated.
 (IC1 With a hand raised toward the doorbell, she hesitated.
 )
 

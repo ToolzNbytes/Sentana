@@ -2,11 +2,13 @@ Author: Virginia Woolf
 Work: The Voyage Out
 Year: 1915
 Choice: beginning of chapter one
+Tags: Classic,Ref,Valid
+Language: en
 Comment: 
 
 ###
 
-As the streets that lead from the Strand to the Embankment are very narrow, it is better not to walk down them arm-in-arm.
+ As the streets that lead from the Strand to the Embankment are very narrow, it is better not to walk down them arm-in-arm.
 (IC1
 ~(DC2>1 As the streets
 ~~(DC3<2 that lead from the Strand to the Embankment
@@ -38,7 +40,7 @@ In the streets of London where beauty goes unregarded, eccentricity must pay the
 ]
 )
 
-One afternoon in the beginning of October when the traffic was becoming brisk a tall man strode along the edge of the pavement with a lady on his arm.
+ One afternoon in the beginning of October when the traffic was becoming brisk a tall man strode along the edge of the pavement with a lady on his arm.
 (IC1 One afternoon in the beginning of October
 ~(DC2>1 when the traffic was becoming brisk
 ~)
@@ -134,3 +136,9 @@ Mr Ambrose attempted consolation; he patted her shoulder; but she showed no sign
 [CP7 and took a turn along the pavement.
 ]
 )
+
+###
+
+As the streets that lead from the Strand to the Embankment are very narrow, it is better not to walk down them arm-in-arm. If you persist, lawyers' clerks will have to make flying leaps into the mud; young lady typists will have to fidget behind you. In the streets of London where beauty goes unregarded, eccentricity must pay the penalty, and it is better not to be very tall, to wear a long blue cloak, or to beat the air with your left hand.
+
+One afternoon in the beginning of October when the traffic was becoming brisk a tall man strode along the edge of the pavement with a lady on his arm. Angry glances struck upon their backs. The small, agitated figures--for in comparison with this couple most people looked small--decorated with fountain pens, and burdened with despatch-boxes, had appointments to keep, and drew a weekly salary, so that there was some reason for the unfriendly stare which was bestowed upon Mr. Ambrose's height and upon Mrs. Ambrose's cloak. But some enchantment had put both man and woman beyond the reach of malice and unpopularity. In his guess one might guess from the moving lips that it was thought; and in hers from the eyes fixed stonily straight in front of her at a level above the eyes of most that it was sorrow. It was only by scorning all she met that she kept herself from tears, and the friction of people brushing past her was evidently painful. After watching the traffic on the Embankment for a minute or two with a stoical gaze she twitched her husband's sleeve, and they crossed between the swift discharge of motor cars. When they were safe on the further side, she gently withdrew her arm from his, allowing her mouth at the same time to relax, to tremble; then tears rolled down, and leaning her elbows on the balustrade, she shielded her face from the curious. Mr. Ambrose attempted consolation; he patted her shoulder; but she showed no signs of admitting him, and feeling it awkward to stand beside a grief that was greater than his, he crossed his arms behind him, and took a turn along the pavement.
