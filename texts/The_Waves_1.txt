@@ -2,6 +2,8 @@ Author: Virginia Woolf
 Work: The Waves
 Year: 1931
 Choice: prose before the first dialogue
+Tags: ToReview
+Language: en
 Comment: !! draft analysis to review !!
 Rights: asking
 

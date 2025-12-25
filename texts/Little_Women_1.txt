@@ -2,6 +2,8 @@ Author: Louisa May Alcott
 Work: Little Women; Or, Meg, Jo, Beth, and Amy
 Year: -1868
 Choice: middle of chapter two
+Tags: ToReview
+Language: en
 Comment: !! draft analysis to review !!
 
 ###

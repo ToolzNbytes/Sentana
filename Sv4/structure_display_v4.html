@@ -30,10 +30,16 @@
     <section class="workspace" id="workspace">
       <div class="top-panel">
         <div class="row-1">
-          <div class="work-details">
-            <div class="work"></div>
-            <div class="author"></div>
-            <div class="choice"></div>
+          <div class="work-details" id="workDetails">
+            <div class="workDetailsContent" id="workDetailsContent">
+              <div class="work"></div>
+              <div class="author"></div>
+              <div class="choice"></div>
+            </div>
+            <div class="filterPanel hidden" id="filterPanel">
+              <div class="filterTitle">Filter remote corpus</div>
+              <select class="filterSelect" id="corpusFilterSelect" size="10" aria-label="Remote corpus filter"></select>
+            </div>
           </div>
           <div class="listBlock">
   <div class="corpusSwitch" aria-label="Corpus switch">
@@ -43,7 +49,10 @@
     <button class="iconBtn listSelectBtn" id="corpusLocalBtn" title="Local corpus">
       <svg class="icon" aria-hidden="true"><use href="../icons/hard-drive.svg?#icon"></use></svg>
     </button>
-  </div>
+      <button class="iconBtn" id="corpusFilterBtn" title="Filter remote corpus" aria-label="Filter remote corpus" disabled>
+      <svg class="icon" aria-hidden="true"><use href="../icons/filter.svg?#icon"></use></svg>
+    </button>
+</div>
   <select class="work-list" id="workListRemote" size="4"></select>
   <select class="work-list hidden" id="workListLocal" size="4"></select>
 </div>

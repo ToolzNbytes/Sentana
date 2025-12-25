@@ -1,0 +1,191 @@
+Author: Marcel Proust
+Work: Du Côté de chez Swann
+Year: 1909-13
+Choice: paragraphs one and two of chapter one
+Tags: ToReview
+Language: fr
+Comment: !! draft analysis to review !!
+
+###
+
+Longtemps, je me suis couché de bonne heure.
+(IC1 Longtemps, je me suis couché de bonne heure.
+)
+
+Parfois, à peine ma bougie éteinte, mes yeux se fermaient si vite que je n’avais pas le temps de me dire : « Je m’endors. » Et, une demi-heure après, la pensée qu’il était temps de chercher le sommeil m’éveillait ; je voulais poser le volume que je croyais avoir encore dans les mains et souffler ma lumière ; je n’avais pas cessé en dormant de faire des réflexions sur ce que je venais de lire, mais ces réflexions avaient pris un tour un peu particulier ; il me semblait que j’étais moi-même ce dont parlait l’ouvrage : une église, un quatuor, la rivalité de François Ier et de Charles Quint. Cette croyance survivait pendant quelques secondes à mon réveil ; elle ne choquait pas ma raison mais pesait comme des écailles sur mes yeux et les empêchait de se rendre compte que le bougeoir n’était plus allumé. Puis elle commençait à me devenir inintelligible, comme après la métempsycose les pensées d’une existence antérieure ; le sujet du livre se détachait de moi, j’étais libre de m’y appliquer ou non ; aussitôt je recouvrais la vue et j’étais bien étonné de trouver autour de moi une obscurité, douce et reposante pour mes yeux, mais peut-être plus encore pour mon esprit, à qui elle apparaissait comme une chose sans cause, incompréhensible, comme une chose vraiment obscure. Je me demandais quelle heure il pouvait être ; j’entendais le sifflement des trains qui, plus ou moins éloigné, comme le chant d’un oiseau dans une forêt, relevant les distances, me décrivait l’étendue de la campagne déserte où le voyageur se hâte vers la station prochaine ; et le petit chemin qu’il suit va être gravé dans son souvenir par l’excitation qu’il doit à des lieux nouveaux, à des actes inaccoutumés, à la causerie récente et aux adieux sous la lampe étrangère qui le suivent encore dans le silence de la nuit, à la douceur prochaine du retour.
+(IC1 Parfois,
+~(AP2<1 à peine ma bougie éteinte,
+~)
+ mes yeux se fermaient si vite
+~(DC3<1 que je n’avais pas le temps de me dire :
+~~(AP4<3 « Je m’endors. »
+~~)
+~)
+)
+(IC5 Et, une demi-heure après, la pensée
+~(DC6<5 qu’il était temps de chercher le sommeil
+~)
+ m’éveillait ;
+)
+(IC7 je voulais poser le volume
+~(DC8<7 que je croyais avoir encore dans les mains
+~)
+[CP9 et souffler ma lumière ;
+]
+)
+(IC10 je n’avais pas cessé en dormant de faire des réflexions
+~(DC11<10 sur ce que je venais de lire,
+~)
+)
+(IC12 mais ces réflexions avaient pris un tour un peu particulier ;
+)
+(IC13 il me semblait
+~(DC14<13 que j’étais moi-même ce dont parlait l’ouvrage :
+~~(AP15<14 une église, un quatuor, la rivalité de François Ier et de Charles Quint.
+~~)
+~)
+)
+(IC16 Cette croyance survivait pendant quelques secondes à mon réveil ;
+)
+(IC17 elle ne choquait pas ma raison
+[CP18 mais pesait comme des écailles sur mes yeux
+]
+[CP19 et les empêchait de se rendre compte
+~(DC20<19 que le bougeoir n’était plus allumé.
+~)
+]
+)
+(IC21 Puis elle commençait à me devenir inintelligible,
+~(AP22<21 comme après la métempsycose les pensées d’une existence antérieure ;
+~)
+)
+(IC23 le sujet du livre se détachait de moi,
+)
+(IC24 j’étais libre de m’y appliquer ou non ;
+)
+(IC25 aussitôt je recouvrais la vue
+[CP26 et j’étais bien étonné de trouver autour de moi une obscurité,
+~(AP27<26 douce et reposante pour mes yeux,
+~)
+~(DC28<26 mais peut-être plus encore pour mon esprit,
+~~(DC29<28 à qui elle apparaissait comme une chose sans cause, incompréhensible, comme une chose vraiment obscure.
+~~)
+~)
+]
+)
+(IC30 Je me demandais
+~(DC31<30 quelle heure il pouvait être ;
+~)
+)
+(IC32 j’entendais le sifflement des trains
+~(DC33<32 qui,
+~~(AP34<33 plus ou moins éloigné,
+~~)
+~~(AP35<33 comme le chant d’un oiseau dans une forêt,
+~~)
+~~(PP36<33 relevant les distances,
+~~)
+~ me décrivait l’étendue de la campagne déserte
+~~(DC37<33 où le voyageur se hâte vers la station prochaine ;
+~~)
+~)
+)
+(IC38 et le petit chemin
+~(DC39<38 qu’il suit
+~)
+ va être gravé dans son souvenir par l’excitation
+~(DC40<38 qu’il doit à des lieux nouveaux, à des actes inaccoutumés, à la causerie récente et aux adieux sous la lampe étrangère
+~~(DC41<40 qui le suivent encore dans le silence de la nuit,
+~~)
+~)
+~(AP42<38 à la douceur prochaine du retour.
+~)
+)
+
+J’appuyais tendrement mes joues contre les belles joues de l’oreiller qui, pleines et fraîches, sont comme les joues de notre enfance.
+(IC1 J’appuyais tendrement mes joues contre les belles joues de l’oreiller
+~(DC2<1 qui,
+~~(AP3<2 pleines et fraîches,
+~~)
+~ sont comme les joues de notre enfance.
+~)
+)
+
+Je frottais une allumette pour regarder ma montre.
+(IC1 Je frottais une allumette
+~(AP2<1 pour regarder ma montre.
+~)
+)
+
+Bientôt minuit.
+(FG1 Bientôt minuit.
+)
+
+C’est l’instant où le malade, qui a été obligé de partir en voyage et a dû coucher dans un hôtel inconnu, réveillé par une crise, se réjouit en apercevant sous la porte une raie de jour.
+(IC1 C’est l’instant
+~(DC2<1 où le malade,
+~~(DC3<2 qui a été obligé de partir en voyage
+~~[CP4 et a dû coucher dans un hôtel inconnu,
+~~]
+~~)
+~~(PP5<2 réveillé par une crise,
+~~)
+~ se réjouit
+~~(PP6<2 en apercevant sous la porte une raie de jour.
+~~)
+~)
+)
+
+Quel bonheur, c’est déjà le matin !
+(IC1 Quel bonheur,
+)
+(IC2 c’est déjà le matin !
+)
+
+Dans un moment les domestiques seront levés, il pourra sonner, on viendra lui porter secours.
+(IC1 Dans un moment les domestiques seront levés,
+)
+(IC2 il pourra sonner,
+)
+(IC3 on viendra lui porter secours.
+)
+
+L’espérance d’être soulagé lui donne du courage pour souffrir.
+(IC1 L’espérance
+~(AP2<1 d’être soulagé
+~)
+ lui donne du courage
+~(AP3<1 pour souffrir.
+~)
+)
+
+Justement il a cru entendre des pas ; les pas se rapprochent, puis s’éloignent.
+(IC1 Justement il a cru entendre des pas ;
+)
+(IC2 les pas se rapprochent,
+[CP3 puis s’éloignent.
+]
+)
+
+Et la raie de jour qui était sous sa porte a disparu.
+(IC1 Et la raie de jour
+~(DC2<1 qui était sous sa porte
+~)
+ a disparu.
+)
+
+C’est minuit ; on vient d’éteindre le gaz ; le dernier domestique est parti et il faudra rester toute la nuit à souffrir sans remède.
+(IC1 C’est minuit ;
+)
+(IC2 on vient d’éteindre le gaz ;
+)
+(IC3 le dernier domestique est parti
+[CP4 et il faudra rester toute la nuit à souffrir sans remède.
+]
+)
+
+###
+
+Longtemps, je me suis couché de bonne heure. Parfois, à peine ma bougie éteinte, mes yeux se fermaient si vite que je n’avais pas le temps de me dire : « Je m’endors. » Et, une demi-heure après, la pensée qu’il était temps de chercher le sommeil m’éveillait ; je voulais poser le volume que je croyais avoir encore dans les mains et souffler ma lumière ; je n’avais pas cessé en dormant de faire des réflexions sur ce que je venais de lire, mais ces réflexions avaient pris un tour un peu particulier ; il me semblait que j’étais moi-même ce dont parlait l’ouvrage : une église, un quatuor, la rivalité de François Ier et de Charles Quint. Cette croyance survivait pendant quelques secondes à mon réveil ; elle ne choquait pas ma raison mais pesait comme des écailles sur mes yeux et les empêchait de se rendre compte que le bougeoir n’était plus allumé. Puis elle commençait à me devenir inintelligible, comme après la métempsycose les pensées d’une existence antérieure ; le sujet du livre se détachait de moi, j’étais libre de m’y appliquer ou non ; aussitôt je recouvrais la vue et j’étais bien étonné de trouver autour de moi une obscurité, douce et reposante pour mes yeux, mais peut-être plus encore pour mon esprit, à qui elle apparaissait comme une chose sans cause, incompréhensible, comme une chose vraiment obscure. Je me demandais quelle heure il pouvait être ; j’entendais le sifflement des trains qui, plus ou moins éloigné, comme le chant d’un oiseau dans une forêt, relevant les distances, me décrivait l’étendue de la campagne déserte où le voyageur se hâte vers la station prochaine ; et le petit chemin qu’il suit va être gravé dans son souvenir par l’excitation qu’il doit à des lieux nouveaux, à des actes inaccoutumés, à la causerie récente et aux adieux sous la lampe étrangère qui le suivent encore dans le silence de la nuit, à la douceur prochaine du retour.
+
+J’appuyais tendrement mes joues contre les belles joues de l’oreiller qui, pleines et fraîches, sont comme les joues de notre enfance. Je frottais une allumette pour regarder ma montre. Bientôt minuit. C’est l’instant où le malade, qui a été obligé de partir en voyage et a dû coucher dans un hôtel inconnu, réveillé par une crise, se réjouit en apercevant sous la porte une raie de jour. Quel bonheur, c’est déjà le matin ! Dans un moment les domestiques seront levés, il pourra sonner, on viendra lui porter secours. L’espérance d’être soulagé lui donne du courage pour souffrir. Justement il a cru entendre des pas ; les pas se rapprochent, puis s’éloignent. Et la raie de jour qui était sous sa porte a disparu. C’est minuit ; on vient d’éteindre le gaz ; le dernier domestique est parti et il faudra rester toute la nuit à souffrir sans remède.

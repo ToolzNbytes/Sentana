@@ -1,12 +1,14 @@
 Author: D. H. Lawrence
 Work: Odour of Chrysanthemums
 Year: 1909
-Choice: beginning of chapter one
+Choice: first paragraph
+Tags: Ref,ToReview
+Language: en
 Comment: This excerpt is praised for its glood flow. !! draft to be reviewed !!
 
 ###
 
-The small locomotive engine, Number 4, came clanking, stumbling down from Selston--with seven full waggons.
+ The small locomotive engine, Number 4, came clanking, stumbling down from Selston--with seven full waggons.
 (IC1 The small locomotive engine, Number 4, came
 ~(PP2<1 clanking,
 ~[CP3 stumbling down

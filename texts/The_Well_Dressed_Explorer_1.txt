@@ -2,10 +2,12 @@ Author: Thea Astley
 Work: The Well Dressed Explorer
 Year: 1962
 Choice: beginning of chapter one
+Tags: ToReview
+Language: en
 Comment: !! draft analysis to review !!
 
 ###
-The weight  of her on his shoulders was almost too much for him.
+ The weight  of her on his shoulders was almost too much for him.
 (IC1 The weight  of her on his shoulders was almost too much for him.
 )
 
@@ -118,7 +120,7 @@ She breathed a rough circle of mist onto the pane and drew a face in it, rubbed 
 ]
 )
 
-Behind her, still stretched out along the knotty pine boards, the boy sleepily reviewed his fourteen years.
+ Behind her, still stretched out along the knotty pine boards, the boy sleepily reviewed his fourteen years.
 (IC1 Behind her,
 ~(PP2<1 still stretched out along the knotty pine boards,
 ~)

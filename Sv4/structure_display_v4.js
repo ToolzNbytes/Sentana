@@ -55,21 +55,372 @@ async function loadRemoteCorpus() {
   const res = await fetch("../gen/texts.meta.json");
   if (!res.ok) throw new Error("Cannot load metadata of the corpus");
   corpusRemote = await res.json();
+  // default view (no filtering) on fresh load
+  corpusRemoteView = corpusRemote;
+  corpus = corpusRemoteView;
 }
 
 
 /* ===================== Corpus sources (remote/local) ===================== */
 let remoteList, localList;
-let corpusRemoteBtn, corpusLocalBtn, localDataBtn, helpBtn;
+let corpusRemoteBtn, corpusLocalBtn, corpusFilterBtn, localDataBtn, helpBtn;
+let workDetailsContent, filterPanel, corpusFilterSelect;
 let activeSource = "remote";
+
+// ===================== Remote corpus filtering state =====================
+const LOW_YEAR = 1850;
+const MID_YEAR = 1920;
+const HIGH_YEAR = 1980;
+
+// Filter state (remote corpus only)
+let remoteFilterValue = "All";
+let corpusRemoteView = corpusRemote;   // current filtered view
+let filterPanelOpen = false;
+let remoteMetaLoaded = false;
+
+function getRemoteCorpusView(){
+  return Array.isArray(corpusRemoteView) ? corpusRemoteView : corpusRemote;
+}
+
+// Helpers required by remote-metadata enrichment
+function computeYearNum(yearStr){
+  const s = String(yearStr ?? "");
+  const m = s.match(/\b(\d{4})\b/);
+  if (!m) return 0;
+  const n = Number(m[1]);
+  return Number.isFinite(n) ? n : 0;
+}
+
+function parseTagsValue(tagsStr){
+  const out = {};
+  const parts = String(tagsStr ?? "")
+    .split(",")
+    .map(x => x.trim())
+    .filter(Boolean);
+  for (const tag of parts){
+    out[tag] = true;
+  }
+  return out;
+}
+
+function parseLanguageValue(langStr){
+  const t = String(langStr ?? "").trim().toLowerCase();
+  if (!t) return { lang: "en", ori: null };
+  const m = t.match(/^([a-z]{2})(?:\s*\/\s*([a-z]{2}))?/);
+  if (!m) return { lang: "en", ori: null };
+  return { lang: m[1], ori: m[2] || null };
+}
+
+function normalizeRemoteEntryShallow(entry){
+  if (!entry || typeof entry !== "object") return;
+  // Ensure these properties exist to avoid filter errors before full metadata enrichment.
+  if (typeof entry.year_num !== "number") entry.year_num = computeYearNum(entry.Year);
+  if (!entry.Tags || typeof entry.Tags !== "object" || Array.isArray(entry.Tags)) entry.Tags = {};
+  if (!entry.Language) entry.Language = "en";
+  if (entry.LanguageOri === undefined) entry.LanguageOri = null;
+}
+
+/* ===================== Remote corpus filter: metadata loading ===================== */
+
+function parseMetadataBlock(raw){
+  // part before the first ### line
+  const parts = String(raw || "").split(/^###[^\r\n]*(?:\r?\n|$)/m);
+  return (parts[0] || "").trim();
+}
+
+function parseMetadataLines(metaText){
+  const out = {};
+  const lines = String(metaText || "").split(/\r?\n/);
+  for (const line of lines){
+    const t = line.trim();
+    if (!t) continue;
+    const idx = t.indexOf(":");
+    if (idx <= 0) continue;
+    const key = t.slice(0, idx).trim();
+    const val = t.slice(idx + 1).trim();
+    if (key) out[key] = val;
+  }
+  return out;
+}
+
+function enrichEntryFromMetadata(entry, metaMap){
+  if (!entry || typeof entry !== "object") return;
+
+  // Prefer explicit values from file metadata if present
+  if (metaMap.Work && !entry.Work) entry.Work = metaMap.Work;
+  if (metaMap.Author && !entry.Author) entry.Author = metaMap.Author;
+  if (metaMap.Choice && !entry.Choice) entry.Choice = metaMap.Choice;
+
+  if (metaMap.Year) entry.Year = metaMap.Year;
+  entry.year_num = computeYearNum(entry.Year);
+
+  // Tags
+  if (metaMap.Tags){
+    entry.Tags = parseTagsValue(metaMap.Tags);
+  } else if (!entry.Tags || typeof entry.Tags !== "object" || Array.isArray(entry.Tags)){
+    entry.Tags = {};
+  }
+
+  // Language
+  const langRaw = metaMap.Language || metaMap.Lang || entry.Language;
+  const { lang, ori } = parseLanguageValue(langRaw);
+  entry.Language = lang;
+  entry.LanguageOri = ori;
+
+  entry._metaLoaded = true;
+}
+
+async function enrichRemoteEntryFromFile(entry){
+  if (!entry || entry._metaLoaded) return;
+
+  // Make sure shallow defaults exist even if fetch fails
+  normalizeRemoteEntryShallow(entry);
+
+  if (!entry.file){
+    entry._metaLoaded = true;
+    return;
+  }
+
+  try{
+    const res = await fetch(`../${entry.file}`);
+    if (!res.ok) throw new Error(`Cannot load text file: ${entry.file}`);
+    const raw = await res.text();
+    const metaText = parseMetadataBlock(raw);
+    const metaMap = parseMetadataLines(metaText);
+    enrichEntryFromMetadata(entry, metaMap);
+  } catch(e){
+    // Keep defaults; mark as loaded to avoid repeated failures.
+    entry._metaLoaded = true;
+  }
+}
+
+async function ensureRemoteMetadataLoaded(){
+  if (remoteMetaLoaded) return;
+
+  // Shallow init for all entries (year_num + default tags/lang)
+  for (const e of corpusRemote) normalizeRemoteEntryShallow(e);
+
+  const limit = 8;
+  let cursor = 0;
+
+  async function worker(){
+    while (true){
+      const i = cursor++;
+      if (i >= corpusRemote.length) return;
+      const e = corpusRemote[i];
+      if (!e || e._metaLoaded) continue;
+      await enrichRemoteEntryFromFile(e);
+    }
+  }
+
+  const workers = [];
+  for (let k = 0; k < limit; k++) workers.push(worker());
+  await Promise.all(workers);
+
+  remoteMetaLoaded = true;
+}
+
+/* ===================== Remote corpus filter: UI + logic ===================== */
+
+function buildRemoteFilterOptions(){
+  // value → label
+  return [
+    { value: "All", label: "All works" },
+    { value: "Classic", label: "Classic works" },
+    { value: "LY", label: `Before ${LOW_YEAR}` },
+    { value: "M1Y", label: `Years ${LOW_YEAR} - ${MID_YEAR}` },
+    { value: "M2Y", label: `Years ${MID_YEAR} - ${HIGH_YEAR}` },
+    { value: "HY", label: `After ${HIGH_YEAR}` },
+    { value: "LgEn", label: "English" },
+    { value: "LgEs", label: "Spanish" },
+    { value: "LgFr", label: "French" },
+    { value: "LgGe", label: "German" },
+    { value: "LgRe", label: "Russian" },
+    { value: "Trans", label: "Translations" },
+    { value: "ClasPop", label: "Compare Classics and ‘popular’ works" },
+    { value: "Valid", label: "Checked and mostly valid" },
+    { value: "ToReview", label: "Need to be reviewed" },
+    { value: "Errors", label: "Some corrections to do (errors)" },
+    { value: "Ref", label: "As reference for filter features" },
+  ];
+}
+
+function populateRemoteFilterSelect(){
+  if (!corpusFilterSelect) return;
+  corpusFilterSelect.innerHTML = "";
+  for (const opt of buildRemoteFilterOptions()){
+    const o = document.createElement("option");
+    o.value = opt.value;
+    o.textContent = opt.label;
+    corpusFilterSelect.appendChild(o);
+  }
+  corpusFilterSelect.value = remoteFilterValue || "All";
+}
+
+function openFilterPanel(){
+  if (activeSource !== "remote") return;
+  if (!filterPanel || !workDetailsContent) return;
+
+  filterPanelOpen = true;
+  workDetailsContent.classList.add("hidden");
+  filterPanel.classList.remove("hidden");
+  if (corpusFilterBtn) corpusFilterBtn.classList.add("isActive");
+
+  // Always show the list immediately
+  populateRemoteFilterSelect();
+
+  // Load metadata (one time) so filters work as intended
+  (async ()=>{
+    try{
+      corpusFilterSelect.disabled = true;
+      const prev = corpusFilterSelect.value || remoteFilterValue;
+      corpusFilterSelect.innerHTML = `<option value="${escapeHtml(prev)}">Loading metadata…</option>`;
+      await ensureRemoteMetadataLoaded();
+      populateRemoteFilterSelect();
+      corpusFilterSelect.disabled = false;
+      applyRemoteFilter(remoteFilterValue, { preserveSelection: true });
+    }catch(e){
+      populateRemoteFilterSelect();
+      corpusFilterSelect.disabled = false;
+    }
+  })();
+}
+
+function closeFilterPanel(force){
+  if (!filterPanel || !workDetailsContent) return;
+  if (!filterPanelOpen && !force) return;
+
+  filterPanelOpen = false;
+  filterPanel.classList.add("hidden");
+  workDetailsContent.classList.remove("hidden");
+  if (corpusFilterBtn) corpusFilterBtn.classList.remove("isActive");
+}
+
+function toggleFilterPanel(){
+  if (activeSource !== "remote") return;
+  if (filterPanelOpen) closeFilterPanel(false);
+  else openFilterPanel();
+}
+
+function filterPredicateForValue(value){
+  // Ensure year_num exists even without file metadata
+  for (const e of corpusRemote) {
+    if (e && typeof e.year_num !== "number") e.year_num = computeYearNum(e.Year);
+    if (!e.Tags || typeof e.Tags !== "object" || Array.isArray(e.Tags)) e.Tags = {};
+    if (!e.Language) e.Language = "en";
+  }
+
+  switch (value){
+    case "All": return () => true;
+    case "Classic": return (e) => Boolean(e?.Tags?.Classic);
+    case "LY": return (e) => (e?.year_num || 0) < LOW_YEAR;
+    case "M1Y": return (e) => (e?.year_num || 0) >= LOW_YEAR && (e?.year_num || 0) < MID_YEAR;
+    case "M2Y": return (e) => (e?.year_num || 0) >= MID_YEAR && (e?.year_num || 0) < HIGH_YEAR;
+    case "HY": return (e) => (e?.year_num || 0) >= HIGH_YEAR;
+    case "LgEn": return (e) => (e?.Language || "en") === "en";
+    case "LgEs": return (e) => (e?.Language || "en") === "es";
+    case "LgFr": return (e) => (e?.Language || "en") === "fr";
+    case "LgGe": return (e) => (e?.Language || "en") === "de";
+    case "LgRe": return (e) => (e?.Language || "en") === "ru";
+    case "Valid": return (e) => Boolean(e?.Tags?.Valid);
+    case "ToReview": return (e) => Boolean(e?.Tags?.ToReview);
+    case "Errors": return (e) => Boolean(e?.Tags?.Errors);
+    case "Ref": return (e) => Boolean(e?.Tags?.Ref);
+    case "ClasPop":
+      return (e) => (Boolean(e?.Tags?.Classic) && Boolean(e?.Tags?.Ref)) || Boolean(e?.Tags?.Pop);
+    default:
+      return () => true;
+  }
+}
+
+function remoteFilterSpecialSet(value){
+  // Special filters that need cross-entry logic:
+  // - Trans (include translations + also origin where possible)
+  if (value !== "Trans") return null;
+
+  const set = new Set();
+
+  for (const e of corpusRemote){
+    if (!e) continue;
+    if (e.LanguageOri){
+      set.add(e);
+      // include original if found (same Work + Author, no LanguageOri)
+      for (const cand of corpusRemote){
+        if (!cand) continue;
+        if (cand.LanguageOri) continue;
+        if ((cand.Work || "") === (e.Work || "") && (cand.Author || "") === (e.Author || "")){
+          set.add(cand);
+        }
+      }
+    }
+  }
+  return set;
+}
+
+function applyRemoteFilter(value, opts = {}){
+  const { preserveSelection = false } = opts;
+
+  remoteFilterValue = value || "All";
+
+  // Build view
+  let view;
+  const special = remoteFilterSpecialSet(remoteFilterValue);
+  if (special){
+    view = corpusRemote.filter(e => special.has(e));
+  } else {
+    const pred = filterPredicateForValue(remoteFilterValue);
+    view = corpusRemote.filter(pred);
+  }
+
+  corpusRemoteView = (remoteFilterValue === "All") ? corpusRemote : view;
+
+  // If remote list is active, repopulate immediately
+  if (activeSource === "remote"){
+    const prevEntry = preserveSelection ? corpus[Number(list?.value)] : null;
+
+    corpus = getRemoteCorpusView();
+    list = remoteList;
+
+    populateList(remoteList, corpus);
+
+    if (corpus.length === 0){
+      setStoreEnabled(false);
+      setResultPanelLoadingMsg("No entries match the current filter.");
+      if (work) work.textContent = "";
+      if (author) author.textContent = "";
+      if (choice) choice.textContent = "";
+      if (commentBox) commentBox.textContent = "";
+      clearHighlightedSentence();
+      updateCollapseEnabled();
+      return;
+    }
+
+    // try to preserve selection by identity
+    if (prevEntry){
+      const idx = corpus.indexOf(prevEntry);
+      if (idx >= 0) remoteList.selectedIndex = idx;
+      else remoteList.selectedIndex = 0;
+    } else if (remoteList.selectedIndex < 0){
+      remoteList.selectedIndex = 0;
+    }
+
+    show(Number(remoteList.value));
+  }
+}
+
 
 function wireDom(){
   remoteList = document.getElementById("workListRemote");
   localList = document.getElementById("workListLocal");
   corpusRemoteBtn = document.getElementById("corpusRemoteBtn");
   corpusLocalBtn = document.getElementById("corpusLocalBtn");
+  corpusFilterBtn = document.getElementById("corpusFilterBtn");
   localDataBtn = document.getElementById("localDataBtn");
   helpBtn = document.getElementById("helpBtn");
+
+  workDetailsContent = document.getElementById("workDetailsContent");
+  filterPanel = document.getElementById("filterPanel");
+  corpusFilterSelect = document.getElementById("corpusFilterSelect");
 }
 
 function setActiveSource(source, opts = {}){
@@ -83,7 +434,7 @@ function setActiveSource(source, opts = {}){
   activeSource = source;
   const isRemote = (source === "remote");
 
-  corpus = isRemote ? corpusRemote : corpusLocal;
+  corpus = isRemote ? getRemoteCorpusView() : corpusLocal;
   list = isRemote ? remoteList : localList;
 
   // toggle visible list
@@ -97,7 +448,10 @@ function setActiveSource(source, opts = {}){
     corpusRemoteBtn.disabled = isRemote;
     corpusLocalBtn.disabled = !isRemote;
   }
-
+  if (corpusFilterBtn){
+    corpusFilterBtn.disabled = !isRemote;
+    if (!isRemote) closeFilterPanel(true);
+  }
   if (!skipPopulate){
     populateList(list, corpus);
   }
@@ -148,6 +502,8 @@ async function activateLocalCorpus(){
 }
 
 function activateRemoteCorpus(){
+  // re-apply current remote filter when coming back
+  applyRemoteFilter(remoteFilterValue, { preserveSelection: true });
   setActiveSource("remote", { skipPopulate: true });
 }
 
@@ -161,6 +517,9 @@ async function init() {
 
   try {
     await loadRemoteCorpus();
+    // defaults + initial view
+    corpusRemote.forEach(normalizeRemoteEntryShallow);
+    corpusRemoteView = corpusRemote;
   } catch (e) {
     alert(e.message);
     return;
@@ -169,12 +528,12 @@ async function init() {
   // Remote is the default active source
   setActiveSource("remote", { skipPopulate: true, skipShow: true });
 
-  populateList(remoteList, corpusRemote);
+  populateList(remoteList, getRemoteCorpusView());
 
   applyWorkspaceWidth();
 
-  if (corpusRemote.length) {
-    remoteList.selectedIndex = Math.floor(Math.random() * corpusRemote.length);
+  if (getRemoteCorpusView().length) {
+    remoteList.selectedIndex = Math.floor(Math.random() * getRemoteCorpusView().length);
     show(Number(remoteList.value));
   }
 }
@@ -331,7 +690,7 @@ function fitStringInSentenceArea(len) {
   // ---- constants ----
   const MAX_FONT = 26;
   const MIN_FONT = 12;
-  const CHAR_WIDTH_RATIO = 0.56;
+  const CHAR_WIDTH_RATIO = 0.5; //0.56
   //const LINE_HEIGHT_RATIO = 1.4;
   const LINE_HEIGHT_RATIO = cs.lineHeight.endsWith("px")
     ? parseFloat(cs.lineHeight) / parseFloat(cs.fontSize)
@@ -745,7 +1104,7 @@ if (remoteList){
       setActiveSource("remote", { skipPopulate: true, skipShow: true });
     }
     list = remoteList;
-    corpus = corpusRemote;
+    corpus = getRemoteCorpusView();
     show(Number(e.target.value));
   });
 }
@@ -770,6 +1129,20 @@ if (corpusRemoteBtn){
 if (corpusLocalBtn){
   corpusLocalBtn.addEventListener("click", ()=>{
     activateLocalCorpus();
+  });
+}
+
+if (corpusFilterBtn){
+  corpusFilterBtn.addEventListener("click", ()=>{
+    if (corpusFilterBtn.disabled) return;
+    toggleFilterPanel();
+  });
+}
+if (corpusFilterSelect){
+  corpusFilterSelect.addEventListener("change", (e)=>{
+    remoteFilterValue = e.target.value || "All";
+    applyRemoteFilter(remoteFilterValue, { preserveSelection: true });
+    // keep panel open by design
   });
 }
 if (localDataBtn){
@@ -881,7 +1254,7 @@ let showingExcerpt = false;
 
 // Keep this in sync with your local-corpus storage key.
 
-function isRemoteCorpusActive(){ return corpus === corpusRemote; }
+function isRemoteCorpusActive(){ return activeSource === "remote"; }
 
 function shouldShowCloneBtn(){
   // Show ONLY when:

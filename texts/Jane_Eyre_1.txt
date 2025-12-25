@@ -2,6 +2,9 @@ Author: Charlotte Brontë
 Work: Jane Eyre (3rd ed.)
 Year: -1847
 Choice: starting at last third of chapter one
+Tags: Classic,Ref,ToReview
+Language: en
+
 Comment: !! draft analysis to be reviewed !!
 
 ###

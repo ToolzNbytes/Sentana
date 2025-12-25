@@ -2,6 +2,8 @@ Author: Jane Austen
 Work: Emma
 Year: 1810-1815
 Choice: beginning of chapter one
+Tags: Classic,Ref,ToReview
+Language: en
 Comment: Many variations of the sentences' structure.
 
 ###

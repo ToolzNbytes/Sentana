@@ -2,6 +2,8 @@ Author: W. Somerset Maugham
 Work: Of Human Bondage
 Year: -1915
 Choice: end of chapter 3
+Tags: ToReview
+Language: en
 Comment: Known for shorter sentences. !! draft analysis to be reviewed !!
 
 ###
