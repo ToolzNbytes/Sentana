@@ -16,14 +16,14 @@ jobs:
           ref: main
           fetch-depth: 1
 
-      - name: Build gen/all_error.txt (improved format)
+      - name: Build gen/all_errors.txt (improved format)
         shell: bash
         run: |
           set -euo pipefail
 
           ROOT_DIR="texts"
           OUT_DIR="gen"
-          OUTPUT_FILE="${OUT_DIR}/all_error.txt"
+          OUTPUT_FILE="${OUT_DIR}/all_errors.txt"
           SEPARATOR="=========="
 
           mkdir -p "$OUT_DIR"
