@@ -4,30 +4,30 @@ Year: 1909-13
 Choice: paragraphs three and four of chapter one
 Tags: ToReview
 Language: fr
-Comment: !! draft analysis to review !!
+Comment: Reviewed once
 
 ###
-
- Je me rendormais, et parfois je n’avais plus que de courts réveils d’un instant, le temps d’entendre les craquements organiques des boiseries, d’ouvrir les yeux pour fixer le kaléidoscope de l’obscurité, de goûter grâce à une lueur momentanée de conscience le sommeil où étaient plongés les meubles, la chambre, le tout dont je n’étais qu’une petite partie et à l’insensibilité duquel je retournais vite m’unir.
+Je me rendormais, et parfois je n’avais plus que de courts réveils d’un instant, le temps d’entendre les craquements organiques des boiseries, d’ouvrir les yeux pour fixer le kaléidoscope de l’obscurité, de goûter grâce à une lueur momentanée de conscience le sommeil où étaient plongés les meubles, la chambre, le tout dont je n’étais qu’une petite partie et à l’insensibilité duquel je retournais vite m’unir.
 (IC1 Je me rendormais,
 )
-(IC2 et parfois je n’avais plus que de courts réveils d’un instant, le temps
-[CP3 d’entendre les craquements organiques des boiseries,
-]
-[CP4 d’ouvrir les yeux
-~(AP5<4 pour fixer le kaléidoscope de l’obscurité,
-~)
-]
-[CP6 de goûter
-~(AP7<6 grâce à une lueur momentanée de conscience
-~)
- le sommeil
-~(DC8<6 où étaient plongés les meubles, la chambre, le tout
-~~(DC9<8 dont je n’étais qu’une petite partie
+(IC2 et parfois je n’avais plus que de courts réveils d’un instant,
+~(AP3 le temps d’entendre les craquements organiques des boiseries,
+~[CP4 d’ouvrir les yeux
+~~(AP5<4 pour fixer le kaléidoscope de l’obscurité,
 ~~)
+~]
+~[CP6 de goûter
+~~(AP7<6 grâce à une lueur momentanée de conscience
+~~)
+~ le sommeil
+~~(DC8<6 où étaient plongés les meubles, la chambre, le tout
+~~~(DC9<8 dont je n’étais qu’une petite partie
+~~~)
+~~~(DC10<8 et à l’insensibilité duquel je retournais vite m’unir.
+~~~)
+~~)
+~]
 ~)
- et à l’insensibilité duquel je retournais vite m’unir.
-]
 )
 
 Ou bien en dormant j’avais rejoint sans effort un âge à jamais révolu de ma vie primitive, retrouvé telle de mes terreurs enfantines comme celle que mon grand-oncle me tirât par mes boucles et qu’avait dissipée le jour – date pour moi d’une ère nouvelle – où on les avait coupées.
@@ -37,13 +37,13 @@ Ou bien en dormant j’avais rejoint sans effort un âge à jamais révolu de ma
  j’avais rejoint sans effort un âge à jamais révolu de ma vie primitive,
 [CP3 retrouvé telle de mes terreurs enfantines
 ~(AP4<3 comme celle
-~)
-~(DC5<3 que mon grand-oncle me tirât par mes boucles
-~)
-~(DC6<3 et qu’avait dissipée le jour
-~~(AP7<6 – date pour moi d’une ère nouvelle –
+~~(DC5<3 que mon grand-oncle me tirât par mes boucles
 ~~)
-~~(DC8<6 où on les avait coupées.
+~~(DC6<3 et qu’avait dissipée le jour
+~~~(AP7<6 – date pour moi d’une ère nouvelle –
+~~~)
+~~~(DC8<6 où on les avait coupées.
+~~~)
 ~~)
 ~)
 ]
@@ -51,16 +51,16 @@ Ou bien en dormant j’avais rejoint sans effort un âge à jamais révolu de ma
 
 J’avais oublié cet événement pendant mon sommeil, j’en retrouvais le souvenir aussitôt que j’avais réussi à m’éveiller pour échapper aux mains de mon grand-oncle, mais par mesure de précaution j’entourais complètement ma tête de mon oreiller avant de retourner dans le monde des rêves.
 (IC1 J’avais oublié cet événement pendant mon sommeil,
-[CP2 j’en retrouvais le souvenir
+)
+(IC2 j’en retrouvais le souvenir
 ~(DC3<2 aussitôt que j’avais réussi à m’éveiller
 ~~(AP4<3 pour échapper aux mains de mon grand-oncle,
 ~~)
 ~)
-]
-[CP5 mais par mesure de précaution j’entourais complètement ma tête de mon oreiller
+)
+(IC5 mais par mesure de précaution j’entourais complètement ma tête de mon oreiller
 ~(AP6<5 avant de retourner dans le monde des rêves.
 ~)
-]
 )
 
  Quelquefois, comme Ève naquit d’une côte d’Adam, une femme naissait pendant mon sommeil d’une fausse position de ma cuisse.
@@ -93,18 +93,18 @@ Mon corps qui sentait dans le sien ma propre chaleur voulait s’y rejoindre, je
 )
 
 Le reste des humains m’apparaissait comme bien lointain auprès de cette femme que j’avais quittée il y avait quelques moments à peine ; ma joue était chaude encore de son baiser, mon corps courbaturé par le poids de sa taille.
-(IC1 Le reste des humains m’apparaissait
-~(AP2<1 comme bien lointain auprès de cette femme
-~~(DC3<2 que j’avais quittée il y avait quelques moments à peine ;
-~~)
+#4 auxiliary in common
+(IC1 Le reste des humains m’apparaissait comme bien lointain auprès de cette femme
+~(DC2<1 que j’avais quittée il y avait quelques moments à peine ;
 ~)
 )
-(IC4 ma joue était chaude encore de son baiser,
-~(AP5<4 mon corps courbaturé par le poids de sa taille.
-~)
+(IC3 ma joue était chaude encore de son baiser,
+[CP4 mon corps courbaturé par le poids de sa taille.
+]
 )
 
 Si, comme il arrivait quelquefois, elle avait les traits d’une femme que j’avais connue dans la vie, j’allais me donner tout entier à ce but : la retrouver, comme ceux qui partent en voyage pour voir de leurs yeux une cité désirée et s’imaginent qu’on peut goûter dans une réalité le charme du songe.
+#5 Maybe should be treated with a different tag, since it's not optional but required after the "à ce but :"
 (IC1
 ~(DC2>1 Si,
 ~~(AP3<2 comme il arrivait quelquefois,
@@ -133,9 +133,3 @@ Peu à peu son souvenir s’évanouissait, j’avais oublié la fille de mon rê
 )
 (IC2 j’avais oublié la fille de mon rêve.
 )
-
-###
-
-Je me rendormais, et parfois je n’avais plus que de courts réveils d’un instant, le temps d’entendre les craquements organiques des boiseries, d’ouvrir les yeux pour fixer le kaléidoscope de l’obscurité, de goûter grâce à une lueur momentanée de conscience le sommeil où étaient plongés les meubles, la chambre, le tout dont je n’étais qu’une petite partie et à l’insensibilité duquel je retournais vite m’unir. Ou bien en dormant j’avais rejoint sans effort un âge à jamais révolu de ma vie primitive, retrouvé telle de mes terreurs enfantines comme celle que mon grand-oncle me tirât par mes boucles et qu’avait dissipée le jour – date pour moi d’une ère nouvelle – où on les avait coupées. J’avais oublié cet événement pendant mon sommeil, j’en retrouvais le souvenir aussitôt que j’avais réussi à m’éveiller pour échapper aux mains de mon grand-oncle, mais par mesure de précaution j’entourais complètement ma tête de mon oreiller avant de retourner dans le monde des rêves.
-
-Quelquefois, comme Ève naquit d’une côte d’Adam, une femme naissait pendant mon sommeil d’une fausse position de ma cuisse. Formée du plaisir que j’étais sur le point de goûter, je m’imaginais que c’était elle qui me l’offrait. Mon corps qui sentait dans le sien ma propre chaleur voulait s’y rejoindre, je m’éveillais. Le reste des humains m’apparaissait comme bien lointain auprès de cette femme que j’avais quittée il y avait quelques moments à peine ; ma joue était chaude encore de son baiser, mon corps courbaturé par le poids de sa taille. Si, comme il arrivait quelquefois, elle avait les traits d’une femme que j’avais connue dans la vie, j’allais me donner tout entier à ce but : la retrouver, comme ceux qui partent en voyage pour voir de leurs yeux une cité désirée et s’imaginent qu’on peut goûter dans une réalité le charme du songe. Peu à peu son souvenir s’évanouissait, j’avais oublié la fille de mon rêve.
