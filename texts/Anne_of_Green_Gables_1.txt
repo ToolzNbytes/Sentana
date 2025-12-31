@@ -2,7 +2,7 @@ Author: Lucy Maud Montgomery
 Work: Anne of Green Gables
 Year: -1908
 Choice: beginning of chapter one
-Tags: Classic,Ref,ToReview
+Tags: Classic,Ref
 Language: en
 Comment: one review done, small tweaks to check in comments
 
@@ -228,3 +228,4 @@ Mrs. Rachel, ponder as she might, could make nothing of it and her afternoon’s
 )
 (IC3 and her afternoon’s enjoyment was spoiled.
 )
+
