@@ -4,7 +4,7 @@ Year: 1909-13
 Choice: paragraphs one and two of chapter one
 Tags:
 Language: fr
-Comment: 
+Comment: Reviewed once, some questions in comments
 
 ###
 Longtemps, je me suis couché de bonne heure.
@@ -194,3 +194,4 @@ C’est minuit ; on vient d’éteindre le gaz ; le dernier domestique est parti
 )
 (IC4 et il faudra rester toute la nuit à souffrir sans remède.
 )
+
