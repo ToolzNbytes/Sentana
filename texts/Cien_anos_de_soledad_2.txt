@@ -2,13 +2,12 @@ Author: Gabriel García Márquez
 Work: Cien años de soledad
 Year: 1965-66
 Choice: first paragraph of chapter three
-Tags: Ref,ToReview
+Tags: Ref
 Language: es
-Comment: !! draft analysis to review !!
+Comment:
 
 ###
-
- El hijo de Pilar Ternera fue llevado a casa de sus abuelos a las dos semanas de nacido.
+El hijo de Pilar Ternera fue llevado a casa de sus abuelos a las dos semanas de nacido.
 (IC1 El hijo de Pilar Ternera fue llevado a casa de sus abuelos a las dos semanas de nacido.
 )
 
@@ -20,12 +19,14 @@ Comment: !! draft analysis to review !!
 ~~~)
 ~~)
 ~)
- pero impuso la condición
-~(DC5<1 de que se ocultara al niño su verdadera identidad.
+[CP5 pero impuso la condición
+~(DC6<5 de que se ocultara al niño su verdadera identidad.
 ~)
+]
 )
 
 Aunque recibió el nombre de José Arcadio, terminaron por llamarlo simplemente Arcadio para evitar confusiones.
+#2 Is it really a dependent clause?
 (IC1
 ~(DC2>1 Aunque recibió el nombre de José Arcadio,
 ~)
@@ -46,20 +47,18 @@ Se los encomendaron a Visitación, una india guajira que llegó al pueblo con un
 (IC1 Se los encomendaron a Visitación,
 ~(AP2<1 una india guajira
 ~~(DC3<2 que llegó al pueblo con un hermano,
-~~~(PP4<3 huyendo de una peste de insomnio
-~~~~(DC5<4 que flagelaba a su tribu desde hacía varios años.
-~~~~)
+~~)
+~~(PP4<3 huyendo de una peste de insomnio
+~~~(DC5<4 que flagelaba a su tribu desde hacía varios años.
 ~~~)
 ~~)
 ~)
 )
 
 Ambos eran tan dóciles y serviciales que Úrsula se hizo cargo de ellos para que la ayudaran en los oficios domésticos.
-(IC1 Ambos eran tan dóciles
-[CP2 y serviciales
-]
-~(DC3<1 que Úrsula se hizo cargo de ellos
-~~(AP4<3 para que la ayudaran en los oficios domésticos.
+(IC1 Ambos eran tan dóciles y serviciales
+~(DC2<1 que Úrsula se hizo cargo de ellos
+~~(AP3<2 para que la ayudaran en los oficios domésticos.
 ~~)
 ~)
 )
@@ -114,9 +113,9 @@ Fascinado por una realidad inmediata que entonces le resultó más fantástica q
 ]
 [CP6 y volvió a ser el hombre emprendedor de los primeros tiempos
 ~(DC7<6 que decidía el trazado de las calles y la posición de las nuevas casas,
-~)
-~(DC8<6 de manera que nadie disfrutara de privilegios
-~~(DC9<8 que no tuvieran todos.
+~~(DC8<6 de manera que nadie disfrutara de privilegios
+~~~(DC9<8 que no tuvieran todos.
+~~~)
 ~~)
 ~)
 ]
@@ -140,21 +139,23 @@ Cuando volvieron los gitanos saltimbanquis, ahora con su feria ambulante transfo
 (IC1
 ~(DC2>1 Cuando volvieron los gitanos saltimbanquis,
 ~)
- ahora con su feria ambulante transformada en un gigantesco establecimiento de juegos de suerte y azar, fueron recibidos con alborozo
-~(DC3<1 porque se pensó
-~~(DC4<3 que José Arcadio regresaba con ellos.
+~(PP3<2 ahora con su feria ambulante transformada en un gigantesco establecimiento de juegos de suerte y azar,
+~)
+ fueron recibidos con alborozo
+~(DC4<1 porque se pensó
+~~(DC5<4 que José Arcadio regresaba con ellos.
 ~~)
 ~)
 )
 
 Pero José Arcadio no volvió, ni llevaron al hombre-víbora que según pensaba Úrsula era el único que podría darles razón de su hijo, así que no se les permitió a los gitanos instalarse en el pueblo ni volver a pisarlo en el futuro, porque se los consideró como mensajeros de la concupiscencia y la perversión.
 (IC1 Pero José Arcadio no volvió,
-[CP2 ni llevaron al hombre-víbora
+)
+(IC2 ni llevaron al hombre-víbora
 ~(DC3<2 que según pensaba Úrsula era el único
 ~~(DC4<3 que podría darles razón de su hijo,
 ~~)
 ~)
-]
 ~(DC5<1 así que no se les permitió a los gitanos instalarse en el pueblo ni volver a pisarlo en el futuro,
 ~~(DC6<5 porque se los consideró como mensajeros de la concupiscencia y la perversión.
 ~~)
@@ -180,7 +181,3 @@ Pero la tribu de Melquíades, según contaron los trotamundos, había sido borra
 ~(AP3<1 por haber sobrepasado los limites del conocimiento humano.
 ~)
 )
-
-###
-
-El hijo de Pilar Ternera fue llevado a casa de sus abuelos a las dos semanas de nacido. Úrsula lo admitió de mala gana, vencida una vez más por la terquedad de su marido que no pudo tolerar la idea de que un retoño de su sangre quedara navegando a la deriva, pero impuso la condición de que se ocultara al niño su verdadera identidad. Aunque recibió el nombre de José Arcadio, terminaron por llamarlo simplemente Arcadio para evitar confusiones. Había por aquella época tanta actividad en el pueblo y tantos trajines en la casa, que el cuidado de los niños quedó relegado a un nivel secundario. Se los encomendaron a Visitación, una india guajira que llegó al pueblo con un hermano, huyendo de una peste de insomnio que flagelaba a su tribu desde hacía varios años. Ambos eran tan dóciles y serviciales que Úrsula se hizo cargo de ellos para que la ayudaran en los oficios domésticos. Fue así como Arcadio y Amaranta hablaron la lengua guajira antes que el castellano, y aprendieron a tomar caldo de lagartijas y a comer huevos de arañas sin que Úrsula se diera cuenta, porque andaba demasiado ocupada en un prometedor negocio de animalitos de caramelo. Macondo estaba transformado. Las gentes que llegaron con Úrsula divulgaron la buena calidad de su suelo y su posición privilegiada con respecto a la ciénaga, de modo que la escueta aldea de otro tiempo se convirtió muy pronto en un pueblo activo, con tiendas y talleres de artesanía, y una ruta de comercio permanente por donde llegaran los primeros árabes de pantuflas y argollas en las orejas, cambiando collares de vidrio por guacamayas. José Arcadio Buendía no tuvo un instante de reposo. Fascinado por una realidad inmediata que entonces le resultó más fantástica que el vasto universo de su imaginación, perdió todo interés por el laboratorio de alquimia, puso a descansar la materia extenuada por largos meses de manipulación, y volvió a ser el hombre emprendedor de los primeros tiempos que decidía el trazado de las calles y la posición de las nuevas casas, de manera que nadie disfrutara de privilegios que no tuvieran todos. Adquirió tanta autoridad entre los recién llegados que no se echaron cimientos ni se pararon cercas sin consultárselo, y se determinó que fuera él quien dirigiera la repartición de la tierra. Cuando volvieron los gitanos saltimbanquis, ahora con su feria ambulante transformada en un gigantesco establecimiento de juegos de suerte y azar, fueron recibidos con alborozo porque se pensó que José Arcadio regresaba con ellos. Pero José Arcadio no volvió, ni llevaron al hombre-víbora que según pensaba Úrsula era el único que podría darles razón de su hijo, así que no se les permitió a los gitanos instalarse en el pueblo ni volver a pisarlo en el futuro, porque se los consideró como mensajeros de la concupiscencia y la perversión. José Arcadio Buendía, sin embargo, fue explícito en el sentido de que la antigua tribu de Melquíades, que tanto contribuyó al engrandecimiento de la aldea can su milenaria sabiduría y sus fabulosos inventos, encontraría siempre las puertas abiertas. Pero la tribu de Melquíades, según contaron los trotamundos, había sido borrada de la faz de la tierra por haber sobrepasado los limites del conocimiento humano.
