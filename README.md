@@ -39,4 +39,10 @@ If you feel confident in your skills for:
 
 Then you can reach me by posting a comment in a related post from me on reddit https://www.reddit.com/user/toolznbytes/submitted/
 
+/
+
+Bug or issues:
+
+* Download of local corpus file is missing the new metadata language and tags
+
 *Done with free time I took from my other projects that suffered from this... but I'm happy with the result.*
