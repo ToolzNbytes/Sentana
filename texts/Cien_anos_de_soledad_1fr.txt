@@ -2,13 +2,12 @@ Author: Gabriel García Márquez
 Work: Cien años de soledad
 Year: 1965-66
 Choice: first paragraph of chapter one (French version by Claude and Carmen Durand)
-Tags: Ref,ToReview
+Tags: Ref
 Language: fr/es
-Comment: !! draft analysis to review !!
+Comment: First review done. Now compare with original.
 
 ###
-
- Bien des années plus tard, face au peloton d’exécution, le colonel Aureliano Buendia devait se rappeler ce lointain après-midi au cours duquel son père l’emmena faire connaissance avec la glace.
+Bien des années plus tard, face au peloton d’exécution, le colonel Aureliano Buendia devait se rappeler ce lointain après-midi au cours duquel son père l’emmena faire connaissance avec la glace.
 (IC1 Bien des années plus tard, face au peloton d’exécution, le colonel Aureliano Buendia devait se rappeler ce lointain après-midi
 ~(DC2<1 au cours duquel son père l’emmena faire connaissance avec la glace.
 ~)
@@ -58,27 +57,26 @@ Il passa de maison en maison, traînant avec lui deux lingots de métal, et tout
 ~)
 )
 (IC3 et tout le monde fut saisi de terreur
-~(AP4<3 à voir
-~~(DC5<4 les chaudrons, les poêles, les tenailles et les chaufferettes tomber tout seuls de la place
-~~~(DC6<5 où ils étaient,
-~~~)
+~(AP4<3 à voir les chaudrons, les poêles, les tenailles et les chaufferettes tomber tout seuls de la place
+~~(DC5<4 où ils étaient,
 ~~)
-~[CP7 le bois craquer à cause des clous et des vis
-~~(DC8<7 qui essayaient désespérément de s’en arracher,
-~~)
-~]
-~[CP9 et même les objets perdus depuis longtemps apparaissaient là
-~~(DC10<9 où on les avait le plus cherchés,
-~~)
-~]
-~[CP11 et se traînaient
-~~(AP12<11 en débandade turbulente derrière les fers magiques de Melquiades.
+~[CP6 le bois craquer à cause des clous et des vis
+~~(DC7<6 qui essayaient désespérément de s’en arracher,
 ~~)
 ~]
 ~)
 )
+(IC8 et même les objets perdus depuis longtemps apparaissaient là
+~(DC9<8 où on les avait le plus cherchés,
+~)
+[CP10 et se traînaient
+~(AP11<10 en débandade turbulente derrière les fers magiques de Melquiades.
+~)
+]
+)
 
 « Les choses ont une vie bien à elles, clamait le gitan avec un accent guttural ; il faut réveiller leur âme, toute la question est là. »
+# Dialogue to process later
 (IC1 « Les choses ont une vie bien à elles,
 ~(AP2<1 clamait le gitan avec un accent guttural ;
 ~)
@@ -111,9 +109,12 @@ Melquiades, qui était un homme honnête, le mit en garde « Ça ne sert pas à 
 )
 
 Mais José Arcadio Buendia, en ce temps-là, ne croyait pas à l’honnêteté des gitans, et il troqua son mulet et un troupeau de chèvres contre les deux lingots aimantés.
-(IC1 Mais José Arcadio Buendia, en ce temps-là, ne croyait pas à l’honnêteté des gitans,
-[CP2 et il troqua son mulet et un troupeau de chèvres contre les deux lingots aimantés.
-]
+(IC1 Mais José Arcadio Buendia,
+~(AP2<1 en ce temps-là,
+~)
+ ne croyait pas à l’honnêteté des gitans,
+)
+(IC3 et il troqua son mulet et un troupeau de chèvres contre les deux lingots aimantés.
 )
 
 Ursula Iguaran, sa femme, qui comptait sur ces animaux pour agrandir le patrimoine domestique en régression, ne parvint pas à l’en dissuader.
@@ -128,6 +129,7 @@ Ursula Iguaran, sa femme, qui comptait sur ces animaux pour agrandir le patrimoi
 )
 
 « Très vite on aura plus d’or qu’il n’en faut pour paver toute la maison », rétorqua son mari.
+# Dialogue to process later
 (IC1
 ~(AP2>1 « Très vite on aura plus d’or qu’il n’en faut pour paver toute la maison »,
 ~)
@@ -175,7 +177,3 @@ Quand José Arcadio Buendia et les quatre hommes de son expédition parvinrent �
 ~~)
 ~)
 )
-
-###
-
-Bien des années plus tard, face au peloton d’exécution, le colonel Aureliano Buendia devait se rappeler ce lointain après-midi au cours duquel son père l’emmena faire connaissance avec la glace. Macondo était alors un village d’une vingtaine de maisons en glaise et en roseaux, construites au bord d’une rivière dont les eaux diaphanes roulaient sur un lit de pierres polies, blanches, énormes comme des œufs préhistoriques. Le monde était si récent que beaucoup de choses n’avaient pas encore de nom et pour les mentionner, il fallait les montrer du doigt. Tous les ans, au mois de mars, une famille de gitans déguenillés plantait sa tente près du village et, dans un grand tintamarre de fifres et de tambourins, faisait part des nouvelles inventions. Ils commencèrent par apporter l’aimant. Un gros gitan à la barbe broussailleuse et aux mains de moineau, qui répondait au nom de Melquiades, fit en public une truculente démonstration de ce que lui-même appelait la huitième merveille des savants alchimistes de Macédoine. Il passa de maison en maison, traînant avec lui deux lingots de métal, et tout le monde fut saisi de terreur à voir les chaudrons, les poêles, les tenailles et les chaufferettes tomber tout seuls de la place où ils étaient, le bois craquer à cause des clous et des vis qui essayaient désespérément de s’en arracher, et même les objets perdus depuis longtemps apparaissaient là où on les avait le plus cherchés, et se traînaient en débandade turbulente derrière les fers magiques de Melquiades. « Les choses ont une vie bien à elles, clamait le gitan avec un accent guttural ; il faut réveiller leur âme, toute la question est là. » José Arcadio Buendia, dont l’imagination audacieuse allait toujours plus loin que le génie même de la Nature, quand ce n’était pas plus loin que les miracles et la magie, pensa qu’il était possible de se servir de cette invention inutile pour extraire l’or des entrailles de la terre. Melquiades, qui était un homme honnête, le mit en garde « Ça ne sert pas à ça. » Mais José Arcadio Buendia, en ce temps-là, ne croyait pas à l’honnêteté des gitans, et il troqua son mulet et un troupeau de chèvres contre les deux lingots aimantés. Ursula Iguaran, sa femme, qui comptait sur ces animaux pour agrandir le patrimoine domestique en régression, ne parvint pas à l’en dissuader. « Très vite on aura plus d’or qu’il n’en faut pour paver toute la maison », rétorqua son mari. Pendant plusieurs mois, il s’obstina à vouloir démontrer le bien-fondé de ses prévisions. Il fouilla la région pied à pied, sans oublier le fond de la rivière, traînant les deux lingots de fer et récitant à haute voix les formules qu’avait employées Melquiades. La seule chose qu’il réussit à déterrer, ce fut une armure du XVe siècle dont tous les éléments étaient soudés par une carapace de rouille et qui sonnait le creux comme une énorme calebasse pleine de cailloux. Quand José Arcadio Buendia et les quatre hommes de son expédition parvinrent à désarticuler l’armure, ils trouvèrent à l’intérieur un squelette calcifié qui portait à son cou un médaillon en cuivre contenant une mèche de cheveux de femme.

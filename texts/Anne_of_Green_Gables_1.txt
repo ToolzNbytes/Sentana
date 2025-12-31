@@ -4,13 +4,12 @@ Year: -1908
 Choice: beginning of chapter one
 Tags: Classic,Ref,ToReview
 Language: en
-Comment: !! draft analysis to review !!
+Comment: one review done, small tweaks to check in comments
 
 ###
-
- Mrs. Rachel Lynde lived just where the Avonlea main road dipped down into a little hollow, fringed with alders and ladies’ eardrops and traversed by a brook that had its source away back in the woods of the old Cuthbert place; it was reputed to be an intricate, headlong brook in its earlier course through those woods, with dark secrets of pool and cascade; but by the time it reached Lynde’s Hollow it was a quiet, well-conducted little stream, for not even a brook could run past Mrs. Rachel Lynde’s door without due regard for decency and decorum; it probably was conscious that Mrs. Rachel was sitting at her window, keeping a sharp eye on everything that passed, from brooks and children up, and that if she noticed anything odd or out of place she would never rest until she had ferreted out the whys and wherefores thereof.
-(IC1 Mrs. Rachel Lynde lived just
-~(DC2<1 where the Avonlea main road dipped down into a little hollow,
+Mrs. Rachel Lynde lived just where the Avonlea main road dipped down into a little hollow, fringed with alders and ladies’ eardrops and traversed by a brook that had its source away back in the woods of the old Cuthbert place; it was reputed to be an intricate, headlong brook in its earlier course through those woods, with dark secrets of pool and cascade; but by the time it reached Lynde’s Hollow it was a quiet, well-conducted little stream, for not even a brook could run past Mrs. Rachel Lynde’s door without due regard for decency and decorum; it probably was conscious that Mrs. Rachel was sitting at her window, keeping a sharp eye on everything that passed, from brooks and children up, and that if she noticed anything odd or out of place she would never rest until she had ferreted out the whys and wherefores thereof.
+(IC1 Mrs. Rachel Lynde lived
+~(DC2<1 just where the Avonlea main road dipped down into a little hollow,
 ~~(PP3<2 fringed with alders and ladies’ eardrops
 ~~[CP4 and traversed by a brook
 ~~~(DC5<4 that had its source away back in the woods of the old Cuthbert place;
@@ -25,22 +24,24 @@ Comment: !! draft analysis to review !!
 )
 (IC8 but by the time it reached Lynde’s Hollow it was a quiet, well-conducted little stream,
 )
-(IC9 for not even a brook could run past Mrs. Rachel Lynde’s door without due regard for decency and decorum;
+(IC9 for not even a brook could run past Mrs. Rachel Lynde’s door
+~(AP10 without due regard for decency and decorum;
+~)
 )
-(IC10 it probably was conscious
-~(DC11<10 that Mrs. Rachel was sitting at her window,
-~~(PP12<11 keeping a sharp eye on everything
-~~~(DC13<12 that passed,
+(IC11 it probably was conscious
+~(DC12<11 that Mrs. Rachel was sitting at her window,
+~~(PP13<12 keeping a sharp eye on everything
+~~~(DC14<13 that passed,
+~~~)
+~~~(AP15<12 from brooks and children up,
 ~~~)
 ~~)
-~~(AP14<11 from brooks and children up,
+~)
+~(DC16<12 and that
+~~(DC17<16 if she noticed anything odd or out of place
 ~~)
-~~(DC15<11 and that
-~~~(DC16<15 if she noticed anything odd or out of place
-~~~)
-~~~(DC17<15 she would never rest
-~~~~(DC18<17 until she had ferreted out the whys and wherefores thereof.
-~~~~)
+~~(DC18<16 she would never rest
+~~~(DC19<18 until she had ferreted out the whys and wherefores thereof.
 ~~~)
 ~~)
 ~)
@@ -56,9 +57,7 @@ Comment: !! draft analysis to review !!
 ~)
 )
 (IC5 but Mrs. Rachel Lynde was one of those capable creatures
-~(DC6<5 who can manage their own concerns
-~[CP7 and those of other folks into the bargain.
-~]
+~(DC6<5 who can manage their own concerns and those of other folks into the bargain.
 ~)
 )
 
@@ -111,12 +110,10 @@ Since Avonlea occupied a little triangular peninsula jutting out into the Gulf o
 )
 
 The sun was coming in at the window warm and bright; the orchard on the slope below the house was in a bridal flush of pinky-white bloom, hummed over by a myriad of bees.
-(IC1 The sun was coming in at the window
-~(AP2<1 warm and bright;
-~)
+(IC1 The sun was coming in at the window warm and bright;
 )
-(IC3 the orchard on the slope below the house was in a bridal flush of pinky-white bloom,
-~(PP4<3 hummed over by a myriad of bees.
+(IC2 the orchard on the slope below the house was in a bridal flush of pinky-white bloom,
+~(PP3<2 hummed over by a myriad of bees.
 ~)
 )
 
@@ -132,6 +129,8 @@ Thomas Lynde—a meek little man whom Avonlea people called “Rachel Lynde’s 
 )
 
 Mrs. Rachel knew that he ought because she had heard him tell Peter Morrison the evening before in William J. Blair’s store over at Carmody that he meant to sow his turnip seed the next afternoon.
+#4 could be joined with DC3
+#5 could be joined with DC3
 (IC1 Mrs. Rachel knew
 ~(DC2<1 that he ought
 ~)
@@ -190,9 +189,7 @@ Now, where was Matthew Cuthbert going and why was he going there?
  Mrs. Rachel,
 ~(PP3<1 deftly putting this and that together,
 ~)
- might have given a pretty good guess
-~(AP4<1 as to both questions.
-~)
+ might have given a pretty good guess as to both questions.
 )
 
 But Matthew so rarely went from home that it must be something pressing and unusual which was taking him; he was the shyest man alive and hated to have to go among strangers or to any place where he might have to talk.
@@ -204,9 +201,7 @@ But Matthew so rarely went from home that it must be something pressing and unus
 )
 (IC4 he was the shyest man alive
 [CP5 and hated
-~(AP6<5 to have to go among strangers
-~)
-~(AP7<5 or to any place
+~(AP6<5 to have to go among strangers or to any place
 ~~(DC8<7 where he might have to talk.
 ~~)
 ~)
@@ -225,6 +220,7 @@ Matthew, dressed up with a white collar and driving in a buggy, was something th
 )
 
 Mrs. Rachel, ponder as she might, could make nothing of it and her afternoon’s enjoyment was spoiled.
+#2 what is this clause?
 (IC1 Mrs. Rachel,
 ~(DC2<1 ponder as she might,
 ~)
