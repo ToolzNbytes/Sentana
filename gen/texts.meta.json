@@ -114,9 +114,9 @@
     "Work": "Emma",
     "Year": "1810-1815",
     "Choice": "beginning of chapter one",
-    "Tags": "Classic,Ref,ToReview",
+    "Tags": "Classic,Ref",
     "Language": "en",
-    "Comment": "Many variations of the sentences' structure.",
+    "Comment": "Many variations of the sentences' structure. Re check parag lost after correction?",
     "file": "texts/Emma_1.txt"
   }
 ,
@@ -125,9 +125,9 @@
     "Work": "Frankenstein; Or, The Modern Prometheus",
     "Year": "1818",
     "Choice": "beginning of chapter one",
-    "Tags": "Classic,Ref,ToReview",
+    "Tags": "Classic,Ref",
     "Language": "en",
-    "Comment": "!! draft analysis to review !!",
+    "Comment": "reviewed once, still some aspects to check in clause comments",
     "file": "texts/Frankenstein_1.txt"
   }
 ,
@@ -373,5 +373,16 @@
     "Language": "en",
     "Comment": "This excerpt is with first person narration.  !! draft analysis to be reviewed !!",
     "file": "texts/Wuthering_Heights_1.txt"
+  }
+,
+  {
+    "Author": "amateur writer",
+    "Work": "Excerpt 1",
+    "Year": "2025",
+    "Choice": "Courtesy of u/Ok_Listen_5752",
+    "Tags": "amateur",
+    "Language": "en",
+    "Comment": "",
+    "file": "texts/z_amat_1.txt"
   }
 ]
