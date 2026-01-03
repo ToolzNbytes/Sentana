@@ -1,0 +1,225 @@
+Author: amateur writer
+Work: Excerpt 1
+Year: 2025
+Choice: Courtesy of u/Ok_Listen_5752
+Tags: amateur
+Language: en
+Comment: 
+
+###
+A boy named John hangs from an oak.
+(IC1 A boy named John hangs from an oak.
+)
+
+He hangs by his legs which grip the limb and he sees the world in reverse.
+(IC1 He hangs by his legs
+~(DC2<1 which grip the limb
+~)
+)
+(IC3 and he sees the world in reverse.
+)
+
+The white house.
+(FG1 The white house.
+)
+
+The green lawn of wildflowers.
+(FG1 The green lawn of wildflowers.
+)
+
+John has no one who loves him.
+(IC1 John has no one
+~(DC2<1 who loves him.
+~)
+)
+
+His mother wishes he had been stillborn.
+(IC1 His mother wishes
+~(DC2<1 he had been stillborn.
+~)
+)
+
+His father was made simple by a club to the skull and has not the cognizance to love anyone.
+(IC1 His father was made simple by a club to the skull
+[CP2 and has not the cognizance to love anyone.
+]
+)
+
+Not himself.
+(FG1 Not himself.
+)
+
+Not his son.
+(FG1 Not his son.
+)
+
+Not the God who made him or the man who unmade him.
+(FG1 Not the God
+~(DC2<1 who made him
+~[CP3 or the man who unmade him.
+~]
+~)
+)
+
+John can see his mother through the window.
+(IC1 John can see his mother through the window.
+)
+
+He can see his father.
+(IC1 He can see his father.
+)
+
+She dabs at the man's head, removing sweat.
+(IC1 She dabs at the man's head,
+~(PP2<1 removing sweat.
+~)
+)
+
+His father stares forward at nothing.
+(IC1 His father stares forward at nothing.
+)
+
+She hates him.
+(IC1 She hates him.
+)
+
+It is in her movement.
+(IC1 It is in her movement.
+)
+
+A secret she does not hide.
+(FG1 A secret
+~(DC2<1 she does not hide.
+~)
+)
+
+His father could not know.
+(IC1 His father could not know.
+)
+
+Her boy should have been dead and If John hated the woman her hate was justified.
+(IC1 Her boy should have been dead
+)
+(IC2 and
+~(DC3>2 If John hated the woman
+~)
+ her hate was justified.
+)
+
+He remembered how she would lead him to swamps and rivers which line Gilead's pine.
+(IC1 He remembered
+~(DC2<1 how she would lead him to swamps and rivers
+~~(DC3<2 which line Gilead's pine.
+~~)
+~)
+)
+
+Lead him by the hand as a mother does.
+(FG1 Lead him by the hand
+~(AP2<1 as a mother does.
+~)
+)
+
+And then walk away.
+(FG1 And then walk away.
+)
+
+John had not known why all the other mothers would not let their children in the water alone.
+(IC1 John had not known
+~(DC2 why all the other mothers would not let their children in the water alone.
+~)
+)
+
+Children older than he.
+(FG1 Children older than he.
+)
+
+
+Then a boy of eight drowned in the swamp.
+(IC1 Then a boy of eight drowned in the swamp.
+)
+
+Surfaced bloated, his face still submerged, the back of him pale and round as a moon in the dark water.
+(FG1
+~(PP1 Surfaced bloated,
+~[CP2 his face still submerged,
+~]
+~)
+ the back of him pale and round as a moon in the dark water.
+)
+
+He had once been swept away by a river.
+(IC1 He had once been swept away by a river.
+)
+
+Hit his head on a rock.
+(FG1 Hit his head on a rock.
+)
+
+She had almost got her wish.
+(IC1 She had almost got her wish.
+)
+
+But he had grasped a root and pulled himself onto the bank and lain there in the mud breathing.
+(IC1 But he had grasped a root
+[CP2 and pulled himself onto the bank
+]
+[CP3 and lain there in the mud
+~(PP4 breathing.
+~)
+]
+)
+
+He had crawled back to the house trailing blood and water and when she saw him she burst into tears.
+(IC1 He had crawled back to the house
+~(PP2<1 trailing blood and water
+~)
+)
+(IC3 and
+~(DC4<3 when she saw him
+~)
+ she burst into tears.
+)
+
+She felt his headwound frantically.
+(IC1 She felt his headwound frantically.
+)
+
+She grabbed him as a mother should.
+(IC1 She grabbed him
+~(AP2<1 as a mother should.
+~)
+)
+
+She swaddled him in blankets and warmed him by the flame and held him to her chest and wept.
+(IC1 She swaddled him in blankets
+[CP2 and warmed him by the flame
+]
+[CP3 and held him to her chest
+]
+[CP4 and wept.
+]
+)
+
+John had not known if she was sobbing for what she had almost done or what could have almost happened.
+(IC1 John had not known
+~(DC2<1 if she was sobbing
+~~(DC3<2 for what she had almost done
+~~[CP4 or what could have almost happened.
+~~]
+~~)
+~)
+)
+
+As she swaddled him John felt a cloying fear.
+(IC1
+~(PP2>1 As she swaddled him
+~)
+ John felt a cloying fear.
+)
+
+And arched his head so that the blanket could never cover his mouth.
+(FG1 And arched his head
+~(DC2<1 so that the blanket could never cover his mouth.
+~)
+)

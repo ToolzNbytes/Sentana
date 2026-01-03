@@ -2,9 +2,9 @@ Author: Jane Austen
 Work: Emma
 Year: 1810-1815
 Choice: beginning of chapter one
-Tags: Classic,Ref,ToReview
+Tags: Classic,Ref
 Language: en
-Comment: Many variations of the sentences' structure.
+Comment: Many variations of the sentences' structure. Re check parag lost after correction?
 
 ###
 
@@ -55,6 +55,7 @@ Between them it was more the intimacy of sisters.
 )
 
 Even before Miss Taylor had ceased to hold the nominal office of governess, the mildness of her temper had hardly allowed her to impose any restraint; and the shadow of authority being now long passed away, they had been living together as friend and friend very mutually attached, and Emma doing just what she liked; highly esteeming Miss Taylor’s judgment, but directed chiefly by her own.
+#5 'has been' omitted
 (IC1 
 ~(DC2>1Even before Miss Taylor had ceased to hold the nominal office of governess,
 ~)
@@ -64,12 +65,12 @@ Even before Miss Taylor had ceased to hold the nominal office of governess, the 
 ~(PP4>3 the shadow of authority being now long passed away,
 ~)
  they had been living together as friend and friend very mutually attached,
-~(PP5<3 and Emma doing just what she liked;
-~)
+[CP5 and Emma doing just what she liked;
 ~(PP6<3 highly esteeming Miss Taylor’s judgment,
 ~[CP7 but directed chiefly by her own.
 ~]
 ~)
+]
 )
 
  The real evils, indeed, of Emma’s situation were the power of having rather too much her own way, and a disposition to think a little too well of herself; these were the disadvantages which threatened alloy to her many enjoyments.
@@ -139,6 +140,7 @@ Her father composed himself to sleep after dinner, as usual, and she had then on
 )
 
 Mr. Weston was a man of unexceptionable character, easy fortune, suitable age, and pleasant manners; and there was some satisfaction in considering with what self-denying, generous friendship she had always wished and promoted the match; but it was a black morning’s work for her.
+#1 enumeration
 (IC1 Mr. Weston was a man of unexceptionable character, easy fortune, suitable age, and pleasant manners;
 )
 (IC2 and there was some satisfaction in considering
@@ -156,18 +158,19 @@ The want of Miss Taylor would be felt every hour of every day.
 
 She recalled her past kindness—the kindness, the affection of sixteen years—how she had taught and how she had played with her from five years old—how she had devoted all her powers to attach and amuse her in health—and how nursed her through the various illnesses of childhood.
 (IC1 She recalled her past kindness
-~(AP2<1—the kindness, the affection of sixteen years—
+~(AP2<1—the kindness, the affection of sixteen years
 ~)
-~(DC3<1how she had taught
-~[CP4 and how she had played with her from five years old
+~(DC3<1—how she had taught
+~[CP4 and how she had played with her
 ~]
+~ from five years old
 ~[CP5—how she had devoted all her powers to attach and amuse her in health
 ~]
 ~[CP6—and how nursed her through the various illnesses of childhood.
 ~]
 ~)
 )
-# DC3 and its CPs preserve the dash-chaining; CP4 could alternatively be left untagged as simple coordination inside DC3.
+# CP4 could alternatively be left untagged as simple coordination inside DC3.
 
 A large debt of gratitude was owing here; but the intercourse of the last seven years, the equal footing and perfect unreserve which had soon followed Isabella’s marriage, on their being left to each other, was yet a dearer, tenderer recollection.
 (IC1 A large debt of gratitude was owing here;
@@ -175,7 +178,7 @@ A large debt of gratitude was owing here; but the intercourse of the last seven 
 (IC2 but the intercourse of the last seven years, the equal footing and perfect unreserve
 ~(DC3<2 which had soon followed Isabella’s marriage,
 ~)
-~(PP4<2 on their being left to each other,
+~(AP4<2 on their being left to each other,
 ~)
  was yet a dearer, tenderer recollection.
 )
@@ -204,3 +207,4 @@ She had been a friend and companion such as few possessed: intelligent, well-inf
 ~)
 )
 # The colon-led descriptor list is treated as IC1 continuation plus PP3; it could alternatively be wrapped as a single AP after the colon.
+

@@ -2,13 +2,12 @@ Author: Mary W. Shelley
 Work: Frankenstein; Or, The Modern Prometheus
 Year: 1818
 Choice: beginning of chapter one
-Tags: Classic,Ref,ToReview
+Tags: Classic,Ref
 Language: en
-Comment: !! draft analysis to review !!
+Comment: reviewed once, still some aspects to check in clause comments
 
 ###
-
- You will rejoice to hear that no disaster has accompanied the commencement of an enterprise which you have regarded with such evil forebodings.
+You will rejoice to hear that no disaster has accompanied the commencement of an enterprise which you have regarded with such evil forebodings.
 (IC1 You will rejoice to hear
 ~(DC2<1 that no disaster has accompanied the commencement of an enterprise
 ~~(DC3<2 which you have regarded with such evil forebodings.
@@ -18,8 +17,8 @@ Comment: !! draft analysis to review !!
 
 I arrived here yesterday, and my first task is to assure my dear sister of my welfare and increasing confidence in the success of my undertaking.
 (IC1 I arrived here yesterday,
-[CP2 and my first task is to assure my dear sister of my welfare and increasing confidence in the success of my undertaking.
-]
+)
+(IC2 and my first task is to assure my dear sister of my welfare and increasing confidence in the success of my undertaking.
 )
 
  I am already far north of London, and as I walk in the streets of Petersburgh, I feel a cold northern breeze play upon my cheeks, which braces my nerves and fills me with delight.
@@ -52,9 +51,7 @@ Inspirited by this wind of promise, my daydreams become more fervent and vivid.
 (IC1
 ~(PP2>1 Inspirited by this wind of promise,
 ~)
- my daydreams become more fervent
-[CP3 and vivid.
-]
+ my daydreams become more fervent and vivid.
 )
 
 I try in vain to be persuaded that the pole is the seat of frost and desolation; it ever presents itself to my imagination as the region of beauty and delight.
@@ -74,7 +71,10 @@ There, Margaret, the sun is for ever visible, its broad disk just skirting the h
 )
 
 There—for with your leave, my sister, I will put some trust in preceding navigators—there snow and frost are banished; and, sailing over a calm sea, we may be wafted to a land surpassing in wonders and in beauty every region hitherto discovered on the habitable globe.
-(IC1 There—for with your leave, my sister, I will put some trust in preceding navigators—there snow and frost are banished;
+(IC1 There
+~(AP3—for with your leave, my sister, I will put some trust in preceding navigators
+~)
+—there snow and frost are banished;
 )
 (IC2 and,
 ~(PP3<2 sailing over a calm sea,
@@ -85,9 +85,10 @@ There—for with your leave, my sister, I will put some trust in preceding navig
 )
 
 Its productions and features may be without example, as the phenomena of the heavenly bodies undoubtedly are in those undiscovered solitudes.
+#2 unsure if IC or DC
 (IC1 Its productions and features may be without example,
-~(DC2<1 as the phenomena of the heavenly bodies undoubtedly are in those undiscovered solitudes.
-~)
+)
+(IC2 as the phenomena of the heavenly bodies undoubtedly are in those undiscovered solitudes.
 )
 
 What may not be expected in a country of eternal light?
@@ -97,13 +98,13 @@ What may not be expected in a country of eternal light?
 I may there discover the wondrous power which attracts the needle and may regulate a thousand celestial observations that require only this voyage to render their seeming eccentricities consistent for ever.
 (IC1 I may there discover the wondrous power
 ~(DC2<1 which attracts the needle
-~)
-[CP3 and may regulate a thousand celestial observations
-~(DC4<3 that require only this voyage
-~~(AP5<4 to render their seeming eccentricities consistent for ever.
+~[CP3 and may regulate a thousand celestial observations
+~~(DC4<3 that require only this voyage
+~~~(AP5<4 to render their seeming eccentricities consistent for ever.
+~~~)
 ~~)
+~]
 ~)
-]
 )
 
 I shall satiate my ardent curiosity with the sight of a part of the world never before visited, and may tread a land never before imprinted by the foot of man.
@@ -117,12 +118,17 @@ I shall satiate my ardent curiosity with the sight of a part of the world never 
 )
 
 These are my enticements, and they are sufficient to conquer all fear of danger or death and to induce me to commence this laborious voyage with the joy a child feels when he embarks in a little boat, with his holiday mates, on an expedition of discovery up his native river.
+#3 unsure
 (IC1 These are my enticements,
 )
 (IC2 and they are sufficient to conquer all fear of danger or death
 ~(AP3<2 and to induce me
 ~~(AP4<3 to commence this laborious voyage with the joy a child feels
-~~~(DC5<4 when he embarks in a little boat, with his holiday mates, on an expedition of discovery up his native river.
+~~~(DC5<4 when he embarks in a little boat,
+~~~~(AP6<5 with his holiday mates,
+~~~~[CP7 on an expedition of discovery up his native river.
+~~~~]
+~~~~)
 ~~~)
 ~~)
 ~)
@@ -134,16 +140,17 @@ But supposing all these conjectures to be false, you cannot contest the inestima
 ~)
  you cannot contest the inestimable benefit
 ~(DC3<1 which I shall confer on all mankind, to the last generation,
-~)
-~(AP4<1 by discovering a passage near the pole to those countries,
-~~(AP5<4 to reach which at present so many months are requisite;
-~~)
-~)
-~(AP6<1 or by ascertaining the secret of the magnet,
-~~(DC7<6 which,
-~~~(AP8<7 if at all possible,
+
+~~(AP4<1 by discovering a passage near the pole to those countries,
+~~~(AP5<4 to reach which at present so many months are requisite;
 ~~~)
-~~ can only be effected by an undertaking such as mine.
+~~)
+~~(AP6<1 or by ascertaining the secret of the magnet,
+~~~(DC7<6 which,
+~~~~(AP8<7 if at all possible,
+~~~~)
+~~~ can only be effected by an undertaking such as mine.
+~~~)
 ~~)
 ~)
 )
@@ -230,6 +237,7 @@ I also became a poet and for one year lived in a paradise of my own creation; I 
 )
 
 You are well acquainted with my failure and how heavily I bore the disappointment.
+#2 recheck sentence
 (IC1 You are well acquainted with my failure
 ~(DC2<1 and how heavily I bore the disappointment.
 ~)
@@ -237,6 +245,7 @@ You are well acquainted with my failure and how heavily I bore the disappointmen
 
 But just at that time I inherited the fortune of my cousin, and my thoughts were turned into the channel of their earlier bent.
 (IC1 But just at that time I inherited the fortune of my cousin,
-[CP2 and my thoughts were turned into the channel of their earlier bent.
-]
 )
+(IC2 and my thoughts were turned into the channel of their earlier bent.
+)
+
