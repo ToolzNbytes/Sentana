@@ -2,10 +2,9 @@ Author: 	Joseph Conrad
 Work: Heart of Darkness
 Year: 1899
 Choice: beginning of chapter one
-Tags: Classic,ToReview
+Tags: Classic
 Language: en
-
-Comment: !! draft analysis to review !!
+Comment: reviewed once, some ckecks remain
 
 ###
 
@@ -32,10 +31,12 @@ The flood had made, the wind was nearly calm, and being bound down the river, th
 )
 
  The sea–reach of the Thames stretched before us like the beginning of an interminable waterway.
+ #1 Simile
 (IC1 The sea–reach of the Thames stretched before us like the beginning of an interminable waterway.
 )
 
 In the offing the sea and the sky were welded together without a joint, and in the luminous space the tanned sails of the barges drifting up with the tide seemed to stand still in red clusters of canvas sharply peaked, with gleams of varnished sprits.
+#2 'sharply peaked' could be a PP maybe?
 (IC1 In the offing the sea and the sky were welded together without a joint,
 )
 (IC2 and
@@ -44,10 +45,8 @@ In the offing the sea and the sky were welded together without a joint, and in t
  the tanned sails of the barges
 ~(PP4<2 drifting up with the tide
 ~)
- seemed to stand still in red clusters of canvas
-~(PP5<2 sharply peaked,
-~)
-~(AP6<2 with gleams of varnished sprits.
+ seemed to stand still in red clusters of canvas sharply peaked,
+~(AP5<2 with gleams of varnished sprits.
 ~)
 )
 
@@ -112,11 +111,14 @@ Besides holding our hearts together through long periods of separation, it had t
 )
 
 The Lawyer—the best of old fellows—had, because of his many years and many virtues, the only cushion on deck, and was lying on the only rug.
-(IC1 The Lawyer—the best of old fellows—had,
-~(AP2<1 because of his many years and many virtues,
+(IC1 The Lawyer
+~(AP2<1—the best of old fellows
+~)
+—had,
+~(AP3<1 because of his many years and many virtues,
 ~)
  the only cushion on deck,
-[CP3 and was lying on the only rug.
+[CP4 and was lying on the only rug.
 ]
 )
 
@@ -133,6 +135,7 @@ Marlow sat cross–legged right aft, leaning against the mizzenmast.
 )
 
 He had sunken cheeks, a yellow complexion, a straight back, an ascetic aspect, and, with his arms dropped, the palms of hands outwards, resembled an idol.
+#1 Enumeration + simile
 (IC1 He had sunken cheeks, a yellow complexion, a straight back, an ascetic aspect,
 [CP2 and,
 ~(AP3<2 with his arms dropped, the palms of hands outwards,
@@ -175,6 +178,8 @@ The day was ending in a serenity of still and exquisite brilliance.
 )
 
 The water shone pacifically; the sky, without a speck, was a benign immensity of unstained light; the very mist on the Essex marsh was like a gauzy and radiant fabric, hung from the wooded rises inland, and draping the low shores in diaphanous folds.
+#4 Simile
+#6 metaphore, continued
 (IC1 The water shone pacifically;
 )
 (IC2 the sky,
@@ -199,6 +204,7 @@ Only the gloom to the west, brooding over the upper reaches, became more sombre 
 )
 
  And at last, in its curved and imperceptible fall, the sun sank low, and from glowing white changed to a dull red without rays and without heat, as if about to go out suddenly, stricken to death by the touch of that gloom brooding over a crowd of men.
+# Check the critics about this sentence
 (IC1 And at last,
 ~(AP2<1 in its curved and imperceptible fall,
 ~)

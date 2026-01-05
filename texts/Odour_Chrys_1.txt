@@ -2,9 +2,9 @@ Author: D. H. Lawrence
 Work: Odour of Chrysanthemums
 Year: 1909
 Choice: first paragraph
-Tags: Ref,ToReview
+Tags: Ref
 Language: en
-Comment: This excerpt is praised for its glood flow. !! draft to be reviewed !!
+Comment: This excerpt is praised for its glood flow.
 
 ###
 
@@ -14,7 +14,9 @@ Comment: This excerpt is praised for its glood flow. !! draft to be reviewed !!
 ~[CP3 stumbling down
 ~]
 ~)
- from Selston--with seven full waggons.
+ from Selston
+~(AP4--with seven full waggons.
+~)
 )
 # We are not sure if the “from…” should be inside the PP or not
 

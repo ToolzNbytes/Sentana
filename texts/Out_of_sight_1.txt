@@ -2,9 +2,9 @@ Author: Elmore Leonard
 Work: Out of Sight
 Year: 1996
 Choice: at two third of chapter one
-Tags: Pop,ToReview
+Tags: Pop
 Language: en
-Comment: Author praised for realistic dialogues, but here is a bit of prose. !! draft analysis to review !!
+Comment: Author praised for realistic dialogues, but here is a bit of prose.
 
 ###
 
@@ -23,6 +23,7 @@ Comment: Author praised for realistic dialogues, but here is a bit of prose. !! 
 )
 
 He told himself he’d better get out of the car, be ready.
+#3 CP with the future rules v4, as it's at the level of DC2 "get out" with "he'd" in factor
 (IC1 He told himself
 ~(DC2<1 he’d better get out of the car,
 ~[CP3 be ready.
@@ -41,12 +42,12 @@ Whether he wanted to or not.
  he saw the girl,
 ~(AP3<1 still by the front of her car,
 ~)
-~(AP4<1 had the shotgun on two more cons,
-~)
-~(AP5<1 both filthy dirty,
-~)
-~(PP6<1 standing by the hole
-~~(DC7<6 they must’ve come out of,
+~(DC4<1 had the shotgun on two more cons,
+~~(AP5<1 both filthy dirty,
+~~)
+~~(PP6<1 standing by the hole
+~~~(DC7<6 they must’ve come out of,
+~~~)
 ~~)
 ~)
 ~(AP8<1 the girl
@@ -66,8 +67,14 @@ So who was she?
 )
 
 Buddy could see the two cons making up their minds, couple of Latinos, already edging away – shit, they’d come this far.
-(IC1 Buddy could see the two cons making up their minds, couple of Latinos, already edging away – shit,
-~(IC2 they’d come this far.
+#1 -ing not optional (it's what he sees), so no PP
+#4 free indirect speech
+(IC1 Buddy could see the two cons making up their minds,
+~(AP2<1 couple of Latinos,
+~)
+~(PP3 already edging away
+~)
+~(AP4<1 – shit, they’d come this far.
 ~)
 )
 
@@ -75,12 +82,12 @@ They looked out at that spotlight sweeping around in the dark, then looked the o
 (IC1 They looked out at that spotlight
 ~(PP2<1 sweeping around in the dark,
 ~)
-)
-(IC3 then looked the other way,
+[CP3 then looked the other way,
 ~(AP4<3 along the fence toward the main gate,
 ~)
 ~(AP5<3 to see armed hacks coming out on the run,
 ~)
+]
 )
 (IC6 and that decided it for the two cons.
 )
@@ -165,7 +172,7 @@ Now they were standing by it peering in, edging closer with their weapons ready,
 ~[CP6 shaking his head now,
 ~]
 ~)
-~(AP7<1 excited.
+~(CP7 excited.
 ~)
 )
 
@@ -184,6 +191,7 @@ Another extended his rifle for the one in the hole to grab the barrel and get pu
 )
 
 But the one in the hole kept yelling and pointing out at the dark, toward the orange grove.
+#2 CP with the future rules v4, as it's at the level of IC1 "yeling" with "kept" in factor
 (IC1 But the one in the hole kept yelling
 [CP2 and pointing out at the dark,
 ~(AP3<2 toward the orange grove.
@@ -236,10 +244,10 @@ Buddy moved up to his headlights, raising his arm and waving at Foley to come on
 ~~)
 ~]
 ~)
-)
-(IC5 and saw the girl turn enough
+[CP5 and saw the girl turn enough
 ~(AP6<5 to put the shotgun on him.
-~)
+~)*
+]
 )
 
 Buddy raised the palm of his hand to her saying, ‘It’s okay, honey, we’re good guys.’
@@ -263,6 +271,7 @@ Buddy wanting to appear calm, wanting to believe he’d have no problem with thi
 )
 
  She said, ‘What’re you doing here?’
+# Dialogue
 (IC1 She said,
 ~(AP2<1 ‘What’re you doing here?’
 ~)
@@ -289,6 +298,7 @@ She glanced around to include Foley.
 )
 
 She knew, all right, but with the two of them to watch was too late making her move.
+# to review (does not fit in the model, maybe a loose construction)
 (IC1 She knew, all right,
 )
 (IC2 but
@@ -302,6 +312,7 @@ She knew, all right, but with the two of them to watch was too late making her m
 )
 
 She saw Foley coming at her filthy dirty, like a creature out of the swamp, giving Buddy time to take her around the neck.
+#3 Simile
 (IC1 She saw Foley
 ~(PP2<1 coming at her filthy dirty,
 ~~(AP3<2 like a creature out of the swamp,

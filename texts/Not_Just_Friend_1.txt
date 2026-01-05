@@ -2,9 +2,9 @@ Author: Jordan Meadows
 Work: Not Just Friends
 Year: 2024
 Choice: beginning of chapter two
-Tags: Pop,ToReview
+Tags: Pop
 Language: en
-Comment: First person narrator is young, so the voice matches this. !! draft analysis to review !!
+Comment: First person narrator is young, so the voice matches this.
 
 ###
 
@@ -32,8 +32,8 @@ Back around 2.
 
  It was Sunday and I had chores to do.
 (IC1 It was Sunday
-[CP2 and I had chores to do.
-]
+)
+(IC2 and I had chores to do.
 )
 
 We had a living room, a small dining room, a kitchen, two bedrooms and a shared bathroom.
@@ -42,8 +42,8 @@ We had a living room, a small dining room, a kitchen, two bedrooms and a shared 
 
 I was supposed to keep my room tidy, change my sheets once a week, vacuum, dust, clean the bathroom, and I was on dish duty on the weekends.
 (IC1 I was supposed to keep my room tidy, change my sheets once a week, vacuum, dust, clean the bathroom,
-[CP2 and I was on dish duty on the weekends.
-]
+)
+(IC2 and I was on dish duty on the weekends.
 )
 
 My mom did weekday dishes, most of the cooking, and the laundry.
@@ -102,11 +102,11 @@ I made a little effort to make the bob look purposefully messy instead of just m
  was always trying to smooth my hair out
 ~(AP5<1 to make it look tidy,
 ~)
-[CP6 and
+)
+(IC6 and
 ~(DC7<6 since she washed her hair every day,
 ~)
  she thought I should, too.
-]
 )
 
 I finally got tired of it and took matters into my own hands when I was twelve.
@@ -130,6 +130,7 @@ I looked up what to do with curly hair, opted for a messy bob, and it was what I
 )
 
 My mom wasn’t fond of how it looked like I’d just gotten out of bed all the time, but it was easy and that was what I needed in a hairstyle.
+#2 simile
 (IC1 My mom wasn’t fond of
 ~(DC2<1 how it looked like I’d just gotten out of bed all the time,
 ~)

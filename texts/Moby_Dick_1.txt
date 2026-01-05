@@ -2,9 +2,9 @@ Author: Herman Melville
 Work: Moby-Dick; or, The Whale.
 Year: 1850-1851
 Choice: beginning of chapter one
-Tags: Classic,Ref,ToReview
+Tags: Classic,Ref
 Language: en
-Comment: !! draft analysis to review !!
+Comment: reviewed once
 
 ###
 
@@ -13,48 +13,55 @@ Comment: !! draft analysis to review !!
 )
 
 Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.
-(IC1 Some years ago—never mind how long precisely
-~(PP2<1—having little or no money in my purse, and nothing particular to interest me on shore,
+(IC1 Some years ago
+~(AP2<1—never mind how long precisely
+~)
+~(PP3<1—having little or no money in my purse,
+~[CP4 and nothing particular to interest me on shore,
+~]
 ~)
  I thought
-~(DC3<1 I would sail about a little
-~[CP4 and see the watery part of the world.
+~(DC5<1 I would sail about a little
+~[CP6 and see the watery part of the world.
 ~]
 ~)
 )
 
 It is a way I have of driving off the spleen and regulating the circulation.
-(IC1 It is a way I have of driving off the spleen
-[CP2 and regulating the circulation.
-]
+(IC1 It is a way I have of driving off the spleen and regulating the circulation.
 )
 
 Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people’s hats off—then, I account it high time to get to sea as soon as I can.
 # Such a delayed subject for the independent clause!
+#4 the -ing clause is not optional here, so no PP
+#5 treated as an extension of DC4 for the same reason
+#8 the -ing clause is not optional here, so no PP
+#9 treated as an extension of AP8 for the same reason
+
 (IC1 
 ~(DC2>1 Whenever I find myself growing grim about the mouth;
 ~)
 ~(DC3>1 whenever it is a damp, drizzly November in my soul;
 ~)
 ~(DC4>1 whenever I find myself involuntarily pausing before coffin warehouses,
-~~(PP5<4 and bringing up the rear of every funeral I meet;
-~~)
+~[CP5 and bringing up the rear of every funeral I meet;
+~]
 ~)
 ~(DC6>1 and especially whenever my hypos get such an upper hand of me,
 ~~(DC7<6 that it requires a strong moral principle
 ~~~(AP8<7 to prevent me from deliberately stepping into the street,
-~~~~(PP9<8 and methodically knocking people’s hats off—then,
-~~~~)
+~~~[CP9 and methodically knocking people’s hats off
+~~~]
 ~~~)
 ~~)
 ~)
- I account it high time
+—then, I account it high time
 ~(AP10<1 to get to sea
 ~~(DC11<10 as soon as I can.
 ~~)
 ~)
 )
-# The long DC chain is treated as a series of fronted conditionals feeding IC1; “then,” is left inside the PP9 continuation to preserve dash attachment.
+# The long DC chain is treated as a series of fronted conditionals feeding IC1
 
 This is my substitute for pistol and ball.
 (IC1 This is my substitute for pistol and ball.
@@ -71,26 +78,31 @@ There is nothing surprising in this.
 )
 
 If they but knew it, almost all men in their degree, some time or other, cherish very nearly the same feelings towards the ocean with me.
-(IC1 
-~(DC2>1If they but knew it,
+(IC1
+~(DC2>1 If they but knew it,
 ~)
- almost all men in their degree, some time or other, cherish very nearly the same feelings towards the ocean with me.
+ almost all men in their degree,
+~(AP3 some time or other,
+~)
+ cherish very nearly the same feelings towards the ocean with me.
 )
 
  There now is your insular city of the Manhattoes, belted round by wharves as Indian isles by coral reefs—commerce surrounds it with her surf.
 (IC1 There now is your insular city of the Manhattoes,
 ~(PP2<1 belted round by wharves
-~~(AP3<2 as Indian isles by coral reefs—commerce surrounds it with her surf.
+~~(AP3<2 as Indian isles by coral reefs
 ~~)
 ~)
 )
-# “—commerce surrounds it with her surf.” could also be split as a new IC; it is kept inside AP3 to preserve the dash-bound apposition.
+(IC4—commerce surrounds it with her surf.
+)
 
 Right and left, the streets take you waterward.
 (IC1 Right and left, the streets take you waterward.
 )
 
 Its extreme downtown is the battery, where that noble mole is washed by waves, and cooled by breezes, which a few hours previous were out of sight of land.
+#4 is relative to both DC2 and CP3 subjects
 (IC1 Its extreme downtown is the battery,
 ~(DC2<1 where that noble mole is washed by waves,
 ~[CP3 and cooled by breezes,
@@ -117,11 +129,13 @@ Go from Corlears Hook to Coenties Slip, and from thence, by Whitehall, northward
 What do you see?—Posted like silent sentinels all around the town, stand thousands upon thousands of mortal men fixed in ocean reveries.
 (IC1 What do you see?
 )
-(IC2—Posted like silent sentinels all around the town, stand thousands upon thousands of mortal men
+(IC2
+~(PP3<2—Posted like silent sentinels all around the town,
+~)
+ stand thousands upon thousands of mortal men
 ~(PP3<2 fixed in ocean reveries.
 ~)
 )
-# IC2 begins with an em-dash attached to “Posted”; treated as its own clause for the inverted “stand …”.
 
 Some leaning against the spiles; some seated upon the pier-heads; some looking over the bulwarks of ships from China; some high aloft in the rigging, as if striving to get a still better seaward peep.
 (FG1 Some leaning against the spiles;
@@ -136,11 +150,21 @@ Some leaning against the spiles; some seated upon the pier-heads; some looking o
 )
 
 But these are all landsmen; of week days pent up in lath and plaster—tied to counters, nailed to benches, clinched to desks.
+# a dash series at the end
+#3 unsure how to handle this, made as AP inside PP
 (IC1 But these are all landsmen;
-~(PP2<1 of week days pent up in lath and plaster—tied to counters, nailed to benches, clinched to desks.
+~(PP2<1
+~~(AP3<2 of week days
+~~)
+~ pent up in lath and plaster
+~[CP4—tied to counters,
+~]
+~[CP5 nailed to benches,
+~]
+~[CP6 clinched to desks.
+~]
 ~)
 )
-# PP2 includes the dash-series as integrated participial description.
 
 How then is this?
 (IC1 How then is this?
@@ -179,13 +203,10 @@ No.
 )
 
 They must get just as nigh the water as they possibly can without falling in.
-(IC1 They must get just as nigh the water
-~(AP2<1 as they possibly can
-~)
-~(AP3<1 without falling in.
+(IC1 They must get just as nigh the water as they possibly can
+~(AP2<1 without falling in.
 ~)
 )
-# “as they possibly can” is treated as optional scalar adjunct; could also be integrated.
 
 And there they stand—miles of them—leagues.
 (IC1 And there they stand
@@ -208,3 +229,8 @@ Tell me, does the magnetic virtue of the needles of the compasses of all those s
 )
 (IC2 does the magnetic virtue of the needles of the compasses of all those ships attract them thither?
 )
+
+###
+
+???
+With a philosophical flourish Cato throws himself upon his sword;
