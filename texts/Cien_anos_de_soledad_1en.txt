@@ -1,0 +1,193 @@
+Author: Gabriel García Márquez
+Work: Cien años de soledad
+Year: 1965-66
+Choice: first paragraph of chapter one (English version by Gregory Rabassa)
+Tags: Ref,ToReview
+Language: en/es
+Comment: !! draft analysis to review !!
+
+###
+
+Many years later as he faced the firing squad, Colonel Aureliano Buendía was to remember that distant afternoon when his father took him to discover ice.
+(IC1  Many years later
+~(DC2<1 as he faced the firing squad,
+~)
+ Colonel Aureliano Buendía was to remember that distant afternoon
+~(DC3<1 when his father took him
+~~(AP4<3 to discover ice.
+~~)
+~)
+)
+
+At that time Macondo was a village of twenty adobe houses, built on the bank of a river of clear water that ran along a bed of polished stones, which were white and enormous, like prehistoric eggs.
+(IC1  At that time Macondo was a village of twenty adobe houses,
+~(PP2<1 built on the bank of a river of clear water
+~~(DC3<2 that ran along a bed of polished stones,
+~~~(DC4<3 which were white and enormous,
+~~~~(AP5<4 like prehistoric eggs.
+~~~~)
+~~~)
+~~)
+~)
+)
+
+The world was so recent that many things lacked names, and in order to indicate them it was necessary to point.
+(IC1  The world was so recent
+~(DC2<1 that many things lacked names,
+~)
+)
+(IC3 and
+~(AP4>3 in order to indicate them
+~)
+ it was necessary to point.
+)
+
+Every year during the month of March a family of ragged gypsies would set up their tents near the village, and with a great uproar of pipes and kettledrums they would display new inventions.
+(IC1  Every year during the month of March a family of ragged gypsies would set up their tents near the village,
+)
+(IC2 and
+~(AP3>2 with a great uproar of pipes and kettledrums
+~)
+ they would display new inventions.
+)
+
+First they brought the magnet.
+(IC1  First they brought the magnet.
+)
+
+A heavy gypsy with an untamed beard and sparrow hands, who introduced himself as Melquíades, put on a bold public demonstration of what he himself called the eighth wonder of the learned alchemists of Macedonia.
+(IC1  A heavy gypsy with an untamed beard and sparrow hands,
+~(DC2<1 who introduced himself as Melquíades,
+~)
+ put on a bold public demonstration
+~(DC3<1 of what he himself called the eighth wonder of the learned alchemists of Macedonia.
+~)
+)
+
+ He went from house to house dragging two metal ingots and everybody was amazed to see pots, pans, tongs, and braziers tumble down from their places and beams creak from the desperation of nails and screws trying to emerge, and even objects that had been lost for a long time appeared from where they had been searched for most and went dragging along in turbulent confusion behind Melquíades’ magical irons.
+(IC1  He went from house to house
+~(PP2<1 dragging two metal ingots
+~)
+)
+(IC3 and everybody was amazed
+~(AP4<3 to see pots, pans, tongs, and braziers tumble down from their places
+~[CP5 and beams creak from the desperation of nails and screws
+~~(PP6<5 trying to emerge,
+~~)
+~]
+~[CP7 and even objects
+~~(DC8<7 that had been lost for a long time
+~~)
+~ appeared from
+~~(DC9<7 where they had been searched for most
+~~)
+~[CP10 and went dragging along
+~~(AP11<10 in turbulent confusion behind Melquíades’ magical irons.
+~~)
+~]
+~]
+~)
+)
+
+“Things have a life of their own,” the gypsy proclaimed with a harsh accent.
+(IC1
+~(AP2>1 “Things have a life of their own,”
+~)
+ the gypsy proclaimed with a harsh accent.
+)
+
+“It’s simply a matter of waking up their souls.”
+(IC1  “It’s simply a matter of waking up their souls.”
+)
+
+José Arcadio Buendía, whose unbridled imagination always went beyond the genius of nature and even beyond miracles and magic, thought that it would be possible to make use of that useless invention to extract gold from the bowels of the earth.
+(IC1  José Arcadio Buendía,
+~(DC2<1 whose unbridled imagination always went beyond the genius of nature and even beyond miracles and magic,
+~)
+ thought
+~(DC3<1 that it would be possible
+~~(AP4<3 to make use of that useless invention
+~~~(AP5<4 to extract gold from the bowels of the earth.
+~~~)
+~~)
+~)
+)
+
+Melquíades, who was an honest man, warned him: “It won’t work for that.”
+(IC1  Melquíades,
+~(DC2<1 who was an honest man,
+~)
+ warned him:
+~(AP3<1 “It won’t work for that.”
+~)
+)
+
+But José Arcadio Buendía at that time did not believe in the honesty of gypsies, so he traded his mule and a pair of goats for the two magnetized ingots.
+(IC1  But José Arcadio Buendía at that time did not believe in the honesty of gypsies,
+)
+(IC2 so he traded his mule and a pair of goats for the two magnetized ingots.
+)
+
+Úrsula Iguarán, his wife, who relied on those animals to increase their poor domestic holdings, was unable to dissuade him.
+(IC1  Úrsula Iguarán,
+~(AP2<1 his wife,
+~)
+~(DC3<1 who relied on those animals
+~~(AP4<3 to increase their poor domestic holdings,
+~~)
+~)
+ was unable to dissuade him.
+)
+
+“Very soon well have gold enough and more to pave the floors of the house,” her husband replied.
+(IC1
+~(AP2>1 “Very soon well have gold enough and more to pave the floors of the house,”
+~)
+ her husband replied.
+)
+
+For several months he worked hard to demonstrate the truth of his idea.
+(IC1  For several months he worked hard
+~(AP2<1 to demonstrate the truth of his idea.
+~)
+)
+
+He explored every inch of the region, even the riverbed, dragging the two iron ingots along and reciting Melquíades’ incantation aloud.
+(IC1  He explored every inch of the region,
+~(AP2<1 even the riverbed,
+~)
+~(PP3<1 dragging the two iron ingots along
+~[CP4 and reciting Melquíades’ incantation aloud.
+~]
+~)
+)
+
+The only thing he succeeded in doing was to unearth a suit of fifteenth-century armor which had all of its pieces soldered together with rust and inside of which there was the hollow resonance of an enormous stone-filled gourd.
+(IC1  The only thing
+~(DC2<1 he succeeded in doing
+~)
+ was
+~(AP3<1 to unearth a suit of fifteenth-century armor
+~~(DC4<3 which had all of its pieces soldered together with rust
+~~[CP5 and inside of which there was the hollow resonance of an enormous stone-filled gourd.
+~~]
+~~)
+~)
+)
+
+When José Arcadio Buendía and the four men of his expedition managed to take the armor apart, they found inside a calcified skeleton with a copper locket containing a woman’s hair around its neck.
+(IC1
+~(DC2>1 When José Arcadio Buendía and the four men of his expedition managed to take the armor apart,
+~)
+ they found inside a calcified skeleton
+~(AP3<1 with a copper locket
+~~(PP4<3 containing a woman’s hair
+~~~(AP5<4 around its neck.
+~~~)
+~~)
+~)
+)
+
+###
+
+Many years later as he faced the firing squad, Colonel Aureliano Buendía was to remember that distant afternoon when his father took him to discover ice. At that time Macondo was a village of twenty adobe houses, built on the bank of a river of clear water that ran along a bed of polished stones, which were white and enormous, like prehistoric eggs. The world was so recent that many things lacked names, and in order to indicate them it was necessary to point. Every year during the month of March a family of ragged gypsies would set up their tents near the village, and with a great uproar of pipes and kettledrums they would display new inventions. First they brought the magnet. A heavy gypsy with an untamed beard and sparrow hands, who introduced himself as Melquíades, put on a bold public demonstration of what he himself called the eighth wonder of the learned alchemists of Macedonia. He went from house to house dragging two metal ingots and everybody was amazed to see pots, pans, tongs, and braziers tumble down from their places and beams creak from the desperation of nails and screws trying to emerge, and even objects that had been lost for a long time appeared from where they had been searched for most and went dragging along in turbulent confusion behind Melquíades’ magical irons. “Things have a life of their own,” the gypsy proclaimed with a harsh accent. “It’s simply a matter of waking up their souls.” José Arcadio Buendía, whose unbridled imagination always went beyond the genius of nature and even beyond miracles and magic, thought that it would be possible to make use of that useless invention to extract gold from the bowels of the earth. Melquíades, who was an honest man, warned him: “It won’t work for that.” But José Arcadio Buendía at that time did not believe in the honesty of gypsies, so he traded his mule and a pair of goats for the two magnetized ingots. Úrsula Iguarán, his wife, who relied on those animals to increase their poor domestic holdings, was unable to dissuade him. “Very soon well have gold enough and more to pave the floors of the house,” her husband replied. For several months he worked hard to demonstrate the truth of his idea. He explored every inch of the region, even the riverbed, dragging the two iron ingots along and reciting Melquíades’ incantation aloud. The only thing he succeeded in doing was to unearth a suit of fifteenth-century armor which had all of its pieces soldered together with rust and inside of which there was the hollow resonance of an enormous stone-filled gourd. When José Arcadio Buendía and the four men of his expedition managed to take the armor apart, they found inside a calcified skeleton with a copper locket containing a woman’s hair around its neck. 
