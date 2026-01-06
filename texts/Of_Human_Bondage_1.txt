@@ -2,9 +2,9 @@ Author: W. Somerset Maugham
 Work: Of Human Bondage
 Year: -1915
 Choice: end of chapter 3
-Tags: ToReview
+Tags:
 Language: en
-Comment: Known for shorter sentences. !! draft analysis to be reviewed !!
+Comment: Known for shorter sentences.
 
 ###
 
@@ -82,9 +82,7 @@ Though no one had told him not to go in, he had a feeling that it would be wrong
 
 He turned it very gently, as if to prevent anyone within from hearing, and then slowly pushed the door open.
 (IC1 He turned it very gently,
-~(DC2<1 as if
-~~(AP3<2 to prevent anyone within from hearing,
-~~)
+~(DC2<1 as if to prevent anyone within from hearing,
 ~)
 [CP4 and then slowly pushed the door open.
 ]
@@ -124,9 +122,7 @@ In a little tray were hairpins.
 )
 
 There was a photograph of himself on the chimney-piece and one of his father.
-(IC1 There was a photograph of himself on the chimney-piece
-[CP2 and one of his father.
-]
+(IC1 There was a photograph of himself on the chimney-piece and one of his father.
 )
 
 He had often been in the room when his mother was not in it, but now it seemed different.
@@ -211,8 +207,8 @@ And he seemed to feel her kiss on his lips.
 )
 
 It was not true simply because it was impossible.
-(IC1 It was not true simply
-~(DC2<1 because it was impossible.
+(IC1 It was not true
+~(DC2<1 simply because it was impossible.
 ~)
 )
 

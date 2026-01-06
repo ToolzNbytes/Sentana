@@ -2,14 +2,14 @@ Author: Charlotte Brontë
 Work: Jane Eyre (3rd ed.)
 Year: -1847
 Choice: starting at last third of chapter one
-Tags: Classic,Ref,ToReview
+Tags: Classic,Ref
 Language: en
-
-Comment: !! draft analysis to be reviewed !!
+Comment: reviewed once
 
 ###
 
  John Reed was a schoolboy of fourteen years old; four years older than I, for I was but ten: large and stout for his age, with a dingy and unwholesome skin; thick lineaments in a spacious visage, heavy limbs and large extremities.
+#6 Is it a fragment? (after the semi-colon)
 (IC1 John Reed was a schoolboy of fourteen years old;
 ~(AP2<1 four years older than I,
 ~~(DC3<2 for I was but ten:
@@ -61,6 +61,7 @@ Mr. Miles, the master, affirmed that he would do very well if he had fewer cakes
 )
 
 He bullied and punished me; not two or three times in the week, nor once or twice in the day, but continually: every nerve I had feared him, and every morsel of flesh in my bones shrank when he came near.
+#6 is for the two IC (check again)
 (IC1 He bullied
 [CP2 and punished me;
 ]
@@ -75,6 +76,7 @@ He bullied and punished me; not two or three times in the week, nor once or twic
 )
 
 There were moments when I was bewildered by the terror he inspired, because I had no appeal whatever against either his menaces or his inflictions; the servants did not like to offend their young master by taking my part against him, and Mrs. Reed was blind and deaf on the subject: she never saw him strike or heard him abuse me, though he did both now and then in her very presence, more frequently, however, behind her back.
+#4 Check if IC
 (IC1 There were moments
 ~(DC2<1 when I was bewildered by the terror
 ~~(DC3<2 he inspired,
@@ -92,8 +94,7 @@ There were moments when I was bewildered by the terror he inspired, because I ha
 (IC8 she never saw him strike
 [CP9 or heard him abuse me,
 ]
-~(DC10<8 though he did both now and then in her very presence,
-~ more frequently, however, behind her back.
+~(DC10<8 though he did both now and then in her very presence, more frequently, however, behind her back.
 ~)
 )
 
@@ -104,7 +105,7 @@ There were moments when I was bewildered by the terror he inspired, because I ha
 ~(AP3<2 in thrusting out his tongue at me
 ~~(DC4<3 as far as he could
 ~~)
-~~(AP5<3 without damaging the roots:
+~~(PP5<3 without damaging the roots:
 ~~)
 ~)
 )

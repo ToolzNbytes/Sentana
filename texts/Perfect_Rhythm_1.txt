@@ -2,15 +2,15 @@ Author: Jae
 Work: Perfect Rhythm
 Year: 2017
 Choice: ch 2 p3
-Tags: Pop,ToReview
+Tags: Pop
 Language: en
-Comment: First person narrator, with her voice. !! draft analysis to review !!
+Comment: First person narrator, with her voice.
 
 ###
 
  Just as she passed the two signs, the opening lines of “Butterfly Kisses” drifted through the car’s speakers.
-(IC1 Just
-~(DC2<1 as she passed the two signs,
+(IC1
+~(DC2<1 Just as she passed the two signs,
 ~)
  the opening lines of “Butterfly Kisses” drifted through the car’s speakers.
 )
@@ -65,10 +65,8 @@ She encountered only a white pickup truck that pulled into Ruth’s Diner.
 
 The guy behind the wheel stared at her, probably because he didn’t recognize her car, which gave her away as an out-of-towner.
 (IC1 The guy behind the wheel stared at her,
-~(AP2<1 probably
-~~(DC3<2 because he didn’t recognize her car,
-~~~(DC4<3 which gave her away as an out-of-towner.
-~~~)
+~(DC2<1 probably because he didn’t recognize her car,
+~~(DC3<2 which gave her away as an out-of-towner.
 ~~)
 ~)
 )
@@ -85,7 +83,7 @@ It was right across the street from her old high school.
 
 The sight of the brick building with the brass bell displayed on the front lawn didn’t make her feel any better.
 (IC1 The sight of the brick building
-~(AP2<1 with the brass bell displayed on the front lawn
+~(PP2<1 with the brass bell displayed on the front lawn
 ~)
  didn’t make her feel any better.
 )
@@ -117,12 +115,16 @@ When she turned off the engine, the sudden silence felt strangely loud.
 )
 
 Like the town, her childhood home was almost exactly the same as Leo remembered.
-(IC1 Like the town, her childhood home was almost exactly the same as Leo remembered.
+(IC1 Like the town, her childhood home was almost exactly the same
+~(DC2<1 as Leo remembered.
+~)
 )
 
 Despite the money she had sent her parents over the years, they hadn’t added to their two-story house.
-(IC1 Despite the money
-~(DC2<1 she had sent her parents over the years,
+(IC1
+~(AP2<1 Despite the money
+~~(DC2<1 she had sent her parents over the years,
+~~)
 ~)
  they hadn’t added to their two-story house.
 )
@@ -211,10 +213,8 @@ Ringing the doorbell felt strange, but even if she still had a key, she couldn�
 (IC1 Ringing the doorbell felt strange,
 )
 (IC2 but even if she still had a key, she couldn’t imagine just walking in,
-~(AP3<2 especially
-~~(DC4<3 since she had no idea
-~~~(DC5<4 what would greet her inside.
-~~~)
+~(DC3<2 especially since she had no idea
+~~(DC4<3 what would greet her inside.
 ~~)
 ~)
 )
@@ -224,6 +224,7 @@ Ringing the doorbell felt strange, but even if she still had a key, she couldn�
 )
 (IC2 and she shoved them aside.
 )
+# check if it could be refined
 
 If he were that bad off, the doctors wouldn’t have released him from the hospital.
 (IC1
@@ -243,38 +244,49 @@ In his forty-year career as a music professor and concert violinist, he had neve
 )
 
 Mind over matter; that was what he always said.
-(IC1 Mind over matter;
-)
-(IC2 that was what he always said.
+(IC1
+~(AP2>1 Mind over matter;
+~)
+ that was what he always said.
 )
 
  Whatever had happened, he would make a full recovery.
-(IC1 Whatever had happened, he would make a full recovery.
+(IC1
+~(DC2 Whatever had happened,
+~)
+ he would make a full recovery.
 )
 
 Before she knew it, he would drive her crazy with his opinions on her songs and popular music in general, his disparaging glances at her guitar calluses that would mess up her violin playing, and his none-too-subtle nudges for her to go out with one of the Wilson boys, no matter how often she told him she was a lesbian.
-(IC1 Before she knew it, he would drive her crazy
-~(AP2<1 with his opinions on her songs and popular music in general,
+(IC1
+~(DC2 Before she knew it,
 ~)
-~(AP3<1 his disparaging glances at her guitar calluses
-~~(DC4<3 that would mess up her violin playing,
+ he would drive her crazy
+~(AP3<1 with his opinions on her songs and popular music in general,
+~)
+~(AP4<1 his disparaging glances at her guitar calluses
+~~(DC5<4 that would mess up her violin playing,
 ~~)
 ~)
-~(AP5<1 and his none-too-subtle nudges for her
-~~(AP6<5 to go out with one of the Wilson boys,
+~(AP6<1 and his none-too-subtle nudges for her
+~~(AP7<6 to go out with one of the Wilson boys,
 ~~)
-~~(DC7<5 no matter how often she told him
-~~~(DC8<7 she was a lesbian.
+~~(DC8<6 no matter how often she told him
+~~~(DC9<8 she was a lesbian.
 ~~~)
 ~~)
 ~)
 )
 
  With a hand raised toward the doorbell, she hesitated.
-(IC1 With a hand raised toward the doorbell, she hesitated.
+(IC1
+~(PP2>1 With a hand raised toward the doorbell,
+~)
+ she hesitated.
 )
 
 Come on.
+# free (not so) indirect discourse
 (FG1 Come on.
 )
 

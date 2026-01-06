@@ -2,9 +2,9 @@ Author: John Fowles
 Work: The Magus
 Year: 1977 (1965)
 Choice: beginning of chapter one
-Tags: ToReview
+Tags:
 Language: en
-Comment: !! draft analysis to review !!
+Comment:
 Rights: asking
 
 ###
@@ -22,18 +22,16 @@ Rights: asking
 
 I was sent to a public school, I wasted two years doing my national service, I went to Oxford; and there I began to discover I was not the person I wanted to be.
 (IC1 I was sent to a public school,
-[CP2 I wasted two years doing my national service,
-]
-[CP3 I went to Oxford;
-]
-[CP4 and there I began
-~(DC5<4 to discover
-~~(DC6<5 I was not the person
-~~~(DC7<6 I wanted to be.
-~~~)
+)
+(IC2 I wasted two years doing my national service,
+)
+(IC3 I went to Oxford;
+)
+(IC4 and there I began to discover
+~(DC5<4 I was not the person
+~~(DC6<5 I wanted to be.
 ~~)
 ~)
-]
 )
 
  I had long before made the discovery that I lacked the parents and ancestors I needed.
@@ -45,10 +43,9 @@ I was sent to a public school, I wasted two years doing my national service, I w
 )
 
 My father was, through being the right age at the right time rather than through any great professional talent, a brigadier; and my mother was the very model of a would-be major-general’s wife.
+#2 unsure how to tag this one, check
 (IC1 My father was,
-~(PP2<1 through being the right age at the right time
-~[CP3 rather than through any great professional talent,
-~]
+~(AP2<1 through being the right age at the right time rather than through any great professional talent,
 ~)
  a brigadier;
 )
@@ -107,8 +104,9 @@ If one still refused to lie down and die, he lost, or loosed, his temper.
 ~(DC2>1 If one still refused to lie down and die,
 ~)
  he lost,
-[CP3 or loosed, his temper.
+[CP3 or loosed,
 ]
+ his temper.
 )
 
 His temper was like a red dog, and he always had it close to hand.
@@ -127,12 +125,14 @@ His temper was like a red dog, and he always had it close to hand.
 
 Certainly – if one excludes another equally unsubstantiated link with Tom Durfey, Charles II’s scribbling friend – no other of my ancestors showed any artistic leanings whatever: generation after generation of captains, clergymen, sailors, squire-lings, with only a uniform lack of distinction and a marked penchant for gambling, and losing, to characterize them.
 (IC1 Certainly
-~(AP2<1 – if one excludes another equally unsubstantiated link with Tom Durfey, Charles II’s scribbling friend –
+~(AP2<1 – if one excludes another equally unsubstantiated link with Tom Durfey,
+~~(AP3<2 Charles II’s scribbling friend –
+~~)
 ~)
  no other of my ancestors showed any artistic leanings whatever:
-~(AP3<1 generation after generation of captains, clergymen, sailors, squire-lings,
-~~(AP4<3 with only a uniform lack of distinction and a marked penchant for gambling, and losing,
-~~~(AP5<4 to characterize them.
+~(AP4<1 generation after generation of captains, clergymen, sailors, squire-lings,
+~~(AP5<4 with only a uniform lack of distinction and a marked penchant for gambling, and losing,
+~~~(AP6<5 to characterize them.
 ~~~)
 ~~)
 ~)
@@ -143,10 +143,11 @@ My grandfather had four sons, two of whom died in the First World War; the third
 ~(DC2<1 two of whom died in the First World War;
 ~)
 )
-(IC3 the third took an unsavoury way
-~(AP4<3 of paying off his atavism (gambling debts)
+(IC3 the third took an unsavoury way of paying off his atavism
+~(AP4<3 (gambling debts)
 ~)
- and disappeared to America.
+[CP5 and disappeared to America.
+]
 )
 
 He was never referred to as still existing by my father, a youngest brother who had all the characteristics that eldest sons are supposed to possess; and I have not the least idea whether he is still alive, or even whether I have unknown cousins on the other side of the Atlantic.
@@ -160,9 +161,9 @@ He was never referred to as still existing by my father, a youngest brother who 
 )
 (IC5 and I have not the least idea
 ~(DC6<5 whether he is still alive,
+~[CP7 or even whether I have unknown cousins on the other side of the Atlantic.
+~]
 ~)
-[CP7 or even whether I have unknown cousins on the other side of the Atlantic.
-]
 )
 
  During my last years at school I realized that what was really wrong with my parents was that they had nothing but a blanket contempt for the sort of life I wanted to lead.
@@ -177,10 +178,10 @@ He was never referred to as still existing by my father, a youngest brother who 
 
 I was ‘good’ at English, I had poems printed pseudonymously in the school magazine, I thought D. H. Lawrence the greatest human being of the century; my parents certainly never read Lawrence, and had probably never heard of him except in connection with Lady Chatterley’s Lover.
 (IC1 I was ‘good’ at English,
-[CP2 I had poems printed pseudonymously in the school magazine,
-]
-[CP3 I thought D. H. Lawrence the greatest human being of the century;
-]
+)
+(IC2 I had poems printed pseudonymously in the school magazine,
+)
+(IC3 I thought D. H. Lawrence the greatest human being of the century;
 )
 (IC4 my parents certainly never read Lawrence,
 [CP5 and had probably never heard of him
@@ -191,23 +192,27 @@ I was ‘good’ at English, I had poems printed pseudonymously in the school ma
 
 There were things, a certain emotional gentleness in my mother, an occasional euphoric jolliness in my father, I could have borne more of; but always I liked in them the things they didn’t want to be liked for.
 (IC1 There were things,
-~(AP2<1 a certain emotional gentleness in my mother, an occasional euphoric jolliness in my father,
+~(AP2<1 a certain emotional gentleness in my mother,
+~[CP3 an occasional euphoric jolliness in my father,
+~]
 ~)
-~(DC3<1 I could have borne more of;
+~(DC4<1 I could have borne more of;
 ~)
 )
-(IC4 but always I liked in them the things
-~(DC5<4 they didn’t want to be liked for.
+(IC5 but always I liked in them the things
+~(DC6<5 they didn’t want to be liked for.
 ~)
 )
 
 By the time I was eighteen and Hitler was dead they had become mere providers, for whom I had to exhibit a token gratitude, but could muster very little else.
 (IC1
-~(DC2>1 By the time I was eighteen and Hitler was dead
+~(DC2>1 By the time I was eighteen
+~[CP3 and Hitler was dead
+~]
 ~)
  they had become mere providers,
-~(DC3<1 for whom I had to exhibit a token gratitude,
-~[CP4 but could muster very little else.
+~(DC4<1 for whom I had to exhibit a token gratitude,
+~[CP5 but could muster very little else.
 ~]
 ~)
 )

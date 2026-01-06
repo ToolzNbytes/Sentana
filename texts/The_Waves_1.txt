@@ -2,9 +2,9 @@ Author: Virginia Woolf
 Work: The Waves
 Year: 1931
 Choice: prose before the first dialogue
-Tags: ToReview
+Tags:
 Language: en
-Comment: !! draft analysis to review !!
+Comment: reviewed once
 Rights: asking
 
 ###
@@ -14,6 +14,7 @@ Rights: asking
 )
 
 The sea was indistinguishable from the sky, except that the sea was slightly creased as if a cloth had wrinkles in it.
+#3 simile
 (IC1 The sea was indistinguishable from the sky,
 ~(DC2<1 except that the sea was slightly creased
 ~~(DC3<2 as if a cloth had wrinkles in it.
@@ -81,10 +82,10 @@ Behind it, too, the sky cleared as if the white sediment there had sunk, or as i
 ~~(PP4<3 couched beneath the horizon
 ~~)
 ~ had raised a lamp
-~[CP5 and flat bars of white, green and yellow spread across the sky
-~~(AP6<5 like the blades of a fan.
-~~)
-~]
+~)
+)
+(IC5 and flat bars of white, green and yellow spread across the sky
+~(AP6<5 like the blades of a fan.
 ~)
 )
 
@@ -93,12 +94,12 @@ Then she raised her lamp higher and the air seemed to become fibrous and to tear
 )
 (IC2 and the air seemed
 ~(AP3<2 to become fibrous
-~)
-[CP4 and to tear away from the green surface
-]
-~(PP5<2 flickering and flaming in red and yellow fibres like the smoky fire
-~~(DC6<5 that roars from a bonfire.
+~[CP4 and to tear away from the green surface
+~~(PP5<2 flickering and flaming in red and yellow fibres like the smoky fire
+~~~(DC6<5 that roars from a bonfire.
+~~~)
 ~~)
+~]
 ~)
 )
 
@@ -150,12 +151,10 @@ One bird chirped high up; there was a pause; another chirped lower down.
 The sun sharpened the walls of the house, and rested like the tip of a fan upon a white blind and made a blue finger-print of shadow under the leaf by the bedroom window.
 (IC1 The sun sharpened the walls of the house,
 [CP2 and rested
-~(AP3<2 like the tip of a fan
-~)
-~(AP4<2 upon a white blind
+~(AP3<2 like the tip of a fan upon a white blind
 ~)
 ]
-[CP5 and made a blue finger-print of shadow under the leaf by the bedroom window.
+[CP4 and made a blue finger-print of shadow under the leaf by the bedroom window.
 ]
 )
 

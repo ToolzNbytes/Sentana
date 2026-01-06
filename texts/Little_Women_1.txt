@@ -2,9 +2,9 @@ Author: Louisa May Alcott
 Work: Little Women; Or, Meg, Jo, Beth, and Amy
 Year: -1868
 Choice: middle of chapter two
-Tags: ToReview
+Tags:
 Language: en
-Comment: !! draft analysis to review !!
+Comment: reviewed once
 
 ###
 
@@ -81,18 +81,16 @@ Very clever were some of their productions,—pasteboard guitars, antique lamps 
 ~~~(PP4<3 covered with silver paper,
 ~~~)
 ~~)
-~~(AP5<2 gorgeous robes of old cotton,
+~ gorgeous robes of old cotton,
+~~(PP5<2 glittering with tin spangles from a pickle factory,
 ~~)
-~~(PP6<2 glittering with tin spangles from a pickle factory,
-~~)
-~[CP7 and armor
+~ and armor
 ~~(PP8<7 covered with the same useful diamond-shaped bits,
 ~~~(PP9<8 left in sheets
 ~~~~(DC10<9 when the lids of tin preserve-pots were cut out.
 ~~~~)
 ~~~)
 ~~)
-~]
 ~)
 )
 
@@ -117,11 +115,14 @@ The furniture was used to being turned topsy-turvy, and the big chamber was the 
 )
 
 These boots, an old foil, and a slashed doublet once used by an artist for some picture, were Jo's chief treasures, and appeared on all occasions.
-(IC1 These boots, an old foil, and a slashed doublet
-~(PP2<1 once used by an artist for some picture,
+(IC1 These boots,
+~(AP2<1 an old foil,
+~)
+ and a slashed doublet
+~(PP3<1 once used by an artist for some picture,
 ~)
  were Jo's chief treasures,
-[CP3 and appeared on all occasions.
+[CP4 and appeared on all occasions.
 ]
 )
 

@@ -2,9 +2,9 @@ Author: Jordan Meadows
 Work: Not Just Friends
 Year: 2024
 Choice: mid ch 11
-Tags: Pop,ToReview
+Tags: Pop
 Language: en
-Comment: Third excerpt, trying to find longer sentences. !! draft analysis to review !!
+Comment: Third excerpt, trying to find longer sentences.
 
 ###
 
@@ -36,12 +36,11 @@ Then you were looking at some distance.
 )
 
 I rode over and around the path that circled the park, considering where to stop.
+#3 DC4 brought in with PP (unsure)
 (IC1 I rode over and around the path
 ~(DC2<1 that circled the park,
 ~)
-~(PP3<1 considering
-~~(DC4<3 where to stop.
-~~)
+~(PP3<1 considering where to stop.
 ~)
 )
 

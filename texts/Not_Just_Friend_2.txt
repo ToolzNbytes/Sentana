@@ -2,9 +2,9 @@ Author: Jordan Meadows
 Work: Not Just Friends
 Year: 2024
 Choice: before end of ch 8
-Tags: Pop,ToReview
+Tags: Pop
 Language: en
-Comment: First person narrator is young, so the voice matches this. !! draft analysis to review !!
+Comment: First person narrator is young, so the voice matches this.
 
 ###
 
@@ -54,10 +54,10 @@ Watching all the arty TikToks had me wanting to try a few things.
 ~)
 )
 (IC4 but the store closed at five on Sundays
-[CP5 and we’d have to leave by four
+)
+(IC5 and we’d have to leave by four
 ~(AP6<5 to have time to look around.
 ~)
-]
 )
 
 I reluctantly navigated to my inbox.
@@ -98,13 +98,14 @@ The last name was easy enough, but I had good ol’ Dad to thank for the rest of
 
 Dad had wanted a J name to go with his and he chose Jenica, which meant God is gracious.
 (IC1 Dad had wanted a J name to go with his
-[CP2 and he chose Jenica,
+)
+(IC2 and he chose Jenica,
 ~(DC3<2 which meant God is gracious.
 ~)
-]
 )
 
 This was both annoying for an atheist like me and often tripped teachers up on the first day of school, meaning I’d have to raise my hand and say Jen in front of the whole class.
+#5 update rules for compound like this one: factor "I'd have to" (and similar cases in other excerpt, Moby Dick)
 (IC1 This was both annoying for an atheist like me
 [CP2 and often tripped teachers up on the first day of school,
 ]
@@ -148,10 +149,10 @@ He’d been disappointed to settle in Prairie View, which was a good drive away 
 ~)
 )
 (IC3 but Mom had gotten a job at the airport
-[CP4 and it was
+)
+(IC4 and it was
 ~(DC5<4 where they could afford to live in striking distance of the airport.
 ~)
-]
 )
 
 On her days off, they’d drive to the mountains and hike, which more or less worked until Mom got pregnant with me.
