@@ -2,9 +2,9 @@ Author: Thea Astley
 Work: The Well Dressed Explorer
 Year: 1962
 Choice: beginning of chapter one
-Tags: ToReview
+Tags:
 Language: en
-Comment: !! draft analysis to review !!
+Comment: reviewed once
 
 ###
  The weight  of her on his shoulders was almost too much for him.
@@ -39,14 +39,14 @@ They circled the room, the boy on all fours, and he was on the point of collapsi
 
 Abruptly the scream in his tendons dissolved in a supersonic agony and there he was, sprawling on his face while she lurched forward to topple over him onto the dusty playroom floor.
 (IC1 Abruptly the scream in his tendons dissolved in a supersonic agony
-[CP2 and there he was,
+)
+(IC2 and there he was,
 ~(PP3<2 sprawling on his face
 ~)
 ~(DC4<2 while she lurched forward
 ~~(AP5<4 to topple over him onto the dusty playroom floor.
 ~~)
 ~)
-]
 )
 
 A glimpse of navy knickers and plump thighs.
@@ -90,13 +90,11 @@ The girl jumped up and began slapping and beating the back of her skirt, then we
 (IC1 The girl jumped up
 [CP2 and began slapping and beating the back of her skirt,
 ]
-[CP3 then went
-~(AP4<3 to lounge against the window,
+[CP3 then went to lounge against the window,
+~(PP4<3 her elbows set on the sill
 ~)
-~(PP5<3 her elbows set on the sill
-~)
-~(DC6<3 as she picked with stubby nails at the flaked paint
-~~(DC7<6 that blistered in a miniature child-sketched sea of ochre waves.
+~(DC5<3 as she picked with stubby nails at the flaked paint
+~~(DC6<5 that blistered in a miniature child-sketched sea of ochre waves.
 ~~)
 ~)
 ]
@@ -134,32 +132,33 @@ All about him they hummed like tops, they were stacked up in rusting piles along
 )
 (IC3 they were stacked up
 ~(AP4<3 in rusting piles along the work bench,
+
+~[CP5 in boxes of bent rails,
+~]
+~[CP6 in marbles
+~~(PP7<6 scuttled into corners,
+~~)
+~]
+~[CP8 in carved initials up the length of a door-jamb,
+~]
+~[CP9 in the old comic piles,
+~]
+~[CP10 the book,
+~~(AP11<10 strangely persuasive,
+~~)
+~~(PP12<10 smuggled in from Scaler Wayne.
+~~)
+~]
 ~)
-[CP5 in boxes of bent rails,
-]
-[CP6 in marbles
-~(PP7<6 scuttled into corners,
-~)
-]
-[CP8 in carved initials up the length of a door-jamb,
-]
-[CP9 in the old comic piles,
-]
-[CP10 the book,
-~(AP11<10 strangely persuasive,
-~)
-~(PP12<10 smuggled in from Scaler Wayne.
-~)
-]
 )
 
 -("Hey, Brewster! Take a geezer at this! Yum-yum, eh!" "Gee, Scaler, can I take it home for a bit?" "Two bob to you, son." And the mouth slit-grinned, meaning it, and George felt the coins should have gone in there instead of into the stringy, kibed hand.)
-# Sentence patched with a "-" since the parenthesis start fails the process
+# Sentence patched with a "-" since the parenthesis start fails the process - to check
 (IC1 -("Hey, Brewster! Take a geezer at this! Yum-yum, eh!" "Gee, Scaler, can I take it home for a bit?" "Two bob to you, son." And the mouth slit-grinned,
 ~(PP2<1 meaning it,
 ~)
-[CP3 and George felt the coins should have gone in there instead of into the stringy, kibed hand.)
-]
+)
+(IC3 and George felt the coins should have gone in there instead of into the stringy, kibed hand.)
 )
 
 The spatial texture of four thousand odd days lost its silky quality.
@@ -187,8 +186,8 @@ Guilty pink set sunwise on his amiable forehead remembering his cousin's crushin
 )
 
 He rolled on his side to look at her—unlovely, fat and vital, fringed, short-pleated, shod in strap-buttoned patent, sailor- (no ship named) bloused.
-(IC1 He rolled on his side
-~(AP2<1 to look at her—unlovely, fat and vital, fringed, short-pleated, shod in strap-buttoned patent, sailor- (no ship named) bloused.
+(IC1 He rolled on his side to look at her
+~(AP2<1—unlovely, fat and vital, fringed, short-pleated, shod in strap-buttoned patent, sailor- (no ship named) bloused.
 ~)
 )
 

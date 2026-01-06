@@ -2,9 +2,9 @@ Author: Theodore Dreiser
 Work: Sister Carrie
 Year: -1900 
 Choice: beginning of chapter one*
-Tags: Errors
+Tags:
 Language: en
-Comment: Sentences might be on the short side (style criticised) !! draft analysis to be reviewed - several issues spotted !!
+Comment: Sentences might be on the short side (style criticised) / reviewed once
 
 ###
 
@@ -40,24 +40,25 @@ Whatever touch of regret at parting characterised her thoughts, it was certainly
 )
 
 A gush of tears at her mother’s farewell kiss, a touch in her throat when the cars clacked by the flour mill where her father worked by the day, a pathetic sigh as the familiar green environs of the village passed in review, and the threads which bound her so lightly to girlhood and home were irretrievably broken.
-(IC1 A gush of tears at her mother’s farewell kiss,
-[CP2 a touch in her throat
-~(DC3<2 when the cars clacked by the flour mill
-~~(DC4<3 where her father worked by the day,
+#2 enumeration of 3 agents
+(IC1
+~(AP2>1 A gush of tears at her mother’s farewell kiss,
+~[CP2 a touch in her throat
+~~(DC3<2 when the cars clacked by the flour mill
+~~~(DC4<3 where her father worked by the day,
+~~~)
 ~~)
+~]
+~[CP5 a pathetic sigh
+~~(DC6<5 as the familiar green environs of the village passed in review,
+~~)
+~]
 ~)
-]
-[CP5 a pathetic sigh
-~(DC6<5 as the familiar green environs of the village passed in review,
-~)
-]
-[CP7 and the threads
+ and the threads
 ~(DC8<7 which bound her so lightly to girlhood and home
 ~)
  were irretrievably broken.
-]
 )
-# CP2/CP5/CP7 are a comma-series with only the last introduced by “and”; CP is used here as “coordinated parallel constituent” for the subject bundle.
 
  To be sure there was always the next station, where one might descend and return.
 (IC1 To be sure there was always the next station,
@@ -113,8 +114,12 @@ She gazed at the green landscape, now passing in swift review, until her swifter
 )
 
 Either she falls into saving hands and becomes better, or she rapidly assumes the cosmopolitan standard of virtue and becomes worse.
-(IC1 Either she falls into saving hands and becomes better,
-[CP2 or she rapidly assumes the cosmopolitan standard of virtue and becomes worse.
+(IC1 Either she falls into saving hands
+[CP2 and becomes better,
+]
+)
+(IC3 or she rapidly assumes the cosmopolitan standard of virtue
+[CP4 and becomes worse.
 ]
 )
 
@@ -149,6 +154,7 @@ Half the undoing of the unsophisticated and natural mind is accomplished by forc
 )
 
 A blare of sound, a roar of life, a vast array of human hives, appeal to the astonished senses in equivocal terms.
+#1 subject enumeration
 (IC1 A blare of sound, a roar of life, a vast array of human hives, appeal to the astonished senses in equivocal terms.
 )
 
@@ -160,6 +166,7 @@ Without a counsellor at hand to whisper cautious interpretations, what falsehood
 )
 
 Unrecognised for what they are, their beauty, like music, too often relaxes, then weakens, then perverts the simpler human perceptions.
+#5 "the simpler ..." is a complement for all 1,4,5
 (IC1 
 ~(PP2>1Unrecognised for what they are,
 ~)
@@ -196,12 +203,14 @@ It was, nevertheless, her guiding characteristic.
 )
 
 Warm with the fancies of youth, pretty with the insipid prettiness of the formative period, possessed of a figure promising eventual shapeliness and an eye alight with certain native intelligence, she was a fair example of the middle American class—two generations removed from the emigrant.
+#2 treated as an implicit "being warm"
+#3 treated as an implicit "being pretty"
 (IC1 
 ~(PP2>1Warm with the fancies of youth,
 ~)
-~(PP3<1 pretty with the insipid prettiness of the formative period,
+~(PP3>1 pretty with the insipid prettiness of the formative period,
 ~)
-~(PP4<1 possessed of a figure
+~(PP4>1 possessed of a figure
 ~~(PP5<4 promising eventual shapeliness
 ~~)
 ~ and an eye alight with certain native intelligence,
@@ -248,14 +257,13 @@ And yet she was interested in her charms, quick to understand the keener pleasur
 A half-equipped little knight she was, venturing to reconnoitre the mysterious city and dreaming wild dreams of some vague, far-off supremacy, which should make it prey and subject—the proper penitent, grovelling at a woman’s slipper.
 (IC1 A half-equipped little knight she was,
 ~(PP2<1 venturing to reconnoitre the mysterious city
-~)
-~(PP3<1 and dreaming wild dreams of some vague, far-off supremacy,
+~[CP3 and dreaming wild dreams of some vague, far-off supremacy,
 ~~(DC4<3 which should make it prey and subject
 ~~~(AP5<4—the proper penitent,
-~~~~(PP6<5 grovelling at a woman’s slipper.
-~~~~)
 ~~~)
+~~ grovelling at a woman’s slipper.
 ~~)
+~]
 ~)
 )
 

@@ -2,9 +2,9 @@ Author: F. Scott Fitzgerald
 Work:   The Great Gatsby
 Year: 1924
 Choice: beginning of chapter one
-Tags: Classic,ToReview
+Tags: Classic
 Language: en
-Comment: (Feature a quote that is not yet handled in format v4) !! draft analysis to review !!
+Comment: (Feature a quote that is not yet handled in format v4) / reviewed once
 
 ###
 
@@ -15,14 +15,16 @@ Comment: (Feature a quote that is not yet handled in format v4) !! draft analysi
 )
 
  “Whenever you feel like criticizing anyone,” he told me, “just remember that all the people in this world haven’t had the advantages that you’ve had.”
+# Dialogue
+#3 attribution
 (IC1
 ~(DC2>1 “Whenever you feel like criticizing anyone,”
 ~)
- he told me,
-~(DC3<1 “just remember
-~~(DC4<3 that all the people in this world haven’t had the advantages
-~~~(DC5<4 that you’ve had.”
-~~~)
+~(AP3<1 he told me,
+~)
+ “just remember
+~(DC4<3 that all the people in this world haven’t had the advantages
+~~(DC5<4 that you’ve had.”
 ~~)
 ~)
 )
@@ -87,6 +89,7 @@ Reserving judgements is a matter of infinite hope.
 )
 
 I am still a little afraid of missing something if I forget that, as my father snobbishly suggested, and I snobbishly repeat, a sense of the fundamental decencies is parcelled out unequally at birth.
+#4 (check again the structure)
 (IC1 I am still a little afraid of missing something
 ~(DC2<1 if I forget
 ~~(DC3<2 that,
@@ -101,7 +104,7 @@ I am still a little afraid of missing something if I forget that, as my father s
 
  And, after boasting this way of my tolerance, I come to the admission that it has a limit.
 (IC1 And,
-~(AP2<1 after boasting this way of my tolerance,
+~(PP2<1 after boasting this way of my tolerance,
 ~)
  I come to the admission
 ~(DC3<1 that it has a limit.
@@ -131,6 +134,7 @@ When I came back from the East last autumn I felt that I wanted the world to be 
 )
 
 Only Gatsby, the man who gives his name to this book, was exempt from my reaction—Gatsby, who represented everything for which I have an unaffected scorn.
+#2 short addition AP before DC => see if it's a pattern for rules v4
 (IC1 Only Gatsby,
 ~(AP2<1 the man
 ~~(DC3<2 who gives his name to this book,
@@ -173,6 +177,7 @@ This responsiveness had nothing to do with that flabby impressionability which i
 )
 
 No—Gatsby turned out all right at the end; it is what preyed on Gatsby, what foul dust floated in the wake of his dreams that temporarily closed out my interest in the abortive sorrows and short-winded elations of men.
+#6 is for both "what" 3 & 4
 (IC1 No—Gatsby turned out all right at the end;
 )
 (IC2 it is
