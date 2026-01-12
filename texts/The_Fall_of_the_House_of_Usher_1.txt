@@ -1,0 +1,211 @@
+Author: Edgar Allan Poe
+Work: The Fall of the House of Usher
+Year: -1839
+Choice: beginning of chapter one
+Tags:
+Language: en
+Comment: (manual breakdown, analysis to check for the rules v4 improvement)
+
+###
+
+ During the whole of a dull, dark, and soundless day in the autumn of the year, when the clouds hung oppressively low in the heavens, I had been passing alone, on horseback, through a singularly dreary tract of country, and at length found myself, as the shades of the evening drew on, within view of the melancholy House of Usher.
+
+(IC1
+~(AP2>1 During the whole of a dull, dark, and soundless day in the autumn of the year,
+~)
+~(DC2>1 when the clouds hung oppressively low in the heavens,
+~)
+ I had been passing alone,
+~(AP3<1 on horseback,
+~[CP4 through a singularly dreary tract of country,
+~]
+~[CP5 and at length found myself,
+~]
+~)
+~(DC6<1 as the shades of the evening drew on,
+~~(AP7<6 within view of the melancholy House of Usher.
+~~)
+~)
+)
+
+I know not how it was—but, with the first glimpse of the building, a sense of insufferable gloom pervaded my spirit.
+
+(IC1 I know not how it was
+)
+(IC2—but,
+~(AP3 with the first glimpse of the building,
+~)
+ a sense of insufferable gloom pervaded my spirit.
+)
+
+I say insufferable; for the feeling was unrelieved by any of that half-pleasurable, because poetic, sentiment, with which the mind usually receives even the sternest natural images of the desolate or terrible.
+
+(IC1 I say insufferable;
+)
+(IC2 for the feeling was unrelieved by any of that half-pleasurable,
+~(AP3<2 because poetic,
+~)
+ sentiment,
+~(DC4<2 with which the mind usually receives even the sternest natural images of the desolate or terrible.
+~)
+)
+
+I looked upon the scene before me—upon the mere house, and the simple landscape features of the domain—upon the bleak walls—upon the vacant eye-like windows—upon a few rank sedges—and upon a few white trunks of decayed trees—with an utter depression of soul which I can compare to no earthly sensation more properly than to the after-dream of the reveller upon opium—the bitter lapse into every-day life—the hideous dropping off of the veil.
+# Em-dashes nesting is not easy to follow
+(IC1 I looked upon the scene before me
+~(AP2<1—upon the mere house,
+~)
+ and the simple landscape features of the domain
+~(AP4<3—upon the bleak walls
+~[CP5—upon the vacant eye-like windows
+~]
+~[CP6—upon a few rank sedges
+~]
+~[CP7—and upon a few white trunks of decayed trees
+~]
+~)
+—with an utter depression of soul
+~(DC9<8 which I can compare to no earthly sensation more properly than to the after-dream of the reveller upon opium
+~~(AP10<9—the bitter lapse into every-day life
+~~[CP11—the hideous dropping off of the veil.
+~~]
+~~)
+~)
+)
+
+There was an iciness, a sinking, a sickening of the heart—an unredeemed dreariness of thought which no goading of the imagination could torture into aught of the sublime.
+
+(IC1 There was an iciness, a sinking, a sickening of the heart
+~(AP2<1—an unredeemed dreariness of thought
+~~(DC3<2 which no goading of the imagination could torture into aught of the sublime.
+~~)
+~)
+)
+
+What was it—I paused to think—what was it that so unnerved me in the contemplation of the House of Usher?
+#2 attribution for the narrator's own thought
+(IC1 What was it
+~(AP2<1—I paused to think
+~)
+—what was it
+~(DC3<1 that so unnerved me in the contemplation of the House of Usher?
+~)
+)
+
+It was a mystery all insoluble; nor could I grapple with the shadowy fancies that crowded upon me as I pondered.
+
+(IC1 It was a mystery all insoluble;
+)
+(IC2 nor could I grapple with the shadowy fancies
+~(DC3<2 that crowded upon me
+~~(PP4<3 as I pondered.
+~~)
+~)
+)
+
+I was forced to fall back upon the unsatisfactory conclusion, that while, beyond doubt, there are combinations of very simple natural objects which have the power of thus affecting us, still the analysis of this power lies among considerations beyond our depth.
+
+(IC1 I was forced to fall back upon the unsatisfactory conclusion,
+~(DC2<1 that
+~~(DC3<2 while,
+~~~(AP4<3 beyond doubt,
+~~~)
+~~ there are combinations of very simple natural objects
+~~~(DC4<2 which have the power of thus affecting us,
+~~~)
+~~)
+~ still the analysis of this power lies among considerations beyond our depth.
+~)
+)
+
+It was possible, I reflected, that a mere different arrangement of the particulars of the scene, of the details of the picture, would be sufficient to modify, or perhaps to annihilate its capacity for sorrowful impression; and, acting upon this idea, I reined my horse to the precipitous brink of a black and lurid tarn that lay in unruffled lustre by the dwelling, and gazed down—but with a shudder even more thrilling than before—upon the remodelled and inverted images of the gray sedge, and the ghastly tree-stems, and the vacant and eye-like windows.
+#8 with enumeration
+(IC1 It was possible,
+~(AP2<1 I reflected,
+~)
+~(DC3<1 that a mere different arrangement of the particulars of the scene, of the details of the picture, would be sufficient to modify, or perhaps to annihilate its capacity for sorrowful impression;
+~)
+)
+(IC4 and,
+~(PP5>4 acting upon this idea,
+~)
+ I reined my horse to the precipitous brink of a black and lurid tarn
+~(DC6<4 that lay in unruffled lustre by the dwelling,
+~)
+[CP7 and gazed down—but with a shudder
+~(AP8 even more thrilling than before—upon the remodelled and inverted images of the gray sedge, and the ghastly tree-stems, and the vacant and eye-like windows.
+~)
+]
+)
+
+ Nevertheless, in this mansion of gloom I now proposed to myself a sojourn of some weeks.
+
+(IC1 Nevertheless, in this mansion of gloom I now proposed to myself a sojourn of some weeks.
+)
+
+Its proprietor, Roderick Usher, had been one of my boon companions in boyhood; but many years had elapsed since our last meeting.
+
+(IC1 Its proprietor, Roderick Usher, had been one of my boon companions in boyhood;
+)
+(IC2 but many years had elapsed since our last meeting.
+)
+
+A letter, however, had lately reached me in a distant part of the country—a letter from him—which, in its wildly importunate nature, had admitted of no other than a personal reply.
+
+(IC1 A letter, however, had lately reached me in a distant part of the country
+~(AP2<1—a letter from him
+~)
+~(DC3<1—which,
+~~(AP4>3 in its wildly importunate nature,
+~~)
+~ had admitted of no other than a personal reply.
+~)
+)
+
+The MS. gave evidence of nervous agitation.
+
+(IC1 The MS. gave evidence of nervous agitation.
+)
+
+The writer spoke of acute bodily illness—of a mental disorder which oppressed him—and of an earnest desire to see me, as his best and indeed his only personal friend, with a view of attempting, by the cheerfulness of my society, some alleviation of his malady.
+
+(IC1 The writer spoke of acute bodily illness
+~(AP2<1—of a mental disorder
+~~(DC3<1 which oppressed him
+~~)
+~)
+—and of an earnest desire to see me,
+~(AP4<1 as his best and indeed his only personal friend,
+~)
+ with a view of attempting,
+~(AP5<1 by the cheerfulness of my society,
+~)
+ some alleviation of his malady.
+)
+
+
+It was the manner in which all this, and much more, was said—it was the apparent heart that went with his request—which allowed me no room for hesitation; and I accordingly obeyed forthwith what I still considered a very singular summons.
+
+(IC1 It was the manner
+~(DC2<1 in which all this,
+~~(AP3<2 and much more,
+~~)
+~ was said
+~)
+~(AP4<1—it was the apparent heart
+~~(DC5<4 that went with his request
+~~)
+~)
+~(DC6<1—which allowed me no room for hesitation;
+~)
+)
+(IC7 and I accordingly obeyed forthwith
+~(DC8<7 what I still considered a very singular summons.
+~)
+)
+
+###
+
+During the whole of a dull, dark, and soundless day in the autumn of the year, when the clouds hung oppressively low in the heavens, I had been passing alone, on horseback, through a singularly dreary tract of country, and at length found myself, as the shades of the evening drew on, within view of the melancholy House of Usher. I know not how it was—but, with the first glimpse of the building, a sense of insufferable gloom pervaded my spirit. I say insufferable; for the feeling was unrelieved by any of that half-pleasurable, because poetic, sentiment, with which the mind usually receives even the sternest natural images of the desolate or terrible. I looked upon the scene before me—upon the mere house, and the simple landscape features of the domain—upon the bleak walls—upon the vacant eye-like windows—upon a few rank sedges—and upon a few white trunks of decayed trees—with an utter depression of soul which I can compare to no earthly sensation more properly than to the after-dream of the reveller upon opium—the bitter lapse into every-day life—the hideous dropping off of the veil. There was an iciness, a sinking, a sickening of the heart—an unredeemed dreariness of thought which no goading of the imagination could torture into aught of the sublime. What was it—I paused to think—what was it that so unnerved me in the contemplation of the House of Usher? It was a mystery all insoluble; nor could I grapple with the shadowy fancies that crowded upon me as I pondered. I was forced to fall back upon the unsatisfactory conclusion, that while, beyond doubt, there are combinations of very simple natural objects which have the power of thus affecting us, still the analysis of this power lies among considerations beyond our depth. It was possible, I reflected, that a mere different arrangement of the particulars of the scene, of the details of the picture, would be sufficient to modify, or perhaps to annihilate its capacity for sorrowful impression; and, acting upon this idea, I reined my horse to the precipitous brink of a black and lurid tarn that lay in unruffled lustre by the dwelling, and gazed down—but with a shudder even more thrilling than before—upon the remodelled and inverted images of the gray sedge, and the ghastly tree-stems, and the vacant and eye-like windows.
+
+Nevertheless, in this mansion of gloom I now proposed to myself a sojourn of some weeks. Its proprietor, Roderick Usher, had been one of my boon companions in boyhood; but many years had elapsed since our last meeting. A letter, however, had lately reached me in a distant part of the country—a letter from him—which, in its wildly importunate nature, had admitted of no other than a personal reply. The MS. gave evidence of nervous agitation. The writer spoke of acute bodily illness—of a mental disorder which oppressed him—and of an earnest desire to see me, as his best and indeed his only personal friend, with a view of attempting, by the cheerfulness of my society, some alleviation of his malady. It was the manner in which all this, and much more, was said—it was the apparent heart that went with his request—which allowed me no room for hesitation; and I accordingly obeyed forthwith what I still considered a very singular summons.
