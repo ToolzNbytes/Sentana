@@ -297,6 +297,28 @@
   }
 ,
   {
+    "Author": "Ernest Hemingway",
+    "Work": "The Sun Also Rises",
+    "Year": "1926",
+    "Choice": "beginning of chapter one",
+    "Tags": "",
+    "Language": "en",
+    "Comment": "",
+    "file": "texts/The Sun Also Rises_1.txt"
+  }
+,
+  {
+    "Author": "Edgar Allan Poe",
+    "Work": "The Fall of the House of Usher",
+    "Year": "-1839",
+    "Choice": "beginning of chapter one",
+    "Tags": "",
+    "Language": "en",
+    "Comment": "(manual breakdown, analysis to check for the rules v4 improvement)",
+    "file": "texts/The_Fall_of_the_House_of_Usher_1.txt"
+  }
+,
+  {
     "Author": "F. Scott Fitzgerald",
     "Work": "The Great Gatsby",
     "Year": "1924",
