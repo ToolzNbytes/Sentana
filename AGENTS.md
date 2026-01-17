@@ -1,10 +1,11 @@
 # AGENTS.md
 
 ## Project overview
-Sentana is a static, client-side web app for exploring sentence structure across authors. The site is served as plain HTML/CSS/JS with assets in folders like `img`, `icons`, and `gen`.
+Sentana is a static, client-side web app for exploring sentence structure across authors. The main page asynchronously loads text assets (custom syntax) and processes them in JS to build the data shown in the UI, so local testing requires a simple HTTP server.
 
 ## Repo layout
-- `index.html`: main entry point for the site.
+- `index.html`: welcome page, updated occasionally (often by hand).
+- `Sv4/structure_display_v4.html`: main app page.
 - `doc_syntax_v4.md`: documentation for the syntax used by the project.
 - `img`, `icons`, `texts`, `Sv4`: data and assets used by the UI.
 - `gen`: files automatically generated, do not edit here.
@@ -22,4 +23,5 @@ Then visit `http://localhost:8000`.
 
 ## Notes
 - There are no automated tests in this repo.
-- Keep edits focused on the static assets and the HTML/CSS/JS in `index.html`.
+- Keep edits focused on the static assets and the HTML/CSS/JS in `Sv4/structure_display_v4.html` unless you are updating the welcome page.
+- The welcome `index.html` page must stay robust and use independent assets; avoid coupling it to main page revisions.
