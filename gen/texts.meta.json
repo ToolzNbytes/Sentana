@@ -4,7 +4,9 @@
     "Work": "Anne of Green Gables",
     "Year": "-1908",
     "Choice": "beginning of chapter one",
-    "Comment": "!! draft analysis to review !!",
+    "Tags": "Classic,Ref",
+    "Language": "en",
+    "Comment": "one review done, small tweaks to check in comments",
     "file": "texts/Anne_of_Green_Gables_1.txt"
   }
 ,
@@ -13,6 +15,8 @@
     "Work": "Bleak House",
     "Year": "1852-53",
     "Choice": "beginning of chapter one",
+    "Tags": "Classic",
+    "Language": "en",
     "Comment": "This excerpt is only fragments about fog (after this, the novel switches to 'real' sentences).",
     "file": "texts/Bleak_House_1.txt"
   }
@@ -22,8 +26,98 @@
     "Work": "Bleak House",
     "Year": "1852-53",
     "Choice": "chapter one, after the 'fog fragments'",
+    "Tags": "Classic,Ref",
+    "Language": "en",
     "Comment": "Great passage with features of repetition and increasing sentence length for a dramatic effect.",
     "file": "texts/Bleak_House_2.txt"
+  }
+,
+  {
+    "Author": "Gabriel García Márquez",
+    "Work": "Cien años de soledad",
+    "Year": "1965-66",
+    "Choice": "first paragraph of chapter one",
+    "Tags": "Ref",
+    "Language": "es",
+    "Comment": "",
+    "file": "texts/Cien_anos_de_soledad_1.txt"
+  }
+,
+  {
+    "Author": "Gabriel García Márquez",
+    "Work": "Cien años de soledad",
+    "Year": "1965-66",
+    "Choice": "first paragraph of chapter one (English version by Gregory Rabassa)",
+    "Tags": "Ref,ToReview",
+    "Language": "en/es",
+    "Comment": "!! draft analysis to review !!",
+    "file": "texts/Cien_anos_de_soledad_1en.txt"
+  }
+,
+  {
+    "Author": "Gabriel García Márquez",
+    "Work": "Cien años de soledad",
+    "Year": "1965-66",
+    "Choice": "first paragraph of chapter one (French version by Claude and Carmen Durand)",
+    "Tags": "Ref",
+    "Language": "fr/es",
+    "Comment": "First review done. Now compare with original.",
+    "file": "texts/Cien_anos_de_soledad_1fr.txt"
+  }
+,
+  {
+    "Author": "Gabriel García Márquez",
+    "Work": "Cien años de soledad",
+    "Year": "1965-66",
+    "Choice": "first paragraph of chapter three",
+    "Tags": "Ref",
+    "Language": "es",
+    "Comment": "",
+    "file": "texts/Cien_anos_de_soledad_2.txt"
+  }
+,
+  {
+    "Author": "Gabriel García Márquez",
+    "Work": "Cien años de soledad",
+    "Year": "1965-66",
+    "Choice": "first paragraph of chapter three (English version by Gregory Rabassa)",
+    "Tags": "Ref",
+    "Language": "en/es",
+    "Comment": "Reviewed once.",
+    "file": "texts/Cien_anos_de_soledad_2en.txt"
+  }
+,
+  {
+    "Author": "Gabriel García Márquez",
+    "Work": "Cien años de soledad",
+    "Year": "1965-66",
+    "Choice": "first paragraph of chapter three (French version by Claude and Carmen Durand)",
+    "Tags": "Ref",
+    "Language": "fr/es",
+    "Comment": "Reviewed once",
+    "file": "texts/Cien_anos_de_soledad_2fr.txt"
+  }
+,
+  {
+    "Author": "Marcel Proust",
+    "Work": "Du Côté de chez Swann",
+    "Year": "1909-13",
+    "Choice": "paragraphs one and two of chapter one",
+    "Tags": "",
+    "Language": "fr",
+    "Comment": "Reviewed once, some questions in comments",
+    "file": "texts/Du_Cote_de_chez_Swann_1.txt"
+  }
+,
+  {
+    "Author": "Marcel Proust",
+    "Work": "Du Côté de chez Swann",
+    "Year": "1909-13",
+    "Choice": "paragraphs three and four of chapter one",
+    "Tags": "ToReview",
+    "Language": "fr",
+    "Comment": "Reviewed once",
+    "file": "texts/Du_Cote_de_chez_Swann_2.txt"
   }
 ,
   {
@@ -31,7 +125,9 @@
     "Work": "Emma",
     "Year": "1810-1815",
     "Choice": "beginning of chapter one",
-    "Comment": "Many variations of the sentences' structure.",
+    "Tags": "Classic,Ref",
+    "Language": "en",
+    "Comment": "Many variations of the sentences' structure. Re check parag lost after correction?",
     "file": "texts/Emma_1.txt"
   }
 ,
@@ -40,7 +136,9 @@
     "Work": "Frankenstein; Or, The Modern Prometheus",
     "Year": "1818",
     "Choice": "beginning of chapter one",
-    "Comment": "!! draft analysis to review !!",
+    "Tags": "Classic,Ref",
+    "Language": "en",
+    "Comment": "reviewed once, still some aspects to check in clause comments",
     "file": "texts/Frankenstein_1.txt"
   }
 ,
@@ -49,7 +147,9 @@
     "Work": "Heart of Darkness",
     "Year": "1899",
     "Choice": "beginning of chapter one",
-    "Comment": "!! draft analysis to review !!",
+    "Tags": "Classic",
+    "Language": "en",
+    "Comment": "reviewed once, some ckecks remain",
     "file": "texts/Heart_of-Darkness_1.txt"
   }
 ,
@@ -58,7 +158,9 @@
     "Work": "Jane Eyre (3rd ed.)",
     "Year": "-1847",
     "Choice": "starting at last third of chapter one",
-    "Comment": "!! draft analysis to be reviewed !!",
+    "Tags": "Classic,Ref",
+    "Language": "en",
+    "Comment": "reviewed once",
     "file": "texts/Jane_Eyre_1.txt"
   }
 ,
@@ -67,7 +169,9 @@
     "Work": "Little Women; Or, Meg, Jo, Beth, and Amy",
     "Year": "-1868",
     "Choice": "middle of chapter two",
-    "Comment": "!! draft analysis to review !!",
+    "Tags": "",
+    "Language": "en",
+    "Comment": "reviewed once",
     "file": "texts/Little_Women_1.txt"
   }
 ,
@@ -76,6 +180,8 @@
     "Work": "Middlemarch",
     "Year": "1871–72",
     "Choice": "beginning of chapter one",
+    "Tags": "Classic,Ref,Valid",
+    "Language": "en",
     "Comment": "This excerpt has very long sentences.",
     "file": "texts/Middlemarch_1.txt"
   }
@@ -85,7 +191,9 @@
     "Work": "Moby-Dick; or, The Whale.",
     "Year": "1850-1851",
     "Choice": "beginning of chapter one",
-    "Comment": "!! draft analysis to review !!",
+    "Tags": "Classic,Ref",
+    "Language": "en",
+    "Comment": "reviewed once",
     "file": "texts/Moby_Dick_1.txt"
   }
 ,
@@ -94,7 +202,9 @@
     "Work": "Not Just Friends",
     "Year": "2024",
     "Choice": "beginning of chapter two",
-    "Comment": "First person narrator is young, so the voice matches this. !! draft analysis to review !!",
+    "Tags": "Pop",
+    "Language": "en",
+    "Comment": "First person narrator is young, so the voice matches this.",
     "file": "texts/Not_Just_Friend_1.txt"
   }
 ,
@@ -103,7 +213,9 @@
     "Work": "Not Just Friends",
     "Year": "2024",
     "Choice": "before end of ch 8",
-    "Comment": "First person narrator is young, so the voice matches this. !! draft analysis to review !!",
+    "Tags": "Pop",
+    "Language": "en",
+    "Comment": "First person narrator is young, so the voice matches this.",
     "file": "texts/Not_Just_Friend_2.txt"
   }
 ,
@@ -112,7 +224,9 @@
     "Work": "Not Just Friends",
     "Year": "2024",
     "Choice": "mid ch 11",
-    "Comment": "Third excerpt, trying to find longer sentences. !! draft analysis to review !!",
+    "Tags": "Pop",
+    "Language": "en",
+    "Comment": "Third excerpt, trying to find longer sentences.",
     "file": "texts/Not_Just_Friend_3.txt"
   }
 ,
@@ -120,8 +234,10 @@
     "Author": "D. H. Lawrence",
     "Work": "Odour of Chrysanthemums",
     "Year": "1909",
-    "Choice": "beginning of chapter one",
-    "Comment": "This excerpt is praised for its glood flow. !! draft to be reviewed !!",
+    "Choice": "first paragraph",
+    "Tags": "Ref",
+    "Language": "en",
+    "Comment": "This excerpt is praised for its glood flow.",
     "file": "texts/Odour_Chrys_1.txt"
   }
 ,
@@ -130,8 +246,21 @@
     "Work": "Of Human Bondage",
     "Year": "-1915",
     "Choice": "end of chapter 3",
-    "Comment": "Known for shorter sentences. !! draft analysis to be reviewed !!",
+    "Tags": "",
+    "Language": "en",
+    "Comment": "Known for shorter sentences.",
     "file": "texts/Of_Human_Bondage_1.txt"
+  }
+,
+  {
+    "Author": "Elmore Leonard",
+    "Work": "Out of Sight",
+    "Year": "1996",
+    "Choice": "at two third of chapter one",
+    "Tags": "Pop",
+    "Language": "en",
+    "Comment": "Author praised for realistic dialogues, but here is a bit of prose.",
+    "file": "texts/Out_of_sight_1.txt"
   }
 ,
   {
@@ -139,10 +268,9 @@
     "Work": "Perfect Rhythm",
     "Year": "2017",
     "Choice": "ch 2 p3",
-    "Comment": "First person narrator, with her voice. !! draft analysis to review !!",
-    "It was only after a few minutes of silent staring that she detected some changes": "The weathered windowsill on the dormer window jutting out from the roof had been replaced; the house had gotten a new paint job, and the trees shading the front lawn had grown taller.",
-    "~(DC2<1 that she detected some changes": "",
-    "Reluctant to leave the sanctuary of her rental car, she stared through the windshield toward the house. Like the town, her childhood home was almost exactly the same as Leo remembered. Despite the money she had sent her parents over the years, they hadn’t added to their two-story house. It was only after a few minutes of silent staring that she detected some changes": "The weathered windowsill on the dormer window jutting out from the roof had been replaced; the house had gotten a new paint job, and the trees shading the front lawn had grown taller.",
+    "Tags": "Pop",
+    "Language": "en",
+    "Comment": "First person narrator, with her voice.",
     "file": "texts/Perfect_Rhythm_1.txt"
   }
 ,
@@ -151,6 +279,8 @@
     "Work": "Pride and Prejudice",
     "Year": "1795-96",
     "Choice": "chapter 3 after a dialogue line",
+    "Tags": "Classic,Ref,Valid",
+    "Language": "en",
     "Comment": "",
     "file": "texts/Pride_and_Prejudice_1.txt"
   }
@@ -159,9 +289,33 @@
     "Author": "Theodore Dreiser",
     "Work": "Sister Carrie",
     "Year": "-1900 ",
-    "Choice": "beginning of chapter one",
-    "Comment": "Sentences might be on the short side (style criticised) !! draft analysis to be reviewed - several issues spotted !!",
+    "Choice": "beginning of chapter one*",
+    "Tags": "",
+    "Language": "en",
+    "Comment": "Sentences might be on the short side (style criticised) / reviewed once",
     "file": "texts/Sister_Carrie_1.txt"
+  }
+,
+  {
+    "Author": "Ernest Hemingway",
+    "Work": "The Sun Also Rises",
+    "Year": "1926",
+    "Choice": "beginning of chapter one",
+    "Tags": "",
+    "Language": "en",
+    "Comment": "",
+    "file": "texts/The Sun Also Rises_1.txt"
+  }
+,
+  {
+    "Author": "Edgar Allan Poe",
+    "Work": "The Fall of the House of Usher",
+    "Year": "-1839",
+    "Choice": "beginning of chapter one",
+    "Tags": "",
+    "Language": "en",
+    "Comment": "(manual breakdown, analysis to check for the rules v4 improvement)",
+    "file": "texts/The_Fall_of_the_House_of_Usher_1.txt"
   }
 ,
   {
@@ -169,8 +323,22 @@
     "Work": "The Great Gatsby",
     "Year": "1924",
     "Choice": "beginning of chapter one",
-    "Comment": "(Feature a quote that is not yet handled in format v4) !! draft analysis to review !!",
+    "Tags": "Classic",
+    "Language": "en",
+    "Comment": "(Feature a quote that is not yet handled in format v4) / reviewed once",
     "file": "texts/The_Great_Gatsby_1.txt"
+  }
+,
+  {
+    "Author": "John Fowles",
+    "Work": "The Magus",
+    "Year": "1977 (1965)",
+    "Choice": "beginning of chapter one",
+    "Tags": "",
+    "Language": "en",
+    "Comment": "",
+    "Rights": "asking",
+    "file": "texts/The_Magus_1.txt"
   }
 ,
   {
@@ -178,6 +346,8 @@
     "Work": "The Old Man and the Sea",
     "Year": "1950-51",
     "Choice": "prose after that the old man set sails",
+    "Tags": "Classic,Ref,ToReview",
+    "Language": "en",
     "Comment": "Let's see it he is as terse as some say. !! draft analysis to review !! + Big quote needs special handle not yet supported.",
     "Rights": "asking",
     "file": "texts/The_Old_Man_and_the_Sea_1.txt"
@@ -188,6 +358,9 @@
     "Work": "The Portrait of a Lady",
     "Year": "1881",
     "Choice": "beginning of chapter one",
+    "Tags": "Classic,Ref",
+    "Language": "en",
+    "Comment": "reviewed once, still some checks to do",
     "file": "texts/The_Portrait_of_a_Lady_1.txt"
   }
 ,
@@ -196,6 +369,8 @@
     "Work": "The Voyage Out",
     "Year": "1915",
     "Choice": "beginning of chapter one",
+    "Tags": "Classic,Ref,Valid",
+    "Language": "en",
     "Comment": "",
     "file": "texts/The_Voyage_Out_1.txt"
   }
@@ -205,7 +380,9 @@
     "Work": "The Waves",
     "Year": "1931",
     "Choice": "prose before the first dialogue",
-    "Comment": "!! draft analysis to review !!",
+    "Tags": "",
+    "Language": "en",
+    "Comment": "reviewed once",
     "Rights": "asking",
     "file": "texts/The_Waves_1.txt"
   }
@@ -215,7 +392,9 @@
     "Work": "The Well Dressed Explorer",
     "Year": "1962",
     "Choice": "beginning of chapter one",
-    "Comment": "!! draft analysis to review !!",
+    "Tags": "",
+    "Language": "en",
+    "Comment": "reviewed once",
     "file": "texts/The_Well_Dressed_Explorer_1.txt"
   }
 ,
@@ -224,7 +403,20 @@
     "Work": "Wuthering Heights (1st ed.)",
     "Year": "-1847",
     "Choice": "chapter one, after the short initial dialogue",
-    "Comment": "This excerpt is with first person narration.  !! draft analysis to be reviewed !!",
+    "Tags": "Classic,Ref,ToReview",
+    "Language": "en",
+    "Comment": "This excerpt is with first person narration. / reviewed once, and a sentence to redo ",
     "file": "texts/Wuthering_Heights_1.txt"
+  }
+,
+  {
+    "Author": "amateur writer",
+    "Work": "Excerpt 1",
+    "Year": "2025",
+    "Choice": "Courtesy of u/Ok_Listen_5752",
+    "Tags": "amateur",
+    "Language": "en",
+    "Comment": "",
+    "file": "texts/z_amat_1.txt"
   }
 ]

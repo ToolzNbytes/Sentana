@@ -1,0 +1,79 @@
+name: Generate gen/all_errors.txt from texts
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Build gen/all_errors.txt (improved format)
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          ROOT_DIR="texts"
+          OUT_DIR="gen"
+          OUTPUT_FILE="${OUT_DIR}/all_errors.txt"
+          SEPARATOR="=========="
+
+          mkdir -p "$OUT_DIR"
+          : > "$OUTPUT_FILE"
+
+          if [ ! -d "$ROOT_DIR" ]; then
+            echo "Directory '$ROOT_DIR' not found. Created empty output: $OUTPUT_FILE"
+            exit 0
+          fi
+
+          # .txt with "ToReview" or "Error" 
+          mapfile -t files < <(
+            grep -rIlE --include='*.txt' '(ToReview|Error)' "$ROOT_DIR" || true
+          )
+
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "No matching .txt files found under '$ROOT_DIR'. Output left empty: $OUTPUT_FILE"
+            exit 0
+          fi
+
+          # Sorting
+          IFS=$'\n' files_sorted=($(printf '%s\n' "${files[@]}" | sort))
+          unset IFS
+
+          for f in "${files_sorted[@]}"; do
+            {
+              echo "$f"
+              cat "$f"
+              echo
+              echo "$SEPARATOR"
+            } >> "$OUTPUT_FILE"
+          done
+
+          echo "Wrote: $OUTPUT_FILE"
+          printf 'Included:\n - %s\n' "${files_sorted[@]}"
+
+      - name: Commit and push to main (only if changed)
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add gen/all_errors.txt
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Generate gen/all_error.txt"
+          git push origin HEAD:main
