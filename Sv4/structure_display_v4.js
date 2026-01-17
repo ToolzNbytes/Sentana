@@ -744,7 +744,7 @@ if (chosenFont === MIN_FONT && !fits(MIN_FONT)) {
 }
 
 
-function setHighlightedSentence(node, noHl=false){
+function setHighlightedSentence(tree, node, noHl=false, wordIndex=null){
   const sArea = document.getElementById("sentenceArea");
   const so = node.textSoFar || "";
   const tr = node.textTree || "";
@@ -752,8 +752,31 @@ function setHighlightedSentence(node, noHl=false){
   const len = so.length + tr.length + af.length;
 
   fitStringInSentenceArea(len);
-  let hlClass= noHl ? "" : "hl";
-    sArea.innerHTML = `${escapeHtml(so)}<span class="${hlClass}">${escapeHtml(tr)}</span>${escapeHtml(af)}`;
+  const hlClass = noHl ? "" : "hl";
+  let inner = escapeHtml(tr);
+
+  if (!noHl && Number.isFinite(wordIndex) && tree && Array.isArray(tree._wordSpans)){
+    const nodeWCount = node.wTreeCount || 0;
+    if (nodeWCount > 0){
+      const nodeWStart = node.wPos || 1;
+      const nodeWEnd = nodeWStart + nodeWCount - 1;
+      const wi = Math.max(nodeWStart, Math.min(nodeWEnd, Math.floor(wordIndex)));
+      const span = tree._wordSpans[wi - 1];
+      if (span){
+        const startPos = (node.cPos || 1) - 1;
+        const localStart = Math.max(0, span.start - startPos);
+        const localEnd = Math.min(tr.length, span.end - startPos);
+        if (localEnd > localStart){
+          const before = tr.slice(0, localStart);
+          const word = tr.slice(localStart, localEnd);
+          const after = tr.slice(localEnd);
+          inner = `${escapeHtml(before)}<span class="hlCursor">${escapeHtml(word)}</span>${escapeHtml(after)}`;
+        }
+      }
+    }
+  }
+
+  sArea.innerHTML = `${escapeHtml(so)}<span class="${hlClass}">${inner}</span>${escapeHtml(af)}`;
 }
 function clearHighlightedSentence(){
   const sArea = document.getElementById("sentenceArea");
@@ -777,8 +800,26 @@ function buildHoverComment(tree, node) {
   return lines.join("\n");
 }
 
-function setHoveringDisplay(tree, node){
-  setHighlightedSentence(node, tree===node);
+function computeWordIndexFromEvent(node, e){
+  const count = node?.wTreeCount || 0;
+  if (count <= 0) return null;
+
+  const rect = e.currentTarget.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const ratio = rect.width > 0 ? (x / rect.width) : 0;
+  const clamped = Math.min(1, Math.max(0, ratio));
+  const maxOffset = Math.max(0, count - 1);
+  const offset = Math.min(maxOffset, Math.floor(clamped * count));
+  return (node.wPos || 1) + offset;
+}
+
+function updateHoverFromEvent(tree, node, e){
+  const wordIndex = computeWordIndexFromEvent(node, e);
+  setHoveringDisplay(tree, node, wordIndex);
+}
+
+function setHoveringDisplay(tree, node, wordIndex){
+  setHighlightedSentence(tree, node, tree===node, wordIndex);
   commentBox.textContent = buildHoverComment(tree, node);
 }
 
@@ -828,6 +869,7 @@ function createAnalysisSVG(tree, cap){
     fill:"#808080"
   })
   outerRect.addEventListener("mouseenter", ()=>setHoveringDisplay(tree,tree)); // tree from outer function
+  outerRect.addEventListener("mousemove", (e)=>updateHoverFromEvent(tree, tree, e));
   svg.appendChild(outerRect);
 
   const state = { ic:0, dc:0, dcF:0, fg:0, ap:0, pp:0, ppF:0, cp:0 };
@@ -859,6 +901,7 @@ function createAnalysisSVG(tree, cap){
         fill: fillSpec.value
       });
       r.addEventListener("mouseenter", ()=>setHoveringDisplay(tree,node)); // tree from outer function
+      r.addEventListener("mousemove", (e)=>updateHoverFromEvent(tree, node, e));
       svg.appendChild(r);
     } else {
       const r = svgEl("rect",{
@@ -873,6 +916,7 @@ function createAnalysisSVG(tree, cap){
         style:"mix-blend-mode:luminosity"
       });
       r.addEventListener("mouseenter", ()=>setHoveringDisplay(tree,node)); // tree from outer function
+      r.addEventListener("mousemove", (e)=>updateHoverFromEvent(tree, node, e));
       svg.appendChild(r);
     }
   }

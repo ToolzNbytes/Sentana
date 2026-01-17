@@ -16,6 +16,7 @@
   --hlBg:rgba(231,215,182,.22);
   --hlBd:rgba(231,215,182,.35);
   --hlBtn:rgba(138, 118, 82, 0.2); /* for hover */
+  --hlCursorBg:#e0b0a6;
   --listJoinBg:#15270e;
 }
 
@@ -430,6 +431,11 @@ body{
   /*background:var(--hlBg);*/
   background: var(--ink);
   border:0px solid var(--hlBd);
+  border-radius:6px;
+  color: #17110c;
+}
+.sentence .hlCursor{
+  background: var(--hlCursorBg);
   border-radius:6px;
   color: #17110c;
 }
