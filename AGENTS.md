@@ -6,7 +6,8 @@ Sentana is a static, client-side web app for exploring sentence structure across
 ## Repo layout
 - `index.html`: welcome page, updated occasionally (often by hand).
 - `Sv4/structure_display_v4.html`: main app page.
-- `doc_syntax_v4.md`: documentation for the syntax used by the project.
+- `gen/texts.meta.json`: metadata compilation from headers of the files in `texts/*.txt`.
+- `doc_syntax_v4.md`: a guide for the custom syntax used in the body of the files in `texts/`.
 - `img`, `icons`, `texts`, `Sv4`: data and assets used by the UI.
 - `gen`: files automatically generated, do not edit here.
 - `proto`, `queued`: can be ignored (historical prototype, provisional assets).
