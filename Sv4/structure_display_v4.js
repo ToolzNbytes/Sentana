@@ -1164,18 +1164,18 @@ if (helpBtn){
 /* ===================== Store feature (+>) ===================== */
 
 function computeCopyRWidth(){
-  // largeur fixée par paramètres
+  // fixed width from parameters
   if (DISPLAY_WIDTH && DISPLAY_WIDTH > 0) {
     return DISPLAY_WIDTH;
   }
 
-  // mode auto : s'il existe déjà un copyR, on réutilise sa largeur
+  // auto mode: if a copyR already exists, reuse its width
   const firstCopy = workspaces.querySelector(".copyR");
   if (firstCopy) {
     return firstCopy.getBoundingClientRect().width;
   }
 
-  // sinon, premier copyR : calcul initial
+  // otherwise, first copyR: initial width calculation
   const resultPanel = document.getElementById("resultPanel");
   const rpWidth = resultPanel.getBoundingClientRect().width;
   return Math.max(520, (rpWidth - 12) / 2);
@@ -1189,7 +1189,7 @@ storeBtn.addEventListener("click", ()=>{
   const c = corpus[idx];
 
   const w = computeCopyRWidth();
-  const resultPanel = document.getElementById("resultPanel"); // conservé pour le clone
+  const resultPanel = document.getElementById("resultPanel"); // kept for cloning
 
   const copy = document.createElement("section");
   copy.className = "copyR";
@@ -1208,7 +1208,7 @@ storeBtn.addEventListener("click", ()=>{
 
   const line2 = document.createElement("div");
   line2.className = "line2";
-  line2.textContent = `(${c.Choice})`;
+  line2.textContent = c.Choice ? `(${c.Choice})` : "";
 
   info.appendChild(xBtn);
   info.appendChild(line1);
@@ -1388,7 +1388,15 @@ function readLocalCorpus(){
 }
 
 function writeLocalCorpus(arr){
-  localStorage.setItem(LS_KEY_LOCAL_CORPUS, JSON.stringify(arr));
+  if (SSE && LS_KEY_LOCAL_CORPUS) {
+    SSE.storageSet(LS_KEY_LOCAL_CORPUS, arr);
+    return;
+  }
+  try {
+    localStorage.setItem(LS_KEY_LOCAL_CORPUS, JSON.stringify(arr));
+  } catch(e){
+    console.warn("LocalStorage write failed", e);
+  }
 }
 
 function cloneCurrentRemoteEntryToLocal(){

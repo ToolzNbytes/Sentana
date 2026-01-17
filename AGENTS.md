@@ -23,6 +23,8 @@ python -m http.server
 Then visit `http://localhost:8000`.
 
 ## Notes
+- The UI uses intentional Unicode glyphs (e.g., em dash, stylized close symbol) in labels/buttons; preserve these and keep file encoding UTF-8.
+- The app’s main purpose is the SVG-based visual display of text structure with hover highlights; accessibility compliance is inherently limited for this tool (an alternative would be reading the source texts directly).
 - There are no automated tests in this repo.
 - Keep edits focused on the static assets and the HTML/CSS/JS in `Sv4/structure_display_v4.html` unless you are updating the welcome page.
 - The welcome `index.html` page must stay robust and use independent assets; avoid coupling it to main page revisions.
