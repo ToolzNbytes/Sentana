@@ -248,7 +248,7 @@ function escapeHtml(s){
 
   async function loadMd(){
     try{
-      const res = await fetch("../doc_syntax_v4.md");
+      const res = await fetch("../docs/doc_syntax_v4.md");
       if (!res.ok) throw new Error("Cannot load documentation markdown.");
       const md = await res.text();
       mdHost.innerHTML = mdToHtml(md);
