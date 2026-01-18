@@ -475,6 +475,43 @@ body{
   display:block;
 }
 
+/* ===== Sentence context menu ===== */
+.sentenceMenu{
+  position:absolute;
+  z-index:120;
+  width: 160px;
+  background: linear-gradient(180deg, #2b1c12, #1d120c);
+  border: 1px solid rgba(231,215,182,.28);
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(0,0,0,.45);
+  color: var(--ink);
+  padding: 6px 0;
+}
+.sentenceMenuTitle{
+  padding: 8px 12px 6px 12px;
+  font-family: var(--serif);
+  color: var(--paper);
+  border-bottom: 1px solid rgba(231,215,182,.18);
+}
+.sentenceMenuItem{
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--ink);
+  text-align: left;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-family: var(--serif);
+  cursor: pointer;
+  white-space: normal;
+}
+.sentenceMenuItem:hover,
+.sentenceMenuItem:focus-visible{
+  background: rgba(231,215,182,.18);
+  color: var(--paper);
+  outline: none;
+}
+
 /* ===== Modal base ===== */
 .modal-backdrop{
   position:fixed;

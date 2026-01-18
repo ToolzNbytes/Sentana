@@ -899,7 +899,113 @@ function escapeHtml(s){
     .replaceAll("'","&#039;");
 }
 
-function createAnalysisSVG(tree, cap){
+/* ===================== Sentence context menu ===================== */
+let sentenceMenu = null;
+let sentenceMenuTitle = null;
+let sentenceMenuState = null;
+
+function ensureSentenceMenu(){
+  if (sentenceMenu) return sentenceMenu;
+
+  sentenceMenu = document.createElement("div");
+  sentenceMenu.className = "sentenceMenu hidden";
+  sentenceMenu.id = "sentenceMenu";
+  sentenceMenu.innerHTML = `
+    <div class="sentenceMenuTitle" id="sentenceMenuTitle">Sentence</div>
+    <button class="sentenceMenuItem" data-action="deconstruct">Deconstructor</button>
+    <button class="sentenceMenuItem" data-action="openStructure">Open structure</button>
+    <button class="sentenceMenuItem" data-action="openSource">Open source</button>
+    <button class="sentenceMenuItem" data-action="copySentence">Copy sentence</button>
+    <button class="sentenceMenuItem" data-action="copyPhrase">Copy phrase</button>
+  `;
+  document.body.appendChild(sentenceMenu);
+
+  sentenceMenuTitle = sentenceMenu.querySelector("#sentenceMenuTitle");
+
+  sentenceMenu.addEventListener("click", async (e)=>{
+    const item = e.target.closest(".sentenceMenuItem");
+    if (!item) return;
+    const action = item.dataset.action;
+    const state = sentenceMenuState;
+    closeSentenceMenu();
+    if (!state) return;
+
+    switch (action){
+      case "deconstruct":
+        alert("Deconstructor: upcoming feature.");
+        break;
+      case "openStructure":
+        openStructurePanelAtSentence(state.sentenceText || "");
+        break;
+      case "openSource":
+        openSourcePanelAtSentence(state.sentenceText || "");
+        break;
+      case "copySentence":
+        await copyToClipboard(normalizeSentenceForCopy(state.sentenceText || ""));
+        break;
+      case "copyPhrase":
+        await copyToClipboard(normalizePhraseForCopy(state.nodeText || state.sentenceText || ""));
+        break;
+      default:
+        break;
+    }
+  });
+
+  sentenceMenu.addEventListener("mousedown", (e)=>e.stopPropagation());
+
+  document.addEventListener("mousedown", (e)=>{
+    if (!sentenceMenu || sentenceMenu.classList.contains("hidden")) return;
+    if (!sentenceMenu.contains(e.target)) closeSentenceMenu();
+  });
+  document.addEventListener("keydown", (e)=>{
+    if (e.key === "Escape") closeSentenceMenu();
+  });
+  window.addEventListener("scroll", closeSentenceMenu, true);
+
+  return sentenceMenu;
+}
+
+function openSentenceMenuAt(x, y, state){
+  const menu = ensureSentenceMenu();
+  sentenceMenuState = state || null;
+  if (sentenceMenuTitle){
+    const idx = Number(state?.sentenceIndex) + 1;
+    sentenceMenuTitle.textContent = Number.isFinite(idx) ? `Sentence ${idx}` : "Sentence";
+  }
+
+  menu.classList.remove("hidden");
+  menu.style.left = "0px";
+  menu.style.top = "0px";
+
+  requestAnimationFrame(()=>{
+    const rect = menu.getBoundingClientRect();
+    const pad = 8;
+    const maxX = window.scrollX + window.innerWidth - rect.width - pad;
+    const maxY = window.scrollY + window.innerHeight - rect.height - pad;
+    const nextX = Math.max(window.scrollX + pad, Math.min(x, maxX));
+    const nextY = Math.max(window.scrollY + pad, Math.min(y, maxY));
+    menu.style.left = `${nextX}px`;
+    menu.style.top = `${nextY}px`;
+  });
+}
+
+function closeSentenceMenu(){
+  if (!sentenceMenu) return;
+  sentenceMenu.classList.add("hidden");
+  sentenceMenuState = null;
+}
+
+function normalizeSentenceForSearch(s){
+  return String(s || "").trimStart();
+}
+function normalizeSentenceForCopy(s){
+  return String(s || "").trimStart();
+}
+function normalizePhraseForCopy(s){
+  return String(s || "").trim();
+}
+
+function createAnalysisSVG(tree, cap, entry, sentenceIndex){
   const span = tree.wTreeCount || 0;
   const f = span > cap ? (span / cap) : 1;
 
@@ -917,6 +1023,17 @@ function createAnalysisSVG(tree, cap){
   buildPatterns(defs);
   svg.appendChild(defs);
 
+  function openMenuForNode(e, node){
+    if (e.button !== 0) return;
+    const sentenceText = entry?.sentence || "";
+    const nodeText = node?.textTree || node?.text || "";
+    openSentenceMenuAt(e.pageX, e.pageY, {
+      sentenceIndex,
+      sentenceText,
+      nodeText
+    });
+  }
+
   // outer rectangle in %
    const outerRect= svgEl("rect",{
     x:"0",
@@ -928,6 +1045,7 @@ function createAnalysisSVG(tree, cap){
     fill:"#808080"
   })
   outerRect.addEventListener("mouseenter", ()=>setHoveringDisplay(tree, tree)); // tree from outer function
+  outerRect.addEventListener("click", (e)=>openMenuForNode(e, tree));
   outerRect.addEventListener("dblclick", async ()=>{
     // For Debug: copy full parsed tree to clipboard (JSON)
     try{
@@ -979,6 +1097,7 @@ function createAnalysisSVG(tree, cap){
       class: "svgSpacer"
     });
     r.addEventListener("mouseenter", ()=>setHoveringDisplay(tree, node, wordIndex));
+    r.addEventListener("click", (e)=>openMenuForNode(e, node));
     svg.appendChild(r);
   }
 
@@ -1016,6 +1135,7 @@ function createAnalysisSVG(tree, cap){
         fill: fillSpec.value
       });
       r.addEventListener("mouseenter", ()=>setHoveringDisplay(tree, node)); // tree from outer function
+      r.addEventListener("click", (e)=>openMenuForNode(e, node));
       svg.appendChild(r);
     } else {
       const r = svgEl("rect",{
@@ -1030,6 +1150,7 @@ function createAnalysisSVG(tree, cap){
         style:"mix-blend-mode:luminosity"
       });
       r.addEventListener("mouseenter", ()=>setHoveringDisplay(tree, node)); // tree from outer function
+      r.addEventListener("click", (e)=>openMenuForNode(e, node));
       svg.appendChild(r);
     }
   }
@@ -1082,6 +1203,7 @@ function enoughOrMinimumBarHeightForTree(tree, cap){
 
 function renderSVGs(parsed){
   const panel = document.getElementById("resultPanel");
+  closeSentenceMenu();
   panel.innerHTML = "";
   panel.style.background = RESULT_BG;
 
@@ -1089,14 +1211,15 @@ function renderSVGs(parsed){
 
   const cap = effectiveWordCap(parsed);
 
-  for (const entry of parsed){
+  for (let i = 0; i < parsed.length; i++){
+    const entry = parsed[i];
     const wrap = document.createElement("div");
     wrap.className = "svgWrap";
 
     const suggested = enoughOrMinimumBarHeightForTree(entry.tree, cap);
 
     if (suggested === 0) {
-      const svg = createAnalysisSVG(entry.tree, cap);
+      const svg = createAnalysisSVG(entry.tree, cap, entry, i);
       wrap.addEventListener("mouseleave", clearHoveringDisplay);
       wrap.appendChild(svg);
     } else {
@@ -1462,19 +1585,9 @@ function buildExcerpt(parsed){
   return paras;
 }
 
+function setExcerptView(showOriginal){
+  showingExcerpt = Boolean(showOriginal);
 
-excerptSourceBtn.addEventListener("click", ()=>{
-  const entry = corpus[Number(list.value)];
-  excerptSourceContent.textContent = entry.AnalyzedText;
-  excerptSourceContent.className = "modal-content mono";
-  toggleView.textContent = "Switch to original excerpt";
-  showingExcerpt = false;
-  updateCloneBtnVisibility();
-  excerptSourcePnl.style.display = "flex";
-});
-
-toggleView.addEventListener("click", ()=>{
-  showingExcerpt = !showingExcerpt;
   if (showingExcerpt){
     const paras = buildExcerpt(lastParsed);
     excerptSourceContent.innerHTML = "";
@@ -1491,6 +1604,82 @@ toggleView.addEventListener("click", ()=>{
     toggleView.textContent = "Switch to original excerpt";
   }
   updateCloneBtnVisibility();
+}
+
+function selectSentenceInExcerpt(sentenceText){
+  const needle = normalizeSentenceForSearch(sentenceText);
+  if (!needle) return false;
+
+  const paras = excerptSourceContent.querySelectorAll("p");
+  for (const p of paras){
+    const text = p.textContent || "";
+    const idx = text.indexOf(needle);
+    if (idx >= 0){
+      const node = p.firstChild;
+      if (node && node.nodeType === Node.TEXT_NODE){
+        const range = document.createRange();
+        range.setStart(node, idx);
+        range.setEnd(node, idx + needle.length);
+        const sel = window.getSelection();
+        if (sel){
+          sel.removeAllRanges();
+          sel.addRange(range);
+        }
+      }
+      p.scrollIntoView({ block: "center", behavior: "smooth" });
+      return true;
+    }
+  }
+  return false;
+}
+
+function selectSentenceInAnalysis(sentenceText){
+  const needle = normalizeSentenceForSearch(sentenceText);
+  if (!needle) return false;
+
+  const text = excerptSourceContent.textContent || "";
+  const idx = text.indexOf(needle);
+  if (idx < 0) return false;
+
+  const node = excerptSourceContent.firstChild;
+  if (!node || node.nodeType !== Node.TEXT_NODE) return false;
+
+  const range = document.createRange();
+  range.setStart(node, idx);
+  range.setEnd(node, idx + needle.length);
+  const sel = window.getSelection();
+  if (sel){
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
+  const rects = range.getClientRects();
+  if (rects.length){
+    const containerRect = excerptSourceContent.getBoundingClientRect();
+    const delta = rects[0].top - containerRect.top;
+    excerptSourceContent.scrollTop += delta - (excerptSourceContent.clientHeight * 0.33);
+  }
+  return true;
+}
+
+function openSourcePanelAtSentence(sentenceText){
+  excerptSourcePnl.style.display = "flex";
+  setExcerptView(true);
+  selectSentenceInExcerpt(sentenceText);
+}
+
+function openStructurePanelAtSentence(sentenceText){
+  excerptSourcePnl.style.display = "flex";
+  setExcerptView(false);
+  selectSentenceInAnalysis(sentenceText);
+}
+
+excerptSourceBtn.addEventListener("click", ()=>{
+  setExcerptView(false);
+  excerptSourcePnl.style.display = "flex";
+});
+
+toggleView.addEventListener("click", ()=>{
+  setExcerptView(!showingExcerpt);
 });
 
 function getExcerptSourceText(){
