@@ -790,29 +790,13 @@ function getOwnTextRangeByWord(node, wordIndex){
   return { start: localStart, end: localEnd };
 }
 
-function shouldApplyHl2(textLen, childRanges){
-  if (!textLen || !childRanges.length) return false;
-
-  const merged = [];
-  const sorted = childRanges.slice().sort((a, b) => a.start - b.start);
-  for (const r of sorted){
-    const last = merged[merged.length - 1];
-    if (!last || r.start > last.end){
-      merged.push({ start: r.start, end: r.end });
-    } else {
-      last.end = Math.max(last.end, r.end);
-    }
+function shouldApplyHl2(node){
+  let parts = 0;
+  if (node.text && node.text.length) parts++;
+  for (const ch of (node.nodes || [])){
+    if (!ch.tag && ch.text && ch.text.length) parts++;
   }
-
-  let gaps = 0;
-  let cursor = 0;
-  for (const r of merged){
-    if (r.start > cursor) gaps++;
-    cursor = Math.max(cursor, r.end);
-  }
-  if (cursor < textLen) gaps++;
-
-  return gaps > 1;
+  return parts >= 2;
 }
 
 function buildTreeHighlightHtml(node, wordIndex){
@@ -820,8 +804,6 @@ function buildTreeHighlightHtml(node, wordIndex){
   if (!text.length) return "";
 
   const ranges = [];
-  const childRanges = [];
-
   for (const ch of (node.nodes || [])){
     if (ch.tag && ch.textTree && ch.textTree.length){
       const baseStart = (node.cPos || 1) - 1;
@@ -829,14 +811,12 @@ function buildTreeHighlightHtml(node, wordIndex){
       const localStart = Math.max(0, chStart - baseStart);
       const localEnd = Math.min(text.length, localStart + ch.textTree.length);
       if (localEnd > localStart){
-        const r = { start: localStart, end: localEnd, cls: "hlChild" };
-        ranges.push(r);
-        childRanges.push(r);
+        ranges.push({ start: localStart, end: localEnd, cls: "hlChild" });
       }
     }
   }
 
-  if (shouldApplyHl2(text.length, childRanges)){
+  if (shouldApplyHl2(node)){
     const ownRange = getOwnTextRangeByWord(node, wordIndex);
     if (ownRange) {
       ranges.push({ start: ownRange.start, end: ownRange.end, cls: "hlCursor" });
@@ -948,6 +928,16 @@ function createAnalysisSVG(tree, cap){
     fill:"#808080"
   })
   outerRect.addEventListener("mouseenter", ()=>setHoveringDisplay(tree, tree)); // tree from outer function
+  outerRect.addEventListener("dblclick", async ()=>{
+    // For Debug: copy full parsed tree to clipboard (JSON)
+    try{
+      const json = JSON.stringify(tree, null, 2);
+      await copyToClipboard(json);
+      alert("Tree copied to clipboard.");
+    }catch(e){
+      alert("Copy failed.");
+    }
+  });
   svg.appendChild(outerRect);
 
   const state = { ic:0, dc:0, dcF:0, fg:0, ap:0, pp:0, ppF:0, cp:0 };

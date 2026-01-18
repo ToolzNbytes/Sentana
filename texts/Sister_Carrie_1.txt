@@ -9,8 +9,8 @@ Comment: Sentences might be on the short side (style criticised) / reviewed once
 ###
 
  When Caroline Meeber boarded the afternoon train for Chicago, her total outfit consisted of a small trunk, a cheap imitation alligator-skin satchel, a small lunch in a paper box, and a yellow leather snap purse, containing her ticket, a scrap of paper with her sister’s address in Van Buren Street, and four dollars in money.
-(IC1 
-~(DC2>1When Caroline Meeber boarded the afternoon train for Chicago,
+(IC1
+~(DC2>1 When Caroline Meeber boarded the afternoon train for Chicago,
 ~)
  her total outfit consisted of a small trunk, a cheap imitation alligator-skin satchel, a small lunch in a paper box, and a yellow leather snap purse,
 ~(PP3<1 containing her ticket, a scrap of paper
@@ -31,8 +31,8 @@ She was eighteen years of age, bright, timid, and full of the illusions of ignor
 )
 
 Whatever touch of regret at parting characterised her thoughts, it was certainly not for advantages now being given up.
-(IC1 
-~(DC2>1Whatever touch of regret at parting characterised her thoughts,
+(IC1
+~(DC2>1 Whatever touch of regret at parting characterised her thoughts,
 ~)
  it was certainly not for advantages
 ~(PP3<1 now being given up.
