@@ -26,6 +26,7 @@ Then visit `http://localhost:8000`.
 - The UI uses intentional Unicode glyphs (e.g., em dash, stylized close symbol) in labels/buttons; preserve these and keep file encoding UTF-8.
 - Avoid re-encoding files that contain Unicode markers (like the em dash used in text parsing). Keep the literal characters in source, and do not replace them with mojibake sequences.
 - The app’s main purpose is the SVG-based visual display of text structure with hover highlights; accessibility compliance is inherently limited for this tool (an alternative would be reading the source texts directly).
+- Parsing and SVG construction overview: see `docs/parse_svg_notes.md`.
 - There are no automated tests in this repo.
 - Keep edits focused on the static assets and the HTML/CSS/JS in `Sv4/structure_display_v4.html` unless you are updating the welcome page.
 - The welcome `index.html` page must stay robust and use independent assets; avoid coupling it to main page revisions.
