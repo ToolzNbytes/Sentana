@@ -744,6 +744,91 @@ if (chosenFont === MIN_FONT && !fits(MIN_FONT)) {
 }
 
 
+function getOwnTextRangeByWord(node, wordIndex){
+  const text = node.textTree || "";
+  if (!node.nodes || node.nodes.length === 0 || !text.length) return null;
+  if (!Number.isFinite(wordIndex)) return null;
+
+  const spans = [];
+  const baseStart = (node.cPos || 1) - 1;
+  const nodeText = node.text || "";
+
+  if (nodeText.length && (node.wCount || 0) > 0) {
+    const wStart = node.wPos || 1;
+    spans.push({
+      start: baseStart,
+      end: baseStart + nodeText.length,
+      wStart,
+      wEnd: wStart + (node.wCount || 0) - 1
+    });
+  }
+
+  for (const ch of (node.nodes || [])){
+    if (!ch.tag && ch.text && ch.text.length){
+      const chStart = (ch.cPos || 1) - 1;
+      const wStart = ch.wPos || 1;
+      const wEnd = wStart + (ch.wTreeCount || 0) - 1;
+      spans.push({
+        start: chStart,
+        end: chStart + ch.text.length,
+        wStart,
+        wEnd
+      });
+    }
+  }
+
+  if (!spans.length) return null;
+  spans.sort((a, b) => a.start - b.start);
+
+  const target = spans.find(s => wordIndex >= s.wStart && wordIndex <= s.wEnd);
+  if (!target) return null;
+
+  const localStart = Math.max(0, target.start - baseStart);
+  const localEnd = Math.min(text.length, target.end - baseStart);
+  if (localEnd <= localStart) return null;
+
+  return { start: localStart, end: localEnd };
+}
+
+function buildTreeHighlightHtml(node, wordIndex){
+  const text = node.textTree || "";
+  if (!text.length) return "";
+
+  const ranges = [];
+
+  for (const ch of (node.nodes || [])){
+    if (ch.tag && ch.textTree && ch.textTree.length){
+      const baseStart = (node.cPos || 1) - 1;
+      const chStart = (ch.cPos || 1) - 1;
+      const localStart = Math.max(0, chStart - baseStart);
+      const localEnd = Math.min(text.length, localStart + ch.textTree.length);
+      if (localEnd > localStart){
+        ranges.push({ start: localStart, end: localEnd, cls: "hlChild" });
+      }
+    }
+  }
+
+  const ownRange = getOwnTextRangeByWord(node, wordIndex);
+  if (ownRange) {
+    ranges.push({ start: ownRange.start, end: ownRange.end, cls: "hlCursor" });
+  }
+
+  if (!ranges.length) return escapeHtml(text);
+  ranges.sort((a, b) => a.start - b.start);
+
+  let out = "";
+  let cursor = 0;
+  for (const r of ranges){
+    const start = Math.max(cursor, r.start);
+    const end = Math.max(start, r.end);
+    if (start > cursor) out += escapeHtml(text.slice(cursor, start));
+    if (end > start) out += `<span class="${r.cls}">${escapeHtml(text.slice(start, end))}</span>`;
+    cursor = Math.max(cursor, end);
+  }
+  out += escapeHtml(text.slice(cursor));
+  return out;
+}
+
 function setHighlightedSentence(tree, node, noHl=false, wordIndex=null){
   const sArea = document.getElementById("sentenceArea");
   const so = node.textSoFar || "";
@@ -753,28 +838,10 @@ function setHighlightedSentence(tree, node, noHl=false, wordIndex=null){
 
   fitStringInSentenceArea(len);
   const hlClass = noHl ? "" : "hl";
-  let inner = escapeHtml(tr);
-
-  if (!noHl && Number.isFinite(wordIndex) && tree && Array.isArray(tree._wordSpans)){
-    const nodeWCount = node.wTreeCount || 0;
-    if (nodeWCount > 0){
-      const nodeWStart = node.wPos || 1;
-      const nodeWEnd = nodeWStart + nodeWCount - 1;
-      const wi = Math.max(nodeWStart, Math.min(nodeWEnd, Math.floor(wordIndex)));
-      const span = tree._wordSpans[wi - 1];
-      if (span){
-        const startPos = (node.cPos || 1) - 1;
-        const localStart = Math.max(0, span.start - startPos);
-        const localEnd = Math.min(tr.length, span.end - startPos);
-        if (localEnd > localStart){
-          const before = tr.slice(0, localStart);
-          const word = tr.slice(localStart, localEnd);
-          const after = tr.slice(localEnd);
-          inner = `${escapeHtml(before)}<span class="hlCursor">${escapeHtml(word)}</span>${escapeHtml(after)}`;
-        }
-      }
-    }
-  }
+  const hasTaggedChild = (node.nodes || []).some(ch => ch.tag && ch.tag.length);
+  const inner = (!noHl && hasTaggedChild)
+    ? buildTreeHighlightHtml(node, wordIndex)
+    : escapeHtml(tr);
 
   sArea.innerHTML = `${escapeHtml(so)}<span class="${hlClass}">${inner}</span>${escapeHtml(af)}`;
 }
@@ -798,24 +865,6 @@ function buildHoverComment(tree, node) {
     if (def) lines.push(`(${def})`);
   }
   return lines.join("\n");
-}
-
-function computeWordIndexFromEvent(node, e){
-  const count = node?.wTreeCount || 0;
-  if (count <= 0) return null;
-
-  const rect = e.currentTarget.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const ratio = rect.width > 0 ? (x / rect.width) : 0;
-  const clamped = Math.min(1, Math.max(0, ratio));
-  const maxOffset = Math.max(0, count - 1);
-  const offset = Math.min(maxOffset, Math.floor(clamped * count));
-  return (node.wPos || 1) + offset;
-}
-
-function updateHoverFromEvent(tree, node, e){
-  const wordIndex = computeWordIndexFromEvent(node, e);
-  setHoveringDisplay(tree, node, wordIndex);
 }
 
 function setHoveringDisplay(tree, node, wordIndex){
@@ -868,8 +917,7 @@ function createAnalysisSVG(tree, cap){
     ry:"10",
     fill:"#808080"
   })
-  outerRect.addEventListener("mouseenter", ()=>setHoveringDisplay(tree,tree)); // tree from outer function
-  outerRect.addEventListener("mousemove", (e)=>updateHoverFromEvent(tree, tree, e));
+  outerRect.addEventListener("mouseenter", ()=>setHoveringDisplay(tree, tree)); // tree from outer function
   svg.appendChild(outerRect);
 
   const state = { ic:0, dc:0, dcF:0, fg:0, ap:0, pp:0, ppF:0, cp:0 };
@@ -886,6 +934,53 @@ function createAnalysisSVG(tree, cap){
     return { xPct, y, wPct, h };
   }
 
+  function spacerGeometry(startWordIdx, wCount, level){
+    const xPct = ((startWordIdx / f) / cap) * 100;
+    const wPct = (((wCount || 0) / f) / cap) * 100;
+    const lvl = level || 1;
+    const topM = 5 * lvl;
+    const botM = 3 * lvl;
+    const y = topM;
+    const h = Math.max(0, mainH - topM - botM);
+    return { xPct, y, wPct, h };
+  }
+
+  function addSpacerRect(node, startWordIdx, wCount, level, wordIndex){
+    if (!wCount || wCount <= 0) return;
+    const { xPct, y, wPct, h } = spacerGeometry(startWordIdx, wCount, level);
+    const r = svgEl("rect",{
+      x: `${xPct}%`,
+      y: `${y}`,
+      width: `${wPct}%`,
+      height: `${h}`,
+      rx:"10",
+      ry:"10",
+      fill: "transparent",
+      class: "svgSpacer"
+    });
+    r.addEventListener("mouseenter", ()=>setHoveringDisplay(tree, node, wordIndex));
+    svg.appendChild(r);
+  }
+
+  function addSpacersForNode(node){
+    const hasTaggedChild = (node.nodes || []).some(ch => ch.tag && ch.tag.length);
+    if (!hasTaggedChild) return;
+
+    const spacerLevel = (node.level || 1) + 1;
+    const nodeStartIdx = (node.wPos || 1) - 1;
+
+    if ((node.wCount || 0) > 0) {
+      addSpacerRect(node, nodeStartIdx, node.wCount, spacerLevel, node.wPos || 1);
+    }
+
+    for (const ch of (node.nodes || [])){
+      if (!ch.tag && (ch.wTreeCount || 0) > 0){
+        const startIdx = (ch.wPos || 1) - 1;
+        addSpacerRect(node, startIdx, ch.wTreeCount, spacerLevel, ch.wPos || 1);
+      }
+    }
+  }
+
   function addRect(node, cursorWords){
     const {xPct,y,wPct,h} = rectGeometry(node, cursorWords);
     const fillSpec = pickFill(node, state);
@@ -900,8 +995,7 @@ function createAnalysisSVG(tree, cap){
         ry:"10",
         fill: fillSpec.value
       });
-      r.addEventListener("mouseenter", ()=>setHoveringDisplay(tree,node)); // tree from outer function
-      r.addEventListener("mousemove", (e)=>updateHoverFromEvent(tree, node, e));
+      r.addEventListener("mouseenter", ()=>setHoveringDisplay(tree, node)); // tree from outer function
       svg.appendChild(r);
     } else {
       const r = svgEl("rect",{
@@ -915,19 +1009,23 @@ function createAnalysisSVG(tree, cap){
         opacity:"0.5",
         style:"mix-blend-mode:luminosity"
       });
-      r.addEventListener("mouseenter", ()=>setHoveringDisplay(tree,node)); // tree from outer function
-      r.addEventListener("mousemove", (e)=>updateHoverFromEvent(tree, node, e));
+      r.addEventListener("mouseenter", ()=>setHoveringDisplay(tree, node)); // tree from outer function
       svg.appendChild(r);
     }
   }
 
   function walk(node, cursorWords){
+    // Add spacer rects for this node, aligned with the next level.
+    addSpacersForNode(node);
+
     for (const ch of (node.nodes || [])){
       const isNode = (ch.tag && ch.tag.length > 0);
       if (isNode){
         addRect(ch, cursorWords);
-        cursorWords += (ch.wCount || 0);
-        cursorWords = walk(ch, cursorWords);
+        const childStart = cursorWords;
+        const childAfterHeader = childStart + (ch.wCount || 0);
+        walk(ch, childAfterHeader);
+        cursorWords = childStart + (ch.wTreeCount || 0);
       } else {
         cursorWords += (ch.wCount || 0);
       }

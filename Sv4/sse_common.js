@@ -255,34 +255,6 @@ function parseAnalyzedText(analyzedText, reportError){
     // Build traversal sequence of text pieces (node.text and leaf.text), with subtree [start,end)
     const pieces = [];
     const lens = [0];
-    const marker = '—';
-
-    function buildWordSpans(text){
-      const spans = [];
-      let i = 0;
-      const n = text.length;
-
-      while (i < n){
-        if (text.startsWith(marker, i)){
-          i += marker.length;
-          continue;
-        }
-        if (/\s/.test(text[i])){
-          i++;
-          continue;
-        }
-
-        const start = i;
-        i++;
-        while (i < n){
-          if (text.startsWith(marker, i)) break;
-          if (/\s/.test(text[i])) break;
-          i++;
-        }
-        spans.push({ start, end: i });
-      }
-      return spans;
-    }
 
     function dfs(n){
       n._start = pieces.length;
@@ -299,7 +271,6 @@ function parseAnalyzedText(analyzedText, reportError){
     dfs(root);
 
     const full = pieces.join("");
-    root._wordSpans = buildWordSpans(full);
 
     function fillStrings(n){
       const startPos = lens[n._start] || 0;
