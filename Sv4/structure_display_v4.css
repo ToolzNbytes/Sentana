@@ -530,6 +530,15 @@ body{
   color: var(--paper);
   outline: none;
 }
+.sentenceMenuItem.isDisabled{
+  opacity: 0.45;
+  cursor: default;
+}
+.sentenceMenuItem.isDisabled:hover,
+.sentenceMenuItem.isDisabled:focus-visible{
+  background: transparent;
+  color: var(--ink);
+}
 
 /* ===== Modal base ===== */
 .modal-backdrop{

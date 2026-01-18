@@ -902,6 +902,7 @@ function escapeHtml(s){
 /* ===================== Sentence context menu ===================== */
 let sentenceMenu = null;
 let sentenceMenuTitle = null;
+let sentenceMenuDeconstruct = null;
 let sentenceMenuState = null;
 
 function ensureSentenceMenu(){
@@ -924,6 +925,7 @@ function ensureSentenceMenu(){
   document.body.appendChild(sentenceMenu);
 
   sentenceMenuTitle = sentenceMenu.querySelector("#sentenceMenuTitle");
+  sentenceMenuDeconstruct = sentenceMenu.querySelector("[data-action='deconstruct']");
   const closeBtn = sentenceMenu.querySelector(".sentenceMenuClose");
   if (closeBtn){
     closeBtn.addEventListener("click", (e)=>{
@@ -982,6 +984,11 @@ function openSentenceMenuAt(x, y, state){
     const idx = Number(state?.sentenceIndex) + 1;
     sentenceMenuTitle.textContent = Number.isFinite(idx) ? `Sentence ${idx}` : "Sentence";
   }
+  if (sentenceMenuDeconstruct){
+    const enabled = Boolean(state?.canDeconstruct);
+    sentenceMenuDeconstruct.disabled = !enabled;
+    sentenceMenuDeconstruct.classList.toggle("isDisabled", !enabled);
+  }
 
   menu.classList.remove("hidden");
   menu.style.left = "0px";
@@ -1015,6 +1022,15 @@ function normalizePhraseForCopy(s){
   return String(s || "").trim();
 }
 
+function countTaggedNodes(node){
+  if (!node || typeof node !== "object") return 0;
+  let count = node.tag ? 1 : 0;
+  for (const ch of (node.nodes || [])){
+    count += countTaggedNodes(ch);
+  }
+  return count;
+}
+
 function createAnalysisSVG(tree, cap, entry, sentenceIndex){
   const span = tree.wTreeCount || 0;
   const f = span > cap ? (span / cap) : 1;
@@ -1040,7 +1056,8 @@ function createAnalysisSVG(tree, cap, entry, sentenceIndex){
     openSentenceMenuAt(e.pageX, e.pageY, {
       sentenceIndex,
       sentenceText,
-      nodeText
+      nodeText,
+      canDeconstruct: countTaggedNodes(entry?.tree) > 1
     });
   }
 
