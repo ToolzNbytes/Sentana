@@ -28,7 +28,7 @@
 <main class="workspaces" id="workspaces">
   <div class="workspaceWrap" id="workspaceWrap">
     <section class="workspace" id="workspace">
-      <div class="top-panel">
+      <div id="excerptSelector">
         <div class="row-1">
           <div class="work-details" id="workDetails">
             <div class="workDetailsContent" id="workDetailsContent">
@@ -61,7 +61,7 @@
       <div id="explorerArea">
         <div class="row-2">
           <div class="comment" id="commentArea"></div>
-          <button class="plus-btn" title="Open raw / excerpt panel"><svg class="icon" aria-hidden="true"><use href="../icons/dive-in_doc.svg?#icon"></use></svg></button>
+          <button id="excerptSourceBtn" title="Open raw / excerpt panel"><svg class="icon" aria-hidden="true"><use href="../icons/dive-in_doc.svg?#icon"></use></svg></button>
         </div>
         <div class="sentence" id="sentenceArea"></div>
       </div>
@@ -70,8 +70,8 @@
   </div>
 </main>
 
-<!-- Plus modal -->
-<div class="modal-backdrop" id="plusModal">
+<!-- Excerpt source panel -->
+<div class="modal-backdrop" id="excerptSourcePnl">
   <div class="modal">
     <div class="modal-header">
       <div class="modalHeaderLeft">
@@ -79,9 +79,9 @@
         <button id="copyClipboardBtn" style="width:200px; white-space: nowrap;" class="hoverBtn">Copy to clipboard</button>
         <button id="cloneLocalBtn" class="hoverBtn">Clone to local corpus</button>
       </div>
-      <button id="closePlus" class="hoverBtn">×</button>
+      <button id="excerptSourceClose" class="hoverBtn">×</button>
     </div>
-    <div class="modal-content mono" id="plusContent"></div>
+    <div class="modal-content mono" id="excerptSourceContent"></div>
   </div>
 </div>
 

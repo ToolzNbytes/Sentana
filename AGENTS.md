@@ -24,8 +24,8 @@ python -m http.server
 Then visit `http://localhost:8000`.
 
 ## More information on the project
-- Parsing and SVG construction overview: see `docs/parse_svg_notes.md`.
 - Main page UI structure and buttons: see `docs/main_page_ui.md` (useful when updating UI behavior or layout).
+- Parsing and SVG construction overview: see `docs/parse_svg_notes.md`.
 
 ## Notes
 - The UI uses intentional Unicode glyphs (e.g., em dash, stylized close symbol) in labels/buttons; preserve these and keep file encoding UTF-8.

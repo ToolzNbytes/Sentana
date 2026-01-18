@@ -1419,13 +1419,14 @@ storeBtn.addEventListener("click", ()=>{
   updateCollapseEnabled();
 });
 
-/* ===================== Plus modal ===================== */
-const plusModal = document.getElementById("plusModal");
-const plusContent = document.getElementById("plusContent");
+/* ===================== Excerpt source panel ===================== */
+const excerptSourcePnl = document.getElementById("excerptSourcePnl");
+const excerptSourceContent = document.getElementById("excerptSourceContent");
 const toggleView = document.getElementById("toggleView");
-const closePlus = document.getElementById("closePlus");
+const excerptSourceClose = document.getElementById("excerptSourceClose");
 const cloneLocalBtn = document.getElementById("cloneLocalBtn");
 const copyClipboardBtn = document.getElementById("copyClipboardBtn");
+const excerptSourceBtn = document.getElementById("excerptSourceBtn");
 
 let showingExcerpt = false;
 
@@ -1472,38 +1473,38 @@ function buildExcerpt(parsed){
 }
 
 
-document.querySelector(".plus-btn").addEventListener("click", ()=>{
+excerptSourceBtn.addEventListener("click", ()=>{
   const entry = corpus[Number(list.value)];
-  plusContent.textContent = entry.AnalyzedText;
-  plusContent.className = "modal-content mono";
+  excerptSourceContent.textContent = entry.AnalyzedText;
+  excerptSourceContent.className = "modal-content mono";
   toggleView.textContent = "Switch to original excerpt";
   showingExcerpt = false;
   updateCloneBtnVisibility();
-  plusModal.style.display = "flex";
+  excerptSourcePnl.style.display = "flex";
 });
 
 toggleView.addEventListener("click", ()=>{
   showingExcerpt = !showingExcerpt;
   if (showingExcerpt){
     const paras = buildExcerpt(lastParsed);
-    plusContent.innerHTML = "";
-    plusContent.className = "modal-content serif";
+    excerptSourceContent.innerHTML = "";
+    excerptSourceContent.className = "modal-content serif";
     for (const p of paras) {
       const el = document.createElement("p");
       el.textContent = p;
-      plusContent.appendChild(el);
+      excerptSourceContent.appendChild(el);
     }
     toggleView.textContent = "Switch to structural analysis";
   } else {
-    plusContent.textContent = corpus[Number(list.value)].AnalyzedText;
-    plusContent.className = "modal-content mono";
+    excerptSourceContent.textContent = corpus[Number(list.value)].AnalyzedText;
+    excerptSourceContent.className = "modal-content mono";
     toggleView.textContent = "Switch to original excerpt";
   }
   updateCloneBtnVisibility();
 });
 
-function getPlusPanelText(){
-  const el = document.getElementById("plusContent");
+function getExcerptSourceText(){
+  const el = document.getElementById("excerptSourceContent");
   if (!el) return "";
   // If it is a textarea in your version, use value; otherwise use innerText.
   const text = (typeof el.value === "string") ? el.value : el.innerText;
@@ -1535,15 +1536,15 @@ async function copyToClipboard(text){
 
 copyClipboardBtn.addEventListener("click", async () => {
   try{
-    await copyToClipboard(getPlusPanelText());
+    await copyToClipboard(getExcerptSourceText());
     /*alert("Copied to clipboard.");*/
   }catch(e){
     alert("Copy failed.");
   }
 });
 
-closePlus.addEventListener("click", ()=>plusModal.style.display = "none");
-plusModal.addEventListener("click", (e)=>{ if (e.target === plusModal) plusModal.style.display = "none"; });
+excerptSourceClose.addEventListener("click", ()=>excerptSourcePnl.style.display = "none");
+excerptSourcePnl.addEventListener("click", (e)=>{ if (e.target === excerptSourcePnl) excerptSourcePnl.style.display = "none"; });
 
 /* ==== clone to local storage ==== */
 

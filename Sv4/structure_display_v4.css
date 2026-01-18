@@ -75,7 +75,7 @@ body{
 }
 
 /* hide post-title part on narrow windows */
-@media (max-width: 940px){
+@media (max-width: 1020px){
   .titleWrap{ padding: 0 86px; }
   .titleSub{ display:none; }
 }
@@ -125,6 +125,11 @@ body{
   width: 100%;
   height: 100%;
   display: block;
+}
+/* Slightly shrink the local data icon to reduce visual weight */
+#localDataBtn > svg.icon{
+  transform: scale(0.8, 0.9);
+  transform-origin: 50% 50%;
 }
 /* hover when active */
 .topIconBtn:not(:disabled):hover{
@@ -221,8 +226,9 @@ body{
 }
 .mainR .svgWrap:last-child{margin-bottom:0}
 
-/* ===== Top panel ===== */
-.top-panel{
+/* =====Main control or display area ===== */
+.pageSection,
+#excerptSelector{
   padding:14px;
   display:flex;
   flex-direction:column;
@@ -402,7 +408,7 @@ body{
   color:var(--errorInk);
   border-color:rgba(122,31,27,.6);
 }
-.plus-btn{
+#excerptSourceBtn{
   width:36px;
   border-radius:10px;
   border:1px solid var(--border);
@@ -411,7 +417,7 @@ body{
   font-size:20px;
   cursor:pointer;
 }
-.plus-btn:not(:disabled):hover{
+#excerptSourceBtn:not(:disabled):hover{
   background: var(--hlBtn);
 }
 
@@ -596,7 +602,7 @@ body{
 }
 
 .iconBtn svg,
-.plus-btn svg{
+#excerptSourceBtn svg{
   width: 22px;
   height: 22px;
   display: block;

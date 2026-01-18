@@ -25,18 +25,40 @@ sections can be added on the right of the primary workspace inside `#workspaces`
 The primary workspace is always present but it can be collapsed (hidden) to only show the copies.
 
 ### Zones inside the workspace
-- Top Panel: choose the excerpt to process and display.
+- Excerpt Selector: choose the excerpt to process and display.
 - Explorer Area: detailed information about the hovered sentence SVG, and excerpt
   info when nothing is hovered; includes a button to access the excerpt's text.
-- Result Panel: builds the series of SVGs that render the selected excerpt.
+- Result Panel: builds the series of SVGs that render the selected excerpt, one per sentence.
 
 ### Explorer Area button
-- `.plus-btn`: open the dive-in panel (`#plusModal`).
+- `#excerptSourceBtn`: open the excerpt source panel (`#excerptSourcePnl`).
 
-### Top Panel details
+### Excerpt Source Panel (`#excerptSourcePnl`)
+Default view shows the analyzed sentences with custom structural syntax. Buttons:
+- Switch to original Excerpt (replace panel content with the original text).
+- Copy to clipboard.
+- Clone to local corpus (copy metadata + analyzed text into browser local corpus).
+- Close (also dismisses by clicking outside).
+
+When showing the original text, only two buttons are available:
+- Switch to structural analysis (return to default view).
+- Copy to clipboard.
+
+### Excerpt Selector details (`#excerptSelector`)
 - Left side: Work Details (`#workDetails`) showing the main metadata for the
   currently selected excerpt.
 - Right side: excerpt selection list for processing and rendering.
   - Source toggles: `corpusRemoteBtn` and `corpusLocalBtn` select the remote or
     local list.
   - Filter button (above the toggles): for filtering the remote list only.
+
+## Settings panel
+Adjustable parameters:
+- Word cap: number of words before a sentence SVG uses full width.
+- Bar height: root SVG height for deep nesting with few words.
+- Bg color: convenience for screenshots.
+- Display width: custom width (inherited value) for showing several copies.
+
+Buttons:
+- Cancel.
+- Validate & Process (apply parameters to current workspace).

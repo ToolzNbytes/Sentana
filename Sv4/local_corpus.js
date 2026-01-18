@@ -15,7 +15,7 @@ const fComment = document.getElementById("fComment");
 const analysisInput = document.getElementById("analysisInput");
 const newEntryBtn = document.getElementById("newEntryBtn");
 const verifyBtn = document.getElementById("verifyBtn");
-const storeBtn = document.getElementById("storeBtnLocal");
+const storeBtnLocal = document.getElementById("storeBtnLocal");
 const downloadBtn = document.getElementById("downloadBtn");
 const statusMsg = document.getElementById("statusMsg");
 
@@ -155,7 +155,7 @@ function verifyAnalyzedText(text){
 function updateStoreEnabled(){
   const okMeta = fWork.value.trim().length > 0 && fAuthor.value.trim().length > 0;
   const okText = analysisInput.value.trim().length > 0;
-  storeBtn.disabled = !(okMeta && okText);
+  storeBtnLocal.disabled = !(okMeta && okText);
   downloadBtn.disabled = (selectedIndex == null);
 }
 
@@ -263,8 +263,8 @@ newEntryBtn.addEventListener("click", () => {
   fWork.focus();
 });
 
-storeBtn.addEventListener("click", () => {
-  if (storeBtn.disabled) return;
+storeBtnLocal.addEventListener("click", () => {
+  if (storeBtnLocal.disabled) return;
 
   const entry = gatherEntryFromForm();
   const ok = runVerify({ scrollOnError: false });
