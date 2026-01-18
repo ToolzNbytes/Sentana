@@ -28,7 +28,7 @@ Then visit `http://localhost:8000`.
 - Parsing and SVG construction overview: see `docs/parse_svg_notes.md`.
 
 ## Notes
-- The UI uses intentional Unicode glyphs (e.g., em dash, stylized close symbol) in labels/buttons; preserve these and keep file encoding UTF-8.
+- The UI uses intentional Unicode glyphs (e.g., em dash, stylized close symbol) in labels/buttons; preserve these and keep file encoding UTF-8. Make sure to never replicate mojibake sequences, and signal if there is any.
 - Avoid re-encoding files that contain Unicode markers (like the em dash used in text parsing). Keep the literal characters in source, and do not replace them with mojibake sequences.
 - The app’s main purpose is the SVG-based visual display of text structure with hover highlights; accessibility compliance is inherently limited for this tool (an alternative would be reading the source texts directly).
 - There are no automated tests in this repo.

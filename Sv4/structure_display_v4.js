@@ -911,7 +911,10 @@ function ensureSentenceMenu(){
   sentenceMenu.className = "sentenceMenu hidden";
   sentenceMenu.id = "sentenceMenu";
   sentenceMenu.innerHTML = `
-    <div class="sentenceMenuTitle" id="sentenceMenuTitle">Sentence</div>
+    <div class="sentenceMenuTitle">
+      <span id="sentenceMenuTitle">Sentence</span>
+      <button class="sentenceMenuClose" type="button" aria-label="Close">×</button>
+    </div>
     <button class="sentenceMenuItem" data-action="deconstruct">Deconstructor</button>
     <button class="sentenceMenuItem" data-action="openStructure">Open structure</button>
     <button class="sentenceMenuItem" data-action="openSource">Open source</button>
@@ -921,6 +924,13 @@ function ensureSentenceMenu(){
   document.body.appendChild(sentenceMenu);
 
   sentenceMenuTitle = sentenceMenu.querySelector("#sentenceMenuTitle");
+  const closeBtn = sentenceMenu.querySelector(".sentenceMenuClose");
+  if (closeBtn){
+    closeBtn.addEventListener("click", (e)=>{
+      e.stopPropagation();
+      closeSentenceMenu();
+    });
+  }
 
   sentenceMenu.addEventListener("click", async (e)=>{
     const item = e.target.closest(".sentenceMenuItem");

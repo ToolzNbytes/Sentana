@@ -488,10 +488,29 @@ body{
   padding: 6px 0;
 }
 .sentenceMenuTitle{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 8px 12px 6px 12px;
   font-family: var(--serif);
   color: var(--paper);
   border-bottom: 1px solid rgba(231,215,182,.18);
+}
+.sentenceMenuClose{
+  background: transparent;
+  border: none;
+  color: var(--paper);
+  cursor: pointer;
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1;
+  padding: 0 4px;
+  align-self: stretch;
+}
+.sentenceMenuClose:hover,
+.sentenceMenuClose:focus-visible{
+  color: var(--ink);
+  outline: none;
 }
 .sentenceMenuItem{
   width: 100%;
