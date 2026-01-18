@@ -790,11 +790,37 @@ function getOwnTextRangeByWord(node, wordIndex){
   return { start: localStart, end: localEnd };
 }
 
+function shouldApplyHl2(textLen, childRanges){
+  if (!textLen || !childRanges.length) return false;
+
+  const merged = [];
+  const sorted = childRanges.slice().sort((a, b) => a.start - b.start);
+  for (const r of sorted){
+    const last = merged[merged.length - 1];
+    if (!last || r.start > last.end){
+      merged.push({ start: r.start, end: r.end });
+    } else {
+      last.end = Math.max(last.end, r.end);
+    }
+  }
+
+  let gaps = 0;
+  let cursor = 0;
+  for (const r of merged){
+    if (r.start > cursor) gaps++;
+    cursor = Math.max(cursor, r.end);
+  }
+  if (cursor < textLen) gaps++;
+
+  return gaps > 1;
+}
+
 function buildTreeHighlightHtml(node, wordIndex){
   const text = node.textTree || "";
   if (!text.length) return "";
 
   const ranges = [];
+  const childRanges = [];
 
   for (const ch of (node.nodes || [])){
     if (ch.tag && ch.textTree && ch.textTree.length){
@@ -803,14 +829,18 @@ function buildTreeHighlightHtml(node, wordIndex){
       const localStart = Math.max(0, chStart - baseStart);
       const localEnd = Math.min(text.length, localStart + ch.textTree.length);
       if (localEnd > localStart){
-        ranges.push({ start: localStart, end: localEnd, cls: "hlChild" });
+        const r = { start: localStart, end: localEnd, cls: "hlChild" };
+        ranges.push(r);
+        childRanges.push(r);
       }
     }
   }
 
-  const ownRange = getOwnTextRangeByWord(node, wordIndex);
-  if (ownRange) {
-    ranges.push({ start: ownRange.start, end: ownRange.end, cls: "hlCursor" });
+  if (shouldApplyHl2(text.length, childRanges)){
+    const ownRange = getOwnTextRangeByWord(node, wordIndex);
+    if (ownRange) {
+      ranges.push({ start: ownRange.start, end: ownRange.end, cls: "hlCursor" });
+    }
   }
 
   if (!ranges.length) return escapeHtml(text);
