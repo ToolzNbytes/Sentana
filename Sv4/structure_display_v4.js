@@ -1380,6 +1380,10 @@ async function show(idx) {
 
   const c = corpus[idx];
 
+  if (activeSource === "remote" && c && !c._metaLoaded) {
+    await enrichRemoteEntryFromFile(c);
+  }
+
   setResultPanelLoadingMsg();
   work.textContent = (c.Year || c.Year === 0) ? `${c.Work} (${c.Year})` : `${c.Work}`;
   author.textContent = `by ${c.Author}`;
@@ -1783,12 +1787,23 @@ function cloneCurrentRemoteEntryToLocal(){
   const src = corpus[idx];
   if (!src) return;
 
+  const lang = src.LanguageOri
+    ? `${src.Language || ""}/${src.LanguageOri}`
+    : (src.Language || "");
+  const tags = (src.Tags && typeof src.Tags === "object" && !Array.isArray(src.Tags))
+    ? Object.keys(src.Tags).filter((k) => src.Tags[k])
+    : (typeof src.Tags === "string"
+      ? src.Tags.split(",").map((t) => t.trim()).filter(Boolean)
+      : (src.Tags ? [String(src.Tags)] : []));
+
   // Clone exactly what's needed by your local-corpus format
   const entry = {
     Work: src.Work || "",
     Author: src.Author || "",
     Year: src.Year || "",
     Choice: src.Choice || "",
+    Language: lang,
+    Tags: tags.join(","),
     Comment: src.Comment || "",
     // Store the full loaded file text (your AnalyzedText should already be the full file content)
     AnalyzedText: src.AnalyzedText || ""

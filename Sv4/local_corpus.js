@@ -10,6 +10,8 @@ const fWork = document.getElementById("fWork");
 const fAuthor = document.getElementById("fAuthor");
 const fYear = document.getElementById("fYear");
 const fChoice = document.getElementById("fChoice");
+const fLanguage = document.getElementById("fLanguage");
+const fTags = document.getElementById("fTags");
 const fComment = document.getElementById("fComment");
 
 const analysisInput = document.getElementById("analysisInput");
@@ -39,6 +41,8 @@ function normalizeEntry(e){
     Author: String(obj.Author || "").trim(),
     Year: (obj.Year === 0 || obj.Year) ? String(obj.Year).trim() : "",
     Choice: String(obj.Choice || "").trim(),
+    Language: String(obj.Language || obj.language || "").trim(),
+    Tags: String(obj.Tags || obj.tags || "").trim(),
     Comment: String(obj.Comment || "").trim(),
     AnalyzedText: String(obj.AnalyzedText || obj.analyzedText || "").replace(/\r\n/g, "\n")
   };
@@ -167,6 +171,8 @@ function clearForm(){
   fAuthor.value = "";
   fYear.value = "";
   fChoice.value = "";
+  fLanguage.value = "";
+  fTags.value = "";
   fComment.value = "";
   analysisInput.value = "";
 
@@ -191,6 +197,8 @@ function loadEntryToForm(idx, opts = {}){
   fAuthor.value = e.Author;
   fYear.value = e.Year;
   fChoice.value = e.Choice;
+  fLanguage.value = e.Language;
+  fTags.value = e.Tags;
   fComment.value = e.Comment;
   analysisInput.value = e.AnalyzedText;
 
@@ -209,6 +217,8 @@ function gatherEntryFromForm(){
     Author: fAuthor.value.trim(),
     Year: fYear.value.trim(),
     Choice: fChoice.value.trim(),
+    Language: fLanguage.value.trim(),
+    Tags: fTags.value.trim(),
     Comment: fComment.value.trim(),
     AnalyzedText: analysisInput.value.replace(/\r\n/g, "\n")
   };
@@ -249,7 +259,7 @@ backBtn.addEventListener("click", () => {
 });
 
 analysisInput.addEventListener("input", handleTextDirty);
-[fWork, fAuthor, fYear, fChoice, fComment].forEach((el) => {
+[fWork, fAuthor, fYear, fChoice, fLanguage, fTags, fComment].forEach((el) => {
   el.addEventListener("input", handleMetaDirty);
 });
 
@@ -308,6 +318,8 @@ function buildTextFileContent(){
   const work    = (fWork.value    || "").trim();
   const year    = (fYear.value    || "").trim();
   const choice  = (fChoice.value  || "").trim();
+  const tags    = (fTags.value    || "").trim();
+  const lang    = (fLanguage.value || "").trim();
   const comment = (fComment.value || "").trim();
 
   const headerLines = [
@@ -315,6 +327,8 @@ function buildTextFileContent(){
     `Work: ${work}`,
     `Year: ${year}`,
     `Choice: ${choice}`,
+    `Tags: ${tags}`,
+    `Language: ${lang}`,
     `Comment: ${comment}`,
     "",
     "###",
