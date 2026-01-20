@@ -38,7 +38,7 @@ Whenever I find myself growing grim about the mouth; whenever it is a damp, driz
 #8 the -ing clause is not optional here, so no PP
 #9 treated as an extension of AP8 for the same reason
 
-(IC1 
+(IC1
 ~(DC2>1 Whenever I find myself growing grim about the mouth;
 ~)
 ~(DC3>1 whenever it is a damp, drizzly November in my soul;

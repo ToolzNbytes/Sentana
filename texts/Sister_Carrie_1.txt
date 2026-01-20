@@ -167,8 +167,8 @@ Without a counsellor at hand to whisper cautious interpretations, what falsehood
 
 Unrecognised for what they are, their beauty, like music, too often relaxes, then weakens, then perverts the simpler human perceptions.
 #5 "the simpler ..." is a complement for all 1,4,5
-(IC1 
-~(PP2>1Unrecognised for what they are,
+(IC1
+~(PP2>1 Unrecognised for what they are,
 ~)
  their beauty,
 ~(AP3<1 like music,
@@ -205,8 +205,8 @@ It was, nevertheless, her guiding characteristic.
 Warm with the fancies of youth, pretty with the insipid prettiness of the formative period, possessed of a figure promising eventual shapeliness and an eye alight with certain native intelligence, she was a fair example of the middle American class—two generations removed from the emigrant.
 #2 treated as an implicit "being warm"
 #3 treated as an implicit "being pretty"
-(IC1 
-~(PP2>1Warm with the fancies of youth,
+(IC1
+~(PP2>1 Warm with the fancies of youth,
 ~)
 ~(PP3>1 pretty with the insipid prettiness of the formative period,
 ~)

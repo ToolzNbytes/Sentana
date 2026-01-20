@@ -64,8 +64,8 @@ Outside the door of his mother’s bed-room he stopped and listened.
 )
 
 Though no one had told him not to go in, he had a feeling that it would be wrong to do so; he was a little frightened, and his heart beat uncomfortably; but at the same time something impelled him to turn the handle.
-(IC1 
-~(DC2>1Though no one had told him not to go in,
+(IC1
+~(DC2>1 Though no one had told him not to go in,
 ~)
  he had a feeling
 ~(DC3<1 that it would be wrong to do so;
