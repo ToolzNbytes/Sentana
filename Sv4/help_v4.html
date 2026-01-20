@@ -77,6 +77,72 @@
       font-style: italic;
       margin-top: 8px;
     }
+    .helpTable{
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #17110c;
+      margin: 6px 0 14px;
+    }
+    .helpTable th,
+    .helpTable td{
+      border-bottom: 1px solid rgba(231,215,182,.14);
+      border-right: 2px solid rgba(231,215,182,.32);
+      padding: 10px 12px;
+      vertical-align: top;
+      text-align: left;
+    }
+    .helpTable th:last-child,
+    .helpTable td:last-child{
+      border-right: none;
+    }
+    .helpTable th{
+      font-family: var(--serif);
+      color: var(--paper);
+      font-size: 14px;
+      background: rgba(0,0,0,.12);
+    }
+    .helpTable tr:last-child td{
+      border-bottom: none;
+    }
+    .helpTable .shadeSub{
+      display: block;
+      margin-top: 4px;
+      font-family: Arial, var(--sans);
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .clauseTypeCode{
+      font-family: "Courier New", Courier, var(--mono);
+      font-size: 20px;
+      color: var(--paper);
+      letter-spacing: 0.5px;
+    }
+    .clauseTypeLabel{
+      font-family: Arial, var(--sans);
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .swatchRow{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .swatch{
+      width: 60px;
+      height: 60px;
+      border-radius: 6px;
+      border: 1px solid rgba(0,0,0,.35);
+      display: block;
+    }
+    .swatchNote{
+      font-family: Arial, var(--sans);
+      font-size: 12.5px;
+      color: var(--muted);
+    }
   </style>
 </head>
 
@@ -102,6 +168,127 @@
       <figure class="helpFigure" aria-label="Tool screenshot with captions">
         <img src="../img/Caption_v4.png" alt="Sentence Structure Explorer help screenshot with captions">
       </figure>
+    </div>
+    <div class="pageSection">
+      <div class="helpTitle">Color code of the clauses (v4)</div>
+
+      <table class="helpTable" aria-label="Clause color code table">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Shades</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="clauseTypeCode">IC</div>
+              <div class="clauseTypeLabel">Independent clause</div>
+            </td>
+            <td>
+              <div class="swatchRow" aria-label="Independent clause shades">
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#89CFF1"><rect width="20" height="20" fill="#89CFF1"/></svg>
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#6EB1D6"><rect width="20" height="20" fill="#6EB1D6"/></svg>
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#5293BB"><rect width="20" height="20" fill="#5293BB"/></svg>
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#3776A1"><rect width="20" height="20" fill="#3776A1"/></svg>
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#1B5886"><rect width="20" height="20" fill="#1B5886"/></svg>
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#003A6B"><rect width="20" height="20" fill="#003A6B"/></svg>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="clauseTypeCode">FG</div>
+              <div class="clauseTypeLabel">Fragment - not a full sentence</div>
+            </td>
+            <td>
+              <div class="swatchRow" aria-label="Fragment shades">
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#C7A3E6"><rect width="20" height="20" fill="#C7A3E6"/></svg>
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#A884D2"><rect width="20" height="20" fill="#A884D2"/></svg>
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#8A66BC"><rect width="20" height="20" fill="#8A66BC"/></svg>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="helpTable" aria-label="Clause color code table with forward references">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Normal reference</th>
+            <th>
+              Forward reference
+              <span class="shadeSub">when the clause refers to a subject-verb seen later in the sentence</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="clauseTypeCode">DC</div>
+              <div class="clauseTypeLabel">Dependent clause</div>
+            </td>
+            <td>
+              <div class="swatchRow" aria-label="Dependent clause shades">
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#f2d6a6"><rect width="20" height="20" fill="#f2d6a6"/></svg>
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#f0c493"><rect width="20" height="20" fill="#f0c493"/></svg>
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#e59f7d"><rect width="20" height="20" fill="#e59f7d"/></svg>
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#d47557"><rect width="20" height="20" fill="#d47557"/></svg>
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#b75f4b"><rect width="20" height="20" fill="#b75f4b"/></svg>
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#9f4e3b"><rect width="20" height="20" fill="#9f4e3b"/></svg>
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#7c3e29"><rect width="20" height="20" fill="#7c3e29"/></svg>
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#5a2a1e"><rect width="20" height="20" fill="#5a2a1e"/></svg>
+              </div>
+            </td>
+            <td>
+              <div class="swatchRow" aria-label="Dependent clause forward shades">
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#e38989"><rect width="20" height="20" fill="#e38989"/></svg>
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#c55a5a"><rect width="20" height="20" fill="#c55a5a"/></svg>
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#ae3a3a"><rect width="20" height="20" fill="#ae3a3a"/></svg>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="clauseTypeCode">PP</div>
+              <div class="clauseTypeLabel">Participial phrase - with -ing or -ed verb and optional</div>
+            </td>
+            <td>
+              <div class="swatchRow" aria-label="Participial phrase shades">
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#C7E9C0"><rect width="20" height="20" fill="#C7E9C0"/></svg>
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#A1D99B"><rect width="20" height="20" fill="#A1D99B"/></svg>
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#74C476"><rect width="20" height="20" fill="#74C476"/></svg>
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#41AB5D"><rect width="20" height="20" fill="#41AB5D"/></svg>
+              </div>
+            </td>
+            <td>
+              <div class="swatchRow" aria-label="Participial phrase forward shades">
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#6EE389"><rect width="20" height="20" fill="#6EE389"/></svg>
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#34B75A"><rect width="20" height="20" fill="#34B75A"/></svg>
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#0D8A37"><rect width="20" height="20" fill="#0D8A37"/></svg>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="clauseTypeCode">AP</div>
+              <div class="clauseTypeLabel">Adjunct phrase - optional</div>
+            </td>
+            <td>
+              <div class="swatchRow" aria-label="Adjunct phrase shades">
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#f8ed62"><rect width="20" height="20" fill="#f8ed62"/></svg>
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#e9d700"><rect width="20" height="20" fill="#e9d700"/></svg>
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#dab600"><rect width="20" height="20" fill="#dab600"/></svg>
+                <svg class="swatch" viewBox="0 0 20 20" role="img" aria-label="#a98600"><rect width="20" height="20" fill="#a98600"/></svg>
+              </div>
+            </td>
+            <td>
+              <div class="swatchNote">FW: tbd</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <div class="helpTitle">How to write a sentence breakdown v4 code</div>
       <div id="mdContent" class="helpMd" aria-label="Documentation content">

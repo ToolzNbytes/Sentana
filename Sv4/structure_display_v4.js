@@ -7,11 +7,11 @@ let corpus = corpusRemote; // active corpus (remote by default)
 let lastParsed = null;
 
 /* ===================== Default values ===================== */
-let WORD_CAP = 50;
-let BAR_HEIGHT = 45;
+let WORD_CAP = 50; // how many words in the sentence to make a SVG fill 100% of the available width
+let BAR_HEIGHT = 45; // height of the root outer rectangle hosting the rectangles made from the analysis parsing
 let RESULT_BG = getComputedStyle(document.documentElement)
   .getPropertyValue('--panel').trim();
-let DISPLAY_WIDTH = 0;
+let DISPLAY_WIDTH = 0; // width of the rendering result area; 0 means it expands to the available width
 
 
 /* ===================== Shared utilities (storage + parsing) ===================== */
@@ -38,7 +38,7 @@ function savePrefsToStorage(){
 
 /* SVG hovering tips */
 /* ===================== Default tag comments ===================== */
-const DEFAULT_TAG_COMMENTS = {
+const DEFAULT_TAG_COMMENTS = { //Note: for structure format v4
   IC:  "independent clause",
   DC:  "dependent clause",
   DCf: "dependent clause before the subject of the referenced clause",
@@ -67,7 +67,8 @@ let corpusRemoteBtn, corpusLocalBtn, corpusFilterBtn, localDataBtn, helpBtn;
 let workDetailsContent, filterPanel, corpusFilterSelect;
 let activeSource = "remote";
 
-// ===================== Remote corpus filtering state =====================
+// ===================== Remote corpus filtering: year ranges =====================
+// (three values define four ranges)
 const LOW_YEAR = 1850;
 const MID_YEAR = 1920;
 const HIGH_YEAR = 1980;
@@ -221,7 +222,7 @@ async function ensureRemoteMetadataLoaded(){
 }
 
 /* ===================== Remote corpus filter: UI + logic ===================== */
-
+/* This filter has an hybrid list of filtering capabilities with different effects */
 function buildRemoteFilterOptions(){
   // value → label
   return [
@@ -586,13 +587,14 @@ async function loadAnalyzedText(file) {
 
 
 /* ===================== SVG rendering (percent widths; no viewBox scaling) ===================== */
+/* Note: for structure format v4 */
 const IC_SHADES = ["#89CFF1","#6EB1D6","#5293BB","#3776A1","#1B5886","#003A6B"];
 const DC_BROWN  = ["#f2d6a6","#f0c493","#e59f7d","#d47557","#b75f4b","#9f4e3b","#7c3e29","#5a2a1e"];
 const DC_RED    = ["#e38989","#c55a5a","#ae3a3a"];
 const FG_PURPLE = ["#C7A3E6","#A884D2","#8A66BC"];
 const PP_GREEN  = ["#C7E9C0","#A1D99B","#74C476","#41AB5D"];
 const PP_GREEN_FWD = ["#6EE389","#34B75A","#0D8A37"];
-const AP_COLOR  = [ "#f8ed62", "#e9d700", "#dab600", "#a98600"]; // yellow for the moment
+const AP_COLOR  = [ "#f8ed62", "#e9d700", "#dab600", "#a98600"]; // yellow for the moment; no specific color yet for the forward reference case
 
 function svgEl(name, attrs = {}) {
   const el = document.createElementNS("http://www.w3.org/2000/svg", name);
@@ -600,7 +602,8 @@ function svgEl(name, attrs = {}) {
   return el;
 }
 
-function buildPatterns(defs){
+function buildPatterns(defs){ //Note: for structure format v4
+  // alternating light and dark grey line that will combine with any shade (dark or light) to add some texture
   const p1 = svgEl("pattern", {id:"contrast_line1", patternUnits:"userSpaceOnUse", width:"6", height:"6"});
   p1.appendChild(svgEl("line",{x1:"0",y1:"0",x2:"6",y2:"0",stroke:"#BBBBBB","stroke-width":"1.8"}));
   p1.appendChild(svgEl("line",{x1:"0",y1:"3",x2:"6",y2:"3",stroke:"#444444","stroke-width":"1"}));
@@ -617,7 +620,7 @@ function buildPatterns(defs){
   mkRot("contrast_line4", 135);
 }
 
-function pickFill(node, state){
+function pickFill(node, state){ //Note: for structure format v4
   const t = node.tag || "";
   if (t === "IC") {
     const col = IC_SHADES[state.ic % IC_SHADES.length];
@@ -676,6 +679,8 @@ function effectiveWordCap(parsed){
   return Math.max(1, m);
 }
 
+/* This ensure the best use of the area available to display the sentence,
+ using bigger or smaller font as needed, or growning the area's height in case of extremely long sentences */
 function fitStringInSentenceArea(len) {
   const area = document.getElementById("sentenceArea");
   if (!area) return;
@@ -790,6 +795,8 @@ function getOwnTextRangeByWord(node, wordIndex){
   return { start: localStart, end: localEnd };
 }
 
+/*  When the main highlight is split by some sub clause:
+ Add an extra highlight HL2 on the part of main hovered by the cursor */
 function shouldApplyHl2(node){
   let parts = 0;
   if (node.text && node.text.length) parts++;
@@ -1206,6 +1213,8 @@ function createAnalysisSVG(tree, cap, entry, sentenceIndex){
   return svg;
 }
 
+/* Check if the rendering would hit a limit when the max nesting clause is very deep,
+ without having an extra long sentence that would make a thick (high) enough outer rectangle to allow such nesting */
 function enoughOrMinimumBarHeightForTree(tree, cap){
   // minimum viable inner rectangle height (px)
   const MIN_INNER_H = 5;
@@ -1343,7 +1352,7 @@ function hasError(){
 }
 
 function applyWorkspaceWidth(){
-  // per your hint: if display width is 0 => auto; else fixed px
+  // if display width is 0 => auto; else fixed px
   if (DISPLAY_WIDTH && DISPLAY_WIDTH > 0){
     workspace.style.width = DISPLAY_WIDTH + "px";
     workspace.style.flex = "0 0 auto";
@@ -1586,7 +1595,6 @@ function shouldShowCloneBtn(){
 }
 
 function updateCloneBtnVisibility(){
-  // You can use classList if you have .hidden, or style.display.
   cloneLocalBtn.classList.toggle("hidden", !shouldShowCloneBtn());
 }
 
@@ -1716,7 +1724,6 @@ toggleView.addEventListener("click", ()=>{
 function getExcerptSourceText(){
   const el = document.getElementById("excerptSourceContent");
   if (!el) return "";
-  // If it is a textarea in your version, use value; otherwise use innerText.
   const text = (typeof el.value === "string") ? el.value : el.innerText;
   return (text || "").replace(/\r\n/g, "\n");
 }
