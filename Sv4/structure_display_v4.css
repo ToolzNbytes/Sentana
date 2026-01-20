@@ -3,6 +3,7 @@
   --panel:#21160f;
   --paper:#e7d7b6;
   --ink:#efe6d5;
+  --inkDim:rgba(239,230,213,.75);
   --muted:rgba(239,230,213,.65);
   --green:#5a7a5c;
   --border:rgba(231,215,182,.25);
@@ -721,13 +722,17 @@ body{
   justify-content:space-between;
   gap:10px;
   padding:8px 10px;
+  background: rgba(231,215,182,.08);
   border-bottom: 1px solid rgba(231,215,182,.14);
   cursor:pointer;
 }
 .entryRow:last-child{ border-bottom: none; }
 
 .entryRow.active{
-  background: rgba(231,215,182,.08);
+  background: #17110c;
+}
+.entryRow.active .entryLabel{
+  color: #f7f0e3;
 }
 
 .entryRowEmpty{
@@ -739,7 +744,7 @@ body{
 .entryLabel{
   flex:1;
   font-size: 13px;
-  color: var(--ink);
+  color: var(--inkDim);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

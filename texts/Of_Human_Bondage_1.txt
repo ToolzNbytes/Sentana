@@ -41,8 +41,8 @@ It was a stranger’s room, and Philip saw nothing that struck his fancy.
 But he knew which were his mother’s things and which belonged to the landlord, and presently fixed on a little clock that he had once heard his mother say she liked.
 (IC1 But he knew
 ~(DC2<1 which were his mother’s things
-~)
-~(DC3<1 and which belonged to the landlord,
+~[CP3 and which belonged to the landlord,
+~]
 ~)
 [CP4 and presently fixed on a little clock
 ~(DC5<4 that he had once heard his mother say
