@@ -1,7 +1,7 @@
 Author: Gabriel García Márquez
 Work: Cien años de soledad
 Year: 1965-66
-Choice: first paragraph of chapter three (English version by Gregory Rabassa)
+Choice: #2 first paragraph of chapter three (English version by Gregory Rabassa)
 Tags: Ref
 Language: en/es
 Comment: Reviewed once.

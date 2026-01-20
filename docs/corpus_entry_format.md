@@ -37,10 +37,10 @@ Comment: This excerpt has very long sentences.
 ### The metadata syntax
 - Author: Writer's full name.
 - Work: Title of the novel.
-- Year: text string for the year of the writing if known ("1948", "1948-50"), if not: use the publishing year "-1950".
-- Choice: what text is chosen (where it comes from in the work).
-- Tags: optional; values from {Classic,Ref,ToReview,Valid,Error,Pop,amateur} and free value allowed
-- Language: lower case ISO code. Example: "en" for English, or "fr/es" for French translation of Spanish original work.
+- Year: Text string for the year of the writing if known ("1948", "1948-50"), if not: use the publishing year "-1950".
+- Choice: What text is chosen (where it comes from in the work). Begin with a #xxx to use xxx as an id marker if needed when having multiple excerpts of the same work.
+- Tags: Optional; values from {Classic,Ref,ToReview,Valid,Error,Pop,amateur} and free value allowed
+- Language: Lower case ISO code. Example: "en" for English, or "fr/es" for French translation of Spanish original work.
 - Comment: Literary interest for the entry, and maintenance note.
 
 ### Tags meaning

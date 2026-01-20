@@ -1,7 +1,7 @@
 Author: Marcel Proust
 Work: Du Côté de chez Swann
 Year: 1909-13
-Choice: paragraphs one and two of chapter one
+Choice: #1 paragraphs one and two of chapter one
 Tags:
 Language: fr
 Comment: Reviewed once, some questions in comments

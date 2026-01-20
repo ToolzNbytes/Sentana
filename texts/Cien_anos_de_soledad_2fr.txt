@@ -1,7 +1,7 @@
 Author: Gabriel García Márquez
 Work: Cien años de soledad
 Year: 1965-66
-Choice: first paragraph of chapter three (French version by Claude and Carmen Durand)
+Choice: #2 first paragraph of chapter three (French version by Claude and Carmen Durand)
 Tags: Ref
 Language: fr/es
 Comment: Reviewed once
