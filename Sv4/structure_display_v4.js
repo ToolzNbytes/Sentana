@@ -547,11 +547,36 @@ function populateList(listEl, corpusData) {
   if (!listEl) return;
   listEl.innerHTML = "";
 
+  function getChoiceMarker(choice){
+    const raw = String(choice ?? "").trim();
+    if (!raw.startsWith("#")) return "";
+    const rest = raw.slice(1).trim();
+    if (!rest) return "";
+    return rest.split(/\s+/)[0];
+  }
+
+  function buildListTitle(entry){
+    const base = entry?.Work || "";
+    let title = base;
+    const marker = getChoiceMarker(entry?.Choice);
+    if (marker) title = `${title} -${marker}`;
+    let lang = "";
+    if (entry?.LanguageOri){
+      lang = String(entry.Language || "").trim();
+    } else {
+      const rawLang = String(entry?.Language || "").trim().toLowerCase();
+      const m = rawLang.match(/^([a-z]{2})\s*\/\s*[a-z]{2}$/);
+      if (m) lang = m[1];
+    }
+    if (lang) title = `${title}~${lang}`;
+    return title;
+  }
+
   // count occurrences per work title
   const workCounts = new Map();
 
   (corpusData || []).forEach((c, i) => {
-    const base = c.Work;
+    const base = buildListTitle(c);
 
     const n = (workCounts.get(base) || 0) + 1;
     workCounts.set(base, n);
