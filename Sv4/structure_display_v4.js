@@ -392,6 +392,7 @@ function applyRemoteFilter(value, opts = {}){
       if (choice) choice.textContent = "";
       if (commentBox) commentBox.textContent = "";
       clearHighlightedSentence();
+      setDeconstructMode(false);
       updateCollapseEnabled();
       return;
     }
@@ -471,6 +472,7 @@ function setActiveSource(source, opts = {}){
     if (choice) choice.textContent = "";
     if (commentBox) commentBox.textContent = "";
     clearHighlightedSentence();
+    setDeconstructMode(false);
     updateCollapseEnabled();
     return;
   }
@@ -543,22 +545,23 @@ async function init() {
   }
 }
 
+function getChoiceMarkerFromValue(choice){
+  const raw = String(choice ?? "").trim();
+  if (!raw.startsWith("#")) return "";
+  const rest = raw.slice(1).trim();
+  if (!rest) return "";
+  return rest.split(/\s+/)[0];
+}
+
 function populateList(listEl, corpusData) {
   if (!listEl) return;
   listEl.innerHTML = "";
 
-  function getChoiceMarker(choice){
-    const raw = String(choice ?? "").trim();
-    if (!raw.startsWith("#")) return "";
-    const rest = raw.slice(1).trim();
-    if (!rest) return "";
-    return rest.split(/\s+/)[0];
-  }
-
   function buildListTitle(entry){
     const base = entry?.Work || "";
+    const prefix = entry?.isDeconstruction ? "§ " : "";
     let title = base;
-    const marker = getChoiceMarker(entry?.Choice);
+    const marker = getChoiceMarkerFromValue(entry?.Choice);
     if (marker) title = `${title} -${marker}`;
     let lang = "";
     if (entry?.LanguageOri){
@@ -569,7 +572,7 @@ function populateList(listEl, corpusData) {
       if (m) lang = m[1];
     }
     if (lang) title = `${title}~${lang}`;
-    return title;
+    return `${prefix}${title}`;
   }
 
   // count occurrences per work title
@@ -931,6 +934,122 @@ function escapeHtml(s){
     .replaceAll("'","&#039;");
 }
 
+function isSentenceLineForExtract(line){
+  const t = String(line ?? "").trim();
+  if (!t) return false;
+  if (t.startsWith("#")) return false;
+  return !t.startsWith("(") && !t.startsWith("~") && !t.startsWith(")") && !t.startsWith("[") && !t.startsWith("]");
+}
+
+function extractAnalyzedSentenceBlock(analyzedText, sentenceIndex){
+  const lines = String(analyzedText || "").replace(/\r\n/g, "\n").split("\n");
+  let current = -1;
+  let capturing = false;
+  const out = [];
+  let parenBalance = 0;
+  let bracketBalance = 0;
+
+  function updateBalances(line){
+    const trimmed = String(line ?? "").trimStart();
+    if (!trimmed) return;
+    let t = trimmed;
+    while (t.startsWith("~")) t = t.slice(1);
+    if (!t) return;
+    const op = t[0];
+    if (op === "(") parenBalance++;
+    else if (op === ")") parenBalance--;
+    else if (op === "[") bracketBalance++;
+    else if (op === "]") bracketBalance--;
+    if (parenBalance < 0) parenBalance = 0;
+    if (bracketBalance < 0) bracketBalance = 0;
+  }
+
+  for (let i = 0; i < lines.length; i++){
+    const line = lines[i];
+    const isSentenceStart = isSentenceLineForExtract(line) && parenBalance === 0 && bracketBalance === 0;
+    if (isSentenceStart){
+      current++;
+      if (capturing) break;
+      if (current === sentenceIndex){
+        capturing = true;
+        out.push(line);
+        continue;
+      }
+    }
+    if (capturing) out.push(line);
+    updateBalances(line);
+  }
+
+  if (!capturing) return "";
+  return out.join("\n");
+}
+
+function normalizeTagsForLocal(tags){
+  if (tags && typeof tags === "object" && !Array.isArray(tags)){
+    return Object.keys(tags).filter((k) => tags[k]).join(",");
+  }
+  if (typeof tags === "string"){
+    return tags.split(",").map((t) => t.trim()).filter(Boolean).join(",");
+  }
+  return tags ? String(tags) : "";
+}
+
+function buildDeconstructionTitle(src, sentenceNum){
+  const marker = getChoiceMarkerFromValue(src?.Choice);
+  const base = String(src?.Work || "").trim() || "Untitled";
+  const suffix = marker ? ` -${marker}` : "";
+  return `${base}${suffix}/S${sentenceNum}`;
+}
+
+function buildDeconstructionComment(src, sentenceNum){
+  const marker = getChoiceMarkerFromValue(src?.Choice);
+  const base = String(src?.Work || "").trim() || "Untitled work";
+  const author = String(src?.Author || "").trim();
+  const suffix = marker ? ` -${marker}` : "";
+  const from = author ? `${base}${suffix} by ${author}` : `${base}${suffix}`;
+  return `Desconstruction of sentence ${sentenceNum} from ${from}`;
+}
+
+function deconstructSentenceFromState(state){
+  if (!state?.canDeconstruct) return;
+  const sentenceIndex = Number(state?.sentenceIndex);
+  if (!Number.isFinite(sentenceIndex)) return;
+
+  const idx = Number(list.value);
+  const src = corpus[idx];
+  if (!src) return;
+
+  const analyzedBlock = extractAnalyzedSentenceBlock(src.AnalyzedText || "", sentenceIndex);
+  if (!analyzedBlock){
+    alert("Deconstruction failed: sentence analysis not found.");
+    return;
+  }
+
+  const sentenceNum = sentenceIndex + 1;
+  const lang = src.LanguageOri
+    ? `${src.Language || ""}/${src.LanguageOri}`
+    : (src.Language || "");
+
+  const entry = {
+    Work: buildDeconstructionTitle(src, sentenceNum),
+    Author: src.Author || "",
+    Year: src.Year || "",
+    Choice: `Sentence ${sentenceNum} of a previous excerpt`,
+    Language: lang,
+    Tags: normalizeTagsForLocal(src.Tags),
+    Comment: buildDeconstructionComment(src, sentenceNum),
+    AnalyzedText: analyzedBlock,
+    isDeconstruction: true
+  };
+
+  const local = readLocalCorpus();
+  local.push(entry);
+  writeLocalCorpus(local);
+  corpusLocal = local;
+
+  setActiveSource("local", { idx: local.length - 1, random: false });
+}
+
 /* ===================== Sentence context menu ===================== */
 let sentenceMenu = null;
 let sentenceMenuTitle = null;
@@ -976,7 +1095,7 @@ function ensureSentenceMenu(){
 
     switch (action){
       case "deconstruct":
-        alert("Deconstructor: upcoming feature.");
+        deconstructSentenceFromState(state);
         break;
       case "openStructure":
         openStructurePanelAtSentence(state.sentenceText || "");
@@ -1276,6 +1395,7 @@ function renderSVGs(parsed){
     const entry = parsed[i];
     const wrap = document.createElement("div");
     wrap.className = "svgWrap";
+    if (entry.tree?.groupWithNext) wrap.classList.add("groupWithNext");
 
     const suggested = enoughOrMinimumBarHeightForTree(entry.tree, cap);
 
@@ -1376,6 +1496,12 @@ function hasError(){
   return commentBox.classList.contains("error");
 }
 
+function setDeconstructMode(enabled){
+  const on = Boolean(enabled);
+  workspace.classList.toggle("deconstruct-mode", on);
+  document.body.classList.toggle("deconstruct-mode", on);
+}
+
 function applyWorkspaceWidth(){
   // if display width is 0 => auto; else fixed px
   if (DISPLAY_WIDTH && DISPLAY_WIDTH > 0){
@@ -1413,6 +1539,8 @@ async function show(idx) {
   }
 
   const c = corpus[idx];
+  const isDeconstructEntry = activeSource === "local" && Boolean(c?.isDeconstruction);
+  setDeconstructMode(isDeconstructEntry);
 
   if (activeSource === "remote" && c && !c._metaLoaded) {
     await enrichRemoteEntryFromFile(c);

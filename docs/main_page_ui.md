@@ -29,6 +29,7 @@ The primary workspace is always present but it can be collapsed (hidden) to only
 - Explorer Area: detailed information about the hovered sentence SVG, and excerpt
   info when nothing is hovered; includes a button to access the excerpt's text.
 - Result Panel: builds the series of SVGs that render the selected excerpt, one per sentence.
+- Deconstruction Panel: (optional) sits below the result panel and hosts the sentence deconstruction controls.
 
 ### Explorer Area button
 - `#excerptSourceBtn`: open the excerpt source panel (`#excerptSourcePnl`).

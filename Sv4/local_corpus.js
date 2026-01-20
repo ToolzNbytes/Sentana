@@ -15,6 +15,7 @@ const fTags = document.getElementById("fTags");
 const fComment = document.getElementById("fComment");
 
 const analysisInput = document.getElementById("analysisInput");
+const analysisNotice = document.getElementById("analysisNotice");
 const newEntryBtn = document.getElementById("newEntryBtn");
 const verifyBtn = document.getElementById("verifyBtn");
 const storeBtnLocal = document.getElementById("storeBtnLocal");
@@ -24,6 +25,12 @@ const statusMsg = document.getElementById("statusMsg");
 let corpusLocal = [];
 let selectedIndex = null;
 let suppressDirty = false;
+
+function setAnalysisReadOnly(enabled){
+  const on = Boolean(enabled);
+  analysisInput.readOnly = on;
+  if (analysisNotice) analysisNotice.classList.toggle("hidden", !on);
+}
 
 function loadLocalCorpus(){
   const saved = SSE.storageGet(SSE.LS_KEY_LOCAL_CORPUS, []);
@@ -55,11 +62,12 @@ function computeLabels(corpus){
   for (const e0 of corpus){
     const e = normalizeEntry(e0);
     const base = e.Work || "(untitled)";
+    const prefix = e0 && e0.isDeconstruction ? "§ " : "";
     const n = (counts.get(base) || 0) + 1;
     counts.set(base, n);
     const title = (n === 1) ? base : `${base} (${n})`;
     const author = e.Author || "(unknown author)";
-    labels.push(`${title} — ${author}`);
+    labels.push(`${prefix}${title} — ${author}`);
   }
   return labels;
 }
@@ -166,6 +174,7 @@ function updateStoreEnabled(){
 function clearForm(){
   suppressDirty = true;
   selectedIndex = null;
+  setAnalysisReadOnly(false);
 
   fWork.value = "";
   fAuthor.value = "";
@@ -188,6 +197,9 @@ function loadEntryToForm(idx, opts = {}){
   const { validate = false } = opts;
 
   selectedIndex = idx;
+
+  const isDeconstruction = Boolean(corpusLocal[idx]?.isDeconstruction);
+  setAnalysisReadOnly(isDeconstruction);
 
   const e = normalizeEntry(corpusLocal[idx]);
 
@@ -283,6 +295,8 @@ storeBtnLocal.addEventListener("click", () => {
     corpusLocal.push(entry);
     selectedIndex = corpusLocal.length - 1;
   } else {
+    const prev = corpusLocal[selectedIndex];
+    if (prev && prev.isDeconstruction) entry.isDeconstruction = true;
     corpusLocal[selectedIndex] = entry;
   }
 

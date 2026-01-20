@@ -76,6 +76,14 @@ function parseAnalyzedText(analyzedText, reportError){
     const m = l.trim().match(/^#(\d+)\s*(.*)$/);
     return m ? { id: Number(m[1]), text: m[2] || "" } : null;
   };
+  const parseGroupingComment = (l) => {
+    const m = l.trim().match(/^#!\s*(\d+)\s*\/\s*(\d+)\s*$/);
+    if (!m) return null;
+    const idx = Number(m[1]);
+    const total = Number(m[2]);
+    if (!Number.isFinite(idx) || !Number.isFinite(total) || total <= 0) return null;
+    return { idx, total };
+  };
 
   const countWords = (t) => t.replace(/—/g, " ").trim().split(/\s+/).filter(Boolean).length;
 
@@ -290,6 +298,7 @@ function parseAnalyzedText(analyzedText, reportError){
   try {
     while (i < lines.length){
       let rootWorthyComment = null;
+      let groupWithNext = false;
       const nodeComments = new Map();
 
       if (isEmpty(lines[i])) { i++; continue; }
@@ -301,6 +310,12 @@ function parseAnalyzedText(analyzedText, reportError){
       while (i < lines.length && (lines[i].trim().startsWith("#")||isEmpty(lines[i]))) {
         if (isEmpty(lines[i])) { i++; continue; }
         const line = lines[i];
+        const grouping = parseGroupingComment(line);
+        if (grouping){
+          groupWithNext = grouping.idx < grouping.total;
+          i++;
+          continue;
+        }
         const numbered = parseNumberedComment(line);
 
         if (numbered) {
@@ -322,6 +337,7 @@ function parseAnalyzedText(analyzedText, reportError){
       const tree = parseAnalysisBlock();
       // additional data to add to the tree
       tree.comment = rootWorthyComment;
+      tree.groupWithNext = groupWithNext;
       walkCounts(tree);
       (function attach(node) { // adding the numbered comments to the node
         if (node.id != null && nodeComments.has(node.id)) {
