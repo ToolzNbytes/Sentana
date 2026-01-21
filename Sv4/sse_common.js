@@ -58,6 +58,103 @@
     textarea.scrollTop = Math.max(0, (targetIdx - 1) * lh);
   }
 
+  const countWords = (t) => t.replace(/ƒ?"/g, " ").trim().split(/\s+/).filter(Boolean).length;
+
+  function recomputeBaseCounts(node, opts = {}){
+    const skipDisabled = opts.skipDisabled === true;
+    const disabled = skipDisabled && node.disabled;
+    if (disabled){
+      node.wCount = 0;
+      node.cCount = 0;
+      return;
+    }
+    const text = node.text || "";
+    node.wCount = text ? countWords(text) : 0;
+    node.cCount = text ? text.length : 0;
+    for (const ch of (node.nodes || [])) recomputeBaseCounts(ch, opts);
+  }
+
+  function walkCounts(node, root = node, opts = {}){
+    const skipDisabled = opts.skipDisabled === true;
+    const disabled = skipDisabled && node.disabled;
+    if (disabled){
+      node.wTreeCount = 0;
+      node.cTreeCount = 0;
+      return;
+    }
+    let w = node.wCount || 0;
+    let c = node.cCount || 0;
+    for (const ch of node.nodes){
+      walkCounts(ch, root, opts);
+      w += ch.wTreeCount;
+      c += ch.cTreeCount;
+    }
+    node.wTreeCount = w;
+    node.cTreeCount = c;
+    if (node.level > root.maxLevel) {// update max level
+      root.maxLevel = node.level;
+    }
+  }
+
+  function rebuild(node, opts = {}){
+    const skipDisabled = opts.skipDisabled === true;
+    if (skipDisabled && node.disabled) return "";
+    let out = node.text || "";
+    for (const ch of node.nodes) out += rebuild(ch, opts);
+    return out;
+  }
+
+  function buildTextIndex(root, opts = {}){
+    const skipDisabled = opts.skipDisabled === true;
+    // Build traversal sequence of text pieces (node.text and leaf.text), with subtree [start,end)
+    const pieces = [];
+    const lens = [0];
+
+    function dfs(n){
+      const disabled = skipDisabled && n.disabled;
+      n._start = pieces.length;
+
+      if (!disabled){
+        if (n.text){
+          pieces.push(n.text);
+          lens.push(lens[lens.length-1] + n.text.length);
+        }
+        for (const ch of (n.nodes || [])) dfs(ch);
+      }
+
+      n._end = pieces.length;
+    }
+
+    dfs(root);
+
+    const full = pieces.join("");
+
+    function fillStrings(n){
+      const startPos = lens[n._start] || 0;
+      const endPos = lens[n._end] || 0;
+      n.textSoFar = full.slice(0, startPos);
+      n.textTree  = full.slice(startPos, endPos);
+      n.textAfter = full.slice(endPos);
+      n.cPos = startPos + 1;
+      n.wPos = countWords(n.textSoFar) + 1;
+      for (const ch of (n.nodes || [])) fillStrings(ch);
+    }
+    fillStrings(root);
+
+    return full;
+  }
+
+  function reprocessTree(root, opts = {}){
+    const skipDisabled = opts.skipDisabled !== false;
+    if (!root) return "";
+    root.maxLevel = 0;
+    recomputeBaseCounts(root, { skipDisabled });
+    walkCounts(root, root, { skipDisabled });
+    const full = buildTextIndex(root, { skipDisabled });
+    root._reconstructed = full;
+    return full;
+  }
+
 function parseAnalyzedText(analyzedText, reportError){
   const lines = analyzedText.split(/\r?\n/);
   let i = 0;
@@ -85,7 +182,6 @@ function parseAnalyzedText(analyzedText, reportError){
     return { idx, total };
   };
 
-  const countWords = (t) => t.replace(/—/g, " ").trim().split(/\s+/).filter(Boolean).length;
 
   function error(msg, ln){
     reportError(`${msg}\nLine ${ln+1}: ${lines[ln] ?? ""}`);
@@ -115,6 +211,7 @@ function parseAnalyzedText(analyzedText, reportError){
       nodes:[], wTreeCount:0, cTreeCount:0, wPos:0, cPos:0,
       maxLevel:0,
       textTree:"", textSoFar:"", textAfter:"",
+      disabled:false,
       comment: null
     };
 
@@ -155,6 +252,7 @@ function parseAnalyzedText(analyzedText, reportError){
           wTreeCount:0,cTreeCount:0,wPos:0,cPos:0,
           textTree:"", textSoFar:"", textAfter:"",
           _start:0, _end:0,
+          disabled:false,
           comment: null
         };
 
@@ -188,6 +286,7 @@ function parseAnalyzedText(analyzedText, reportError){
           wTreeCount:0,cTreeCount:0,wPos:0,cPos:0,
           textTree:"", textSoFar:"", textAfter:"",
           _start:0, _end:0,
+          disabled:false,
           comment: null
         };
 
@@ -220,6 +319,7 @@ function parseAnalyzedText(analyzedText, reportError){
           wTreeCount:0,cTreeCount:0,wPos:0,cPos:0,
           textTree:"", textSoFar:"", textAfter:"",
           _start:0, _end:0,
+          disabled:false,
           comment: null
         };
         current.node.nodes.push(leaf);
@@ -236,63 +336,6 @@ function parseAnalyzedText(analyzedText, reportError){
 
     if (parenBalance !== 0 || bracketBalance !== 0) error("Check parentheses pairs", Math.max(0, i-1));
     return root;
-  }
-
-  function walkCounts(node, root = node){
-    let w = node.wCount || 0;
-    let c = node.cCount || 0;
-    for (const ch of node.nodes){
-      walkCounts(ch, root);
-      w += ch.wTreeCount;
-      c += ch.cTreeCount;
-    }
-    node.wTreeCount = w;
-    node.cTreeCount = c;
-    if (node.level > root.maxLevel) {// update max level
-      root.maxLevel = node.level;
-    }
-  }
-
-  function rebuild(node){
-    let out = node.text || "";
-    for (const ch of node.nodes) out += rebuild(ch);
-    return out;
-  }
-
-  function buildTextIndex(root){
-    // Build traversal sequence of text pieces (node.text and leaf.text), with subtree [start,end)
-    const pieces = [];
-    const lens = [0];
-
-    function dfs(n){
-      n._start = pieces.length;
-
-      if (n.text){
-        pieces.push(n.text);
-        lens.push(lens[lens.length-1] + n.text.length);
-      }
-      for (const ch of (n.nodes || [])) dfs(ch);
-
-      n._end = pieces.length;
-    }
-
-    dfs(root);
-
-    const full = pieces.join("");
-
-    function fillStrings(n){
-      const startPos = lens[n._start] || 0;
-      const endPos = lens[n._end] || 0;
-      n.textSoFar = full.slice(0, startPos);
-      n.textTree  = full.slice(startPos, endPos);
-      n.textAfter = full.slice(endPos);
-      n.cPos = startPos + 1;
-      n.wPos = countWords(n.textSoFar) + 1;
-      for (const ch of (n.nodes || [])) fillStrings(ch);
-    }
-    fillStrings(root);
-
-    return full;
   }
 
   try {
@@ -338,7 +381,7 @@ function parseAnalyzedText(analyzedText, reportError){
       // additional data to add to the tree
       tree.comment = rootWorthyComment;
       tree.groupWithNext = groupWithNext;
-      walkCounts(tree);
+      walkCounts(tree, tree, { skipDisabled: false });
       (function attach(node) { // adding the numbered comments to the node
         if (node.id != null && nodeComments.has(node.id)) {
           node.comment = nodeComments.get(node.id);
@@ -346,13 +389,13 @@ function parseAnalyzedText(analyzedText, reportError){
         for (const ch of (node.nodes || [])) attach(ch);
       })(tree);
 
-      const rebuilt = rebuild(tree).replace(/^\s+/, "");
+      const rebuilt = rebuild(tree, { skipDisabled: false }).replace(/^\s+/, "");
       if (rebuilt !== sentence.replace(/^\s+/, "")){
         error("Mismatch sentence error: " + rebuilt, Math.max(0, i-1));
       }
 
       // Build textSoFar/textTree/textAfter once (root includes reconstructed sentence)
-      const fullSentence = buildTextIndex(tree);
+      const fullSentence = buildTextIndex(tree, { skipDisabled: false });
       tree._reconstructed = fullSentence;
 
       results.push({ sentence, tree });
@@ -374,6 +417,7 @@ function parseAnalyzedText(analyzedText, reportError){
     storageSet,
     storageGet,
     storageRemove,
+    reprocessTree,
     parseAnalyzedText,
     extractLineNumber,
     scrollTextareaToLine

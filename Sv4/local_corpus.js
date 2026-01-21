@@ -15,7 +15,6 @@ const fTags = document.getElementById("fTags");
 const fComment = document.getElementById("fComment");
 
 const analysisInput = document.getElementById("analysisInput");
-const analysisNotice = document.getElementById("analysisNotice");
 const newEntryBtn = document.getElementById("newEntryBtn");
 const verifyBtn = document.getElementById("verifyBtn");
 const storeBtnLocal = document.getElementById("storeBtnLocal");
@@ -25,12 +24,6 @@ const statusMsg = document.getElementById("statusMsg");
 let corpusLocal = [];
 let selectedIndex = null;
 let suppressDirty = false;
-
-function setAnalysisReadOnly(enabled){
-  const on = Boolean(enabled);
-  analysisInput.readOnly = on;
-  if (analysisNotice) analysisNotice.classList.toggle("hidden", !on);
-}
 
 function loadLocalCorpus(){
   const saved = SSE.storageGet(SSE.LS_KEY_LOCAL_CORPUS, []);
@@ -174,7 +167,6 @@ function updateStoreEnabled(){
 function clearForm(){
   suppressDirty = true;
   selectedIndex = null;
-  setAnalysisReadOnly(false);
 
   fWork.value = "";
   fAuthor.value = "";
@@ -197,9 +189,6 @@ function loadEntryToForm(idx, opts = {}){
   const { validate = false } = opts;
 
   selectedIndex = idx;
-
-  const isDeconstruction = Boolean(corpusLocal[idx]?.isDeconstruction);
-  setAnalysisReadOnly(isDeconstruction);
 
   const e = normalizeEntry(corpusLocal[idx]);
 

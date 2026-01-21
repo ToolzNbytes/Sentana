@@ -420,24 +420,6 @@ body{
   cursor:pointer;
 }
 
-.analysisNotice{
-  margin: 6px 0 8px;
-  padding: 6px 10px;
-  border: 1px solid rgba(231,215,182,.18);
-  border-radius: var(--radiusSm);
-  color: var(--muted);
-  font-size: 12.5px;
-  background: rgba(18, 24, 16, 0.35);
-}
-.analysisNotice.hidden{
-  display: none;
-}
-.analysisInput:read-only{
-  background: rgba(18, 24, 16, 0.35);
-  border-color: rgba(231,215,182,.2);
-  color: var(--inkDim);
-  cursor: not-allowed;
-}
 #excerptSourceBtn:not(:disabled):hover{
   background: var(--hlBtn);
 }
@@ -508,6 +490,30 @@ body{
   border-top: 1px solid var(--border);
   border-bottom-left-radius: var(--radius);
   border-bottom-right-radius: var(--radius);
+}
+.deconstruct-header{
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.deconstruct-controls{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.deconstruct-controls .hoverBtn{
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--paper);
+  padding: 6px 10px;
+  cursor: pointer;
+}
+.deconstruct-status{
+  font-size: 12.5px;
+  color: var(--errorInk);
 }
 .deconstruct-title{
   font-family: var(--serif);

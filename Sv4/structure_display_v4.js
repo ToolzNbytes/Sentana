@@ -1050,11 +1050,239 @@ function deconstructSentenceFromState(state){
   setActiveSource("local", { idx: local.length - 1, random: false });
 }
 
+function cloneTreeNodeForDyn(node){
+  if (!node || typeof node !== "object") return null;
+  const copy = {
+    tag: node.tag || "",
+    id: (node.id === 0 || node.id) ? node.id : null,
+    ref: (node.ref === 0 || node.ref) ? node.ref : null,
+    forward: Boolean(node.forward),
+    text: node.text ?? null,
+    wCount: Number.isFinite(node.wCount) ? node.wCount : 0,
+    cCount: Number.isFinite(node.cCount) ? node.cCount : 0,
+    level: Number.isFinite(node.level) ? node.level : 0,
+    nodes: [],
+    comment: node.comment || null,
+    disabled: Boolean(node.disabled)
+  };
+  if (Array.isArray(node.nodes)) {
+    copy.nodes = node.nodes.map(cloneTreeNodeForDyn).filter(Boolean);
+  }
+  return copy;
+}
+
+function buildDynRootFromChild(child){
+  return {
+    tag:"", id:null, ref:null, forward:false,
+    text:null, wCount:0, cCount:0, level:0,
+    nodes: child ? [child] : [],
+    wTreeCount:0, cTreeCount:0, wPos:0, cPos:0,
+    maxLevel:0,
+    textTree:"", textSoFar:"", textAfter:"",
+    comment: null,
+    disabled:false
+  };
+}
+
+function buildDynTreeListFromParsed(parsed){
+  const baseTree = parsed?.[0]?.tree;
+  const roots = [];
+  const topNodes = baseTree?.nodes || [];
+  for (const node of topNodes){
+    const childCopy = cloneTreeNodeForDyn(node);
+    const root = buildDynRootFromChild(childCopy);
+    if (SSE?.reprocessTree) SSE.reprocessTree(root);
+    roots.push(root);
+  }
+  return roots;
+}
+
+function renderDynResult(parsed){
+  const panel = document.getElementById("resultPanel");
+  if (!panel) return;
+  dynTreeList = buildDynTreeListFromParsed(parsed);
+  if (!dynTreeList.length) return;
+
+  if (!dynResultHost){
+    dynResultHost = document.createElement("div");
+    dynResultHost.id = "dynResult";
+    dynResultHost.className = "dynResult";
+  } else {
+    dynResultHost.innerHTML = "";
+  }
+  if (!panel.contains(dynResultHost)) panel.appendChild(dynResultHost);
+
+  const entries = dynTreeList.map((tree, idx) => ({
+    tree,
+    sentence: tree._reconstructed || "",
+    dynMeta: { partIndex: idx + 1, partTotal: dynTreeList.length }
+  }));
+  const cap = effectiveWordCap(entries);
+
+  for (let i = 0; i < entries.length; i++){
+    const entry = entries[i];
+    const wrap = document.createElement("div");
+    wrap.className = "svgWrap";
+    if (i < entries.length - 1) wrap.classList.add("groupWithNext");
+
+    const svg = createAnalysisSVG(entry.tree, cap, entry, 0);
+    wrap.addEventListener("mouseleave", clearHoveringDisplay);
+    wrap.appendChild(svg);
+    dynResultHost.appendChild(wrap);
+  }
+}
+
+function updateDynResult(){
+  if (!dynTreeList.length) return;
+  const panel = document.getElementById("resultPanel");
+  if (!panel) return;
+  if (!dynResultHost){
+    dynResultHost = document.createElement("div");
+    dynResultHost.id = "dynResult";
+    dynResultHost.className = "dynResult";
+  }
+  if (!panel.contains(dynResultHost)) panel.appendChild(dynResultHost);
+  dynResultHost.innerHTML = "";
+  const entries = dynTreeList.map((tree, idx) => ({
+    tree,
+    sentence: tree._reconstructed || "",
+    dynMeta: { partIndex: idx + 1, partTotal: dynTreeList.length }
+  }));
+  const cap = effectiveWordCap(entries);
+
+  for (let i = 0; i < entries.length; i++){
+    const entry = entries[i];
+    const wrap = document.createElement("div");
+    wrap.className = "svgWrap";
+    if (i < entries.length - 1) wrap.classList.add("groupWithNext");
+
+    const svg = createAnalysisSVG(entry.tree, cap, entry, 0);
+    wrap.addEventListener("mouseleave", clearHoveringDisplay);
+    wrap.appendChild(svg);
+    dynResultHost.appendChild(wrap);
+  }
+}
+
+function updateDeconstructStatus(){
+  if (!deconstructStatus) return;
+  deconstructStatus.textContent = "";
+  if (!dynTreeList.length) return;
+
+  let disabledDc = 0;
+
+  function walk(node){
+    if (!node || node.disabled) return;
+    for (const ch of (node.nodes || [])){
+      if (!ch) continue;
+      if (ch.disabled){
+        if (ch.tag === "DC") disabledDc++;
+        continue;
+      }
+      walk(ch);
+    }
+  }
+
+  for (const root of dynTreeList){
+    for (const ch of (root.nodes || [])) walk(ch);
+  }
+
+  if (disabledDc > 0){
+    deconstructStatus.textContent =
+      `Warning: ${disabledDc} dependent clauses disabled; deconstructed sentence may not be well formed.`;
+  }
+}
+
+function ensureLeadingSpaceForJoin(text, isFirst){
+  if (isFirst) return text;
+  if (!text) return text;
+  if (text.startsWith(" ") || text.startsWith("—")) return text;
+  return ` ${text}`;
+}
+
+function buildDeconstructSentence(){
+  if (!dynTreeList.length) return "";
+  const parts = [];
+  for (const tree of dynTreeList){
+    const raw = String(tree?._reconstructed || "");
+    if (!raw) continue;
+    parts.push(ensureLeadingSpaceForJoin(raw, parts.length === 0));
+  }
+  return parts.join("");
+}
+
+function updateDeconstructSentenceDisplay(){
+  if (!showingDeconstructSentence) return;
+  const sArea = document.getElementById("sentenceArea");
+  if (!sArea) return;
+  const text = buildDeconstructSentence();
+  fitStringInSentenceArea(text.length);
+  sArea.textContent = text;
+}
+
+function walkDynNodes(root, cb){
+  if (!root) return;
+  cb(root);
+  for (const ch of (root.nodes || [])) walkDynNodes(ch, cb);
+}
+
+function resetSingleDynTree(root){
+  if (!root) return;
+  walkDynNodes(root, (node) => { node.disabled = false; });
+  if (SSE?.reprocessTree) SSE.reprocessTree(root);
+}
+
+function collapseSingleDynNode(root, node){
+  if (!root || !node) return;
+  node.disabled = true;
+  if (SSE?.reprocessTree) SSE.reprocessTree(root);
+}
+
+function collapseAllSingleDynTree(root){
+  if (!root) return;
+  const main = (root.nodes || [])[0];
+  if (!main) return;
+  for (const ch of (main.nodes || [])){
+    ch.disabled = (ch.level || 0) >= 2;
+  }
+  if (SSE?.reprocessTree) SSE.reprocessTree(root);
+}
+
+function updateDynAfterChange(){
+  updateDynResult();
+  updateDeconstructStatus();
+  updateDeconstructSentenceDisplay();
+}
+
+function resetDynTrees(){
+  for (const root of dynTreeList){
+    resetSingleDynTree(root);
+  }
+  updateDynAfterChange();
+}
+
+function collapseDynTrees(){
+  for (const root of dynTreeList){
+    const top = root.nodes || [];
+    for (const node of top){
+      walkDynNodes(node, (child) => { child.disabled = (child.level || 0) >= 2; });
+    }
+    if (SSE?.reprocessTree) SSE.reprocessTree(root);
+  }
+  updateDynAfterChange();
+}
+
 /* ===================== Sentence context menu ===================== */
+let dynTreeList = [];
+let dynResultHost = null;
+
 let sentenceMenu = null;
 let sentenceMenuTitle = null;
 let sentenceMenuDeconstruct = null;
 let sentenceMenuState = null;
+
+let dynMenu = null;
+let dynMenuTitle = null;
+let dynMenuState = null;
 
 function ensureSentenceMenu(){
   if (sentenceMenu) return sentenceMenu;
@@ -1126,6 +1354,111 @@ function ensureSentenceMenu(){
   window.addEventListener("scroll", closeSentenceMenu, true);
 
   return sentenceMenu;
+}
+
+function ensureDynMenu(){
+  if (dynMenu) return dynMenu;
+
+  dynMenu = document.createElement("div");
+  dynMenu.className = "sentenceMenu hidden";
+  dynMenu.id = "dynMenu";
+  dynMenu.innerHTML = `
+    <div class="sentenceMenuTitle">
+      <span id="dynMenuTitle">Part</span>
+      <button class="sentenceMenuClose" type="button" aria-label="Close">×</button>
+    </div>
+    <button class="sentenceMenuItem" data-action="copyText">Copy text</button>
+    <button class="sentenceMenuItem" data-action="collapse">Collapse</button>
+    <button class="sentenceMenuItem" data-action="collapseAll">Collapse all</button>
+    <button class="sentenceMenuItem" data-action="resetAll">Reset all</button>
+  `;
+  document.body.appendChild(dynMenu);
+
+  dynMenuTitle = dynMenu.querySelector("#dynMenuTitle");
+  const closeBtn = dynMenu.querySelector(".sentenceMenuClose");
+  if (closeBtn){
+    closeBtn.addEventListener("click", (e)=>{
+      e.stopPropagation();
+      closeDynMenu();
+    });
+  }
+
+  dynMenu.addEventListener("click", async (e)=>{
+    const item = e.target.closest(".sentenceMenuItem");
+    if (!item) return;
+    const action = item.dataset.action;
+    const state = dynMenuState;
+    closeDynMenu();
+    if (!state?.treeRoot) return;
+
+    switch (action){
+      case "copyText":
+        await copyToClipboard(state.treeRoot._reconstructed || state.treeRoot.textTree || "");
+        break;
+      case "collapse":
+        collapseSingleDynNode(state.treeRoot, state.targetNode);
+        updateDynAfterChange();
+        break;
+      case "collapseAll":
+        collapseAllSingleDynTree(state.treeRoot);
+        updateDynAfterChange();
+        break;
+      case "resetAll":
+        resetSingleDynTree(state.treeRoot);
+        updateDynAfterChange();
+        break;
+      default:
+        break;
+    }
+  });
+
+  dynMenu.addEventListener("mousedown", (e)=>e.stopPropagation());
+
+  document.addEventListener("mousedown", (e)=>{
+    if (!dynMenu || dynMenu.classList.contains("hidden")) return;
+    if (!dynMenu.contains(e.target)) closeDynMenu();
+  });
+  document.addEventListener("keydown", (e)=>{
+    if (e.key === "Escape") closeDynMenu();
+  });
+  window.addEventListener("scroll", closeDynMenu, true);
+
+  return dynMenu;
+}
+
+function openDynMenuAt(x, y, state){
+  const menu = ensureDynMenu();
+  dynMenuState = state || null;
+  if (dynMenuTitle){
+    const idx = Number(state?.partIndex);
+    const total = Number(state?.partTotal);
+    if (Number.isFinite(idx) && Number.isFinite(total)){
+      dynMenuTitle.textContent = `Part ${idx}/${total}`;
+    } else {
+      dynMenuTitle.textContent = "Part";
+    }
+  }
+
+  menu.classList.remove("hidden");
+  menu.style.left = "0px";
+  menu.style.top = "0px";
+
+  requestAnimationFrame(()=>{
+    const rect = menu.getBoundingClientRect();
+    const pad = 8;
+    const maxX = window.scrollX + window.innerWidth - rect.width - pad;
+    const maxY = window.scrollY + window.innerHeight - rect.height - pad;
+    const nextX = Math.max(window.scrollX + pad, Math.min(x, maxX));
+    const nextY = Math.max(window.scrollY + pad, Math.min(y, maxY));
+    menu.style.left = `${nextX}px`;
+    menu.style.top = `${nextY}px`;
+  });
+}
+
+function closeDynMenu(){
+  if (!dynMenu) return;
+  dynMenu.classList.add("hidden");
+  dynMenuState = null;
 }
 
 function openSentenceMenuAt(x, y, state){
@@ -1200,8 +1533,21 @@ function createAnalysisSVG(tree, cap, entry, sentenceIndex){
   buildPatterns(defs);
   svg.appendChild(defs);
 
+  function isRenderable(node){
+    return !(node && node.disabled);
+  }
+
   function openMenuForNode(e, node){
     if (e.button !== 0) return;
+    if (entry?.dynMeta){
+      openDynMenuAt(e.pageX, e.pageY, {
+        partIndex: entry.dynMeta.partIndex,
+        partTotal: entry.dynMeta.partTotal,
+        treeRoot: entry.tree,
+        targetNode: node
+      });
+      return;
+    }
     const sentenceText = entry?.sentence || "";
     const nodeText = node?.textTree || node?.text || "";
     openSentenceMenuAt(e.pageX, e.pageY, {
@@ -1280,7 +1626,9 @@ function createAnalysisSVG(tree, cap, entry, sentenceIndex){
   }
 
   function addSpacersForNode(node){
-    const hasTaggedChild = (node.nodes || []).some(ch => ch.tag && ch.tag.length);
+    if (!isRenderable(node)) return;
+    const nodes = (node.nodes || []).filter(isRenderable);
+    const hasTaggedChild = nodes.some(ch => ch.tag && ch.tag.length);
     if (!hasTaggedChild) return;
 
     const spacerLevel = (node.level || 1) + 1;
@@ -1290,7 +1638,7 @@ function createAnalysisSVG(tree, cap, entry, sentenceIndex){
       addSpacerRect(node, nodeStartIdx, node.wCount, spacerLevel, node.wPos || 1);
     }
 
-    for (const ch of (node.nodes || [])){
+    for (const ch of nodes){
       if (!ch.tag && (ch.wTreeCount || 0) > 0){
         const startIdx = (ch.wPos || 1) - 1;
         addSpacerRect(node, startIdx, ch.wTreeCount, spacerLevel, ch.wPos || 1);
@@ -1334,10 +1682,15 @@ function createAnalysisSVG(tree, cap, entry, sentenceIndex){
   }
 
   function walk(node, cursorWords){
+    if (!isRenderable(node)) return cursorWords;
     // Add spacer rects for this node, aligned with the next level.
     addSpacersForNode(node);
 
     for (const ch of (node.nodes || [])){
+      if (!isRenderable(ch)) {
+        cursorWords += (ch.wTreeCount || 0);
+        continue;
+      }
       const isNode = (ch.tag && ch.tag.length > 0);
       if (isNode){
         addRect(ch, cursorWords);
@@ -1480,6 +1833,9 @@ const work = document.querySelector(".work");
 const author = document.querySelector(".author");
 const choice = document.querySelector(".choice");
 const commentBox = document.getElementById("commentArea");
+const deconstructStatus = document.getElementById("deconstructStatus");
+const deconstructPanel = document.getElementById("deconstructPanel");
+let showingDeconstructSentence = false;
 function setCollapseIcon(){
   const useEl = collapseBtn.querySelector("use");
   if (!useEl) return;
@@ -1573,6 +1929,7 @@ async function show(idx) {
   });
 
   renderSVGs(lastParsed);
+  if (isDeconstructEntry) renderDynResult(lastParsed);
 
   // now enable store if parsing ok
   if (!hasError()) setStoreEnabled(true);
@@ -1636,6 +1993,30 @@ if (localDataBtn){
 if (helpBtn){
   helpBtn.addEventListener("click", ()=>{
     window.location.href = "help_v4.html";
+  });
+}
+
+const deconstructResetBtn = document.getElementById("deconstructResetBtn");
+const deconstructCollapseBtn = document.getElementById("deconstructCollapseBtn");
+if (deconstructResetBtn){
+  deconstructResetBtn.addEventListener("click", ()=>{
+    resetDynTrees();
+  });
+}
+if (deconstructCollapseBtn){
+  deconstructCollapseBtn.addEventListener("click", ()=>{
+    collapseDynTrees();
+  });
+}
+
+if (deconstructPanel){
+  deconstructPanel.addEventListener("mouseenter", ()=>{
+    showingDeconstructSentence = true;
+    updateDeconstructSentenceDisplay();
+  });
+  deconstructPanel.addEventListener("mouseleave", ()=>{
+    showingDeconstructSentence = false;
+    clearHighlightedSentence();
   });
 }
 
