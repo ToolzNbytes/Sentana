@@ -1,0 +1,55 @@
+Author: Михаил Лермонтов - Mikhail Iurevich Lermontov
+Work: Герой нашего времени - Un héros de notre temps
+Year: 1837-39
+Choice: chapter 7, mid 6th paragraph (French version by A. de Villamarie)
+Tags: ToReview
+Language: fr/ru
+Comment: !! draft analysis to review !!
+
+###
+
+Le mal engendre le mal, une première souffrance fait comprendre le plaisir qu’il y a à tourmenter les autres.
+(IC1 Le mal engendre le mal,
+)
+(IC2 une première souffrance fait comprendre le plaisir
+~(DC3<2 qu’il y a à tourmenter les autres.
+~)
+)
+
+L’idée du mal ne peut entrer dans la tête d’un homme sans qu’il ne songe à le faire.
+(IC1 L’idée du mal ne peut entrer dans la tête d’un homme
+~(DC2<1 sans qu’il ne songe à le faire.
+~)
+)
+
+Les idées, a dit quelqu’un, c’est la création organisée ; leur naissance leur donne une forme et cette forme est l’action.
+
+Ainsi celui dans la tête duquel naît le plus grand nombre d’idées agit plus que tous les autres.
+
+De cela, il suit qu’un homme de génie attaché au banc d’un pupitre, doit mourir ou perdre l’esprit ; absolument comme un homme, doué d’une constitution, vigoureuse, condamné à une vie sédentaire et sans exercice, mourra d’une attaque d’apoplexie.
+
+ Les passions ne sont autre chose que les idées à leur première éclosion ; elles appartiennent aux cœurs jeunes, et celui-là est un sot qui croit être agité par elles toute la vie.
+
+Bien des rivières tranquilles sont, à leur source, d’impétueux torrents, mais pas une ne bondit et n’écume jusqu’à la mer ; ce calme est souvent, sans qu’on s’en doute, un grand indice de force.
+
+La plénitude, la profondeur des sentiments et de la pensée n’admettent pas les élans furieux. Une âme agitée par les passions, se donne en tout de lourdes responsabilités, et est persuadée qu’il doit en être ainsi.
+
+Elle sait que sans les orages, la permanente ardeur du soleil la dessécherait.
+
+Elle se pénètre de sa propre vie, se caresse et se punit elle-même, comme un enfant gâté.
+
+Ce n’est que dans cette condition de connaissance de soi-même que l’homme peut apprécier la justice divine…
+
+ En relisant cette page, je remarque que je me suis bien éloigné de mon sujet.
+ 
+Mais qu’importe ! Sans doute j’écris ce journal pour moi, et tout ce que je jette sur ce papier sera, avec le temps, un précieux souvenir pour moi…
+
+###
+
+Le mal engendre le mal, une première souffrance fait comprendre le plaisir qu’il y a à tourmenter les autres. L’idée du mal ne peut entrer dans la tête d’un homme sans qu’il ne songe à le faire. Les idées, a dit quelqu’un, c’est la création organisée ; leur naissance leur donne une forme et cette forme est l’action. Ainsi celui dans la tête duquel naît le plus grand nombre d’idées agit plus que tous les autres.
+
+De cela, il suit qu’un homme de génie attaché au banc d’un pupitre, doit mourir ou perdre l’esprit ; absolument comme un homme, doué d’une constitution, vigoureuse, condamné à une vie sédentaire et sans exercice, mourra d’une attaque d’apoplexie.
+
+Les passions ne sont autre chose que les idées à leur première éclosion ; elles appartiennent aux cœurs jeunes, et celui-là est un sot qui croit être agité par elles toute la vie. Bien des rivières tranquilles sont, à leur source, d’impétueux torrents, mais pas une ne bondit et n’écume jusqu’à la mer ; ce calme est souvent, sans qu’on s’en doute, un grand indice de force. La plénitude, la profondeur des sentiments et de la pensée n’admettent pas les élans furieux. Une âme agitée par les passions, se donne en tout de lourdes responsabilités, et est persuadée qu’il doit en être ainsi. Elle sait que sans les orages, la permanente ardeur du soleil la dessécherait. Elle se pénètre de sa propre vie, se caresse et se punit elle-même, comme un enfant gâté. Ce n’est que dans cette condition de connaissance de soi-même que l’homme peut apprécier la justice divine…
+
+En relisant cette page, je remarque que je me suis bien éloigné de mon sujet. Mais qu’importe ! Sans doute j’écris ce journal pour moi, et tout ce que je jette sur ce papier sera, avec le temps, un précieux souvenir pour moi…
