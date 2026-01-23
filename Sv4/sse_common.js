@@ -58,7 +58,12 @@
     textarea.scrollTop = Math.max(0, (targetIdx - 1) * lh);
   }
 
-  const countWords = (t) => t.replace(/ƒ?"/g, " ").trim().split(/\s+/).filter(Boolean).length;
+  const countWords = (t) => {
+    const raw = String(t || "");
+    const trimmed = raw.trim();
+    if (trimmed.length === 1 && ",.;:!?".includes(trimmed)) return 0;
+    return raw.replace(/["]/g, " ").trim().split(/\s+/).filter(Boolean).length;
+  };
 
   function recomputeBaseCounts(node, opts = {}){
     const skipDisabled = opts.skipDisabled === true;

@@ -840,7 +840,7 @@ function buildTreeHighlightHtml(node, wordIndex){
 
   const ranges = [];
   for (const ch of (node.nodes || [])){
-    if (ch.tag && ch.textTree && ch.textTree.length){
+    if (ch.tag && ch.tag !== "p." && ch.textTree && ch.textTree.length){
       const baseStart = (node.cPos || 1) - 1;
       const chStart = (ch.cPos || 1) - 1;
       const localStart = Math.max(0, chStart - baseStart);
@@ -1084,6 +1084,195 @@ function buildDynRootFromChild(child){
   };
 }
 
+function buoyantPunctuation(root){
+  function isPunctNode(node){
+    return Boolean(node && node.tag === "p.");
+  }
+  function trailingPunctInfo(text){
+    const t = String(text || "");
+    if (!t) return { punct: null, text: t };
+    let i = t.length - 1;
+    while (i >= 0 && (/[\s\u200B\u200C\u200D\uFEFF]/.test(t[i]))) i--;
+    if (i < 0) return { punct: null, text: t };
+    const ch = t[i];
+    if (!",.;:!?".includes(ch)) return { punct: null, text: t };
+    let j = i - 1;
+    while (j >= 0 && (/[\s\u200B\u200C\u200D\uFEFF]/.test(t[j]))) j--;
+    const trimmed = t.slice(0, j + 1);
+    return { punct: ch, text: trimmed };
+  }
+
+  function processNode(node, parent, parentIndex){
+    if (!node) return parentIndex;
+
+    let i = 0;
+    while (Array.isArray(node.nodes) && i < node.nodes.length){
+      const child = node.nodes[i];
+      const nextIdx = processNode(child, node, i);
+      i = Math.max(i + 1, nextIdx);
+    }
+
+    if (Array.isArray(node.nodes) && node.nodes.length){
+      const last = node.nodes[node.nodes.length - 1];
+      if (isPunctNode(last) && parent && Array.isArray(parent.nodes)){
+        const cutIdx = parent.nodes.indexOf(node);
+        if (cutIdx >= 0){
+          node.nodes.pop();
+          last.level = parent.level || 0;
+          parent.nodes.splice(cutIdx + 1, 0, last);
+          parentIndex = cutIdx + 2;
+        }
+      }
+      if (node.text && !isPunctNode(node)){
+        const info = trailingPunctInfo(node.text);
+        if (info.punct){
+          node.text = info.text;
+          const first = node.nodes[0];
+          if (!isPunctNode(first)){
+            const punctChild = {
+              tag:"p.", id:null, ref:null, forward:false,
+              text: `${info.punct} `,
+              wCount:0, cCount:0, level: node.level || 0,
+              nodes:[],
+              wTreeCount:0, cTreeCount:0, wPos:0, cPos:0,
+              textTree:"", textSoFar:"", textAfter:"",
+              _start:0, _end:0,
+              disabled:false,
+              comment: null
+            };
+            node.nodes.unshift(punctChild);
+          }
+        }
+      }
+      return parentIndex;
+    }
+
+    if (!node.text || isPunctNode(node)) return parentIndex;
+    const info2 = trailingPunctInfo(node.text);
+    if (!info2.punct) return parentIndex;
+
+    node.text = info2.text;
+    if (!parent || !Array.isArray(parent.nodes)) return parentIndex;
+    const idx = parent.nodes.indexOf(node);
+    if (idx < 0) return parentIndex;
+    if (parent.nodes[idx + 1] && isPunctNode(parent.nodes[idx + 1])) return parentIndex;
+
+    const newNode = {
+      tag:"p.", id:null, ref:null, forward:false,
+      text: `${info2.punct} `,
+      wCount:0, cCount:0, level: parent.level || 0,
+      nodes:[],
+      wTreeCount:0, cTreeCount:0, wPos:0, cPos:0,
+      textTree:"", textSoFar:"", textAfter:"",
+      _start:0, _end:0,
+      disabled:false,
+      comment: null
+    };
+    parent.nodes.splice(idx + 1, 0, newNode);
+    return idx + 2;
+  }
+
+  processNode(root, null, 0);
+}
+
+function sanitizePunctuation(root){
+  function isPunctNode(node){
+    return Boolean(node && node.tag === "p.");
+  }
+  function getPunctChar(node){
+    const t = String(node?.text || "").trim();
+    return t ? t[0] : "";
+  }
+  function isQuote(ch){
+    return ["\"", "'", "“", "”", "‘", "’"].includes(ch);
+  }
+  function isStraightQuote(ch){
+    return ch === "\"" || ch === "'";
+  }
+  function isOpeningQuote(ch){
+    return ch === "“" || ch === "‘";
+  }
+  function isClosingQuote(ch){
+    return ch === "”" || ch === "’";
+  }
+  function isMatchingQuotePair(a, b){
+    return (a === "“" && b === "”") || (a === "”" && b === "“")
+      || (a === "‘" && b === "’") || (a === "’" && b === "‘");
+  }
+  function isSeparator(ch){
+    return ch === "," || ch === ";" || ch === ":";
+  }
+  function keepStrongerSeparator(a, b){
+    if ((a === "," && b === ";") || (a === ";" && b === ",")) return ";";
+    if ((a === "," && b === ":") || (a === ":" && b === ",")) return ":";
+    return b;
+  }
+
+  function pass1(node){
+    if (!node) return;
+    if (isPunctNode(node)) node.disabled = false;
+    for (const ch of (node.nodes || [])) pass1(ch);
+  }
+
+  function pass2(nodes, lastPunct){
+    let last = lastPunct || null;
+    for (const node of (nodes || [])){
+      if (!node || node.disabled) continue;
+      if (isPunctNode(node)){
+        const currChar = getPunctChar(node);
+        if (last){
+          const prevChar = getPunctChar(last);
+          if (isQuote(prevChar) && isQuote(currChar)){
+            if (isMatchingQuotePair(prevChar, currChar) ||
+                (isStraightQuote(prevChar) && isStraightQuote(currChar) && prevChar === currChar)){
+              last.disabled = true;
+              node.disabled = true;
+              last = null;
+              continue;
+            }
+          }
+          if ((isQuote(prevChar) && isSeparator(currChar)) ||
+              (isSeparator(prevChar) && isQuote(currChar))){
+            last = node;
+            continue;
+          }
+          if (prevChar === currChar){
+            last.disabled = true;
+            last = node;
+            continue;
+          }
+          if ((prevChar === "," && currChar === ";") || (prevChar === ";" && currChar === ",")){
+            if (prevChar === ",") last.disabled = true;
+            else node.disabled = true;
+            last = (prevChar === ";") ? last : node;
+            continue;
+          }
+          if ((prevChar === "," && currChar === ":") || (prevChar === ":" && currChar === ",")){
+            if (prevChar === ",") last.disabled = true;
+            else node.disabled = true;
+            last = (prevChar === ":") ? last : node;
+            continue;
+          }
+          last.disabled = true;
+          last = node;
+        } else {
+          last = node;
+        }
+        continue;
+      }
+
+      last = null;
+      if (node.nodes && node.nodes.length){
+        last = pass2(node.nodes, last);
+      }
+    }
+    return last;
+  }
+
+  pass1(root);
+  if (root && root.nodes) pass2(root.nodes, null);
+}
+
 function buildDynTreeListFromParsed(parsed){
   const baseTree = parsed?.[0]?.tree;
   const roots = [];
@@ -1091,6 +1280,7 @@ function buildDynTreeListFromParsed(parsed){
   for (const node of topNodes){
     const childCopy = cloneTreeNodeForDyn(node);
     const root = buildDynRootFromChild(childCopy);
+    buoyantPunctuation(root);
     if (SSE?.reprocessTree) SSE.reprocessTree(root);
     roots.push(root);
   }
@@ -1195,19 +1385,40 @@ function updateDeconstructStatus(){
 function ensureLeadingSpaceForJoin(text, isFirst){
   if (isFirst) return text;
   if (!text) return text;
-  if (text.startsWith(" ") || text.startsWith("—")) return text;
+  if (text.startsWith(" ") || text.startsWith("???") || text.startsWith("?")) return text;
   return ` ${text}`;
+}
+
+function normalizeDeconstructSentenceText(text){
+  let out = String(text || "");
+  out = out.replace(/,\s*,/g, ",");
+  out = out.replace(/,\s*;/g, ";");
+  out = out.replace(/;\s*,/g, ";");
+  out = out.replace(/,\s*:/g, ":");
+  out = out.replace(/:\s*,/g, ":");
+  out = out.replace(/([,;:])(?:\s*[,;:])+/g, (m) => {
+    if (m.includes(":")) return ":";
+    if (m.includes(";")) return ";";
+    return ",";
+  });
+  return out;
 }
 
 function buildDeconstructSentence(){
   if (!dynTreeList.length) return "";
   const parts = [];
+  let hasTextBefore = false;
   for (const tree of dynTreeList){
-    const raw = String(tree?._reconstructed || "");
+    let raw = String(tree?._reconstructed || "");
     if (!raw) continue;
+    if (!hasTextBefore){
+      raw = raw.replace(/^\s*[,.;:!?]+\s*/, "");
+    }
+    if (!raw.trim().length) continue;
+    hasTextBefore = true;
     parts.push(ensureLeadingSpaceForJoin(raw, parts.length === 0));
   }
-  return parts.join("");
+  return normalizeDeconstructSentenceText(parts.join(""));
 }
 
 function updateDeconstructSentenceDisplay(){
@@ -1228,12 +1439,14 @@ function walkDynNodes(root, cb){
 function resetSingleDynTree(root){
   if (!root) return;
   walkDynNodes(root, (node) => { node.disabled = false; });
+  sanitizePunctuation(root);
   if (SSE?.reprocessTree) SSE.reprocessTree(root);
 }
 
 function collapseSingleDynNode(root, node){
   if (!root || !node) return;
   node.disabled = true;
+  sanitizePunctuation(root);
   if (SSE?.reprocessTree) SSE.reprocessTree(root);
 }
 
@@ -1244,6 +1457,7 @@ function collapseAllSingleDynTree(root){
   for (const ch of (main.nodes || [])){
     ch.disabled = (ch.level || 0) >= 2;
   }
+  sanitizePunctuation(root);
   if (SSE?.reprocessTree) SSE.reprocessTree(root);
 }
 
@@ -1266,6 +1480,7 @@ function collapseDynTrees(){
     for (const node of top){
       walkDynNodes(node, (child) => { child.disabled = (child.level || 0) >= 2; });
     }
+    sanitizePunctuation(root);
     if (SSE?.reprocessTree) SSE.reprocessTree(root);
   }
   updateDynAfterChange();
@@ -1536,6 +1751,20 @@ function createAnalysisSVG(tree, cap, entry, sentenceIndex){
   function isRenderable(node){
     return !(node && node.disabled);
   }
+  function isPunctuationOnlyText(text){
+    const t = String(text || "").trim();
+    return t.length === 1 && ",.;:!?".includes(t);
+  }
+  function wordCountForNode(node){
+    if (!node) return 0;
+    if (isPunctuationOnlyText(node.text)) return 0;
+    return node.wCount || 0;
+  }
+  function treeWordCountForNode(node){
+    if (!node) return 0;
+    if (isPunctuationOnlyText(node.text) && (!node.nodes || node.nodes.length === 0)) return 0;
+    return node.wTreeCount || 0;
+  }
 
   function openMenuForNode(e, node){
     if (e.button !== 0) return;
@@ -1634,14 +1863,16 @@ function createAnalysisSVG(tree, cap, entry, sentenceIndex){
     const spacerLevel = (node.level || 1) + 1;
     const nodeStartIdx = (node.wPos || 1) - 1;
 
-    if ((node.wCount || 0) > 0) {
-      addSpacerRect(node, nodeStartIdx, node.wCount, spacerLevel, node.wPos || 1);
+    const nodeWordCount = wordCountForNode(node);
+    if (nodeWordCount > 0) {
+      addSpacerRect(node, nodeStartIdx, nodeWordCount, spacerLevel, node.wPos || 1);
     }
 
     for (const ch of nodes){
-      if (!ch.tag && (ch.wTreeCount || 0) > 0){
+      const chTreeCount = treeWordCountForNode(ch);
+      if (!ch.tag && chTreeCount > 0){
         const startIdx = (ch.wPos || 1) - 1;
-        addSpacerRect(node, startIdx, ch.wTreeCount, spacerLevel, ch.wPos || 1);
+        addSpacerRect(node, startIdx, chTreeCount, spacerLevel, ch.wPos || 1);
       }
     }
   }
@@ -1688,18 +1919,18 @@ function createAnalysisSVG(tree, cap, entry, sentenceIndex){
 
     for (const ch of (node.nodes || [])){
       if (!isRenderable(ch)) {
-        cursorWords += (ch.wTreeCount || 0);
+        cursorWords += treeWordCountForNode(ch);
         continue;
       }
       const isNode = (ch.tag && ch.tag.length > 0);
       if (isNode){
         addRect(ch, cursorWords);
         const childStart = cursorWords;
-        const childAfterHeader = childStart + (ch.wCount || 0);
+        const childAfterHeader = childStart + wordCountForNode(ch);
         walk(ch, childAfterHeader);
-        cursorWords = childStart + (ch.wTreeCount || 0);
+        cursorWords = childStart + treeWordCountForNode(ch);
       } else {
-        cursorWords += (ch.wCount || 0);
+        cursorWords += wordCountForNode(ch);
       }
     }
     return cursorWords;
