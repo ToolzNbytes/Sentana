@@ -25,6 +25,7 @@ Improvements I'm thinking of:
 
 * Special support of dialogues (avoiding those at the moment): attribution, who is speaking, insertion and action tags.
 * A mark so that we can see where we made a special comment on a sentence or a phrase
+* A assisted analyzer to speed up the parsing of new excepts
 * More translations and languages other than English
 
 
@@ -43,6 +44,6 @@ Then you can reach me by posting a comment in a related post from me on reddit h
 
 Bug or issues:
 
-* Download of local corpus file is missing the new metadata language and tags
+* New deconstructor feature has a few issues to work on (punctuation to preserve, ...)
 
 *Done with free time I took from my other projects that suffered from this... but I'm happy with the result.*
