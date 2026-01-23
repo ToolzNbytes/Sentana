@@ -1288,19 +1288,12 @@ function buildDynTreeListFromParsed(parsed){
 }
 
 function renderDynResult(parsed){
-  const panel = document.getElementById("resultPanel");
-  if (!panel) return;
+  dynResultHost = document.getElementById("dynResult");
+  if (!dynResultHost) return;
   dynTreeList = buildDynTreeListFromParsed(parsed);
   if (!dynTreeList.length) return;
 
-  if (!dynResultHost){
-    dynResultHost = document.createElement("div");
-    dynResultHost.id = "dynResult";
-    dynResultHost.className = "dynResult";
-  } else {
-    dynResultHost.innerHTML = "";
-  }
-  if (!panel.contains(dynResultHost)) panel.appendChild(dynResultHost);
+  dynResultHost.innerHTML = "";
 
   const entries = dynTreeList.map((tree, idx) => ({
     tree,
@@ -1324,14 +1317,8 @@ function renderDynResult(parsed){
 
 function updateDynResult(){
   if (!dynTreeList.length) return;
-  const panel = document.getElementById("resultPanel");
-  if (!panel) return;
-  if (!dynResultHost){
-    dynResultHost = document.createElement("div");
-    dynResultHost.id = "dynResult";
-    dynResultHost.className = "dynResult";
-  }
-  if (!panel.contains(dynResultHost)) panel.appendChild(dynResultHost);
+  if (!dynResultHost) dynResultHost = document.getElementById("dynResult");
+  if (!dynResultHost) return;
   dynResultHost.innerHTML = "";
   const entries = dynTreeList.map((tree, idx) => ({
     tree,
@@ -1445,6 +1432,7 @@ function resetSingleDynTree(root){
 
 function collapseSingleDynNode(root, node){
   if (!root || !node) return;
+  if (node.tag === "p.") return;
   node.disabled = true;
   sanitizePunctuation(root);
   if (SSE?.reprocessTree) SSE.reprocessTree(root);
@@ -1455,6 +1443,7 @@ function collapseAllSingleDynTree(root){
   const main = (root.nodes || [])[0];
   if (!main) return;
   for (const ch of (main.nodes || [])){
+    if (ch.tag === "p.") continue;
     ch.disabled = (ch.level || 0) >= 2;
   }
   sanitizePunctuation(root);
@@ -1465,6 +1454,39 @@ function updateDynAfterChange(){
   updateDynResult();
   updateDeconstructStatus();
   updateDeconstructSentenceDisplay();
+}
+
+function keepOnlyDCs(root){
+  function walk(node){
+    if (!node) return;
+    if ((node.level || 0) <= 1) {
+      node.disabled = false;
+      for (const ch of (node.nodes || [])) walk(ch);
+      return;
+    }
+    if (node.tag === "DC") {
+      node.disabled = false;
+      for (const ch of (node.nodes || [])) walk(ch);
+      return;
+    }
+    if (!node.tag) {
+      node.disabled = false;
+      for (const ch of (node.nodes || [])) walk(ch);
+      return;
+    }
+    if (node.tag === "p.") {
+      node.disabled = false;
+      return;
+    }
+    if (node.tag) {
+      node.disabled = true;
+      return;
+    }
+    for (const ch of (node.nodes || [])) walk(ch);
+  }
+  walk(root);
+  sanitizePunctuation(root);
+  if (SSE?.reprocessTree) SSE.reprocessTree(root);
 }
 
 function resetDynTrees(){
@@ -1478,7 +1500,10 @@ function collapseDynTrees(){
   for (const root of dynTreeList){
     const top = root.nodes || [];
     for (const node of top){
-      walkDynNodes(node, (child) => { child.disabled = (child.level || 0) >= 2; });
+      walkDynNodes(node, (child) => {
+        if (child.tag === "p.") return;
+        child.disabled = (child.level || 0) >= 2;
+      });
     }
     sanitizePunctuation(root);
     if (SSE?.reprocessTree) SSE.reprocessTree(root);
@@ -2229,6 +2254,8 @@ if (helpBtn){
 
 const deconstructResetBtn = document.getElementById("deconstructResetBtn");
 const deconstructCollapseBtn = document.getElementById("deconstructCollapseBtn");
+const deconstructKeepDCBtn = document.getElementById("deconstructKeepDCBtn");
+const deconstructCopyBtn = document.getElementById("deconstructCopyBtn");
 if (deconstructResetBtn){
   deconstructResetBtn.addEventListener("click", ()=>{
     resetDynTrees();
@@ -2237,6 +2264,20 @@ if (deconstructResetBtn){
 if (deconstructCollapseBtn){
   deconstructCollapseBtn.addEventListener("click", ()=>{
     collapseDynTrees();
+  });
+}
+if (deconstructKeepDCBtn){
+  deconstructKeepDCBtn.addEventListener("click", ()=>{
+    for (const root of dynTreeList){
+      keepOnlyDCs(root);
+    }
+    updateDynAfterChange();
+  });
+}
+if (deconstructCopyBtn){
+  deconstructCopyBtn.addEventListener("click", async ()=>{
+    const text = buildDeconstructSentence();
+    await copyToClipboard(text);
   });
 }
 

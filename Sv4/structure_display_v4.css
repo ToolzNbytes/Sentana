@@ -469,6 +469,13 @@ body{
   border-bottom-left-radius: var(--radius);
   border-bottom-right-radius: var(--radius);
 }
+.dynResult{
+  display: none;
+  margin-top: 10px;
+  padding: 14px;
+  background: var(--panel);
+  border-radius: var(--radius);
+}
 .svgWrap{
   margin-bottom:15px;
 }
@@ -532,6 +539,10 @@ body{
   background: var(--deconstructBg);
 }
 .deconstruct-mode .result-panel{
+  background: var(--deconstructBg);
+}
+.deconstruct-mode .dynResult{
+  display: block;
   background: var(--deconstructBg);
 }
 .deconstruct-mode .deconstruct-panel{
