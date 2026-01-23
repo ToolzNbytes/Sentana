@@ -1388,6 +1388,9 @@ function normalizeDeconstructSentenceText(text){
     if (m.includes(";")) return ";";
     return ",";
   });
+  out = out.replace(/\s{2,}/g, " ");
+  out = out.replace(/\s+([,.;:!?])/g, "$1");
+  out = out.replace(/([,.;:!?])([^\s])/g, "$1 $2");
   return out;
 }
 
