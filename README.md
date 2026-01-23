@@ -44,6 +44,6 @@ Then you can reach me by posting a comment in a related post from me on reddit h
 
 Bug or issues:
 
-* New deconstructor feature has a few issues to work on (punctuation to preserve, ...)
+* New deconstructor feature has limited control (use local context menu instead)
 
 *Done with free time I took from my other projects that suffered from this... but I'm happy with the result.*
