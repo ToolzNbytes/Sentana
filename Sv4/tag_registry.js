@@ -20,7 +20,7 @@
     PP:  { label: "participial phrase or similar, optional", palette: ["#C7E9C0","#A1D99B","#74C476","#41AB5D"] },
     PPf: { label: "participial phrase or similar, optional, before the refered subject", palette: ["#6EE389","#34B75A","#0D8A37"] },
     AP:  { label: "other adjunct phrase, optional", palette: ["#f8ed62","#e9d700","#dab600","#a98600"] },
-    AT:  { label: "attribution", palette: ["rgba(230,230,230,0.8)"] },
+    AT:  { label: "attribution", palette: ["#808080"] },
     CP:  { label: "compound predicate or coordinated parallel constituent", patterns: ["contrast_line1","contrast_line2","contrast_line3","contrast_line4"], decoratesParent: true },
     FG:  { label: "fragment", palette: ["#C7A3E6","#A884D2","#8A66BC"] }
   };
@@ -88,6 +88,13 @@
   if (typeof config.RESULT_BG !== "string" || !config.RESULT_BG.trim()){
     config.RESULT_BG = rootStyle.getPropertyValue("--panel").trim();
   }
+
+  if (!config.colors || typeof config.colors !== "object") config.colors = {};
+  const colors = config.colors;
+  if (typeof colors.rootDefault !== "string") colors.rootDefault = "#808080";
+  if (typeof colors.rootDialogue !== "string") colors.rootDialogue = "rgba(230,230,230,0.8)";
+  if (typeof colors.fillFallback !== "string") colors.fillFallback = "rgba(231,215,182,.35)";
+  if (typeof colors.dialogueStroke !== "string") colors.dialogueStroke = "rgba(255,255,255,0.9)";
 
   window.SSE_APP = SSE_APP;
   // Legacy aliases for compatibility.

@@ -39,11 +39,11 @@
 
   function pickFill(node, state){
     const tag = node?.tag || "";
-    if (!tag) return { type:"solid", value: "rgba(231,215,182,.35)" };
+    if (!tag) return { type:"solid", value: (SSE_CONFIG.colors?.fillFallback || "rgba(231,215,182,.35)") };
 
     const key = SSE_TAGS.resolveTagKey(tag, Boolean(node.forward));
     const def = (SSE_TAGS.defs || {})[key];
-    if (!def) return { type:"solid", value: "rgba(231,215,182,.35)" };
+    if (!def) return { type:"solid", value: (SSE_CONFIG.colors?.fillFallback || "rgba(231,215,182,.35)") };
 
     if (def.patterns && def.patterns.length){
       const idx = state[key] % def.patterns.length;
@@ -55,7 +55,7 @@
       state[key]++;
       return { type:"solid", value: def.palette[idx] };
     }
-    return { type:"solid", value: "rgba(231,215,182,.35)" };
+    return { type:"solid", value: (SSE_CONFIG.colors?.fillFallback || "rgba(231,215,182,.35)") };
   }
 
   function effectiveWordCap(parsed){
@@ -337,7 +337,9 @@
       }
     }
 
-    const rootFill = tree?.dialogueRoot ? "rgba(230,230,230,0.8)" : "#808080";
+    const rootFill = tree?.dialogueRoot
+      ? (SSE_CONFIG.colors?.rootDialogue || "rgba(230,230,230,0.8)")
+      : (SSE_CONFIG.colors?.rootDefault || "#808080");
     const outerRect = svgEl("rect",{
       x:"0",
       y:"0",
@@ -429,7 +431,7 @@
     function applyDialogueStroke(attrs, node){
       if (!node || !node.dialogue || (node.level || 0) < 2) return attrs;
       return Object.assign(attrs, {
-        stroke: "rgba(255,255,255,0.9)",
+        stroke: (SSE_CONFIG.colors?.dialogueStroke || "rgba(255,255,255,0.9)"),
         "stroke-width": "2",
         "stroke-dasharray": "6 4"
       });
