@@ -257,3 +257,34 @@ What to notice:
 3. **Forgetting that ids are global across the sentence** (you can have IC1, DC2, IC3ƒ?İ and thatƒ?Ts fine).
 4. **Over-tagging participles**: PP is only for optional participial phrases, not for noun-like gerunds or obligatory constructions. 
 5. **Attaching a DC to the wrong anchor id**: if scope is unclear, itƒ?Ts okay to pick one and leave a `#` note.
+
+---
+
+## Dialogue support (IC/FG @ marker)
+
+You can mark a full sentence as a dialogue line by adding `@` right after the id of a **level‑1 IC or FG**.
+The optional numeric id after `@` is only informative for the human reader (not used by the tool yet).
+
+Examples:
+```
+(IC1@0 Dialogue line spoken by a character
+~(DC2 who remains unidentified with zero
+~)
+)
+```
+
+```
+#@1: James
+(IC1@1 Dialogue line by character 1 names James
+)
+```
+
+Notes:
+- `@` on a level‑1 IC/FG triggers a special root (dialogue) rendering.
+- `#@id: Name` is currently ignored by the tool (future‑use only).
+- `@` on a deeper node (level 2+) marks that node with a dashed white border.
+
+## AT — Attribution tag
+
+Use `AT` for attribution/action segments embedded in dialogue lines (e.g., “he said”, “she whispered”, or brief actions adjacent to quoted speech).
+AT behaves like a regular tag (no `<y` or `>y`).
