@@ -9,6 +9,7 @@ This note summarizes how the custom text syntax is parsed into a tree and how th
 - The parser tracks indentation (via leading `~`) and bracket/parenthesis balance to structure the tree.
 - Each node includes:
   - `tag`, `id`, `ref`, `forward` from the header (if present).
+  - `dialogue` and `dialogueId` when the header uses the `@` marker.
   - `text` for the node’s own text.
   - `nodes` array for children.
   - word/char counts: `wCount`, `cCount`, plus aggregate `wTreeCount`, `cTreeCount`.
@@ -18,12 +19,17 @@ This note summarizes how the custom text syntax is parsed into a tree and how th
 - `buildTextIndex(...)` reconstructs the full sentence (`textTree` for root) and fills:
   - `textSoFar`, `textTree`, `textAfter` for each node.
   - `wPos` (word position based on `textSoFar`) and `cPos` (character position).
+- Dialogue marker handling:
+  - If a level‑1 IC/FG node carries `@`, the root gets `tree.dialogueRoot = true`.
+  - `#@id: Name` comment lines are currently ignored (reserved for future use).
 
 ## SVG construction (svg_render.js)
 - `createAnalysisSVG(tree, cap)` renders one SVG per sentence tree.
 - The width of a rect is proportional to the node’s word count (`wTreeCount`) and scaled by `cap`.
 - The vertical margins depend on node level, creating nested “stacked” bars.
 - `pickFill(...)` maps tags to colors/patterns (IC/DC/PP/etc.) via `tag_registry.js`.
+- When `tree.dialogueRoot` is true, the outer root rect uses the dialogue root fill.
+- Any node with `@` at level 2+ is rendered with a dashed white stroke.
 - `renderSVGs(...)` loops over parsed sentences and mounts each SVG into `.result-panel`.
 
 ## Hover highlight summary
