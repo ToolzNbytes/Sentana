@@ -15,12 +15,11 @@ Comment: (Feature a quote that is not yet handled in format v4) / reviewed once
 )
 
  “Whenever you feel like criticizing anyone,” he told me, “just remember that all the people in this world haven’t had the advantages that you’ve had.”
-# Dialogue
-#3 attribution
-(IC1
+#@1: MC's father
+(IC1@1
 ~(DC2>1 “Whenever you feel like criticizing anyone,”
 ~)
-~(AP3<1 he told me,
+~(AT3 he told me,
 ~)
  “just remember
 ~(DC4<3 that all the people in this world haven’t had the advantages

@@ -337,6 +337,7 @@
       }
     }
 
+    const rootFill = tree?.dialogueRoot ? "rgba(230,230,230,0.8)" : "#808080";
     const outerRect = svgEl("rect",{
       x:"0",
       y:"0",
@@ -344,7 +345,7 @@
       height: `${mainH}`,
       rx:"10",
       ry:"10",
-      fill:"#808080"
+      fill: rootFill
     });
     outerRect.addEventListener("mouseenter", ()=>setHoveringDisplay(tree, tree));
     outerRect.addEventListener("click", (e)=>openMenuForNode(e, tree));
@@ -425,12 +426,21 @@
       }
     }
 
+    function applyDialogueStroke(attrs, node){
+      if (!node || !node.dialogue || (node.level || 0) < 2) return attrs;
+      return Object.assign(attrs, {
+        stroke: "rgba(255,255,255,0.9)",
+        "stroke-width": "2",
+        "stroke-dasharray": "6 4"
+      });
+    }
+
     function addRect(node, cursorWords){
       const {xPct,y,wPct,h} = rectGeometry(node, cursorWords);
       const fillSpec = pickFill(node, state);
 
       if (fillSpec.type === "solid"){
-        const r = svgEl("rect",{
+        const attrs = applyDialogueStroke({
           x: `${xPct}%`,
           y: `${y}`,
           width: `${wPct}%`,
@@ -438,12 +448,13 @@
           rx:"10",
           ry:"10",
           fill: fillSpec.value
-        });
+        }, node);
+        const r = svgEl("rect", attrs);
         r.addEventListener("mouseenter", ()=>setHoveringDisplay(tree, node));
         r.addEventListener("click", (e)=>openMenuForNode(e, node));
         svg.appendChild(r);
       } else {
-        const r = svgEl("rect",{
+        const attrs = applyDialogueStroke({
           x: `${xPct}%`,
           y: `${y}`,
           width: `${wPct}%`,
@@ -453,7 +464,8 @@
           fill: `url(#${fillSpec.value})`,
           opacity:"0.5",
           style:"mix-blend-mode:luminosity"
-        });
+        }, node);
+        const r = svgEl("rect", attrs);
         r.addEventListener("mouseenter", ()=>setHoveringDisplay(tree, node));
         r.addEventListener("click", (e)=>openMenuForNode(e, node));
         svg.appendChild(r);

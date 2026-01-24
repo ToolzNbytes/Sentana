@@ -114,11 +114,12 @@ José Arcadio Buendía, whose unbridled imagination always went beyond the geniu
 )
 
 Melquíades, who was an honest man, warned him: “It won’t work for that.”
+#@1: Melquíades
 (IC1  Melquíades,
 ~(DC2<1 who was an honest man,
 ~)
  warned him:
-~(AP3<1 “It won’t work for that.”
+~(IC3@1 “It won’t work for that.”
 ~)
 )
 

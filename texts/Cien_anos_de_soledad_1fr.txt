@@ -76,9 +76,9 @@ Il passa de maison en maison, traînant avec lui deux lingots de métal, et tout
 )
 
 « Les choses ont une vie bien à elles, clamait le gitan avec un accent guttural ; il faut réveiller leur âme, toute la question est là. »
-# Dialogue to process later
-(IC1 « Les choses ont une vie bien à elles,
-~(AP2<1 clamait le gitan avec un accent guttural ;
+#@1: le gitan
+(IC1@1 « Les choses ont une vie bien à elles,
+~(AT2 clamait le gitan avec un accent guttural ;
 ~)
 )
 (IC3 il faut réveiller leur âme,
@@ -129,11 +129,12 @@ Ursula Iguaran, sa femme, qui comptait sur ces animaux pour agrandir le patrimoi
 )
 
 « Très vite on aura plus d’or qu’il n’en faut pour paver toute la maison », rétorqua son mari.
-# Dialogue to process later
-(IC1
-~(AP2>1 « Très vite on aura plus d’or qu’il n’en faut pour paver toute la maison »,
+#@2 le mari
+(IC1@2 « Très vite on aura plus d’or
+~(AP2<1 qu’il n’en faut pour paver toute la maison »,
 ~)
- rétorqua son mari.
+~(AT3 rétorqua son mari.
+~)
 )
 
 Pendant plusieurs mois, il s’obstina à vouloir démontrer le bien-fondé de ses prévisions.

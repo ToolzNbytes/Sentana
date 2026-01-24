@@ -194,16 +194,18 @@ function parseAnalyzedText(analyzedText, reportError){
   }
 
   function parseHeaderAndText(body){
-    const headMatch = body.match(/^([A-Z]{2}\d+(?:[<>]\d+)?)?/);
+    const headMatch = body.match(/^([A-Z]{2}\d+(?:[<>]\d+)?(?:@\d*)?)?/);
     const head = (headMatch && headMatch[1]) ? headMatch[1] : "";
     const rest = body.slice(head.length);
 
-    const tagMatch = head.match(/^([A-Z]{2})(\d+)([<>])?(\d+)?$/);
+    const tagMatch = head.match(/^([A-Z]{2})(\d+)([<>])?(\d+)?(?:@(\d*))?$/);
     return {
       tag: tagMatch ? tagMatch[1] : "",
       id: tagMatch ? Number(tagMatch[2]) : null,
       forward: tagMatch ? (tagMatch[3] === ">") : false,
       ref: (tagMatch && tagMatch[4]) ? Number(tagMatch[4]) : null,
+      dialogue: Boolean(tagMatch && tagMatch[5] !== undefined),
+      dialogueId: (tagMatch && tagMatch[5] !== undefined && tagMatch[5] !== "") ? Number(tagMatch[5]) : null,
       text: rest.length ? rest : null,
       comment: null
     };
@@ -211,7 +213,7 @@ function parseAnalyzedText(analyzedText, reportError){
 
   function parseAnalysisBlock(){
     const root = {
-      tag:"", id:null, ref:null, forward:false,
+      tag:"", id:null, ref:null, forward:false, dialogue:false, dialogueId:null,
       text:null, wCount:0, cCount:0, level:0,
       nodes:[], wTreeCount:0, cTreeCount:0, wPos:0, cPos:0,
       maxLevel:0,
@@ -249,6 +251,7 @@ function parseAnalyzedText(analyzedText, reportError){
 
         const node = {
           tag: parsed.tag, id: parsed.id, ref: parsed.ref, forward: parsed.forward,
+          dialogue: parsed.dialogue, dialogueId: parsed.dialogueId,
           text: parsed.text,
           wCount: parsed.text ? countWords(parsed.text) : 0,
           cCount: parsed.text ? parsed.text.length : 0,
@@ -283,6 +286,7 @@ function parseAnalyzedText(analyzedText, reportError){
 
         const node = {
           tag: parsed.tag, id: parsed.id, ref: parsed.ref, forward: parsed.forward,
+          dialogue: parsed.dialogue, dialogueId: parsed.dialogueId,
           text: parsed.text,
           wCount: parsed.text ? countWords(parsed.text) : 0,
           cCount: parsed.text ? parsed.text.length : 0,
@@ -315,7 +319,7 @@ function parseAnalyzedText(analyzedText, reportError){
 
         const txt = t;
         const leaf = {
-          tag:"", id:null, ref:null, forward:false,
+          tag:"", id:null, ref:null, forward:false, dialogue:false, dialogueId:null,
           text: txt,
           wCount: countWords(txt),
           cCount: txt.length,
@@ -358,6 +362,7 @@ function parseAnalyzedText(analyzedText, reportError){
       while (i < lines.length && (lines[i].trim().startsWith("#")||isEmpty(lines[i]))) {
         if (isEmpty(lines[i])) { i++; continue; }
         const line = lines[i];
+        if (line.trim().startsWith("#@")) { i++; continue; }
         const grouping = parseGroupingComment(line);
         if (grouping){
           groupWithNext = grouping.idx < grouping.total;
@@ -383,6 +388,10 @@ function parseAnalyzedText(analyzedText, reportError){
       if (i >= lines.length || !lines[i].startsWith("(")) error("Analysis block expected", i);
 
       const tree = parseAnalysisBlock();
+      // Dialogue mode: level-1 IC/FG node carrying @<id>
+      tree.dialogueRoot = (tree.nodes || []).some((n) => (
+        n && n.level === 1 && n.dialogue && (n.tag === "IC" || n.tag === "FG")
+      ));
       // additional data to add to the tree
       tree.comment = rootWorthyComment;
       tree.groupWithNext = groupWithNext;

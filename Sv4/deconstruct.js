@@ -141,6 +141,8 @@
       id: (node.id === 0 || node.id) ? node.id : null,
       ref: (node.ref === 0 || node.ref) ? node.ref : null,
       forward: Boolean(node.forward),
+      dialogue: Boolean(node.dialogue),
+      dialogueId: (node.dialogueId === 0 || node.dialogueId) ? node.dialogueId : null,
       text: node.text ?? null,
       wCount: Number.isFinite(node.wCount) ? node.wCount : 0,
       cCount: Number.isFinite(node.cCount) ? node.cCount : 0,

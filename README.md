@@ -23,7 +23,7 @@ Longer version:
 
 Improvements I'm thinking of:
 
-* Special support of dialogues (avoiding those at the moment): attribution, who is speaking, insertion and action tags.
+* Better support for dialogues (color shade and action tags).
 * A mark so that we can see where we made a special comment on a sentence or a phrase
 * A assisted analyzer to speed up the parsing of new excepts
 * More translations and languages other than English
