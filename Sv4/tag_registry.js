@@ -1,7 +1,18 @@
 // Tag registry + shared helpers for Sentence Structure Explorer (Sv4).
-// Exposes window.SSE_TAGS, window.SSE_UTIL, window.SSE_CONFIG.
+// Exposes window.SSE_APP (preferred) plus legacy aliases.
 
 (function(){
+  const SSE_APP = window.SSE_APP || {
+    version: "v4",
+    tags: {},
+    util: {},
+    config: {},
+    state: {},
+    ui: {},
+    decon: {},
+    storage: {}
+  };
+
   const defs = {
     IC:  { label: "independent clause", palette: ["#89CFF1","#6EB1D6","#5293BB","#3776A1","#1B5886","#003A6B"] },
     DC:  { label: "dependent clause", palette: ["#f2d6a6","#f0c493","#e59f7d","#d47557","#b75f4b","#9f4e3b","#7c3e29","#5a2a1e"] },
@@ -24,15 +35,13 @@
     return defs[tagKey]?.label || "";
   }
 
-  const SSE_TAGS = window.SSE_TAGS || {};
-  SSE_TAGS.defs = defs;
-  SSE_TAGS.resolveTagKey = resolveTagKey;
-  SSE_TAGS.getLabel = getLabel;
-  window.SSE_TAGS = SSE_TAGS;
+  SSE_APP.tags.defs = defs;
+  SSE_APP.tags.resolveTagKey = resolveTagKey;
+  SSE_APP.tags.getLabel = getLabel;
 
-  const SSE_UTIL = window.SSE_UTIL || {};
+  const util = SSE_APP.util;
 
-  SSE_UTIL.escapeHtml = function escapeHtml(s){
+  util.escapeHtml = function escapeHtml(s){
     return String(s)
       .replaceAll("&","&amp;")
       .replaceAll("<","&lt;")
@@ -41,7 +50,7 @@
       .replaceAll("'","&#039;");
   };
 
-  SSE_UTIL.copyToClipboard = async function copyToClipboard(text){
+  util.copyToClipboard = async function copyToClipboard(text){
     if (!text) return;
 
     if (navigator.clipboard && window.isSecureContext){
@@ -62,7 +71,7 @@
     document.body.removeChild(ta);
   };
 
-  SSE_UTIL.getChoiceMarkerFromValue = function getChoiceMarkerFromValue(choice){
+  util.getChoiceMarkerFromValue = function getChoiceMarkerFromValue(choice){
     const raw = String(choice ?? "").trim();
     if (!raw.startsWith("#")) return "";
     const rest = raw.slice(1).trim();
@@ -70,19 +79,18 @@
     return rest.split(/\s+/)[0];
   };
 
-  window.SSE_UTIL = SSE_UTIL;
-
   const rootStyle = getComputedStyle(document.documentElement);
-  const SSE_CONFIG = window.SSE_CONFIG || {
-    WORD_CAP: 50,
-    BAR_HEIGHT: 45,
-    RESULT_BG: rootStyle.getPropertyValue("--panel").trim(),
-    DISPLAY_WIDTH: 0
-  };
-
-  if (typeof SSE_CONFIG.RESULT_BG !== "string" || !SSE_CONFIG.RESULT_BG.trim()){
-    SSE_CONFIG.RESULT_BG = rootStyle.getPropertyValue("--panel").trim();
+  const config = SSE_APP.config;
+  if (typeof config.WORD_CAP !== "number") config.WORD_CAP = 50;
+  if (typeof config.BAR_HEIGHT !== "number") config.BAR_HEIGHT = 45;
+  if (typeof config.DISPLAY_WIDTH !== "number") config.DISPLAY_WIDTH = 0;
+  if (typeof config.RESULT_BG !== "string" || !config.RESULT_BG.trim()){
+    config.RESULT_BG = rootStyle.getPropertyValue("--panel").trim();
   }
 
-  window.SSE_CONFIG = SSE_CONFIG;
+  window.SSE_APP = SSE_APP;
+  // Legacy aliases for compatibility.
+  window.SSE_TAGS = SSE_APP.tags;
+  window.SSE_UTIL = SSE_APP.util;
+  window.SSE_CONFIG = SSE_APP.config;
 })();

@@ -1,10 +1,11 @@
 // SVG rendering helpers for Sentence Structure Explorer (Sv4).
-// Depends on sse_common.js, tag_registry.js, and SSE_STATE.
+// Depends on sse_common.js, tag_registry.js, and SSE_APP.
 
 (function(){
-  const SSE_UTIL = window.SSE_UTIL || {};
-  const SSE_TAGS = window.SSE_TAGS || {};
-  const SSE_CONFIG = window.SSE_CONFIG || {};
+  const APP = window.SSE_APP || {};
+  const SSE_UTIL = APP.util || {};
+  const SSE_TAGS = APP.tags || {};
+  const SSE_CONFIG = APP.config || {};
 
   function svgEl(name, attrs = {}) {
     const el = document.createElementNS("http://www.w3.org/2000/svg", name);
@@ -251,13 +252,13 @@
 
   function setHoveringDisplay(tree, node, wordIndex){
     setHighlightedSentence(tree, node, tree===node, wordIndex);
-    const commentBox = window.SSE_STATE?.commentBox;
+    const commentBox = APP.state?.commentBox;
     if (commentBox) commentBox.textContent = buildHoverComment(tree, node);
   }
 
   function clearHoveringDisplay(){
     clearHighlightedSentence();
-    const state = window.SSE_STATE || {};
+    const state = APP.state || {};
     const list = state.list;
     const corpus = state.corpus;
     const commentBox = state.commentBox;
@@ -314,9 +315,9 @@
 
     function openMenuForNode(e, node){
       if (e.button !== 0) return;
-      const SSE_DECON = window.SSE_DECON || {};
-      if (entry?.dynMeta && SSE_DECON.openDynMenuAt){
-        SSE_DECON.openDynMenuAt(e.pageX, e.pageY, {
+      const decon = APP.decon || {};
+      if (entry?.dynMeta && decon.openDynMenuAt){
+        decon.openDynMenuAt(e.pageX, e.pageY, {
           partIndex: entry.dynMeta.partIndex,
           partTotal: entry.dynMeta.partTotal,
           treeRoot: entry.tree,
@@ -324,10 +325,10 @@
         });
         return;
       }
-      if (SSE_DECON.openSentenceMenuAt){
+      if (decon.openSentenceMenuAt){
         const sentenceText = entry?.sentence || "";
         const nodeText = node?.textTree || node?.text || "";
-        SSE_DECON.openSentenceMenuAt(e.pageX, e.pageY, {
+        decon.openSentenceMenuAt(e.pageX, e.pageY, {
           sentenceIndex,
           sentenceText,
           nodeText,
@@ -503,8 +504,8 @@
 
   function renderSVGs(parsed){
     const panel = document.getElementById("resultPanel");
-    const SSE_DECON = window.SSE_DECON || {};
-    if (SSE_DECON.closeSentenceMenu) SSE_DECON.closeSentenceMenu();
+    const decon = APP.decon || {};
+    if (decon.closeSentenceMenu) decon.closeSentenceMenu();
     panel.innerHTML = "";
     panel.style.background = SSE_CONFIG.RESULT_BG;
 
@@ -536,7 +537,7 @@
     }
   }
 
-  window.SSE_SVG = {
+  APP.svg = {
     effectiveWordCap,
     createAnalysisSVG,
     renderSVGs,
@@ -544,4 +545,5 @@
     clearHoveringDisplay,
     fitStringInSentenceArea
   };
+  window.SSE_SVG = APP.svg;
 })();

@@ -75,3 +75,30 @@ This ensures shared data and helpers are available before the UI bootstraps.
 - CP remains “decoration” but keeps staking rectangle as the normal nesting, but without the nesting geometry of reduced height;
 - CP decoration is a patterned overlay blended with parent via `mix-blend-mode: luminosity`.
 
+## PickFill refactor plan (next)
+Goal: make `pickFill(...)` fully data-driven and future-proof for new tags, patterns, and decoration types.
+
+1) **Tag registry shape**
+   - Extend `Sv4/tag_registry.js` definitions with a `fill` object per tag key.
+   - Example:
+     - `fill: { type: "palette", values: ["#..."], blend: "normal" }`
+     - `fill: { type: "pattern", values: ["contrast_line1"], opacity: 0.5, blend: "luminosity" }`
+   - Keep `resolveTagKey(tag, forward)` as the only “forward” mapping logic.
+
+2) **Generic state counter**
+   - Initialize counters from registry keys (no hard-coded per-tag counters).
+   - Each tag key advances its own index mod `values.length`.
+
+3) **Rendering adapter**
+   - `pickFill(node, state)` returns a normalized spec:
+     - `{ type, value, opacity, blend }`
+   - SVG render consumes the spec without tag-specific branches.
+
+4) **Defaults + fallback**
+   - If a tag has no `fill`, use the neutral fallback fill currently in use.
+
+5) **Acceptance checks**
+   - IC/DC/PP/AP/FG colors match current rendering.
+   - Forward DC/PP map to `DCf`/`PPf` palettes.
+   - CP still uses pattern + luminosity blend overlay.
+   - No change to per-sentence color cycling.

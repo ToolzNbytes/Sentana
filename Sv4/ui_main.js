@@ -2,7 +2,7 @@
 // Main UI orchestration for Sentence Structure Explorer (Sv4).
 // Depends on sse_common.js, tag_registry.js, svg_render.js, deconstruct.js.
 
-// Active corpus + list are kept in SSE_STATE and updated on source switches.
+// Active corpus + list are kept in APP.state and updated on source switches.
 let corpusRemote = [];
 let corpusLocal = [];
 
@@ -10,13 +10,14 @@ let corpus = corpusRemote;
 let lastParsed = null;
 
 const SSE = window.SSE;
-const SSE_UTIL = window.SSE_UTIL || {};
-const SSE_CONFIG = window.SSE_CONFIG || {};
+const APP = window.SSE_APP || {};
+const SSE_UTIL = APP.util || {};
+const SSE_CONFIG = APP.config || {};
 
 const LS_KEY_PREFS = SSE?.LS_KEY_PREFS;
 const LS_KEY_LOCAL_CORPUS = SSE?.LS_KEY_LOCAL_CORPUS;
 
-const SSE_STATE = window.SSE_STATE || (window.SSE_STATE = {});
+const SSE_STATE = APP.state || (APP.state = {});
 
 function loadPrefsFromStorage(){
   if (!SSE || !LS_KEY_PREFS) return;
@@ -355,7 +356,7 @@ function applyRemoteFilter(value, opts = {}){
       if (author) author.textContent = "";
       if (choice) choice.textContent = "";
       if (commentBox) commentBox.textContent = "";
-      window.SSE_SVG.clearHoveringDisplay();
+      APP.svg.clearHoveringDisplay();
       setDeconstructMode(false);
       updateCollapseEnabled();
       return;
@@ -433,7 +434,7 @@ function setActiveSource(source, opts = {}){
     if (author) author.textContent = "";
     if (choice) choice.textContent = "";
     if (commentBox) commentBox.textContent = "";
-    window.SSE_SVG.clearHoveringDisplay();
+    APP.svg.clearHoveringDisplay();
     setDeconstructMode(false);
     updateCollapseEnabled();
     return;
@@ -690,7 +691,7 @@ async function show(idx) {
   commentBox.classList.remove("error");
   commentBox.textContent = c.Comment || "";
 
-  window.SSE_SVG.clearHoveringDisplay();
+  APP.svg.clearHoveringDisplay();
   if (!c.AnalyzedText) {
     try {
       if (!c.file) throw new Error("Missing 'file' property for selected record.");
@@ -708,8 +709,8 @@ async function show(idx) {
     commentBox.classList.add("error");
   });
 
-  window.SSE_SVG.renderSVGs(lastParsed);
-  if (isDeconstructEntry) window.SSE_DECON.renderDynResult(lastParsed);
+  APP.svg.renderSVGs(lastParsed);
+  if (isDeconstructEntry) APP.decon.renderDynResult(lastParsed);
 
   if (!hasError()) setStoreEnabled(true);
 
@@ -782,25 +783,25 @@ const deconstructKeepDCBtn = document.getElementById("deconstructKeepDCBtn");
 const deconstructCopyBtn = document.getElementById("deconstructCopyBtn");
 if (deconstructResetBtn){
   deconstructResetBtn.addEventListener("click", ()=>{
-    window.SSE_DECON.resetDynTrees();
+      APP.decon.resetDynTrees();
   });
 }
 if (deconstructCollapseBtn){
   deconstructCollapseBtn.addEventListener("click", ()=>{
-    window.SSE_DECON.collapseDynTrees();
+    APP.decon.collapseDynTrees();
   });
 }
 if (deconstructKeepDCBtn){
   deconstructKeepDCBtn.addEventListener("click", ()=>{
-    for (const root of window.SSE_STATE?.dynTreeList || []){
-      window.SSE_DECON.keepOnlyDCs(root);
+    for (const root of APP.state?.dynTreeList || []){
+      APP.decon.keepOnlyDCs(root);
     }
-    window.SSE_DECON.updateDynAfterChange();
+    APP.decon.updateDynAfterChange();
   });
 }
 if (deconstructCopyBtn){
   deconstructCopyBtn.addEventListener("click", async ()=>{
-    const text = window.SSE_DECON.buildDeconstructSentence();
+    const text = APP.decon.buildDeconstructSentence();
     await SSE_UTIL.copyToClipboard(text);
   });
 }
@@ -809,12 +810,12 @@ if (deconstructPanel){
   deconstructPanel.addEventListener("mouseenter", ()=>{
     showingDeconstructSentence = true;
     SSE_STATE.showingDeconstructSentence = true;
-    window.SSE_DECON.updateDynAfterChange();
+    APP.decon.updateDynAfterChange();
   });
   deconstructPanel.addEventListener("mouseleave", ()=>{
     showingDeconstructSentence = false;
     SSE_STATE.showingDeconstructSentence = false;
-    window.SSE_SVG.clearHoveringDisplay();
+    APP.svg.clearHoveringDisplay();
   });
 }
 /* ===================== Store feature (+>) ===================== */
@@ -1083,10 +1084,11 @@ function writeLocalCorpus(arr){
   }
 }
 
-window.SSE_STORAGE = {
+APP.storage = {
   readLocalCorpus,
   writeLocalCorpus
 };
+window.SSE_STORAGE = APP.storage;
 
 function cloneCurrentRemoteEntryToLocal(){
   const idx = Number(list.value);
@@ -1176,11 +1178,12 @@ function setLocalCorpus(next){
   }
 }
 
-window.SSE_UI = {
+APP.ui = {
   openSourcePanelAtSentence,
   openStructurePanelAtSentence,
   setActiveSource,
   setLocalCorpus
 };
+window.SSE_UI = APP.ui;
 
 document.addEventListener("DOMContentLoaded", init);

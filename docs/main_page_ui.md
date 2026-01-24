@@ -9,6 +9,9 @@ can align with the existing layout and interaction flow.
 - `Sv4/deconstruct.js`: deconstruction feature + context menus.
 - `Sv4/tag_registry.js`: tag metadata (labels + palettes/patterns) and shared helpers.
 - `Sv4/sse_common.js`: parsing + storage utilities shared by pages.
+- Shared state / APIs live in `window.SSE_APP` (single container). Legacy globals
+  (`SSE_TAGS`, `SSE_UTIL`, `SSE_CONFIG`, `SSE_SVG`, `SSE_DECON`, `SSE_UI`, `SSE_STORAGE`)
+  are still assigned for compatibility but should not be used in new code.
 
 ## Top Bar (`.topbar`)
 - Center: tool name + subtitle, responsive and can compress to the minimum when the

@@ -3,7 +3,8 @@
 
 (function(){
   const SSE = window.SSE;
-  const SSE_UTIL = window.SSE_UTIL || {};
+  const APP = window.SSE_APP || {};
+  const SSE_UTIL = APP.util || {};
 
   let dynTreeList = [];
   let dynResultHost = null;
@@ -89,8 +90,8 @@
     const sentenceIndex = Number(state?.sentenceIndex);
     if (!Number.isFinite(sentenceIndex)) return;
 
-    const list = window.SSE_STATE?.list;
-    const corpus = window.SSE_STATE?.corpus;
+    const list = APP.state?.list;
+    const corpus = APP.state?.corpus;
     if (!list || !corpus) return;
 
     const idx = Number(list.value);
@@ -120,16 +121,16 @@
       isDeconstruction: true
     };
 
-    const storage = window.SSE_STORAGE;
+    const storage = APP.storage;
     if (!storage?.readLocalCorpus || !storage?.writeLocalCorpus) return;
     const local = storage.readLocalCorpus();
     local.push(entry);
     storage.writeLocalCorpus(local);
-    if (window.SSE_STATE) window.SSE_STATE.corpusLocal = local;
-    if (window.SSE_UI?.setLocalCorpus) window.SSE_UI.setLocalCorpus(local);
+    if (APP.state) APP.state.corpusLocal = local;
+    if (APP.ui?.setLocalCorpus) APP.ui.setLocalCorpus(local);
 
-    if (window.SSE_UI?.setActiveSource) {
-      window.SSE_UI.setActiveSource("local", { idx: local.length - 1, random: false });
+    if (APP.ui?.setActiveSource) {
+      APP.ui.setActiveSource("local", { idx: local.length - 1, random: false });
     }
   }
 
@@ -363,7 +364,7 @@
     dynResultHost = document.getElementById("dynResult");
     if (!dynResultHost) return;
     dynTreeList = buildDynTreeListFromParsed(parsed);
-    if (window.SSE_STATE) window.SSE_STATE.dynTreeList = dynTreeList;
+    if (APP.state) APP.state.dynTreeList = dynTreeList;
     if (!dynTreeList.length) return;
 
     dynResultHost.innerHTML = "";
@@ -373,7 +374,7 @@
       sentence: tree._reconstructed || "",
       dynMeta: { partIndex: idx + 1, partTotal: dynTreeList.length }
     }));
-    const cap = window.SSE_SVG.effectiveWordCap(entries);
+    const cap = APP.svg.effectiveWordCap(entries);
 
     for (let i = 0; i < entries.length; i++){
       const entry = entries[i];
@@ -381,8 +382,8 @@
       wrap.className = "svgWrap";
       if (i < entries.length - 1) wrap.classList.add("groupWithNext");
 
-      const svg = window.SSE_SVG.createAnalysisSVG(entry.tree, cap, entry, 0);
-      wrap.addEventListener("mouseleave", window.SSE_SVG.clearHoveringDisplay);
+      const svg = APP.svg.createAnalysisSVG(entry.tree, cap, entry, 0);
+      wrap.addEventListener("mouseleave", APP.svg.clearHoveringDisplay);
       wrap.appendChild(svg);
       dynResultHost.appendChild(wrap);
     }
@@ -398,7 +399,7 @@
       sentence: tree._reconstructed || "",
       dynMeta: { partIndex: idx + 1, partTotal: dynTreeList.length }
     }));
-    const cap = window.SSE_SVG.effectiveWordCap(entries);
+    const cap = APP.svg.effectiveWordCap(entries);
 
     for (let i = 0; i < entries.length; i++){
       const entry = entries[i];
@@ -406,15 +407,15 @@
       wrap.className = "svgWrap";
       if (i < entries.length - 1) wrap.classList.add("groupWithNext");
 
-      const svg = window.SSE_SVG.createAnalysisSVG(entry.tree, cap, entry, 0);
-      wrap.addEventListener("mouseleave", window.SSE_SVG.clearHoveringDisplay);
+      const svg = APP.svg.createAnalysisSVG(entry.tree, cap, entry, 0);
+      wrap.addEventListener("mouseleave", APP.svg.clearHoveringDisplay);
       wrap.appendChild(svg);
       dynResultHost.appendChild(wrap);
     }
   }
 
   function updateDeconstructStatus(){
-    const deconstructStatus = window.SSE_STATE?.deconstructStatus;
+    const deconstructStatus = APP.state?.deconstructStatus;
     if (!deconstructStatus) return;
     deconstructStatus.textContent = "";
     if (!dynTreeList.length) return;
@@ -486,11 +487,11 @@
   }
 
   function updateDeconstructSentenceDisplay(){
-    if (!window.SSE_STATE?.showingDeconstructSentence) return;
+    if (!APP.state?.showingDeconstructSentence) return;
     const sArea = document.getElementById("sentenceArea");
     if (!sArea) return;
     const text = buildDeconstructSentence();
-    window.SSE_SVG.fitStringInSentenceArea(text.length);
+    APP.svg.fitStringInSentenceArea(text.length);
     sArea.textContent = text;
   }
 
@@ -640,10 +641,10 @@
           deconstructSentenceFromState(state);
           break;
         case "openStructure":
-          window.SSE_UI?.openStructurePanelAtSentence?.(state.sentenceText || "");
+          APP.ui?.openStructurePanelAtSentence?.(state.sentenceText || "");
           break;
         case "openSource":
-          window.SSE_UI?.openSourcePanelAtSentence?.(state.sentenceText || "");
+          APP.ui?.openSourcePanelAtSentence?.(state.sentenceText || "");
           break;
         case "copySentence":
           await SSE_UTIL.copyToClipboard(normalizeSentenceForCopy(state.sentenceText || ""));
@@ -817,7 +818,7 @@
     return String(s || "").trim();
   }
 
-  window.SSE_DECON = {
+  APP.decon = {
     renderDynResult,
     updateDynResult,
     updateDeconstructStatus,
@@ -832,4 +833,5 @@
     closeSentenceMenu,
     closeDynMenu
   };
+  window.SSE_DECON = APP.decon;
 })();
