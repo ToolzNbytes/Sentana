@@ -19,11 +19,11 @@ This note summarizes how the custom text syntax is parsed into a tree and how th
   - `textSoFar`, `textTree`, `textAfter` for each node.
   - `wPos` (word position based on `textSoFar`) and `cPos` (character position).
 
-## SVG construction (structure_display_v4.js)
+## SVG construction (svg_render.js)
 - `createAnalysisSVG(tree, cap)` renders one SVG per sentence tree.
 - The width of a rect is proportional to the node’s word count (`wTreeCount`) and scaled by `cap`.
 - The vertical margins depend on node level, creating nested “stacked” bars.
-- `pickFill(...)` maps tags to colors/patterns (IC/DC/PP/etc.).
+- `pickFill(...)` maps tags to colors/patterns (IC/DC/PP/etc.) via `tag_registry.js`.
 - `renderSVGs(...)` loops over parsed sentences and mounts each SVG into `.result-panel`.
 
 ## Hover highlight summary

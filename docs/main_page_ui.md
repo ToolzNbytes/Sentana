@@ -3,6 +3,13 @@
 This note captures the visible structure of the main tool page so future features
 can align with the existing layout and interaction flow.
 
+## Module map (JS)
+- `Sv4/ui_main.js`: main UI wiring, corpus loading, filter panel, modals, store/collapse, settings.
+- `Sv4/svg_render.js`: SVG construction, hover/highlight, sentence display updates.
+- `Sv4/deconstruct.js`: deconstruction feature + context menus.
+- `Sv4/tag_registry.js`: tag metadata (labels + palettes/patterns) and shared helpers.
+- `Sv4/sse_common.js`: parsing + storage utilities shared by pages.
+
 ## Top Bar (`.topbar`)
 - Center: tool name + subtitle, responsive and can compress to the minimum when the
   page width shrinks.

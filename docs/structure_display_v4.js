@@ -1,3 +1,10 @@
+/**************************************************
+ * 
+ * Deprecated JS file kept for reference
+ * 
+ **************************************************/
+
+
 // Active corpus + list are kept in the legacy globals `corpus` and `list`.
 // They are reassigned when switching between remote and local corpora.
 let corpusRemote = [];

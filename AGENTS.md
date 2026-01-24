@@ -6,6 +6,11 @@ Sentana is a static, client-side web app for exploring sentence structure across
 ## Repo layout
 - `index.html`: welcome page, updated occasionally (often by hand).
 - `Sv4/structure_display_v4.html`: main app page.
+- `Sv4/tag_registry.js`: shared tag registry (labels + palettes/patterns).
+- `Sv4/svg_render.js`: SVG rendering + hover/highlight logic.
+- `Sv4/deconstruct.js`: deconstructor feature + context menus.
+- `Sv4/ui_main.js`: main UI wiring, corpus loading, and modals.
+- `Sv4/sse_common.js`: shared parsing + storage utilities.
 - `gen/texts.meta.json`: metadata compilation from headers of the files in `texts/*.txt`.
 - `docs/doc_syntax_v4.md`: a guide for the custom syntax used in the body of the files in `texts/`.
 - `img`, `icons`, `texts`, `Sv4`: data and assets used by the UI.
@@ -33,5 +38,5 @@ Then visit `http://localhost:8000`.
 - The app’s main purpose is the SVG-based visual display of text structure with hover highlights; accessibility compliance is inherently limited for this tool (an alternative would be reading the source texts directly).
 - There are no automated tests in this repo.
 - Local workflow: work in the `Sentana-GIT` copy and merge changes back to GitHub after local testing.
-- Keep edits focused on the static assets and the HTML/CSS/JS in `Sv4/structure_display_v4.html` unless you are updating the welcome page.
+- Keep edits focused on the static assets and the HTML/CSS/JS in `Sv4/structure_display_v4.html` and its JS modules (`Sv4/ui_main.js`, `Sv4/svg_render.js`, `Sv4/deconstruct.js`, `Sv4/tag_registry.js`) unless you are updating the welcome page.
 - The welcome `index.html` page must stay robust and use independent assets; avoid coupling it to main page revisions.
