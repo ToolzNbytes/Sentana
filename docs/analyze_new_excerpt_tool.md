@@ -58,31 +58,25 @@ Panels are the wizard screens. Steps are the tasks inside each panel.
    - Review and adjust sentence boundaries
    - Enable re-splitting before entering the per-sentence loop
 
-5) Clause structure (per sentence, loop)
+5) Structures (per sentence, loop)
    - Structural split of the current sentence
+   - Apply tags to the sentence structure elements
+   - Add comments for the current sentence or clauses
    - Provide visual aids or clause drag/snap helpers if possible
 
-6) Tagging and roles (per sentence, loop)
-   - Apply tags to the sentence structure elements
-   - Ensure tag consistency with the registry
-
-7) Notes and rationale (per sentence, loop)
-   - Add comments for the current sentence or clauses
-   - Optional global note slot for this sentence if needed
-
-8) Final checks
+6) Final checks
    - Validate the analyzed text format
    - Highlight warnings and jump to the problematic sentence
    - Confirm overall readiness
 
-9) Store or save
+7) Store or save
    - Save to local corpus (browser storage)
    - Export a text file for later inclusion in the remote corpus
    - Reminder placeholder about future remote corpus submission (no action yet)
 
-## Looping behavior for panels 5-7
+## Looping behavior for panel 5
 The wizard progression is:
-1, 2, 3, 4, (5, 6, 7) x N sentences, 8, 9.
+1, 2, 3, 4, (5) x N sentences, 6, 7.
 
 Loop requirements:
 - Show progress within the excerpt, such as "Sentence 4 of 12".

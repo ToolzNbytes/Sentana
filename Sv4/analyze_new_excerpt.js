@@ -1,4 +1,4 @@
-const panels = Array.from(document.querySelectorAll(".wizardPanel"));
+﻿const panels = Array.from(document.querySelectorAll(".wizardPanel"));
 const progressSteps = Array.from(document.querySelectorAll(".progressStep"));
 const wizardStatus = document.getElementById("wizardStatus");
 const backBtn = document.getElementById("backBtn");
@@ -15,6 +15,8 @@ const paraSearchInput = document.getElementById("paraSearchInput");
 const paraNextBtn = document.getElementById("paraNextBtn");
 const paraInsertBtn = document.getElementById("paraInsertBtn");
 const paraSearchMsg = document.getElementById("paraSearchMsg");
+const sentenceSplitInput = document.getElementById("sentenceSplitInput");
+const sentenceSplitPreview = document.getElementById("sentenceSplitPreview");
 
 const metaHintTitle = document.getElementById("metaHintTitle");
 const metaHintBody = document.getElementById("metaHintBody");
@@ -32,6 +34,11 @@ let panelIndex = 0;
 let textStepIndex = 0;
 let searchIndex = 0;
 let lastFoundIndex = -1;
+let sourceText = "";
+let sourceLocked = false;
+let splitReady = false;
+let splitTextWorking = "";
+let sentenceEntries = [];
 
 function setStatus(message) {
   wizardStatus.textContent = message;
@@ -39,16 +46,21 @@ function setStatus(message) {
 
 function showPanel(index) {
   panelIndex = Math.max(0, Math.min(index, panels.length - 1));
+  const activeStepIndex = Math.max(0, panelIndex);
   panels.forEach((panel, i) => panel.classList.toggle("isActive", i === panelIndex));
   progressSteps.forEach((step, i) => {
     const stepIndex = i + 1;
-    const isActive = panelIndex === stepIndex;
-    const isDone = panelIndex > stepIndex;
+    const isActive = activeStepIndex === stepIndex;
+    const isDone = activeStepIndex > stepIndex;
     step.classList.toggle("isActive", isActive);
     step.classList.toggle("isDone", isDone);
   });
+  sourceLocked = panelIndex >= 3;
   if (panelIndex === 2) {
     showTextStep(0);
+  }
+  if (panelIndex === 3) {
+    initializeSentenceSplit();
   }
   updateNavState();
   updateProgressFill();
@@ -62,6 +74,7 @@ function showTextStep(index) {
     updateJoinLinesHint();
   }
   if (textStepIndex === 2) {
+    prepareSourceText();
     updatePreview();
   }
   updateNavState();
@@ -116,7 +129,7 @@ function updatePreview() {
     paraPreview.innerHTML = "<em>No text yet.</em>";
     return;
   }
-  const paragraphs = text.split(/\n\s*\n/).filter((p) => p.trim().length > 0);
+  const paragraphs = text.split(/\n/).filter((p) => p.trim().length > 0);
   const html = paragraphs
     .map((para) => `<p>${escapeHtml(para.replace(/\s*\n\s*/g, " ").trim())}</p>`)
     .join("");
@@ -171,8 +184,8 @@ function insertParagraphBreak() {
   }
   const before = text.slice(0, index);
   const after = text.slice(index);
-  const alreadySeparated = /\n\s*\n$/.test(before);
-  const insert = alreadySeparated ? "" : "\n\n";
+  const alreadySeparated = /\n$/.test(before);
+  const insert = alreadySeparated ? "" : "\n";
   rawExcerpt.value = before + insert + after;
   paraSearchInput.value = "";
   searchIndex = 0;
@@ -210,12 +223,8 @@ function updateNavState() {
   }
 
   if (panelIndex === 2) {
-    nextBtn.textContent = textStepIndex === 2 ? "Next (panel 4 soon)" : "Next";
-    if (textStepIndex === 0) {
-      nextBtn.disabled = !hasRawText();
-      return;
-    }
-    nextBtn.disabled = false;
+    nextBtn.textContent = "Next";
+    nextBtn.disabled = !hasRawText();
     return;
   }
 
@@ -253,6 +262,9 @@ function computeStepFill(stepIndex) {
     if (textStepIndex >= 2) units += 1;
     return units / 4;
   }
+  if (stepIndex === 3) {
+    return panelIndex >= 4 ? 1 : 0.5;
+  }
   return 0;
 }
 
@@ -272,7 +284,15 @@ function handleNext() {
       showTextStep(textStepIndex + 1);
       return;
     }
-    setStatus("Panel 4 is not wired yet.");
+    sourceText = cleanExcerpt(rawExcerpt.value);
+    rawExcerpt.value = sourceText;
+    sourceLocked = true;
+    showPanel(3);
+    return;
+  }
+  if (panelIndex === 3) {
+    sentenceEntries = collectSentenceEntries(sentenceSplitInput.value);
+    showPanel(4);
     return;
   }
   if (panelIndex < panels.length - 1) {
@@ -315,3 +335,112 @@ document.querySelectorAll(".metaGrid input, .metaGrid textarea").forEach((field)
 });
 
 showPanel(0);
+
+function cleanExcerpt(text) {
+  let cleaned = text.replace(/^[ \t]+/gm, "");
+  cleaned = cleaned.replace(/[ \t]{2,}/g, " ");
+  cleaned = cleaned.replace(/\n{2,}/g, "\n");
+  return cleaned.trim();
+}
+
+function prepareSourceText() {
+  const cleaned = cleanExcerpt(rawExcerpt.value);
+  if (cleaned !== rawExcerpt.value) {
+    rawExcerpt.value = cleaned;
+  }
+  if (!sourceLocked) {
+    sourceText = cleaned;
+    splitTextWorking = "";
+  }
+}
+
+function initializeSentenceSplit() {
+  if (splitTextWorking) {
+    sentenceSplitInput.value = splitTextWorking;
+    renderSplitPreview(splitTextWorking);
+    splitReady = true;
+    updateProgressFill();
+    return;
+  }
+  const baseText = sourceText || cleanExcerpt(rawExcerpt.value);
+  if (!baseText) {
+    sentenceSplitInput.value = "";
+    sentenceSplitPreview.innerHTML = "<em>No text available yet.</em>";
+    splitReady = false;
+    updateProgressFill();
+    return;
+  }
+  const splitText = autoSplitSentences(baseText);
+  sentenceSplitInput.value = splitText;
+  splitTextWorking = splitText;
+  splitReady = true;
+  renderSplitPreview(splitText);
+  updateProgressFill();
+}
+
+function autoSplitSentences(text) {
+  const abbreviations = [
+    "Mr",
+    "Mrs",
+    "Ms",
+    "Dr",
+    "Prof",
+    "Sr",
+    "Jr",
+    "St",
+    "Mt",
+    "etc",
+    "vs",
+    "e.g",
+    "i.e",
+  ];
+  const abbrRegex = new RegExp(`\\b(?:${abbreviations.join("|")})\\.`, "gi");
+  const splitRegex = /(\.\.\.|…|[.!?])(["'”’)\]]?)([ \t]+)(?=[A-ZÀ-ÖØ-Ý])/g;
+
+  return text
+    .split("\n")
+    .map((line) => {
+      if (!line) return "";
+      const core = line.trim();
+      const protectedText = core.replace(abbrRegex, (match) => match.replace(/\./g, "§"));
+      const splitText = protectedText.replace(splitRegex, "$1$2\n").replace(/§/g, ".");
+      const splitLines = splitText.split("\n");
+      splitLines[0] = ` ${splitLines[0]}`;
+      return splitLines.join("\n");
+    })
+    .join("\n");
+}
+function renderSplitPreview(text) {
+  if (!text.trim()) {
+    sentenceSplitPreview.innerHTML = "<em>No text yet.</em>";
+    return;
+  }
+  const lines = text.split("\n");
+  const html = lines
+    .map((line) => {
+      if (!line.trim()) return "";
+      const cleaned = line.trim();
+      const escaped = escapeHtml(cleaned);
+      const highlighted = escaped.replace(/(\.\.\.|…|[.!?])/g, '<span class="splitMark">$1</span>');
+      return `<div class="splitSentence">${highlighted}</div>`;
+    })
+    .join("");
+  sentenceSplitPreview.innerHTML = html;
+}
+
+sentenceSplitInput.addEventListener("input", () => {
+  splitTextWorking = sentenceSplitInput.value;
+  renderSplitPreview(splitTextWorking);
+});
+
+function collectSentenceEntries(text) {
+  return text
+    .split("\n")
+    .map((line) => line.replace(/[ \t]+$/g, ""))
+    .filter((line) => line.trim().length > 0)
+    .map((line) => ({
+      text: line,
+      structure: null,
+    }));
+}
+

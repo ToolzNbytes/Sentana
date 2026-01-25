@@ -34,27 +34,19 @@
           <div class="progressTrack"><span class="progressFill"></span></div>
           <div class="progressLabel">Text input</div>
         </div>
-        <div class="progressStep isDisabled" data-step="4">
+        <div class="progressStep" data-step="4">
           <div class="progressTrack"><span class="progressFill"></span></div>
           <div class="progressLabel">Sentence split</div>
         </div>
         <div class="progressStep isDisabled" data-step="5">
           <div class="progressTrack"><span class="progressFill"></span></div>
-          <div class="progressLabel">Structure</div>
+          <div class="progressLabel">Structures</div>
         </div>
         <div class="progressStep isDisabled" data-step="6">
           <div class="progressTrack"><span class="progressFill"></span></div>
-          <div class="progressLabel">Tagging</div>
-        </div>
-        <div class="progressStep isDisabled" data-step="7">
-          <div class="progressTrack"><span class="progressFill"></span></div>
-          <div class="progressLabel">Notes</div>
-        </div>
-        <div class="progressStep isDisabled" data-step="8">
-          <div class="progressTrack"><span class="progressFill"></span></div>
           <div class="progressLabel">Checks</div>
         </div>
-        <div class="progressStep isDisabled" data-step="9">
+        <div class="progressStep isDisabled" data-step="7">
           <div class="progressTrack"><span class="progressFill"></span></div>
           <div class="progressLabel">Store</div>
         </div>
@@ -190,6 +182,25 @@
             </div>
 
             <div class="paraPreview" id="paraPreview" aria-label="Paragraph preview"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="wizardPanel" data-panel="3">
+        <div class="panelTitleRow">
+          <div class="panelTitleText">Sentence split</div>
+        </div>
+
+        <div class="splitLayout">
+          <div class="splitCol">
+            <div class="splitLabel">Editable split text</div>
+            <div class="splitHint splitHintWarn">Keep the leading space at the start of each paragraph line. It is the paragraph marker.</div>
+            <textarea class="splitArea" id="sentenceSplitInput" spellcheck="false"></textarea>
+          </div>
+          <div class="splitCol splitPreviewCol">
+            <div class="splitLabel">Formatted preview</div>
+            <div class="splitHint splitHintInfo">Auto-split then review carefully. You can correct this later without losing work.</div>
+            <div class="splitPreview" id="sentenceSplitPreview" aria-label="Sentence split preview"></div>
           </div>
         </div>
       </section>
