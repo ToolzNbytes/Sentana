@@ -16,57 +16,63 @@
   gap:16px;
 }
 
-.wizardHeader{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-}
-
-.wizardTitle{
-  font-family: var(--serif);
-  color: var(--paper);
-  font-size: 18px;
-}
-
-.wizardProgress{
-  font-size: 12.5px;
-  color: var(--wizard-muted);
-}
-
-.wizardSteps{
+.wizardProgressBar{
   display:flex;
   flex-wrap:wrap;
-  gap:8px;
+  gap:8px 12px;
 }
 
-.wizardStep{
-  padding:6px 10px;
-  border:1px solid var(--border);
+.progressStep{
+  flex: 1 1 150px;
+  min-width: 140px;
+}
+
+.progressTrack{
+  height: 6px;
   border-radius: 999px;
-  font-size: 12.5px;
+  background: rgba(231,215,182,.12);
+  border: 1px solid rgba(231,215,182,.18);
+  overflow: hidden;
+}
+
+.progressFill{
+  display:block;
+  height: 100%;
+  width: 0%;
+  background: rgba(231,215,182,.65);
+  transition: width 180ms ease;
+}
+
+.progressLabel{
+  margin-top: 6px;
+  font-size: 12px;
   color: var(--inkDim);
-  background: transparent;
-  user-select: none;
 }
 
-.wizardStep.isActive{
+.progressStep.isActive .progressFill{
+  width: 60%;
+  background: rgba(231,215,182,.85);
+}
+
+.progressStep.isDone .progressFill{
+  width: 100%;
+  background: rgba(231,215,182,.85);
+}
+
+.progressStep.isActive .progressLabel{
   color: var(--paper);
-  border-color: rgba(231,215,182,.55);
-  background: rgba(231,215,182,.08);
 }
 
-.wizardStep.isDisabled{
+.progressStep.isDone .progressLabel{
+  color: rgba(239,230,213,.85);
+}
+
+.progressStep.isDisabled{
   opacity: 0.45;
 }
 
 .wizardStatus{
-  padding: 8px 10px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: rgba(231,215,182,.04);
-  color: var(--wizard-muted);
-  font-size: 12.5px;
+  display:none;
 }
 
 .wizardPanel{
@@ -75,12 +81,6 @@
 
 .wizardPanel.isActive{
   display:block;
-}
-
-.panelTitle{
-  font-family: var(--serif);
-  font-size: 16px;
-  color: var(--paper);
 }
 
 .panelLead{
@@ -167,6 +167,20 @@
   font-size: 12.5px;
   color: var(--wizard-muted);
   line-height: 1.4;
+}
+
+.fieldHint{
+  display:none;
+  font-size: 12px;
+  color: var(--wizard-muted);
+  min-height: 1.6em;
+  line-height: 1.4;
+  visibility: hidden;
+}
+
+.field:focus-within .fieldHint,
+.field:hover .fieldHint{
+  visibility: visible;
 }
 
 .textStepHeader{
@@ -321,14 +335,21 @@
   }
   .metaHint{
     width: 100%;
+    display: none;
+  }
+  .fieldHint{
+    display:block;
+  }
+}
+
+@media (max-width: 720px){
+  .wizardSection{
+    padding-left: 8px;
+    padding-right: 8px;
   }
 }
 
 @media (max-width: 780px){
-  .wizardHeader{
-    flex-direction:column;
-    align-items:flex-start;
-  }
   .metaGrid{
     grid-template-columns: 1fr;
   }

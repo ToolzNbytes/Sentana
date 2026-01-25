@@ -25,27 +25,48 @@
 <main class="workspaces wizardWrap">
   <section class="workspace wizard">
     <div class="pageSection wizardSection">
-      <div class="wizardHeader">
-        <div class="wizardTitle">Excerpt Wizard</div>
-        <div class="wizardProgress" id="wizardProgress">Step 1 of 9</div>
-      </div>
-
-      <div class="wizardSteps" aria-label="Wizard steps">
-        <div class="wizardStep isActive" data-step="1">1. Welcome</div>
-        <div class="wizardStep" data-step="2">2. Metadata</div>
-        <div class="wizardStep" data-step="3">3. Text input</div>
-        <div class="wizardStep isDisabled" data-step="4">4. Sentence split</div>
-        <div class="wizardStep isDisabled" data-step="5">5. Structure</div>
-        <div class="wizardStep isDisabled" data-step="6">6. Tagging</div>
-        <div class="wizardStep isDisabled" data-step="7">7. Notes</div>
-        <div class="wizardStep isDisabled" data-step="8">8. Checks</div>
-        <div class="wizardStep isDisabled" data-step="9">9. Store</div>
+      <div class="wizardProgressBar" aria-label="Wizard progress">
+        <div class="progressStep isActive" data-step="1">
+          <div class="progressTrack"><span class="progressFill"></span></div>
+          <div class="progressLabel">Start</div>
+        </div>
+        <div class="progressStep" data-step="2">
+          <div class="progressTrack"><span class="progressFill"></span></div>
+          <div class="progressLabel">Metadata</div>
+        </div>
+        <div class="progressStep" data-step="3">
+          <div class="progressTrack"><span class="progressFill"></span></div>
+          <div class="progressLabel">Text input</div>
+        </div>
+        <div class="progressStep isDisabled" data-step="4">
+          <div class="progressTrack"><span class="progressFill"></span></div>
+          <div class="progressLabel">Sentence split</div>
+        </div>
+        <div class="progressStep isDisabled" data-step="5">
+          <div class="progressTrack"><span class="progressFill"></span></div>
+          <div class="progressLabel">Structure</div>
+        </div>
+        <div class="progressStep isDisabled" data-step="6">
+          <div class="progressTrack"><span class="progressFill"></span></div>
+          <div class="progressLabel">Tagging</div>
+        </div>
+        <div class="progressStep isDisabled" data-step="7">
+          <div class="progressTrack"><span class="progressFill"></span></div>
+          <div class="progressLabel">Notes</div>
+        </div>
+        <div class="progressStep isDisabled" data-step="8">
+          <div class="progressTrack"><span class="progressFill"></span></div>
+          <div class="progressLabel">Checks</div>
+        </div>
+        <div class="progressStep isDisabled" data-step="9">
+          <div class="progressTrack"><span class="progressFill"></span></div>
+          <div class="progressLabel">Store</div>
+        </div>
       </div>
 
       <div class="wizardStatus" id="wizardStatus" aria-live="polite">Ready.</div>
 
       <section class="wizardPanel isActive" data-panel="0">
-        <div class="panelTitle">Welcome</div>
         <p class="panelLead">
           This wizard helps you transform a raw excerpt into a fully analyzed entry:
           structure notation, tags, and optional notes. We will go step by step to keep
@@ -65,7 +86,6 @@
       </section>
 
       <section class="wizardPanel" data-panel="1">
-        <div class="panelTitle">Excerpt metadata</div>
         <div class="metaLayout">
           <div class="metaGrid" aria-label="Metadata fields">
             <label class="field">
@@ -73,6 +93,7 @@
               <input id="fWork" type="text" autocomplete="off"
                      data-hint-title="Work (Title)"
                      data-hint-body="The title as it should appear in the corpus. Required for sorting and display."/>
+              <div class="fieldHint">The title as it should appear in the corpus. Required for sorting and display.</div>
             </label>
 
             <label class="field">
@@ -80,6 +101,7 @@
               <input id="fAuthor" type="text" autocomplete="off"
                      data-hint-title="Author"
                      data-hint-body="Author name used in filters and in the main explorer. Required."/>
+              <div class="fieldHint">Author name used in filters and in the main explorer. Required.</div>
             </label>
 
             <label class="field">
@@ -87,6 +109,7 @@
               <input id="fYear" type="text" autocomplete="off"
                      data-hint-title="Year(s) of writing"
                      data-hint-body="Year or range (e.g., 1897-1901). Helps historical sorting."/>
+              <div class="fieldHint">Year or range (e.g., 1897-1901). Helps historical sorting.</div>
             </label>
 
             <label class="field">
@@ -94,6 +117,7 @@
               <input id="fChoice" type="text" autocomplete="off"
                      data-hint-title="Choice"
                      data-hint-body="Where the excerpt comes from: chapter, scene, page, or section."/>
+              <div class="fieldHint">Where the excerpt comes from: chapter, scene, page, or section.</div>
             </label>
 
             <label class="field">
@@ -101,6 +125,7 @@
               <input id="fLanguage" type="text" autocomplete="off"
                      data-hint-title="Language (ISO)"
                      data-hint-body="Language code like en, fr, es. Prefer ISO 639-1 when possible."/>
+              <div class="fieldHint">Language code like en, fr, es. Prefer ISO 639-1 when possible.</div>
             </label>
 
             <label class="field">
@@ -108,6 +133,7 @@
               <input id="fTags" type="text" autocomplete="off"
                      data-hint-title="Tags"
                      data-hint-body="Comma-separated tags for themes, genre, voice, or style. Optional."/>
+              <div class="fieldHint">Comma-separated tags for themes, genre, voice, or style. Optional.</div>
             </label>
 
             <label class="field fieldFull">
@@ -115,6 +141,7 @@
               <textarea id="fComment" rows="2"
                         data-hint-title="Entry comment"
                         data-hint-body="Optional note about this excerpt or your analysis choices."></textarea>
+              <div class="fieldHint">Optional note about this excerpt or your analysis choices.</div>
             </label>
           </div>
 
@@ -128,10 +155,9 @@
       </section>
 
       <section class="wizardPanel" data-panel="2">
-        <div class="panelTitle">Text input</div>
         <div class="textStepHeader">
-          <div class="textStepLabel" id="textStepLabel">Step 1 of 3 - Paste the raw excerpt</div>
-          <div class="textStepNote">Use the next button to move through the three text preparation steps.</div>
+          <div class="textStepLabel" id="textStepLabel">Text prep: Paste the raw excerpt</div>
+          <div class="textStepNote">Use the main navigation button to move through text preparation phases.</div>
         </div>
 
         <textarea class="textArea" id="rawExcerpt" spellcheck="false" placeholder="Paste the raw excerpt text here..."></textarea>
@@ -175,7 +201,7 @@
 
     <div class="wizardNav">
       <button class="wizardNavBtn" id="backBtn" type="button">Back</button>
-      <button class="wizardNavBtn primary" id="nextBtn" type="button">Next</button>
+      <button class="wizardNavBtn primary" id="nextBtn" type="button">Start</button>
     </div>
   </section>
 </main>

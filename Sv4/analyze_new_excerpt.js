@@ -1,6 +1,5 @@
 const panels = Array.from(document.querySelectorAll(".wizardPanel"));
-const wizardSteps = Array.from(document.querySelectorAll(".wizardStep"));
-const wizardProgress = document.getElementById("wizardProgress");
+const progressSteps = Array.from(document.querySelectorAll(".progressStep"));
 const wizardStatus = document.getElementById("wizardStatus");
 const backBtn = document.getElementById("backBtn");
 const nextBtn = document.getElementById("nextBtn");
@@ -20,7 +19,6 @@ const paraSearchMsg = document.getElementById("paraSearchMsg");
 const metaHintTitle = document.getElementById("metaHintTitle");
 const metaHintBody = document.getElementById("metaHintBody");
 
-const TOTAL_STEPS = 9;
 let panelIndex = 0;
 let textStepIndex = 0;
 let searchIndex = 0;
@@ -33,37 +31,33 @@ function setStatus(message) {
 function showPanel(index) {
   panelIndex = Math.max(0, Math.min(index, panels.length - 1));
   panels.forEach((panel, i) => panel.classList.toggle("isActive", i === panelIndex));
-  wizardSteps.forEach((step, i) => step.classList.toggle("isActive", i === panelIndex));
-  wizardProgress.textContent = `Step ${panelIndex + 1} of ${TOTAL_STEPS}`;
-  backBtn.disabled = panelIndex === 0 && textStepIndex === 0;
-  nextBtn.disabled = false;
+  progressSteps.forEach((step, i) => {
+    step.classList.toggle("isActive", i === panelIndex);
+    step.classList.toggle("isDone", i < panelIndex);
+  });
   if (panelIndex === 2) {
     showTextStep(0);
   }
-  setStatus("Ready.");
+  updateNavState();
 }
 
 function showTextStep(index) {
   textStepIndex = Math.max(0, Math.min(index, textSteps.length - 1));
   textSteps.forEach((step, i) => step.classList.toggle("isActive", i === textStepIndex));
-  textStepLabel.textContent = `Step ${textStepIndex + 1} of 3 - ${textStepTitle(textStepIndex)}`;
-  if (textStepIndex === 2) {
-    nextBtn.textContent = "Next (panel 4 soon)";
-  } else {
-    nextBtn.textContent = "Next";
-  }
+  textStepLabel.textContent = `Text prep: ${textStepTitle(textStepIndex)}`;
   if (textStepIndex === 1) {
     updateJoinLinesHint();
   }
   if (textStepIndex === 2) {
     updatePreview();
   }
+  updateNavState();
 }
 
 function textStepTitle(index) {
   if (index === 0) return "Paste the raw excerpt";
   if (index === 1) return "Check for extra line breaks";
-  return "Confirm paragraphs";
+  return "Confirm paragraph boundaries";
 }
 
 function assessLineBreaks(text) {
@@ -181,6 +175,43 @@ function updateMetaHint(event) {
   metaHintBody.textContent = target.dataset.hintBody || "";
 }
 
+function hasRequiredMetadata() {
+  const work = document.getElementById("fWork").value.trim();
+  const author = document.getElementById("fAuthor").value.trim();
+  return work.length > 0 && author.length > 0;
+}
+
+function hasRawText() {
+  return rawExcerpt.value.trim().length > 0;
+}
+
+function updateNavState() {
+  backBtn.disabled = panelIndex === 0 && textStepIndex === 0;
+
+  if (panelIndex === 0) {
+    nextBtn.textContent = "Start";
+    nextBtn.disabled = false;
+    return;
+  }
+
+  if (panelIndex === 2) {
+    nextBtn.textContent = textStepIndex === 2 ? "Next (panel 4 soon)" : "Next";
+    if (textStepIndex === 0) {
+      nextBtn.disabled = !hasRawText();
+      return;
+    }
+    nextBtn.disabled = false;
+    return;
+  }
+
+  nextBtn.textContent = "Next";
+  if (panelIndex === 1) {
+    nextBtn.disabled = !hasRequiredMetadata();
+    return;
+  }
+  nextBtn.disabled = false;
+}
+
 function handleBack() {
   if (panelIndex === 2 && textStepIndex > 0) {
     showTextStep(textStepIndex - 1);
@@ -215,6 +246,7 @@ nextBtn.addEventListener("click", handleNext);
 rawExcerpt.addEventListener("input", () => {
   if (textStepIndex === 1) updateJoinLinesHint();
   if (textStepIndex === 2) updatePreview();
+  updateNavState();
 });
 
 joinLinesBtn.addEventListener("click", joinLines);
@@ -231,6 +263,7 @@ paraInsertBtn.addEventListener("click", insertParagraphBreak);
 document.querySelectorAll(".metaGrid input, .metaGrid textarea").forEach((field) => {
   field.addEventListener("focus", updateMetaHint);
   field.addEventListener("mouseenter", updateMetaHint);
+  field.addEventListener("input", updateNavState);
 });
 
 showPanel(0);
