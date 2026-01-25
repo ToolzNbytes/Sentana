@@ -1,15 +1,15 @@
 ## Document v0.1 TO BE REVIEWED
 
-Below is a practical, step-by-step **user documentation** for doing a **manual sentence structural analysis** with the notation and tags defined in the rules document. Itƒ?Ts meant to be used like a small workflow/checklist, not like a grammar textbookƒ?"this method takes a few liberties on purpose to stay useful for ƒ?osentence-buildingƒ?? structure. 
+Below is a practical, step-by-step **user documentation** for doing a **manual sentence structural analysis** with the notation and tags defined in the rules document. It'Ts meant to be used like a small workflow/checklist, not like a grammar textbook'"this method takes a few liberties on purpose to stay useful for 'osentence-building'? structure. 
 
 ---
 
-## 1) What youƒ?Tre producing
+## 1) What you'Tre producing
 
 For each sentence, you output a **multiline, hierarchical breakdown** where:
 
-* **Clauses / phrase-units** are wrapped in **parentheses**: `(ICƒ?İ)`, `(DCƒ?İ)`, `(FGƒ?İ)`, `(PPƒ?İ)`, `(APƒ?İ)`
-* **Additional coordinated predicates / parallel constituents** use **square brackets**: `[CPƒ?İ]`
+* **Clauses / phrase-units** are wrapped in **parentheses**: `(IC...)`, `(DC...)`, `(FG...)`, `(PP...)`, `(AP...)`
+* **Additional coordinated predicates / parallel constituents** use **square brackets**: `[CP...]`
 * **Indentation** uses `~` (tildes), one per nesting level
 * **Every unit has a unique numeric id**, assigned in order of appearance across the whole sentence (regardless of tag type)
 * **Every original word appears exactly once, in the same order**, with punctuation preserved (the notation is inserted *between* words, not rewriting the sentence) 
@@ -22,17 +22,17 @@ For each sentence, you output a **multiline, hierarchical breakdown** where:
 
 A clause/phrase opening is **one line**, starting with:
 
-* Independent clause: `(IC1 ƒ?İ`
-* Dependent clause: `(DC2<1 ƒ?İ` or `(DC2>1 ƒ?İ`
-* Fragment: `(FG1 ƒ?İ`
-* Participial phrase: `(PP2<1 ƒ?İ` or `(PP2>1 ƒ?İ`
-* Adjunct phrase (non-PP): `(AP2<1 ƒ?İ` or `(AP2>1 ƒ?İ`
+* Independent clause: `(IC1 ...`
+* Dependent clause: `(DC2<1 ...` or `(DC2>1 ...`
+* Fragment: `(FG1 ...`
+* Participial phrase: `(PP2<1 ...` or `(PP2>1 ...`
+* Adjunct phrase (non-PP): `(AP2<1 ...` or `(AP2>1 ...`
 
 **Meaning of `<y` and `>y`:**
 
-* `<y` = ƒ?othis depends on something earlier (id y)ƒ??
-* `>y` = ƒ?othis depends on something that comes later (id y)ƒ??
-  The ƒ?osomethingƒ?? is usually the subject/verb (or hosting unit) you conceptually attach to. 
+* `<y` = 'othis depends on something earlier (id y)'?
+* `>y` = 'othis depends on something that comes later (id y)'?
+  The 'osomething'? is usually the subject/verb (or hosting unit) you conceptually attach to. 
 
 ### 2.2 Closing parentheses (their own lines)
 
@@ -41,45 +41,45 @@ Each opening `(` must have a matching `)` on its **own line**, and the closing l
 ### 2.3 Nesting indentation with `~`
 
 * Top level: no leading `~`
-* One level inside: `~( ƒ?İ`
-* Two levels inside: `~~( ƒ?İ`
+* One level inside: `~( ...`
+* Two levels inside: `~~( ...`
 * Continuation text lines inside a clause keep the same indentation and begin with `~` + a space if needed.
 
 ### 2.4 CP blocks (square brackets)
 
-`[CPx ƒ?İ ]` are used for **additional coordinated predicates** (and sometimes other ƒ?oparallel constituentsƒ?? when you decide they behave like a series). They:
+`[CPx ... ]` are used for **additional coordinated predicates** (and sometimes other 'oparallel constituents'? when you decide they behave like a series). They:
 
 * **Do not** add indentation level
-* Must open on their own line with `[CPx ƒ?İ`
+* Must open on their own line with `[CPx ...`
 * Close with `]` on its own line
-* Live ƒ?oinsideƒ?? the current clause level 
+* Live 'oinside'? the current clause level 
 
 ---
 
 ## 3) Tags, in plain language
 
-### IC ƒ?" Independent Clause
+### IC '" Independent Clause
 
 A clause that can stand as a full sentence (for our purposes).
 
-### DC ƒ?" Dependent Clause
+### DC '" Dependent Clause
 
-A clause that ƒ?ohangs offƒ?? another unit (IC, another DC, or sometimes a CP predicate), marked with `<y` or `>y`.
+A clause that 'ohangs off'? another unit (IC, another DC, or sometimes a CP predicate), marked with `<y` or `>y`.
 
-### FG ƒ?" Fragment
+### FG '" Fragment
 
 Used when there is **no proper independent clause** (headline-like chunks, descriptive fragments, etc.). Coordinated top-level fragments may be split into multiple FGs if they are parallel. 
 
-### PP ƒ?" Participial Phrase (-ing / -ed), optional
+### PP '" Participial Phrase (-ing / -ed), optional
 
-Use PP when the participial phrase is **removable without breaking syntax**, and/or **easily rewritable as a dependent clause** (ƒ?owho/that ƒ?İƒ??).
-Do **not** tag it as PP if it is syntactically obligatory (cleft-like focus) or if itƒ?Ts acting as a noun (ƒ?oMaking him happyƒ?İƒ??). 
+Use PP when the participial phrase is **removable without breaking syntax**, and/or **easily rewritable as a dependent clause** ('owho/that ...'?).
+Do **not** tag it as PP if it is syntactically obligatory (cleft-like focus) or if it'Ts acting as a noun ('oMaking him happy...'?). 
 
-### AP ƒ?" Adjunct Phrase (non-PP), optional
+### AP '" Adjunct Phrase (non-PP), optional
 
-Use AP for other **optional adjunct bundles** that behave like ƒ?oadd-onsƒ?? (e.g., certain purpose infinitives, postposed descriptive bundles, afterthought modifiers).
+Use AP for other **optional adjunct bundles** that behave like 'oadd-ons'? (e.g., certain purpose infinitives, postposed descriptive bundles, afterthought modifiers).
 
-### CP ƒ?" Coordinated Parallel Constituent
+### CP '" Coordinated Parallel Constituent
 
 Use CP for:
 
@@ -90,33 +90,33 @@ Use CP for:
 
 ## 4) Manual workflow: do one sentence
 
-### Step 0 ƒ?" Copy the sentence exactly
+### Step 0 '" Copy the sentence exactly
 
-Youƒ?Tll be reusing every character (including punctuation). Donƒ?Tt ƒ?oclean it up.ƒ??
+You'Tll be reusing every character (including punctuation). Don'Tt 'oclean it up.'?
 
-### Step 1 ƒ?" Decide: IC or FG at the top?
+### Step 1 '" Decide: IC or FG at the top?
 
-* If the sentence contains a clear finite predicate that can stand as a sentence ƒÅ' start with an **IC**
-* If not ƒÅ' start with an **FG**
-* If there are multiple top-level coordinated full clauses/fragments, you may split them into multiple top-level `(ICƒ?İ)` / `(FGƒ?İ)` blocks
+* If the sentence contains a clear finite predicate that can stand as a sentence ... start with an **IC**
+* If not ... start with an **FG**
+* If there are multiple top-level coordinated full clauses/fragments, you may split them into multiple top-level `(IC...)` / `(FG...)` blocks
 
-### Step 2 ƒ?" Create the first top-level block and assign id ƒ?o1ƒ??
+### Step 2 '" Create the first top-level block and assign id 'o1'?
 
 Example skeleton:
 
 ```text
-(IC1 ƒ?İsentence textƒ?İ 
+(IC1 ...sentence text... 
 )
 ```
 
 or
 
 ```text
-(FG1 ƒ?İfragment textƒ?İ
+(FG1 ...fragment text...
 )
 ```
 
-### Step 3 ƒ?" Walk left-to-right and ƒ?ocut inƒ?? embedded units
+### Step 3 '" Walk left-to-right and 'ocut in'? embedded units
 
 Read the sentence from start to end and whenever you hit something that should become a **nested unit**, you:
 
@@ -127,52 +127,52 @@ Read the sentence from start to end and whenever you hit something that should b
 
 This is the core discipline: **the original word order must remain intact**. 
 
-### Step 4 ƒ?" Add DCs (with the right arrow direction)
+### Step 4 '" Add DCs (with the right arrow direction)
 
-Common DC triggers: *that, which, who, because, when, if, as, whetherƒ?İ*
+Common DC triggers: *that, which, who, because, when, if, as, whether...*
 Pick `<y` vs `>y`:
 
-* If the thing you depend on is already mentioned ƒÅ' `<y`
-* If the dependent clause comes first and the anchor shows up later ƒÅ' `>y`
+* If the thing you depend on is already mentioned ... `<y`
+* If the dependent clause comes first and the anchor shows up later ... `>y`
 
-### Step 5 ƒ?" Add PPs (optional participial phrases)
+### Step 5 '" Add PPs (optional participial phrases)
 
 Look for **-ing/-ed sequences** of 2+ words that are optional. If yes:
 
-* tag them as `(PPx<y ƒ?İ)`
+* tag them as `(PPx<y ...)`
 * nest them where they occur in the parent text
 
-### Step 6 ƒ?" Add APs (optional adjunct bundles)
+### Step 6 '" Add APs (optional adjunct bundles)
 
 Same mechanics as PP, but used for other optional add-ons.
 
-### Step 7 ƒ?" Convert compound predicates to CP
+### Step 7 '" Convert compound predicates to CP
 
 Inside an IC/DC/FG, find the main predicate and keep it in the clause text.
 For additional coordinated predicates, put each one in its own CP:
 
 ```text
-(IC1 ƒ?İ first predicate ƒ?İ
-[CP2 ƒ?İ second predicate ƒ?İ
+(IC1 ... first predicate ...
+[CP2 ... second predicate ...
 ]
-[CP3 ƒ?İ third predicate ƒ?İ
+[CP3 ... third predicate ...
 ]
 )
 ```
 
 A DC may refer to a CP id if it clearly modifies that predicate. 
 
-### Step 8 ƒ?" Close everything carefully
+### Step 8 '" Close everything carefully
 
 Every `(` gets a `)` on its own line, aligned by tildes.
 Every `[` gets a `]` on its own line.
 
-### Step 9 ƒ?" Add a comment only if needed
+### Step 9 '" Add a comment only if needed
 
 If something is genuinely ambiguous (attachment, scope), add a single-line note **after** the last closing bracket/parenthesis:
 
 ```text
-# possible alternative attachment: ƒ?İ
+# possible alternative attachment: ...
 ```
 
 One comment per issue. 
@@ -181,11 +181,11 @@ One comment per issue.
 
 ## 5) Two worked mini-examples
 
-### Example A ƒ?" DC + CP (close to the corpus style)
+### Example A '" DC + CP (close to the corpus style)
 
 Sentence:
 
-> He had entertained hopes ƒ?İ, **but** he saw only the father.
+> He had entertained hopes ..., **but** he saw only the father.
 
 Analysis (from the examples file): 
 
@@ -201,13 +201,13 @@ Analysis (from the examples file):
 What to notice:
 
 * Two top-level IC blocks (coordination / contrast)
-* The relative clause ƒ?oof whoseƒ?İƒ?? is nested as DC2<1 inside IC1
+* The relative clause 'oof whose...'? is nested as DC2<1 inside IC1
 
-### Example B ƒ?" Participial phrase as PP
+### Example B '" Participial phrase as PP
 
 Sentence:
 
-> Mr. Darcy ƒ?İ spent the rest of the evening ƒ?İ, **speaking** occasionallyƒ?İ
+> Mr. Darcy ... spent the rest of the evening ..., **speaking** occasionally...
 
 Analysis (from the examples file): 
 
@@ -226,16 +226,16 @@ What to notice:
 
 * The main clause carries the first predicate
 * Additional coordinated actions become CP2 and CP3
-* The optional participial ƒ?ospeakingƒ?İƒ?? becomes PP4 nested under the relevant action
+* The optional participial 'ospeaking...'? becomes PP4 nested under the relevant action
 
 ---
 
 ## 6) Space and punctuation rules you must follow
 
 * **Punctuation sticks to the word it follows** (except special handling of em-dash cases described in the rules). 
-* **Do not add or remove spaces.** The analysis is conceptually ƒ?oinserted betweenƒ?? original characters.
-* One tolerated convenience: the **first tag line** that carries text may have a ƒ?onon-significantƒ?? extra space for clarity (meant to be removed later by tooling). 
-* Coordination words like **and / but** are bundled with the clause or phrase they introduce, even if itƒ?Ts slightly debatable. 
+* **Do not add or remove spaces.** The analysis is conceptually 'oinserted between'? original characters.
+* One tolerated convenience: the **first tag line** that carries text may have a 'onon-significant'? extra space for clarity (meant to be removed later by tooling). 
+* Coordination words like **and / but** are bundled with the clause or phrase they introduce, even if it'Ts slightly debatable. 
 
 ---
 
@@ -247,16 +247,16 @@ What to notice:
 * **Ids increase in order of appearance** (across IC/DC/FG/PP/AP/CP)
 * **Every DC/PP/AP has `<y` or `>y`** and the referenced id exists
 * **Indentation is consistent** (opening and closing align)
-* **CP uses brackets**, not parentheses, and doesnƒ?Tt add indentation
+* **CP uses brackets**, not parentheses, and doesn'Tt add indentation
 * **Punctuation and spacing are preserved**
 
-### Pitfalls worth insisting on (because theyƒ?Tre easy to miss)
+### Pitfalls worth insisting on (because they'Tre easy to miss)
 
-1. **Losing or duplicating words** when you ƒ?ocut inƒ?? nested units. If youƒ?Tre unsure, rebuild by reading the analysis top-to-bottom and verifying it reproduces the sentence perfectly.
-2. **Wrong indentation on closing lines**ƒ?"it breaks the structure even when the text looks right.
-3. **Forgetting that ids are global across the sentence** (you can have IC1, DC2, IC3ƒ?İ and thatƒ?Ts fine).
+1. **Losing or duplicating words** when you 'ocut in'? nested units. If you'Tre unsure, rebuild by reading the analysis top-to-bottom and verifying it reproduces the sentence perfectly.
+2. **Wrong indentation on closing lines**'"it breaks the structure even when the text looks right.
+3. **Forgetting that ids are global across the sentence** (you can have IC1, DC2, IC3... and that'Ts fine).
 4. **Over-tagging participles**: PP is only for optional participial phrases, not for noun-like gerunds or obligatory constructions. 
-5. **Attaching a DC to the wrong anchor id**: if scope is unclear, itƒ?Ts okay to pick one and leave a `#` note.
+5. **Attaching a DC to the wrong anchor id**: if scope is unclear, it'Ts okay to pick one and leave a `#` note.
 
 ---
 
