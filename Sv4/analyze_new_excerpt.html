@@ -26,10 +26,6 @@
   <section class="workspace wizard">
     <div class="pageSection wizardSection">
       <div class="wizardProgressBar" aria-label="Wizard progress">
-        <div class="progressStep isActive" data-step="1">
-          <div class="progressTrack"><span class="progressFill"></span></div>
-          <div class="progressLabel">Start</div>
-        </div>
         <div class="progressStep" data-step="2">
           <div class="progressTrack"><span class="progressFill"></span></div>
           <div class="progressLabel">Metadata</div>
@@ -92,63 +88,63 @@
               <span>Work * (Title)</span>
               <input id="fWork" type="text" autocomplete="off"
                      data-hint-title="Work (Title)"
-                     data-hint-body="The title as it should appear in the corpus. Required for sorting and display."/>
-              <div class="fieldHint">The title as it should appear in the corpus. Required for sorting and display.</div>
+                     data-hint-body="Title of the work. Required."/>
+              <div class="fieldHint">Title of the work. Required.</div>
             </label>
 
             <label class="field">
               <span>Author *</span>
               <input id="fAuthor" type="text" autocomplete="off"
                      data-hint-title="Author"
-                     data-hint-body="Author name used in filters and in the main explorer. Required."/>
-              <div class="fieldHint">Author name used in filters and in the main explorer. Required.</div>
+                     data-hint-body="Writer's full name. Required."/>
+              <div class="fieldHint">Writer's full name. Required.</div>
             </label>
 
             <label class="field">
               <span>Year(s) of writing</span>
               <input id="fYear" type="text" autocomplete="off"
                      data-hint-title="Year(s) of writing"
-                     data-hint-body="Year or range (e.g., 1897-1901). Helps historical sorting."/>
-              <div class="fieldHint">Year or range (e.g., 1897-1901). Helps historical sorting.</div>
+                     data-hint-body="Year string or range (e.g., 1948 or 1948-50). If unknown, use publishing year like -1950."/>
+              <div class="fieldHint">Year string or range (e.g., 1948 or 1948-50). If unknown, use publishing year like -1950.</div>
             </label>
 
             <label class="field">
               <span>Choice - What part from where</span>
               <input id="fChoice" type="text" autocomplete="off"
                      data-hint-title="Choice"
-                     data-hint-body="Where the excerpt comes from: chapter, scene, page, or section."/>
-              <div class="fieldHint">Where the excerpt comes from: chapter, scene, page, or section.</div>
+                     data-hint-body="Where the excerpt comes from (chapter, scene, page). Start with #id if you need multiple excerpts."/>
+              <div class="fieldHint">Where the excerpt comes from (chapter, scene, page). Start with #id if you need multiple excerpts.</div>
             </label>
 
             <label class="field">
               <span>Language (ISO)</span>
               <input id="fLanguage" type="text" autocomplete="off"
                      data-hint-title="Language (ISO)"
-                     data-hint-body="Language code like en, fr, es. Prefer ISO 639-1 when possible."/>
-              <div class="fieldHint">Language code like en, fr, es. Prefer ISO 639-1 when possible.</div>
+                     data-hint-body="Lower-case ISO code: en, fr. Use fr/es for French translation of Spanish original."/>
+              <div class="fieldHint">Lower-case ISO code: en, fr. Use fr/es for French translation of Spanish original.</div>
             </label>
 
             <label class="field">
               <span>Tags</span>
               <input id="fTags" type="text" autocomplete="off"
                      data-hint-title="Tags"
-                     data-hint-body="Comma-separated tags for themes, genre, voice, or style. Optional."/>
-              <div class="fieldHint">Comma-separated tags for themes, genre, voice, or style. Optional.</div>
+                     data-hint-body="Optional. Suggested: Classic, Ref, ToReview, Valid, Error, Pop, amateur. Free values allowed."/>
+              <div class="fieldHint">Optional. Suggested: Classic, Ref, ToReview, Valid, Error, Pop, amateur. Free values allowed.</div>
             </label>
 
             <label class="field fieldFull">
               <span>Entry comment</span>
               <textarea id="fComment" rows="2"
                         data-hint-title="Entry comment"
-                        data-hint-body="Optional note about this excerpt or your analysis choices."></textarea>
-              <div class="fieldHint">Optional note about this excerpt or your analysis choices.</div>
+                        data-hint-body="Optional. Literary interest and maintenance note."></textarea>
+              <div class="fieldHint">Optional. Literary interest and maintenance note.</div>
             </label>
           </div>
 
           <aside class="metaHint" aria-live="polite">
             <div class="metaHintTitle" id="metaHintTitle">Work (Title)</div>
             <div class="metaHintBody" id="metaHintBody">
-              The title as it should appear in the corpus. Required for sorting and display.
+              Title of the work. Required.
             </div>
           </aside>
         </div>

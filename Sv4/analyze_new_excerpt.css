@@ -49,13 +49,8 @@
   color: var(--inkDim);
 }
 
-.progressStep.isActive .progressFill{
-  width: 60%;
-  background: rgba(231,215,182,.85);
-}
-
+.progressStep.isActive .progressFill,
 .progressStep.isDone .progressFill{
-  width: 100%;
   background: rgba(231,215,182,.85);
 }
 

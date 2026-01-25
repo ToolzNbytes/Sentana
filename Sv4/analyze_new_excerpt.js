@@ -18,6 +18,15 @@ const paraSearchMsg = document.getElementById("paraSearchMsg");
 
 const metaHintTitle = document.getElementById("metaHintTitle");
 const metaHintBody = document.getElementById("metaHintBody");
+const metaFields = [
+  document.getElementById("fWork"),
+  document.getElementById("fAuthor"),
+  document.getElementById("fYear"),
+  document.getElementById("fChoice"),
+  document.getElementById("fLanguage"),
+  document.getElementById("fTags"),
+  document.getElementById("fComment"),
+];
 
 let panelIndex = 0;
 let textStepIndex = 0;
@@ -32,13 +41,17 @@ function showPanel(index) {
   panelIndex = Math.max(0, Math.min(index, panels.length - 1));
   panels.forEach((panel, i) => panel.classList.toggle("isActive", i === panelIndex));
   progressSteps.forEach((step, i) => {
-    step.classList.toggle("isActive", i === panelIndex);
-    step.classList.toggle("isDone", i < panelIndex);
+    const stepIndex = i + 1;
+    const isActive = panelIndex === stepIndex;
+    const isDone = panelIndex > stepIndex;
+    step.classList.toggle("isActive", isActive);
+    step.classList.toggle("isDone", isDone);
   });
   if (panelIndex === 2) {
     showTextStep(0);
   }
   updateNavState();
+  updateProgressFill();
 }
 
 function showTextStep(index) {
@@ -52,6 +65,7 @@ function showTextStep(index) {
     updatePreview();
   }
   updateNavState();
+  updateProgressFill();
 }
 
 function textStepTitle(index) {
@@ -187,6 +201,7 @@ function hasRawText() {
 
 function updateNavState() {
   backBtn.disabled = panelIndex === 0 && textStepIndex === 0;
+  backBtn.style.visibility = panelIndex === 0 ? "hidden" : "visible";
 
   if (panelIndex === 0) {
     nextBtn.textContent = "Start";
@@ -210,6 +225,35 @@ function updateNavState() {
     return;
   }
   nextBtn.disabled = false;
+}
+
+function updateProgressFill() {
+  progressSteps.forEach((step, i) => {
+    const stepIndex = i + 1;
+    const fill = computeStepFill(stepIndex);
+    const fillEl = step.querySelector(".progressFill");
+    if (fillEl) {
+      fillEl.style.width = `${Math.round(fill * 100)}%`;
+    }
+  });
+}
+
+function computeStepFill(stepIndex) {
+  if (panelIndex > stepIndex) return 1;
+  if (panelIndex < stepIndex) return 0;
+  if (stepIndex === 1) {
+    const filledCount = metaFields.filter((field) => field.value.trim().length > 0).length;
+    const totalUnits = metaFields.length + 1;
+    return (filledCount + 1) / totalUnits;
+  }
+  if (stepIndex === 2) {
+    let units = 1;
+    if (hasRawText()) units += 1;
+    if (textStepIndex >= 1) units += 1;
+    if (textStepIndex >= 2) units += 1;
+    return units / 4;
+  }
+  return 0;
 }
 
 function handleBack() {
@@ -247,6 +291,7 @@ rawExcerpt.addEventListener("input", () => {
   if (textStepIndex === 1) updateJoinLinesHint();
   if (textStepIndex === 2) updatePreview();
   updateNavState();
+  updateProgressFill();
 });
 
 joinLinesBtn.addEventListener("click", joinLines);
@@ -263,7 +308,10 @@ paraInsertBtn.addEventListener("click", insertParagraphBreak);
 document.querySelectorAll(".metaGrid input, .metaGrid textarea").forEach((field) => {
   field.addEventListener("focus", updateMetaHint);
   field.addEventListener("mouseenter", updateMetaHint);
-  field.addEventListener("input", updateNavState);
+  field.addEventListener("input", () => {
+    updateNavState();
+    updateProgressFill();
+  });
 });
 
 showPanel(0);
