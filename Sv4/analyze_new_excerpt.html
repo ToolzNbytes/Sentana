@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Analyze New Excerpt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="structure_display_v4.css">
+  <link rel="stylesheet" href="analyze_new_excerpt.css">
+</head>
+
+<body>
+<header class="topbar">
+  <div class="leftControls">
+    <button class="topIconBtn" id="headerBackBtn" title="Back to explorer" aria-label="Back to explorer">
+      <svg class="icon" aria-hidden="true"><use href="../icons/exit_left.svg#icon"></use></svg>
+    </button>
+  </div>
+
+  <div class="titleWrap">
+    <span class="titleMain">Analyze New Excerpt</span>
+    <span class="titleSub">Guided wizard for structuring and tagging</span>
+  </div>
+</header>
+
+<main class="workspaces wizardWrap">
+  <section class="workspace wizard">
+    <div class="pageSection wizardSection">
+      <div class="wizardHeader">
+        <div class="wizardTitle">Excerpt Wizard</div>
+        <div class="wizardProgress" id="wizardProgress">Step 1 of 9</div>
+      </div>
+
+      <div class="wizardSteps" aria-label="Wizard steps">
+        <div class="wizardStep isActive" data-step="1">1. Welcome</div>
+        <div class="wizardStep" data-step="2">2. Metadata</div>
+        <div class="wizardStep" data-step="3">3. Text input</div>
+        <div class="wizardStep isDisabled" data-step="4">4. Sentence split</div>
+        <div class="wizardStep isDisabled" data-step="5">5. Structure</div>
+        <div class="wizardStep isDisabled" data-step="6">6. Tagging</div>
+        <div class="wizardStep isDisabled" data-step="7">7. Notes</div>
+        <div class="wizardStep isDisabled" data-step="8">8. Checks</div>
+        <div class="wizardStep isDisabled" data-step="9">9. Store</div>
+      </div>
+
+      <div class="wizardStatus" id="wizardStatus" aria-live="polite">Ready.</div>
+
+      <section class="wizardPanel isActive" data-panel="0">
+        <div class="panelTitle">Welcome</div>
+        <p class="panelLead">
+          This wizard helps you transform a raw excerpt into a fully analyzed entry:
+          structure notation, tags, and optional notes. We will go step by step to keep
+          it clear and repeatable.
+        </p>
+        <div class="panelCard">
+          <div class="panelCardTitle">What you will produce</div>
+          <ul class="panelList">
+            <li>Cleaned excerpt text with reliable paragraph boundaries.</li>
+            <li>Per-sentence structural splits ready for tagging.</li>
+            <li>Tags and notes consistent with the Sentana registry.</li>
+          </ul>
+        </div>
+        <div class="panelHint">
+          Tip: You can move back at any time without losing your current work.
+        </div>
+      </section>
+
+      <section class="wizardPanel" data-panel="1">
+        <div class="panelTitle">Excerpt metadata</div>
+        <div class="metaLayout">
+          <div class="metaGrid" aria-label="Metadata fields">
+            <label class="field">
+              <span>Work * (Title)</span>
+              <input id="fWork" type="text" autocomplete="off"
+                     data-hint-title="Work (Title)"
+                     data-hint-body="The title as it should appear in the corpus. Required for sorting and display."/>
+            </label>
+
+            <label class="field">
+              <span>Author *</span>
+              <input id="fAuthor" type="text" autocomplete="off"
+                     data-hint-title="Author"
+                     data-hint-body="Author name used in filters and in the main explorer. Required."/>
+            </label>
+
+            <label class="field">
+              <span>Year(s) of writing</span>
+              <input id="fYear" type="text" autocomplete="off"
+                     data-hint-title="Year(s) of writing"
+                     data-hint-body="Year or range (e.g., 1897-1901). Helps historical sorting."/>
+            </label>
+
+            <label class="field">
+              <span>Choice - What part from where</span>
+              <input id="fChoice" type="text" autocomplete="off"
+                     data-hint-title="Choice"
+                     data-hint-body="Where the excerpt comes from: chapter, scene, page, or section."/>
+            </label>
+
+            <label class="field">
+              <span>Language (ISO)</span>
+              <input id="fLanguage" type="text" autocomplete="off"
+                     data-hint-title="Language (ISO)"
+                     data-hint-body="Language code like en, fr, es. Prefer ISO 639-1 when possible."/>
+            </label>
+
+            <label class="field">
+              <span>Tags</span>
+              <input id="fTags" type="text" autocomplete="off"
+                     data-hint-title="Tags"
+                     data-hint-body="Comma-separated tags for themes, genre, voice, or style. Optional."/>
+            </label>
+
+            <label class="field fieldFull">
+              <span>Entry comment</span>
+              <textarea id="fComment" rows="2"
+                        data-hint-title="Entry comment"
+                        data-hint-body="Optional note about this excerpt or your analysis choices."></textarea>
+            </label>
+          </div>
+
+          <aside class="metaHint" aria-live="polite">
+            <div class="metaHintTitle" id="metaHintTitle">Work (Title)</div>
+            <div class="metaHintBody" id="metaHintBody">
+              The title as it should appear in the corpus. Required for sorting and display.
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="wizardPanel" data-panel="2">
+        <div class="panelTitle">Text input</div>
+        <div class="textStepHeader">
+          <div class="textStepLabel" id="textStepLabel">Step 1 of 3 - Paste the raw excerpt</div>
+          <div class="textStepNote">Use the next button to move through the three text preparation steps.</div>
+        </div>
+
+        <textarea class="textArea" id="rawExcerpt" spellcheck="false" placeholder="Paste the raw excerpt text here..."></textarea>
+
+        <div class="textSteps">
+          <div class="textStep isActive" data-step="0">
+            <div class="panelHint">
+              Paste the excerpt as-is. Do not worry about hard line breaks yet; we will fix them next.
+            </div>
+          </div>
+
+          <div class="textStep" data-step="1">
+            <div class="joinLinesRow">
+              <button class="wizardActionBtn" id="joinLinesBtn" type="button">Join lines</button>
+              <span class="joinLinesMsg" id="joinLinesMsg">Paste text to check line breaks.</span>
+            </div>
+            <div class="panelHint">
+              If the source had hard-wrapped lines (like in PDFs), joining lines restores
+              the original paragraph flow.
+            </div>
+          </div>
+
+          <div class="textStep" data-step="2">
+            <div class="panelHint">
+              Paragraphs should match the original work. Please confirm boundaries manually.
+              The preview below separates paragraphs and indents the first line to help you check.
+            </div>
+
+            <div class="paraTools">
+              <input id="paraSearchInput" type="text" placeholder="Find a few words..." aria-label="Search for words in excerpt"/>
+              <button class="wizardActionBtn" id="paraNextBtn" type="button">Next</button>
+              <button class="wizardActionBtn ghost" id="paraInsertBtn" type="button">Parag</button>
+              <span class="paraSearchMsg" id="paraSearchMsg">Search for a phrase to navigate the text.</span>
+            </div>
+
+            <div class="paraPreview" id="paraPreview" aria-label="Paragraph preview"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="wizardNav">
+      <button class="wizardNavBtn" id="backBtn" type="button">Back</button>
+      <button class="wizardNavBtn primary" id="nextBtn" type="button">Next</button>
+    </div>
+  </section>
+</main>
+
+<script src="sse_common.js"></script>
+<script src="tag_registry.js"></script>
+<script src="analyze_new_excerpt.js"></script>
+</body>
+</html>
