@@ -38,7 +38,7 @@
           <div class="progressTrack"><span class="progressFill"></span></div>
           <div class="progressLabel">Sentence split</div>
         </div>
-        <div class="progressStep isDisabled" data-step="5">
+        <div class="progressStep" data-step="5">
           <div class="progressTrack"><span class="progressFill"></span></div>
           <div class="progressLabel">Structures</div>
         </div>
@@ -203,6 +203,55 @@
             <div class="splitPreview" id="sentenceSplitPreview" aria-label="Sentence split preview"></div>
           </div>
         </div>
+      </section>
+
+      <section class="wizardPanel" data-panel="4">
+        <div class="panelTitleRow panelTitleRowSplit">
+          <div class="panelTitleBlock">
+            <div class="panelTitleText">Structures</div>
+            <div class="panelTitleMeta">
+              <span id="structureCounter">Sentence 0 of 0</span>
+              <span class="structureNavStatus" id="structureNavStatus">Sentence navigation</span>
+            </div>
+          </div>
+          <div class="structureNav">
+            <button class="wizardActionBtn structureNavBtn" id="prevSentenceBtn" type="button" aria-label="Previous sentence">↑</button>
+            <button class="wizardActionBtn structureNavBtn" id="nextSentenceBtn" type="button" aria-label="Next sentence">↓</button>
+          </div>
+        </div>
+
+        <div class="sentenceContext">
+          <div class="sentenceContextItem isPrev" id="prevSentenceDisplay" hidden>
+            <div class="sentenceContextText"></div>
+            <button class="wizardActionBtn" id="fusePrevBtn" type="button">Fuse</button>
+          </div>
+          <div class="sentenceContextMain" id="currentSentenceDisplay"></div>
+          <div class="sentenceContextItem isNext" id="nextSentenceDisplay" hidden>
+            <div class="sentenceContextText"></div>
+            <button class="wizardActionBtn" id="fuseNextBtn" type="button">Fuse</button>
+          </div>
+          <div class="sentenceContextActions">
+            <button class="wizardActionBtn ghost" id="togglePrevContextBtn" type="button">Show previous</button>
+            <button class="wizardActionBtn ghost" id="toggleNextContextBtn" type="button">Show following</button>
+          </div>
+        </div>
+
+        <div class="structureWorkspace">
+          <div class="structureSentenceTools">
+            <div class="structureSentenceRow">
+              <span class="structureCommentLabel">Sentence comment</span>
+              <label class="structureToggle">
+                <input id="sentenceDialogueToggle" type="checkbox"/>
+                Dialogue (sentence root)
+              </label>
+            </div>
+            <textarea id="sentenceComment" rows="1"></textarea>
+          </div>
+
+          <div class="structureTable" id="structureTable" role="table" aria-label="Structure workspace"></div>
+        </div>
+
+        <div class="structurePending" id="structurePendingStatus">Pending definitions.</div>
       </section>
     </div>
 

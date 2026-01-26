@@ -17,6 +17,21 @@ const paraInsertBtn = document.getElementById("paraInsertBtn");
 const paraSearchMsg = document.getElementById("paraSearchMsg");
 const sentenceSplitInput = document.getElementById("sentenceSplitInput");
 const sentenceSplitPreview = document.getElementById("sentenceSplitPreview");
+const structureCounter = document.getElementById("structureCounter");
+const prevSentenceBtn = document.getElementById("prevSentenceBtn");
+const nextSentenceBtn = document.getElementById("nextSentenceBtn");
+const structureNavStatus = document.getElementById("structureNavStatus");
+const currentSentenceDisplay = document.getElementById("currentSentenceDisplay");
+const togglePrevContextBtn = document.getElementById("togglePrevContextBtn");
+const toggleNextContextBtn = document.getElementById("toggleNextContextBtn");
+const prevSentenceDisplay = document.getElementById("prevSentenceDisplay");
+const nextSentenceDisplay = document.getElementById("nextSentenceDisplay");
+const fusePrevBtn = document.getElementById("fusePrevBtn");
+const fuseNextBtn = document.getElementById("fuseNextBtn");
+const sentenceDialogueToggle = document.getElementById("sentenceDialogueToggle");
+const sentenceComment = document.getElementById("sentenceComment");
+const structureTable = document.getElementById("structureTable");
+const structurePendingStatus = document.getElementById("structurePendingStatus");
 
 const metaHintTitle = document.getElementById("metaHintTitle");
 const metaHintBody = document.getElementById("metaHintBody");
@@ -39,6 +54,10 @@ let sourceLocked = false;
 let splitReady = false;
 let splitTextWorking = "";
 let sentenceEntries = [];
+let sentenceIndex = 0;
+let showPrevContext = false;
+let showNextContext = false;
+let wordMenuState = null;
 
 function setStatus(message) {
   wizardStatus.textContent = message;
@@ -61,6 +80,9 @@ function showPanel(index) {
   }
   if (panelIndex === 3) {
     initializeSentenceSplit();
+  }
+  if (panelIndex === 4) {
+    showStructuresPanel();
   }
   updateNavState();
   updateProgressFill();
@@ -233,6 +255,10 @@ function updateNavState() {
     nextBtn.disabled = !hasRequiredMetadata();
     return;
   }
+  if (panelIndex === 4) {
+    nextBtn.disabled = !allSentencesDone();
+    return;
+  }
   nextBtn.disabled = false;
 }
 
@@ -265,6 +291,12 @@ function computeStepFill(stepIndex) {
   if (stepIndex === 3) {
     return panelIndex >= 4 ? 1 : 0.5;
   }
+  if (stepIndex === 4) {
+    const total = sentenceEntries.length;
+    if (!total) return 0;
+    const doneCount = sentenceEntries.filter((entry) => entry.done).length;
+    return doneCount / total;
+  }
   return 0;
 }
 
@@ -292,6 +324,7 @@ function handleNext() {
   }
   if (panelIndex === 3) {
     sentenceEntries = collectSentenceEntries(sentenceSplitInput.value);
+    initializeSentenceEntries();
     showPanel(4);
     return;
   }
@@ -433,6 +466,51 @@ sentenceSplitInput.addEventListener("input", () => {
   renderSplitPreview(splitTextWorking);
 });
 
+prevSentenceBtn.addEventListener("click", () => moveSentence(-1));
+nextSentenceBtn.addEventListener("click", () => moveSentence(1));
+togglePrevContextBtn.addEventListener("click", () => toggleContext("prev"));
+toggleNextContextBtn.addEventListener("click", () => toggleContext("next"));
+fusePrevBtn.addEventListener("click", () => fuseWithContext("prev"));
+fuseNextBtn.addEventListener("click", () => fuseWithContext("next"));
+sentenceDialogueToggle.addEventListener("change", () => {
+  const entry = getCurrentEntry();
+  if (!entry) return;
+  entry.structure.dialogue = sentenceDialogueToggle.checked;
+  if (entry.structure.dialogue) {
+    entry.structure.lines.forEach((line) => { line.dialogue = false; });
+  }
+  renderStructureTable();
+  updateNavState();
+});
+sentenceComment.addEventListener("input", () => {
+  const entry = getCurrentEntry();
+  if (!entry) return;
+  entry.structure.comment = sentenceComment.value;
+});
+
+structureTable.addEventListener("click", (event) => {
+  const word = event.target.closest(".structureWord");
+  if (!word) return;
+  const lineIndex = Number(word.dataset.lineIndex);
+  const wordStart = Number(word.dataset.wordStart);
+  const wordEnd = Number(word.dataset.wordEnd);
+  const token = word.textContent || "";
+  openWordMenu(event.clientX, event.clientY, lineIndex, wordStart, wordEnd, token);
+});
+
+document.addEventListener("pointerdown", (event) => {
+  if (!wordMenuState) return;
+  const menu = document.getElementById("wordMenu");
+  if (!menu) return;
+  if (event.target.closest("#wordMenu")) return;
+  if (event.target.closest(".structureWord")) return;
+  closeWordMenu();
+}, true);
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closeWordMenu();
+});
+
 function collectSentenceEntries(text) {
   return text
     .split("\n")
@@ -441,6 +519,684 @@ function collectSentenceEntries(text) {
     .map((line) => ({
       text: line,
       structure: null,
+      done: false,
     }));
+}
+
+function initializeSentenceEntries() {
+  sentenceEntries.forEach((entry) => {
+    if (!entry.structure) entry.structure = null;
+    if (typeof entry.done !== "boolean") entry.done = false;
+  });
+  sentenceIndex = 0;
+}
+
+function makeLine(text, tag, level) {
+  return {
+    text: text || "",
+    tag,
+    level,
+    forward: false,
+    dialogue: false
+  };
+}
+
+function showStructuresPanel() {
+  if (!sentenceEntries.length) {
+    structureCounter.textContent = "Sentence 0 of 0";
+    structureNavStatus.textContent = "No sentences available yet.";
+    currentSentenceDisplay.textContent = "";
+    structureTable.innerHTML = "<div class=\"panelHint\">Add sentences in the previous step.</div>";
+    structurePendingStatus.textContent = "";
+    updateStructuresProgressLabel();
+    return;
+  }
+  closeWordMenu();
+  sentenceIndex = Math.max(0, Math.min(sentenceIndex, sentenceEntries.length - 1));
+  updateStructuresProgressLabel();
+  renderStructuresPanel();
+}
+
+function renderStructuresPanel() {
+  const entry = getCurrentEntry();
+  if (!entry) return;
+  ensureEntryStructure(entry);
+  structureCounter.textContent = `Sentence ${sentenceIndex + 1} of ${sentenceEntries.length}`;
+  structureNavStatus.textContent = entry.done ? "Marked as done." : "Pending structure details.";
+  updateStructuresProgressLabel();
+  renderSentenceContext();
+  renderStructureTable();
+  updateSplitTextFromSentences();
+  updateProgressFill();
+  updateNavState();
+}
+
+function renderSentenceContext() {
+  const entry = getCurrentEntry();
+  if (!entry) return;
+  currentSentenceDisplay.textContent = entry.text;
+
+  const hasPrev = sentenceIndex > 0;
+  const hasNext = sentenceIndex < sentenceEntries.length - 1;
+  prevSentenceBtn.disabled = !hasPrev;
+  nextSentenceBtn.disabled = !hasNext;
+  togglePrevContextBtn.disabled = !hasPrev;
+  toggleNextContextBtn.disabled = !hasNext;
+
+  togglePrevContextBtn.textContent = showPrevContext ? "Hide previous" : "Show previous";
+  toggleNextContextBtn.textContent = showNextContext ? "Hide following" : "Show following";
+
+  const showPrev = showPrevContext && hasPrev;
+  const showNext = showNextContext && hasNext;
+  prevSentenceDisplay.hidden = !showPrev;
+  nextSentenceDisplay.hidden = !showNext;
+  if (showPrev) {
+    prevSentenceDisplay.querySelector(".sentenceContextText").textContent = sentenceEntries[sentenceIndex - 1].text;
+  } else {
+    prevSentenceDisplay.querySelector(".sentenceContextText").textContent = "";
+  }
+  if (showNext) {
+    nextSentenceDisplay.querySelector(".sentenceContextText").textContent = sentenceEntries[sentenceIndex + 1].text;
+  } else {
+    nextSentenceDisplay.querySelector(".sentenceContextText").textContent = "";
+  }
+
+  fusePrevBtn.style.display = showPrev ? "inline-flex" : "none";
+  fuseNextBtn.style.display = showNext ? "inline-flex" : "none";
+}
+
+function renderStructureTable() {
+  const entry = getCurrentEntry();
+  if (!entry) return;
+  ensureEntryStructure(entry);
+  structureTable.innerHTML = "";
+  sentenceDialogueToggle.checked = Boolean(entry.structure.dialogue);
+  sentenceComment.value = entry.structure.comment || "";
+
+  entry.structure.lines.forEach((line, index) => {
+    const row = document.createElement("div");
+    row.className = "structureRow";
+    row.dataset.lineIndex = index;
+
+    const textCell = document.createElement("div");
+    textCell.className = "structureCell structureTextCell";
+    textCell.style.paddingLeft = `${10 + Math.max(0, line.level - 1) * 18}px`;
+
+    const textNodes = buildWordNodes(line.text, index);
+    textNodes.forEach((node) => textCell.appendChild(node));
+
+    const controlsCell = document.createElement("div");
+    controlsCell.className = "structureCell structureControls";
+    const tagRow = document.createElement("div");
+    tagRow.className = "structureControlRow structureControlRowTight";
+    tagRow.appendChild(buildTagSelect(line, index));
+    const dialogueWrap = buildDialogueToggle(entry, line);
+    if (dialogueWrap) tagRow.appendChild(dialogueWrap);
+    controlsCell.appendChild(tagRow);
+
+    const toggleRow = document.createElement("div");
+    toggleRow.className = "structureControlRow";
+
+    const forwardWrap = buildForwardToggle(line);
+    if (forwardWrap) toggleRow.appendChild(forwardWrap);
+    controlsCell.appendChild(toggleRow);
+
+    const actionRow = document.createElement("div");
+    actionRow.className = "structureControlRow";
+    const unindentBtn = document.createElement("button");
+    unindentBtn.className = "wizardActionBtn structureIndentBtn";
+    unindentBtn.type = "button";
+    unindentBtn.textContent = "←";
+    unindentBtn.disabled = !canUnindent(line);
+    unindentBtn.addEventListener("click", () => {
+      line.level = Math.max(1, line.level - 1);
+      normalizeLineLevel(entry, index);
+      renderStructureTable();
+      updateSentenceDone(entry);
+      updateProgressFill();
+    });
+
+    const indentBtn = document.createElement("button");
+    indentBtn.className = "wizardActionBtn structureIndentBtn";
+    indentBtn.type = "button";
+    indentBtn.textContent = "→";
+    indentBtn.disabled = !canIndent(entry, index);
+    indentBtn.addEventListener("click", () => {
+      line.level = line.level + 1;
+      normalizeLineLevel(entry, index);
+      renderStructureTable();
+      updateSentenceDone(entry);
+      updateProgressFill();
+    });
+
+    const splitBtn = document.createElement("button");
+    splitBtn.className = "wizardActionBtn";
+    splitBtn.type = "button";
+    splitBtn.textContent = "Split";
+    splitBtn.style.display = index === 0 ? "none" : "inline-flex";
+    splitBtn.addEventListener("click", () => splitSentenceAtLine(index));
+
+    actionRow.appendChild(unindentBtn);
+    actionRow.appendChild(indentBtn);
+    actionRow.appendChild(splitBtn);
+    controlsCell.appendChild(actionRow);
+
+    const hintCell = document.createElement("div");
+    hintCell.className = "structureCell structureHint";
+    hintCell.textContent = buildTagHint(entry, index);
+
+    row.appendChild(controlsCell);
+    row.appendChild(textCell);
+    row.appendChild(hintCell);
+    structureTable.appendChild(row);
+  });
+
+  updateSentenceDone(entry);
+  updatePendingStatus(entry);
+}
+
+function buildTagSelect(line, index) {
+  const select = document.createElement("select");
+  const options = getTagOptions(index);
+  options.forEach((tag) => {
+    const opt = document.createElement("option");
+    opt.value = tag;
+    opt.textContent = tag;
+    select.appendChild(opt);
+  });
+  select.value = line.tag;
+  select.addEventListener("change", () => {
+    const entry = getCurrentEntry();
+    const prevTag = line.tag;
+    line.tag = select.value;
+    handleTagChange(entry, index, prevTag, line.tag);
+    renderStructureTable();
+    updateSentenceDone(entry);
+    updateStructuresProgressLabel();
+    updateProgressFill();
+    updateNavState();
+  });
+  return select;
+}
+
+function buildForwardToggle(line) {
+  const forwardAllowed = ["DC", "PP", "AP"].includes(line.tag);
+  if (!forwardAllowed) {
+    line.forward = false;
+    return null;
+  }
+  const forwardWrap = document.createElement("label");
+  forwardWrap.className = "structureControlRow";
+  const forwardToggle = document.createElement("input");
+  forwardToggle.type = "checkbox";
+  forwardToggle.checked = Boolean(line.forward);
+  forwardToggle.addEventListener("change", () => {
+    line.forward = forwardToggle.checked;
+  });
+  forwardWrap.appendChild(forwardToggle);
+  forwardWrap.appendChild(document.createTextNode("Forward"));
+  return forwardWrap;
+}
+
+function buildDialogueToggle(entry, line) {
+  const dialogueAllowed = ["IC", "FG"].includes(line.tag) && !entry.structure.dialogue;
+  if (!dialogueAllowed) {
+    line.dialogue = false;
+    return null;
+  }
+  const dialogueWrap = document.createElement("label");
+  dialogueWrap.className = "structureControlRow";
+  const dialogueToggle = document.createElement("input");
+  dialogueToggle.type = "checkbox";
+  dialogueToggle.checked = Boolean(line.dialogue);
+  dialogueToggle.addEventListener("change", () => {
+    line.dialogue = dialogueToggle.checked;
+  });
+  dialogueWrap.appendChild(dialogueToggle);
+  dialogueWrap.appendChild(document.createTextNode("Dlg"));
+  return dialogueWrap;
+}
+
+function getTagOptions(index) {
+  if (index === 0) return ["IC", "FG", "??"];
+  return ["??", "--", "IC", "FG", "DC", "PP", "AP", "CP", "AT"];
+}
+
+function handleTagChange(entry, index, prevTag, nextTag) {
+  const line = entry.structure.lines[index];
+  if (!line) return;
+  if (index === 0) {
+    line.level = 1;
+    line.forward = false;
+    return;
+  }
+  if (prevTag === "??" || prevTag === "--") {
+    if (nextTag === "CP" || nextTag === "--") {
+      line.level = getParentLevel(entry, index);
+    } else {
+      line.level = getParentLevel(entry, index) + 1;
+    }
+    return;
+  }
+  if (prevTag !== "CP" && nextTag === "CP") {
+    line.level = getParentLevel(entry, index);
+  }
+  if (prevTag === "CP" && nextTag !== "CP") {
+    line.level = getParentLevel(entry, index) + 1;
+  }
+  if (nextTag !== "DC" && nextTag !== "PP" && nextTag !== "AP") {
+    line.forward = false;
+  }
+}
+
+function getParentLevel(entry, index) {
+  const prev = entry.structure.lines[index - 1];
+  return prev ? prev.level : 1;
+}
+
+function buildTagHint(entry, index) {
+  const line = entry.structure.lines[index];
+  if (!line) return "";
+  if (line.tag === "??") return "Define the type of the sentence part/clause.";
+  if (line.tag === "--") {
+    const ref = findPreviousTagAtLevel(entry, index, line.level);
+    return ref ? `Continuation of ${ref}.` : "Continuation.";
+  }
+  const label = window.SSE_APP?.tags?.getLabel ? window.SSE_APP.tags.getLabel(line.tag) : "";
+  return label || "Define the clause type.";
+}
+
+function findPreviousTagAtLevel(entry, index, level) {
+  for (let i = index - 1; i >= 0; i--) {
+    const line = entry.structure.lines[i];
+    if (line.level === level && line.tag && line.tag !== "--" && line.tag !== "??") {
+      return line.tag;
+    }
+  }
+  return "";
+}
+
+function buildWordNodes(text, lineIndex) {
+  const nodes = [];
+  const raw = String(text || "");
+  let lastIndex = 0;
+  const re = /\S+/g;
+  let match;
+  while ((match = re.exec(raw)) !== null) {
+    if (match.index > lastIndex) {
+      nodes.push(document.createTextNode(raw.slice(lastIndex, match.index)));
+    }
+    const span = document.createElement("span");
+    span.className = "structureWord";
+    span.textContent = match[0];
+    span.dataset.lineIndex = lineIndex;
+    span.dataset.wordStart = String(match.index);
+    span.dataset.wordEnd = String(match.index + match[0].length);
+    nodes.push(span);
+    lastIndex = match.index + match[0].length;
+  }
+  if (lastIndex < raw.length) {
+    nodes.push(document.createTextNode(raw.slice(lastIndex)));
+  }
+  return nodes;
+}
+
+function updatePendingStatus(entry) {
+  const pending = entry.structure.lines.filter((line) => line.tag === "??").length;
+  const { noneDefined, pendingCount, doneCount, total } = getStructureSummary();
+  if (pending === 0) {
+    if (doneCount === total && total > 0) {
+      structurePendingStatus.textContent = "Current sentence done? / Excerpt structures done?";
+    } else {
+      structurePendingStatus.textContent = `Current sentence done? / Excerpt: ${noneDefined} sentences have no structure defined at all, ${pendingCount} have pending structure.`;
+    }
+    return;
+  }
+  structurePendingStatus.textContent = `Current sentence: ${pending} line(s) tagged ?? / Excerpt: ${noneDefined} sentences have no structure defined at all, ${pendingCount} have pending structure.`;
+}
+
+function updateSentenceDone(entry) {
+  entry.done = entry.structure.lines.every((line) => line.tag !== "??");
+}
+
+function getStructureSummary() {
+  const total = sentenceEntries.length;
+  let noneDefined = 0;
+  let pendingCount = 0;
+  let doneCount = 0;
+  sentenceEntries.forEach((entry) => {
+    if (!entry.structure || !entry.structure.lines || entry.structure.lines.length === 0) {
+      noneDefined += 1;
+      return;
+    }
+    const lines = entry.structure.lines;
+    const allUnknown = lines.every((line) => line.tag === "??");
+    if (allUnknown) {
+      noneDefined += 1;
+      return;
+    }
+    if (entry.done) {
+      doneCount += 1;
+    } else {
+      pendingCount += 1;
+    }
+  });
+  return { noneDefined, pendingCount, doneCount, total };
+}
+
+function allSentencesDone() {
+  return sentenceEntries.length > 0 && sentenceEntries.every((entry) => entry.done);
+}
+
+function getCurrentEntry() {
+  return sentenceEntries[sentenceIndex] || null;
+}
+
+function moveSentence(direction) {
+  const nextIndex = sentenceIndex + direction;
+  if (nextIndex < 0 || nextIndex >= sentenceEntries.length) return;
+  closeWordMenu();
+  sentenceIndex = nextIndex;
+  updateStructuresProgressLabel();
+  renderStructuresPanel();
+}
+
+function updateStructuresProgressLabel() {
+  const step = progressSteps[3];
+  if (!step) return;
+  const labelEl = step.querySelector(".progressLabel");
+  const total = sentenceEntries.length;
+  const doneCount = sentenceEntries.filter((entry) => entry.done).length;
+  labelEl.textContent = total ? `Structures ${doneCount}/${total}` : "Structures";
+}
+
+function toggleContext(which) {
+  if (which === "prev") {
+    showPrevContext = !showPrevContext;
+  } else {
+    showNextContext = !showNextContext;
+  }
+  renderSentenceContext();
+}
+
+function fuseWithContext(which) {
+  const entry = getCurrentEntry();
+  if (!entry) return;
+  if (which === "prev") {
+    if (sentenceIndex === 0) return;
+    if (!window.confirm("Fuse the current sentence with the previous one?")) return;
+    const merged = mergeEntries(sentenceEntries[sentenceIndex - 1], entry);
+    sentenceEntries.splice(sentenceIndex - 1, 2, merged);
+    sentenceIndex = sentenceIndex - 1;
+  } else {
+    if (sentenceIndex >= sentenceEntries.length - 1) return;
+    if (!window.confirm("Fuse the current sentence with the following one?")) return;
+    const merged = mergeEntries(entry, sentenceEntries[sentenceIndex + 1]);
+    sentenceEntries.splice(sentenceIndex, 2, merged);
+  }
+  showPrevContext = false;
+  showNextContext = false;
+  updateStructuresProgressLabel();
+  renderStructuresPanel();
+}
+
+function mergeEntries(left, right) {
+  const merged = {
+    text: mergeTexts(left.text, right.text),
+    structure: {
+      lines: mergeLines(left.structure.lines, right.structure.lines),
+      dialogue: left.structure.dialogue || right.structure.dialogue,
+      comment: [left.structure.comment, right.structure.comment].filter(Boolean).join(" ")
+    },
+    done: false
+  };
+  updateSentenceDone(merged);
+  return merged;
+}
+
+function mergeLines(leftLines, rightLines) {
+  const rightCopy = rightLines.map((line, idx) => {
+    const text = idx === 0 ? String(line.text || "").replace(/^\s+/, "") : line.text;
+    return { ...line, text };
+  });
+  return [...leftLines, ...rightCopy];
+}
+
+function mergeTexts(left, right) {
+  const leadMatch = String(left || "").match(/^\s+/);
+  const lead = leadMatch ? leadMatch[0] : "";
+  const leftTrim = String(left || "").trim();
+  const rightTrim = String(right || "").trim();
+  const core = [leftTrim, rightTrim].filter(Boolean).join(" ");
+  return lead + core;
+}
+
+function splitSentenceAtLine(lineIndex) {
+  const entry = getCurrentEntry();
+  if (!entry) return;
+  ensureEntryStructure(entry);
+  if (!window.confirm("Split this sentence at the selected line?")) return;
+  const firstLines = entry.structure.lines.slice(0, lineIndex);
+  const secondLines = entry.structure.lines.slice(lineIndex).map((line) => ({
+    ...line,
+    tag: "??",
+    level: 1,
+    forward: false,
+    dialogue: false
+  }));
+  const firstEntry = {
+    text: joinSentenceLines(firstLines),
+    structure: {
+      lines: firstLines,
+      dialogue: entry.structure.dialogue,
+      comment: entry.structure.comment
+    },
+    done: false
+  };
+  const secondEntry = {
+    text: joinSentenceLines(secondLines),
+    structure: {
+      lines: secondLines,
+      dialogue: false,
+      comment: ""
+    },
+    done: false
+  };
+  updateSentenceDone(firstEntry);
+  updateSentenceDone(secondEntry);
+  sentenceEntries.splice(sentenceIndex, 1, firstEntry, secondEntry);
+  sentenceIndex = sentenceIndex;
+  showPrevContext = false;
+  showNextContext = false;
+  updateStructuresProgressLabel();
+  renderStructuresPanel();
+}
+
+function joinSentenceLines(lines) {
+  let out = "";
+  lines.forEach((line) => {
+    const seg = line.text || "";
+    if (!seg) return;
+    if (!out) {
+      out = seg;
+      return;
+    }
+    if (/\s$/.test(out) || /^\s/.test(seg)) {
+      out += seg;
+    } else {
+      out += " " + seg;
+    }
+  });
+  return out;
+}
+
+function updateSplitTextFromSentences() {
+  if (!sentenceEntries.length) return;
+  splitTextWorking = sentenceEntries.map((entry) => entry.text).join("\n");
+  if (sentenceSplitInput) {
+    sentenceSplitInput.value = splitTextWorking;
+    renderSplitPreview(splitTextWorking);
+  }
+}
+
+function canUnindent(line) {
+  if (line.level > 2) return true;
+  if (line.level === 2) {
+    return ["IC", "FG", "--", "??"].includes(line.tag);
+  }
+  return false;
+}
+
+function canIndent(entry, index) {
+  if (index === 0) return false;
+  const line = entry.structure.lines[index];
+  const prev = entry.structure.lines[index - 1];
+  if (!prev) return false;
+  if (line.tag === "--" && line.level > prev.level) return false;
+  return line.level <= prev.level;
+}
+
+function normalizeLineLevel(entry, index) {
+  const line = entry.structure.lines[index];
+  if (!line) return;
+  if (index === 0) {
+    line.level = 1;
+    return;
+  }
+  const prev = entry.structure.lines[index - 1];
+  if (!prev) return;
+  const maxLevel = prev.level + 1;
+  if (line.level > maxLevel) line.level = maxLevel;
+  if (line.level < 1) line.level = 1;
+}
+
+function openWordMenu(x, y, lineIndex, wordStart, wordEnd, token) {
+  const entry = getCurrentEntry();
+  if (!entry) return;
+  ensureEntryStructure(entry);
+  const line = entry.structure.lines[lineIndex];
+  if (!line) return;
+  ensureWordMenu();
+  const menu = document.getElementById("wordMenu");
+  const beforeBtn = menu.querySelector("[data-action='before']");
+  const afterBtn = menu.querySelector("[data-action='after']");
+  const cancelBtn = menu.querySelector("[data-action='cancel']");
+  beforeBtn.textContent = `New clause before ${token}`;
+  afterBtn.textContent = `New clause after ${token}`;
+
+  const text = String(line.text || "");
+  const beforeIndex = findBeforeSplitIndex(text, wordStart);
+  const afterIndex = wordEnd;
+  const prevEmpty = lineIndex > 0 && entry.structure.lines[lineIndex - 1].text.trim().length === 0;
+  const canBefore = beforeIndex >= 0;
+  const canAfter = text.slice(afterIndex).trim().length > 0;
+  beforeBtn.disabled = !canBefore || (beforeIndex === 0 && prevEmpty);
+  afterBtn.disabled = !canAfter;
+
+  beforeBtn.onclick = () => {
+    splitLineAtIndex(lineIndex, beforeIndex, "before");
+    closeWordMenu();
+  };
+  afterBtn.onclick = () => {
+    splitLineAtIndex(lineIndex, afterIndex, "after");
+    closeWordMenu();
+  };
+  cancelBtn.onclick = () => closeWordMenu();
+
+  menu.style.left = `${x + 8}px`;
+  menu.style.top = `${y + 8}px`;
+  menu.classList.remove("hidden");
+  const backdrop = document.getElementById("wordMenuBackdrop");
+  if (backdrop) backdrop.classList.remove("hidden");
+  wordMenuState = { lineIndex, wordStart, wordEnd };
+}
+
+function ensureWordMenu() {
+  let menu = document.getElementById("wordMenu");
+  if (!menu) {
+    menu = document.createElement("div");
+    menu.id = "wordMenu";
+    menu.className = "wordMenu hidden";
+    const beforeBtn = document.createElement("button");
+    beforeBtn.dataset.action = "before";
+    const afterBtn = document.createElement("button");
+    afterBtn.dataset.action = "after";
+    const cancelBtn = document.createElement("button");
+    cancelBtn.dataset.action = "cancel";
+    cancelBtn.textContent = "Cancel";
+    menu.appendChild(beforeBtn);
+    menu.appendChild(afterBtn);
+    menu.appendChild(cancelBtn);
+    document.body.appendChild(menu);
+    menu.addEventListener("click", (event) => {
+      const btn = event.target.closest("button");
+      if (!btn) return;
+      if (btn.dataset.action === "cancel") {
+        event.preventDefault();
+        closeWordMenu();
+      }
+    });
+  }
+
+  let backdrop = document.getElementById("wordMenuBackdrop");
+  if (!backdrop) {
+    backdrop = document.createElement("div");
+    backdrop.id = "wordMenuBackdrop";
+    backdrop.className = "wordMenuBackdrop hidden";
+    backdrop.addEventListener("click", () => closeWordMenu());
+    document.body.appendChild(backdrop);
+  }
+}
+
+function closeWordMenu() {
+  const menu = document.getElementById("wordMenu");
+  if (menu) menu.classList.add("hidden");
+  const backdrop = document.getElementById("wordMenuBackdrop");
+  if (backdrop) backdrop.classList.add("hidden");
+  wordMenuState = null;
+}
+
+function ensureEntryStructure(entry) {
+  if (!entry.structure || !entry.structure.lines || entry.structure.lines.length === 0) {
+    entry.structure = {
+      lines: [makeLine(entry.text, "IC", 1)],
+      dialogue: false,
+      comment: ""
+    };
+  }
+}
+
+function findBeforeSplitIndex(text, wordStart) {
+  let idx = wordStart;
+  while (idx > 0 && /\s/.test(text[idx - 1])) idx -= 1;
+  return idx;
+}
+
+function splitLineAtIndex(lineIndex, splitIndex, direction) {
+  const entry = getCurrentEntry();
+  if (!entry) return;
+  const line = entry.structure.lines[lineIndex];
+  if (!line) return;
+  const text = String(line.text || "");
+  if (splitIndex < 0 || splitIndex > text.length) return;
+  const leftText = text.slice(0, splitIndex);
+  const rightText = text.slice(splitIndex);
+  const prevEmpty = lineIndex > 0 && entry.structure.lines[lineIndex - 1].text.trim().length === 0;
+  if (direction === "before") {
+    if (leftText.trim().length === 0 && prevEmpty) return;
+    if (!rightText.trim()) return;
+    const newLine = makeLine(leftText, "??", line.level);
+    line.text = rightText;
+    entry.structure.lines.splice(lineIndex, 0, newLine);
+  } else {
+    if (!rightText.trim()) return;
+    line.text = leftText;
+    const newLine = makeLine(rightText, "??", line.level);
+    entry.structure.lines.splice(lineIndex + 1, 0, newLine);
+  }
+
+  entry.text = joinSentenceLines(entry.structure.lines);
+  updateSentenceDone(entry);
+  renderStructuresPanel();
 }
 
