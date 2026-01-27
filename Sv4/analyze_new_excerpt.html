@@ -161,6 +161,7 @@
             <div class="joinLinesRow">
               <button class="wizardActionBtn" id="joinLinesBtn" type="button">Join lines</button>
               <span class="joinLinesMsg" id="joinLinesMsg">Paste text to check line breaks.</span>
+              <span class="joinLinesFlash" id="joinLinesFlash" aria-live="polite"></span>
             </div>
             <div class="panelHint">
               If the source had hard-wrapped lines (like in PDFs), joining lines restores
@@ -225,30 +226,48 @@
             <div class="sentenceContextText"></div>
             <button class="wizardActionBtn" id="fusePrevBtn" type="button">Fuse</button>
           </div>
-          <div class="sentenceContextMain" id="currentSentenceDisplay"></div>
+          <div class="sentenceContextMain" id="currentSentenceDisplay">
+            <span class="sentenceContextMainText" id="currentSentenceText"></span>
+            <button class="wizardActionBtn" id="splitSentenceBtn" type="button">Split</button>
+          </div>
           <div class="sentenceContextItem isNext" id="nextSentenceDisplay" hidden>
             <div class="sentenceContextText"></div>
             <button class="wizardActionBtn" id="fuseNextBtn" type="button">Fuse</button>
           </div>
-          <div class="sentenceContextActions">
-            <button class="wizardActionBtn ghost" id="togglePrevContextBtn" type="button">Show previous</button>
-            <button class="wizardActionBtn ghost" id="toggleNextContextBtn" type="button">Show following</button>
+        </div>
+
+        <div class="sentenceControls">
+          <div class="sentenceToggleGroup">
+            <span class="sentenceContextLabel">Show sentence</span>
+            <label class="sentenceContextToggle">
+              <input id="togglePrevContextBtn" type="checkbox"/>
+              before
+            </label>
+            <label class="sentenceContextToggle">
+              <input id="toggleNextContextBtn" type="checkbox"/>
+              after
+            </label>
           </div>
+          <label class="sentenceContextToggle sentenceToggleGroup">
+            <input id="alwaysShowControlsToggle" type="checkbox"/>
+            Always show controls
+          </label>
+          <label class="sentenceContextToggle sentenceToggleGroup">
+            <input id="clauseHintsToggle" type="checkbox" checked/>
+            Clause hints
+          </label>
+          <label class="structureToggle sentenceDialogueInline sentenceDialogueGroup">
+            <input id="sentenceDialogueToggle" type="checkbox"/>
+            Dialogue (sentence is a line)
+          </label>
         </div>
 
         <div class="structureWorkspace">
-          <div class="structureSentenceTools">
-            <div class="structureSentenceRow">
-              <span class="structureCommentLabel">Sentence comment</span>
-              <label class="structureToggle">
-                <input id="sentenceDialogueToggle" type="checkbox"/>
-                Dialogue (sentence root)
-              </label>
-            </div>
-            <textarea id="sentenceComment" rows="1"></textarea>
-          </div>
-
           <div class="structureTable" id="structureTable" role="table" aria-label="Structure workspace"></div>
+
+          <div class="structureSentenceAdditions">
+            <textarea id="sentenceComment" rows="1" placeholder="Sentence comment"></textarea>
+          </div>
         </div>
 
         <div class="structurePending" id="structurePendingStatus">Pending definitions.</div>
@@ -261,6 +280,8 @@
     </div>
   </section>
 </main>
+
+<div class="flashOverlay hidden" id="joinLinesOverlay" aria-live="polite">Consider using Join lines.</div>
 
 <script src="sse_common.js"></script>
 <script src="tag_registry.js"></script>
