@@ -58,7 +58,6 @@ let searchIndex = 0;
 let lastFoundIndex = -1;
 let sourceText = "";
 let sourceLocked = false;
-let splitReady = false;
 let splitTextWorking = "";
 let joinLinesFlashTimer = null;
 let sentenceEntries = [];
@@ -494,7 +493,6 @@ function restoreWizardDraft(draft) {
     if (splitTextWorking) {
       sentenceSplitInput.value = splitTextWorking;
       renderSplitPreview(splitTextWorking);
-      splitReady = true;
     }
   }
   if (targetPanel === 4) {
@@ -523,7 +521,6 @@ function resetWizardState() {
   sentenceIndex = 0;
   textStepIndex = 0;
   sourceLocked = false;
-  splitReady = false;
   showPrevContext = false;
   showNextContext = false;
   if (alwaysShowControlsToggle) alwaysShowControlsToggle.checked = false;
@@ -583,7 +580,6 @@ function initializeSentenceSplit() {
   if (splitTextWorking) {
     sentenceSplitInput.value = splitTextWorking;
     renderSplitPreview(splitTextWorking);
-    splitReady = true;
     updateProgressFill();
     return;
   }
@@ -591,14 +587,12 @@ function initializeSentenceSplit() {
   if (!baseText) {
     sentenceSplitInput.value = "";
     sentenceSplitPreview.innerHTML = "<em>No text available yet.</em>";
-    splitReady = false;
     updateProgressFill();
     return;
   }
   const splitText = autoSplitSentences(baseText);
   sentenceSplitInput.value = splitText;
   splitTextWorking = splitText;
-  splitReady = true;
   renderSplitPreview(splitText);
   updateProgressFill();
 }
