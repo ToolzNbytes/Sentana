@@ -1310,29 +1310,58 @@ function buildWordNodes(text, lineIndex) {
     nodes.push(empty);
     return nodes;
   }
-  let lastIndex = 0;
-  const re = /\S+/g;
-  let match;
-  while ((match = re.exec(raw)) !== null) {
-    let spanStart = match.index;
+  let i = 0;
+  while (i < raw.length) {
+    if (/\s/.test(raw[i])) {
+      i += 1;
+      continue;
+    }
+    const tokenStart = i;
+    let tokenEnd = i + 1;
+    while (tokenEnd < raw.length && !/\s/.test(raw[tokenEnd])) tokenEnd += 1;
+
+    let spanStart = tokenStart;
     while (spanStart > 0 && /\s/.test(raw[spanStart - 1])) spanStart -= 1;
-    if (spanStart > 0 && raw[spanStart - 1] === "—" && !/\s/.test(raw[spanStart - 2] || "")) {
-      spanStart -= 1;
+
+    const segment = raw.slice(tokenStart, tokenEnd);
+    const dashIndexes = [];
+    for (let k = 0; k < segment.length; k++) {
+      if (segment[k] === "—") dashIndexes.push(k);
     }
-    if (spanStart > lastIndex) {
-      nodes.push(document.createTextNode(raw.slice(lastIndex, spanStart)));
+
+    if (dashIndexes.length === 0) {
+      const span = document.createElement("span");
+      span.className = "structureWord";
+      span.textContent = raw.slice(spanStart, tokenEnd);
+      span.dataset.lineIndex = lineIndex;
+      span.dataset.wordStart = String(spanStart);
+      span.dataset.wordEnd = String(tokenEnd);
+      nodes.push(span);
+    } else {
+      let partStart = spanStart;
+      let absoluteDash = tokenStart + dashIndexes[0];
+      if (partStart < absoluteDash) {
+        const span = document.createElement("span");
+        span.className = "structureWord";
+        span.textContent = raw.slice(partStart, absoluteDash);
+        span.dataset.lineIndex = lineIndex;
+        span.dataset.wordStart = String(partStart);
+        span.dataset.wordEnd = String(absoluteDash);
+        nodes.push(span);
+      }
+      for (let d = 0; d < dashIndexes.length; d++) {
+        const dashPos = tokenStart + dashIndexes[d];
+        const nextDashPos = d + 1 < dashIndexes.length ? tokenStart + dashIndexes[d + 1] : tokenEnd;
+        const span = document.createElement("span");
+        span.className = "structureWord";
+        span.textContent = raw.slice(dashPos, nextDashPos);
+        span.dataset.lineIndex = lineIndex;
+        span.dataset.wordStart = String(dashPos);
+        span.dataset.wordEnd = String(nextDashPos);
+        nodes.push(span);
+      }
     }
-    const span = document.createElement("span");
-    span.className = "structureWord";
-    span.textContent = raw.slice(spanStart, match.index + match[0].length);
-    span.dataset.lineIndex = lineIndex;
-    span.dataset.wordStart = String(spanStart);
-    span.dataset.wordEnd = String(match.index + match[0].length);
-    nodes.push(span);
-    lastIndex = match.index + match[0].length;
-  }
-  if (lastIndex < raw.length) {
-    nodes.push(document.createTextNode(raw.slice(lastIndex)));
+    i = tokenEnd;
   }
   return nodes;
 }
@@ -1675,6 +1704,25 @@ function openWordMenu(x, y, lineIndex, wordStart, wordEnd, token) {
   const backdrop = document.getElementById("wordMenuBackdrop");
   if (backdrop) backdrop.classList.remove("hidden");
   wordMenuState = { lineIndex, wordStart, wordEnd };
+
+  requestAnimationFrame(() => {
+    const rect = menu.getBoundingClientRect();
+    const pad = 8;
+    const midpoint = window.innerWidth / 2;
+    let nextX;
+    if (x < midpoint) {
+      nextX = x + pad;
+    } else {
+      nextX = x - rect.width - pad;
+    }
+    const maxX = window.scrollX + window.innerWidth - rect.width - pad;
+    const minX = window.scrollX + pad;
+    const maxY = window.scrollY + window.innerHeight - rect.height - pad;
+    const minY = window.scrollY + pad;
+    const nextY = Math.max(minY, Math.min(window.scrollY + y, maxY));
+    menu.style.left = `${Math.max(minX, Math.min(nextX, maxX))}px`;
+    menu.style.top = `${nextY}px`;
+  });
 }
 
 function ensureWordMenu() {
