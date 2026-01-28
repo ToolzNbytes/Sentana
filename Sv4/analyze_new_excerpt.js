@@ -4,6 +4,7 @@ const wizardStatus = document.getElementById("wizardStatus");
 const backBtn = document.getElementById("backBtn");
 const nextBtn = document.getElementById("nextBtn");
 const headerBackBtn = document.getElementById("headerBackBtn");
+const loadSavedBtn = document.getElementById("loadSavedBtn");
 
 const textSteps = Array.from(document.querySelectorAll(".textStep"));
 const textStepLabel = document.getElementById("textStepLabel");
@@ -66,6 +67,7 @@ let showPrevContext = false;
 let showNextContext = false;
 let wordMenuState = null;
 let splitMenuState = null;
+const LS_KEY_WIZARD_DRAFT = "SentenceStructureExplorer.v1.wizardDraft";
 let dragState = null;
 let dragIndicator = null;
 let tagMenuState = null;
@@ -254,7 +256,9 @@ function updateNavState() {
   backBtn.style.visibility = panelIndex === 0 ? "hidden" : "visible";
 
   if (panelIndex === 0) {
-    nextBtn.textContent = "Start";
+    const hasDraft = Boolean(loadWizardDraft());
+    nextBtn.textContent = hasDraft ? "Start new" : "Start";
+    if (loadSavedBtn) loadSavedBtn.classList.toggle("hidden", !hasDraft);
     nextBtn.disabled = false;
     return;
   }
@@ -326,6 +330,17 @@ function handleBack() {
 }
 
 function handleNext() {
+  if (panelIndex === 0) {
+    if (loadWizardDraft()) clearWizardDraft();
+    resetWizardState();
+    showPanel(1);
+    return;
+  }
+  if (panelIndex === 1) {
+    saveWizardDraft({ panelIndex: 1 });
+    showPanel(2);
+    return;
+  }
   if (panelIndex === 2) {
     if (textStepIndex < textSteps.length - 1) {
       showTextStep(textStepIndex + 1);
@@ -334,14 +349,19 @@ function handleNext() {
     sourceText = cleanExcerpt(rawExcerpt.value);
     rawExcerpt.value = sourceText;
     sourceLocked = true;
+    saveWizardDraft({ panelIndex: 2, textStepIndex: 2 });
     showPanel(3);
     return;
   }
   if (panelIndex === 3) {
     sentenceEntries = collectSentenceEntries(sentenceSplitInput.value);
     initializeSentenceEntries();
+    saveWizardDraft({ panelIndex: 3 });
     showPanel(4);
     return;
+  }
+  if (panelIndex === 4) {
+    saveWizardDraft({ panelIndex: 4 });
   }
   if (panelIndex < panels.length - 1) {
     showPanel(panelIndex + 1);
@@ -354,6 +374,11 @@ headerBackBtn.addEventListener("click", () => {
 
 backBtn.addEventListener("click", handleBack);
 nextBtn.addEventListener("click", handleNext);
+loadSavedBtn?.addEventListener("click", () => {
+  const draft = loadWizardDraft();
+  if (!draft) return;
+  restoreWizardDraft(draft);
+});
 
 rawExcerpt.addEventListener("input", () => {
   if (panelIndex === 2 && textStepIndex === 0 && rawExcerpt.value.trim().length > 0) {
@@ -386,6 +411,119 @@ document.querySelectorAll(".metaGrid input, .metaGrid textarea").forEach((field)
 });
 
 showPanel(0);
+
+function saveWizardDraft(overrides = {}) {
+  if (!window.SSE?.storageSet) return;
+  const payload = buildWizardDraft(overrides);
+  window.SSE.storageSet(LS_KEY_WIZARD_DRAFT, payload);
+  updateNavState();
+}
+
+function loadWizardDraft() {
+  if (!window.SSE?.storageGet) return null;
+  return window.SSE.storageGet(LS_KEY_WIZARD_DRAFT, null);
+}
+
+function clearWizardDraft() {
+  if (!window.SSE?.storageRemove) return;
+  window.SSE.storageRemove(LS_KEY_WIZARD_DRAFT);
+  updateNavState();
+}
+
+function buildWizardDraft(overrides = {}) {
+  return {
+    panelIndex,
+    textStepIndex,
+    metadata: {
+      work: document.getElementById("fWork").value || "",
+      author: document.getElementById("fAuthor").value || "",
+      year: document.getElementById("fYear").value || "",
+      choice: document.getElementById("fChoice").value || "",
+      language: document.getElementById("fLanguage").value || "",
+      tags: document.getElementById("fTags").value || "",
+      comment: document.getElementById("fComment").value || ""
+    },
+    rawExcerpt: rawExcerpt.value || "",
+    sourceText,
+    splitTextWorking,
+    sentenceEntries,
+    sentenceIndex,
+    showPrevContext,
+    showNextContext,
+    showControls: Boolean(alwaysShowControlsToggle?.checked),
+    showHints: Boolean(clauseHintsToggle?.checked),
+    ...overrides
+  };
+}
+
+function restoreWizardDraft(draft) {
+  if (!draft) return;
+  const meta = draft.metadata || {};
+  document.getElementById("fWork").value = meta.work || "";
+  document.getElementById("fAuthor").value = meta.author || "";
+  document.getElementById("fYear").value = meta.year || "";
+  document.getElementById("fChoice").value = meta.choice || "";
+  document.getElementById("fLanguage").value = meta.language || "";
+  document.getElementById("fTags").value = meta.tags || "";
+  document.getElementById("fComment").value = meta.comment || "";
+
+  rawExcerpt.value = draft.rawExcerpt || "";
+  sourceText = draft.sourceText || "";
+  splitTextWorking = draft.splitTextWorking || "";
+  sentenceEntries = Array.isArray(draft.sentenceEntries) ? draft.sentenceEntries : [];
+  sentenceIndex = Number.isFinite(draft.sentenceIndex) ? draft.sentenceIndex : 0;
+  textStepIndex = Number.isFinite(draft.textStepIndex) ? draft.textStepIndex : 0;
+  showPrevContext = Boolean(draft.showPrevContext);
+  showNextContext = Boolean(draft.showNextContext);
+  if (alwaysShowControlsToggle) {
+    alwaysShowControlsToggle.checked = Boolean(draft.showControls);
+  }
+  if (clauseHintsToggle) {
+    clauseHintsToggle.checked = Boolean(draft.showHints);
+  }
+
+  const targetPanel = Number.isFinite(draft.panelIndex) ? draft.panelIndex : 1;
+  showPanel(targetPanel);
+  if (targetPanel === 2) {
+    showTextStep(textStepIndex || 2);
+  }
+  if (targetPanel === 3) {
+    if (splitTextWorking) {
+      sentenceSplitInput.value = splitTextWorking;
+      renderSplitPreview(splitTextWorking);
+      splitReady = true;
+    }
+  }
+  if (targetPanel === 4) {
+    initializeSentenceEntries();
+    showStructuresPanel();
+  }
+}
+
+function resetWizardState() {
+  document.getElementById("fWork").value = "";
+  document.getElementById("fAuthor").value = "";
+  document.getElementById("fYear").value = "";
+  document.getElementById("fChoice").value = "";
+  document.getElementById("fLanguage").value = "";
+  document.getElementById("fTags").value = "";
+  document.getElementById("fComment").value = "";
+  rawExcerpt.value = "";
+  paraPreview.innerHTML = "";
+  sentenceSplitInput.value = "";
+  sentenceSplitPreview.innerHTML = "";
+  sourceText = "";
+  splitTextWorking = "";
+  sentenceEntries = [];
+  sentenceIndex = 0;
+  textStepIndex = 0;
+  sourceLocked = false;
+  splitReady = false;
+  showPrevContext = false;
+  showNextContext = false;
+  if (alwaysShowControlsToggle) alwaysShowControlsToggle.checked = false;
+  if (clauseHintsToggle) clauseHintsToggle.checked = false;
+}
 applyResponsiveDefaults();
 
 function cleanExcerpt(text) {
@@ -1318,6 +1456,7 @@ function moveSentence(direction) {
   closeWordMenu();
   closeSplitMenu();
   sentenceIndex = nextIndex;
+  saveWizardDraft({ panelIndex: 4 });
   updateStructuresProgressLabel();
   renderStructuresPanel();
 }
