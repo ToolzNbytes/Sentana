@@ -216,11 +216,11 @@
             </div>
           </div>
           <div class="structureNav">
-            <button class="wizardActionBtn structureNavBtn" id="prevSentenceBtn" type="button" aria-label="Previous sentence">
-              <svg class="icon" aria-hidden="true"><use href="../icons/alt_arrow_up.svg#icon"></use></svg>
+            <button class="wizardActionBtn structureNavBtn iconSquareBtn" id="prevSentenceBtn" type="button" aria-label="Previous sentence" title="Previous sentence">
+              <svg class="icon" aria-hidden="true"><use href="../icons/alt_arrow_up.svg#icon" width="100%" height="100%" x="0" y="0"></use></svg>
             </button>
-            <button class="wizardActionBtn structureNavBtn" id="nextSentenceBtn" type="button" aria-label="Next sentence">
-              <svg class="icon" aria-hidden="true"><use href="../icons/alt_arrow_down.svg#icon"></use></svg>
+            <button class="wizardActionBtn structureNavBtn iconSquareBtn" id="nextSentenceBtn" type="button" aria-label="Next sentence" title="Next sentence">
+              <svg class="icon" aria-hidden="true"><use href="../icons/alt_arrow_down.svg#icon" width="100%" height="100%" x="0" y="0"></use></svg>
             </button>
           </div>
         </div>
@@ -228,15 +228,21 @@
         <div class="sentenceContext">
           <div class="sentenceContextItem isPrev" id="prevSentenceDisplay" hidden>
             <div class="sentenceContextText"></div>
-            <button class="wizardActionBtn" id="fusePrevBtn" type="button">Fuse</button>
+            <button class="wizardActionBtn iconSquareBtn" id="fusePrevBtn" type="button" aria-label="Fuse with previous sentence" title="Fuse with previous sentence">
+              <svg class="icon" aria-hidden="true"><use href="../icons/fuse_down.svg#icon" width="100%" height="100%" x="0" y="0"></use></svg>
+            </button>
           </div>
           <div class="sentenceContextMain" id="currentSentenceDisplay">
             <span class="sentenceContextMainText" id="currentSentenceText"></span>
-            <button class="wizardActionBtn" id="splitSentenceBtn" type="button">Split</button>
+            <button class="wizardActionBtn structureNavBtn iconSquareBtn" id="splitSentenceBtn" type="button" aria-label="Split sentence" title="Split sentence">
+              <svg class="icon" aria-hidden="true" preserveAspectRatio="xMidYMid meet"><use href="../icons/scissors_cut.svg#icon" width="100%" height="100%" x="0" y="0"></use></svg>
+            </button>
           </div>
           <div class="sentenceContextItem isNext" id="nextSentenceDisplay" hidden>
             <div class="sentenceContextText"></div>
-            <button class="wizardActionBtn" id="fuseNextBtn" type="button">Fuse</button>
+            <button class="wizardActionBtn iconSquareBtn" id="fuseNextBtn" type="button" aria-label="Fuse with next sentence" title="Fuse with next sentence">
+              <svg class="icon" aria-hidden="true"><use href="../icons/fuse_up.svg#icon" width="100%" height="100%" x="0" y="0"></use></svg>
+            </button>
           </div>
         </div>
 
