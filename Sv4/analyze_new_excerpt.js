@@ -321,6 +321,10 @@ function computeStepFill(stepIndex) {
 }
 
 function handleBack() {
+  if (panelIndex === 4) {
+    const ok = window.confirm("Go back to Sentence split? This will discard current Structures work for this session.");
+    if (!ok) return;
+  }
   if (panelIndex === 2 && textStepIndex > 0) {
     showTextStep(textStepIndex - 1);
     return;
@@ -496,7 +500,9 @@ function restoreWizardDraft(draft) {
     }
   }
   if (targetPanel === 4) {
-    initializeSentenceEntries();
+    const savedIndex = sentenceIndex;
+    initializeSentenceEntries(true);
+    sentenceIndex = Number.isFinite(savedIndex) ? savedIndex : 0;
     showStructuresPanel();
   }
 }
@@ -910,12 +916,12 @@ function collectSentenceEntries(text) {
     }));
 }
 
-function initializeSentenceEntries() {
+function initializeSentenceEntries(preserveIndex = false) {
   sentenceEntries.forEach((entry) => {
     if (!entry.structure) entry.structure = null;
     if (typeof entry.done !== "boolean") entry.done = false;
   });
-  sentenceIndex = 0;
+  if (!preserveIndex) sentenceIndex = 0;
 }
 
 function makeLine(text, tag, level) {
