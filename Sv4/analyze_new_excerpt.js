@@ -1291,7 +1291,7 @@ function buildTagHint(entry, index) {
     const ref = findPreviousTagAtLevel(entry, index, line.level);
     const base = ref ? `Continuation of ${ref}.` : "Continuation.";
     const prev = entry.structure.lines[index - 1];
-    if (!prev || prev.level === 1 || line.level >= prev.level) {
+    if (!prev || line.level >= prev.level) {
       entry._hasIllegalContinuation = true;
       return `${parts.join(" ")}${parts.length ? " " : ""}${base} Illegal continuation line.`;
     }
@@ -1450,8 +1450,7 @@ function updateStructureVisibility(entry) {
   const alwaysShow = Boolean(alwaysShowControlsToggle?.checked);
   const showHints = Boolean(clauseHintsToggle?.checked);
   const hasUnknown = entry.structure.lines.some((line) => line.tag === "??");
-  const hasIssue = Boolean(entry._hasIllegalContinuation);
-  const showControls = alwaysShow || hasUnknown || hasIssue;
+  const showControls = alwaysShow || hasUnknown;
   structureTable.classList.toggle("hideControls", !showControls);
   structureTable.classList.toggle("hideHints", !showHints);
 }
