@@ -216,8 +216,8 @@
             </div>
           </div>
           <div class="structureNav">
-            <button class="wizardActionBtn structureNavBtn" id="prevSentenceBtn" type="button" aria-label="Previous sentence">↑</button>
-            <button class="wizardActionBtn structureNavBtn" id="nextSentenceBtn" type="button" aria-label="Next sentence">↓</button>
+            <button class="wizardActionBtn structureNavBtn" id="prevSentenceBtn" type="button" aria-label="Previous sentence">🢁</button>
+            <button class="wizardActionBtn structureNavBtn" id="nextSentenceBtn" type="button" aria-label="Next sentence">🢃</button>
           </div>
         </div>
 
@@ -238,7 +238,10 @@
 
         <div class="sentenceControls">
           <div class="sentenceToggleGroup">
-            <span class="sentenceContextLabel">Show sentence</span>
+            <span class="sentenceContextLabel">
+              <span class="labelLong">Show sentence</span>
+              <span class="labelShort">Show</span>
+            </span>
             <label class="sentenceContextToggle">
               <input id="togglePrevContextBtn" type="checkbox"/>
               before
@@ -250,15 +253,18 @@
           </div>
           <label class="sentenceContextToggle sentenceToggleGroup">
             <input id="alwaysShowControlsToggle" type="checkbox"/>
-            Always show controls
+            <span class="labelLong">Always show controls</span>
+            <span class="labelShort">Controls</span>
           </label>
           <label class="sentenceContextToggle sentenceToggleGroup">
             <input id="clauseHintsToggle" type="checkbox" checked/>
-            Clause hints
+            <span class="labelLong">Clause hints</span>
+            <span class="labelShort">Hints</span>
           </label>
           <label class="structureToggle sentenceDialogueInline sentenceDialogueGroup">
             <input id="sentenceDialogueToggle" type="checkbox"/>
-            Dialogue (sentence is a line)
+            <span class="labelLong">Dialogue (sentence is a line)</span>
+            <span class="labelShort">Dialogue</span>
           </label>
         </div>
 

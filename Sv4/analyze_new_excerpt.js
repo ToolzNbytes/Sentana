@@ -386,6 +386,7 @@ document.querySelectorAll(".metaGrid input, .metaGrid textarea").forEach((field)
 });
 
 showPanel(0);
+applyResponsiveDefaults();
 
 function cleanExcerpt(text) {
   let cleaned = text.replace(/^[ \t]+/gm, "");
@@ -1243,11 +1244,15 @@ function updatePendingStatus(entry) {
     if (doneCount === total && total > 0) {
       structurePendingStatus.textContent = "Current sentence done? / Excerpt structures done?";
     } else {
-      structurePendingStatus.textContent = `Current sentence done? / Excerpt: ${noneDefined} sentences have no structure defined at all, ${pendingCount} have pending structure.`;
+      const parts = [`${noneDefined} sentences have no structure defined at all`];
+      if (pendingCount > 0) parts.push(`${pendingCount} have pending structure`);
+      structurePendingStatus.textContent = `Current sentence done? / Excerpt: ${parts.join(", ")}.`;
     }
     return;
   }
-  structurePendingStatus.textContent = `Current sentence: ${pending} line(s) tagged ?? / Excerpt: ${noneDefined} sentences have no structure defined at all, ${pendingCount} have pending structure.`;
+  const parts = [`${noneDefined} sentences have no structure defined at all`];
+  if (pendingCount > 0) parts.push(`${pendingCount} have pending structure`);
+  structurePendingStatus.textContent = `Current sentence: ${pending} line(s) tagged ?? / Excerpt: ${parts.join(", ")}.`;
 }
 
 function updateSentenceDone(entry) {
@@ -1262,6 +1267,16 @@ function updateStructureVisibility(entry) {
   const showControls = alwaysShow || hasUnknown || hasIssue;
   structureTable.classList.toggle("hideControls", !showControls);
   structureTable.classList.toggle("hideHints", !showHints);
+}
+
+function applyResponsiveDefaults() {
+  const narrow = window.innerWidth <= 640;
+  if (alwaysShowControlsToggle) {
+    alwaysShowControlsToggle.checked = !narrow;
+  }
+  if (clauseHintsToggle) {
+    clauseHintsToggle.checked = !narrow;
+  }
 }
 
 function getStructureSummary() {

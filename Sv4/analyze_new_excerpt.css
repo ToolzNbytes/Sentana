@@ -831,6 +831,10 @@
   max-width: 50px;
 }
 
+.labelShort{
+  display:none;
+}
+
 .structureControlRow{
   display:flex;
   align-items:center;
@@ -1047,5 +1051,44 @@
   }
   .structureRow{
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px){
+  .wizardWrap{
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .workspace{
+    border-left: none;
+    border-right: none;
+  }
+  .wizardSection{
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+  .sentenceContext{
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+  #fusePrevBtn,
+  #fuseNextBtn,
+  #splitSentenceBtn{
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+  .panelTitleRowSplit{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .structureNav{
+    width: 100%;
+    justify-content: flex-end;
+  }
+  .labelLong{
+    display:none;
+  }
+  .labelShort{
+    display:inline;
   }
 }

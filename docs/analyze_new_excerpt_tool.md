@@ -89,6 +89,7 @@ Loop requirements:
 - The final analyzed text must follow the corpus file format described in `docs/corpus_entry_format.md`.
 - The tool should reuse parsing and validation logic from `sse_common.js` where possible.
 - No automated tests exist in this repo, so keep validation visible in the UI.
+- Structures panel implementation notes: see `docs/wizard_structures_panel.md`.
 
 ## Storage behavior (updates)
 - Provide the usual local corpus entry addition (same storage used by the local corpus manager).
