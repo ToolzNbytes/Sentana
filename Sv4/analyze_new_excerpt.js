@@ -693,7 +693,7 @@ structureTable.addEventListener("click", (event) => {
     const wordStart = Number(word.dataset.wordStart);
     const wordEnd = Number(word.dataset.wordEnd);
     const token = word.textContent || "";
-    openWordMenu(event.clientX, event.clientY, lineIndex, wordStart, wordEnd, token);
+    openWordMenu(event.clientX, event.clientY, lineIndex, wordStart, wordEnd, token, word);
     return;
   }
   const textCell = event.target.closest(".structureTextCell");
@@ -1035,9 +1035,15 @@ function renderStructureTable() {
     if (isLastRow) textCell.classList.add("isLastRow");
     const spacerWrap = document.createElement("div");
     spacerWrap.className = "structureSpacers";
-    buildSpacers(spacerColors[index] || []).forEach((spacer) => spacerWrap.appendChild(spacer));
+    let spacerMark = "";
+    if (line.tag === "CP") spacerMark = "=";
+    if (line.tag === "--") spacerMark = "|";
+    buildSpacers(spacerColors[index] || [], spacerMark).forEach((spacer) => spacerWrap.appendChild(spacer));
     const textWrap = document.createElement("div");
     textWrap.className = "structureTextContent";
+    if (line.level === 1 && (line.tag === "IC" || line.tag === "FG")) {
+      textWrap.classList.add("indepStart");
+    }
     const textNodes = buildWordNodes(line.text, index);
     textNodes.forEach((node) => textWrap.appendChild(node));
     textCell.appendChild(spacerWrap);
@@ -1366,13 +1372,20 @@ function buildWordNodes(text, lineIndex) {
   return nodes;
 }
 
-function buildSpacers(colors) {
+function buildSpacers(colors, markChar) {
   const spacers = [];
   const list = Array.isArray(colors) ? colors : [];
   for (let i = 0; i < list.length; i++) {
     const spacer = document.createElement("div");
     spacer.className = "structureSpacer";
     spacer.style.background = list[i] || "transparent";
+    if (markChar && i === list.length - 1) {
+      spacer.classList.add("structureSpacerMarked");
+      const mark = document.createElement("span");
+      mark.className = "structureSpacerMark";
+      mark.textContent = markChar;
+      spacer.appendChild(mark);
+    }
     spacers.push(spacer);
   }
   return spacers;
@@ -1659,7 +1672,7 @@ function normalizeLineLevel(entry, index) {
   if (line.level < 1) line.level = 1;
 }
 
-function openWordMenu(x, y, lineIndex, wordStart, wordEnd, token) {
+function openWordMenu(x, y, lineIndex, wordStart, wordEnd, token, anchorEl) {
   const entry = getCurrentEntry();
   if (!entry) return;
   ensureEntryStructure(entry);
@@ -1706,22 +1719,22 @@ function openWordMenu(x, y, lineIndex, wordStart, wordEnd, token) {
   wordMenuState = { lineIndex, wordStart, wordEnd };
 
   requestAnimationFrame(() => {
-    const rect = menu.getBoundingClientRect();
     const pad = 8;
+    const offset = 14;
     const midpoint = window.innerWidth / 2;
-    let nextX;
-    if (x < midpoint) {
-      nextX = x + pad;
-    } else {
-      nextX = x - rect.width - pad;
-    }
-    const maxX = window.scrollX + window.innerWidth - rect.width - pad;
-    const minX = window.scrollX + pad;
-    const maxY = window.scrollY + window.innerHeight - rect.height - pad;
-    const minY = window.scrollY + pad;
-    const nextY = Math.max(minY, Math.min(window.scrollY + y, maxY));
-    menu.style.left = `${Math.max(minX, Math.min(nextX, maxX))}px`;
+    const onLeft = x < midpoint;
+    menu.style.transform = onLeft ? "translateX(0)" : "translateX(-100%)";
+    menu.style.left = `${onLeft ? (x + offset) : (x - offset)}px`;
+    const maxY = window.innerHeight - pad;
+    const minY = pad;
+    const nextY = Math.max(minY, Math.min(y, maxY));
     menu.style.top = `${nextY}px`;
+
+    const rect = menu.getBoundingClientRect();
+    let nextLeft = parseFloat(menu.style.left) || 0;
+    if (rect.left < pad) nextLeft += pad - rect.left;
+    if (rect.right > window.innerWidth - pad) nextLeft -= rect.right - (window.innerWidth - pad);
+    menu.style.left = `${nextLeft}px`;
   });
 }
 
@@ -1891,11 +1904,20 @@ function openTagMenu(x, y, lineIndex) {
   requestAnimationFrame(() => {
     const rect = menu.getBoundingClientRect();
     const pad = 8;
+    const offset = 14;
+    const midpoint = window.innerWidth / 2;
+    let nextX;
+    if (x < midpoint) {
+      nextX = x + offset;
+    } else {
+      nextX = x - rect.width - offset;
+    }
     const maxX = window.scrollX + window.innerWidth - rect.width - pad;
+    const minX = window.scrollX + pad;
     const maxY = window.scrollY + window.innerHeight - rect.height - pad;
-    const nextX = Math.max(window.scrollX + pad, Math.min(x, maxX));
-    const nextY = Math.max(window.scrollY + pad, Math.min(y, maxY));
-    menu.style.left = `${nextX}px`;
+    const minY = window.scrollY + pad;
+    const nextY = Math.max(minY, Math.min(window.scrollY + y, maxY));
+    menu.style.left = `${Math.max(minX, Math.min(nextX, maxX))}px`;
     menu.style.top = `${nextY}px`;
   });
   tagMenuState = { lineIndex };
