@@ -66,11 +66,9 @@ let sentenceIndex = 0;
 let showPrevContext = false;
 let showNextContext = false;
 let wordMenuState = null;
-let splitMenuState = null;
 const LS_KEY_WIZARD_DRAFT = "SentenceStructureExplorer.v1.wizardDraft";
 let dragState = null;
 let dragIndicator = null;
-let tagMenuState = null;
 let lastDragTime = 0;
 
 function setStatus(message) {
@@ -699,7 +697,7 @@ structureTable.addEventListener("click", (event) => {
     const wordStart = Number(word.dataset.wordStart);
     const wordEnd = Number(word.dataset.wordEnd);
     const token = word.textContent || "";
-    openWordMenu(event.clientX, event.clientY, lineIndex, wordStart, wordEnd, token, word);
+    openWordMenu(event.clientX, event.clientY, lineIndex, wordStart, wordEnd, token);
     return;
   }
   const textCell = event.target.closest(".structureTextCell");
@@ -1612,7 +1610,6 @@ function splitSentenceAtLine(lineIndex) {
   updateSentenceDone(firstEntry);
   updateSentenceDone(secondEntry);
   sentenceEntries.splice(sentenceIndex, 1, firstEntry, secondEntry);
-  sentenceIndex = sentenceIndex;
   showPrevContext = false;
   showNextContext = false;
   updateStructuresProgressLabel();
@@ -1677,7 +1674,7 @@ function normalizeLineLevel(entry, index) {
   if (line.level < 1) line.level = 1;
 }
 
-function openWordMenu(x, y, lineIndex, wordStart, wordEnd, token, anchorEl) {
+function openWordMenu(x, y, lineIndex, wordStart, wordEnd, token) {
   const entry = getCurrentEntry();
   if (!entry) return;
   ensureEntryStructure(entry);
@@ -1697,9 +1694,8 @@ function openWordMenu(x, y, lineIndex, wordStart, wordEnd, token, anchorEl) {
   const afterIndex = findAfterSplitIndex(text, wordEnd);
   const prevLine = entry.structure.lines[lineIndex - 1];
   const prevSameEmpty = prevLine && prevLine.level === line.level && prevLine.text.trim().length === 0;
-  const canBefore = beforeIndex >= 0;
   const canAfter = text.slice(afterIndex).trim().length > 0;
-  beforeBtn.disabled = !canBefore || (beforeIndex === 0 && prevSameEmpty);
+  beforeBtn.disabled = (beforeIndex === 0 && prevSameEmpty);
   afterBtn.disabled = !canAfter;
 
   beforeBtn.onclick = () => {
@@ -1925,7 +1921,6 @@ function openTagMenu(x, y, lineIndex) {
     menu.style.left = `${Math.max(minX, Math.min(nextX, maxX))}px`;
     menu.style.top = `${nextY}px`;
   });
-  tagMenuState = { lineIndex };
 }
 
 function shortenTagHint(text) {
@@ -1941,7 +1936,6 @@ function closeTagMenu() {
   if (menu) menu.classList.add("hidden");
   const backdrop = document.getElementById("menuTagBackdrop");
   if (backdrop) backdrop.classList.add("hidden");
-  tagMenuState = null;
 }
 
 function ensureEntryStructure(entry) {
@@ -2052,7 +2046,6 @@ function openSplitMenu() {
   menu.classList.remove("hidden");
   const backdrop = document.getElementById("splitMenuBackdrop");
   if (backdrop) backdrop.classList.remove("hidden");
-  splitMenuState = { sentenceIndex };
 
   menu.style.left = "0px";
   menu.style.top = "0px";
@@ -2109,7 +2102,6 @@ function closeSplitMenu() {
   if (menu) menu.classList.add("hidden");
   const backdrop = document.getElementById("splitMenuBackdrop");
   if (backdrop) backdrop.classList.add("hidden");
-  splitMenuState = null;
 }
 
 function mergeLine(entry, index, direction) {
