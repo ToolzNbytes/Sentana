@@ -262,6 +262,7 @@ function updateNavState() {
     nextBtn.disabled = false;
     return;
   }
+  if (loadSavedBtn) loadSavedBtn.classList.add("hidden");
 
   if (panelIndex === 2) {
     nextBtn.textContent = "Next";
