@@ -187,11 +187,6 @@ body{
   padding: 6px;
 }
 
-.iconBtn.ghost{
-  border-style:dashed;
-  pointer-events:none;
-}
-
 .iconBtn.isActive{
   background: var(--hlBtn);
 }
@@ -214,14 +209,14 @@ body{
   width: 32px;
   height: 25px;
   padding: 3px;
-  border-radius: 8px;
+  border-radius: 5px;
 }
 
 .iconSmallNarrowBtn{
   width: 25px;
   height: 32px;
   padding: 3px;
-  border-radius: 8px;
+  border-radius: 5px;
 }
 
 .iconSmallWideBtn svg,

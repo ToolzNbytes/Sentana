@@ -317,10 +317,6 @@
   background: var(--hlBtn);
 }
 
-.wizardActionBtn.ghost{
-  border-style: dashed;
-}
-
 .wizardActionBtn:disabled{
   cursor: default;
   color: rgba(239,230,213,.3);
