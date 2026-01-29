@@ -1,6 +1,7 @@
 # SVG Icon Buttons
 
-This note documents the standard setup for SVG icon buttons in Sentana so we avoid size/offset/crop issues.
+This note captures the current SVG icon button patterns in Sentana and the
+agreed conventions to avoid size, offset, and crop issues.
 
 ## 1) Prepare the SVG file (manual edit once)
 When adding a new icon from a library, edit the SVG file to match these two requirements:
@@ -13,68 +14,128 @@ Example (root line):
 <svg id="icon" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 ```
 
-## 2) HTML usage
-Always embed icons using a wrapper `<svg>` and a `<use>` that fills it:
+## 2) Standard HTML usage
+Use a wrapper `<svg>` and a `<use>` reference, always with `#icon`:
 
 ```html
-<button class="wizardActionBtn iconSquareBtn" type="button" aria-label="Split sentence" title="Split sentence">
+<svg class="icon" aria-hidden="true">
+  <use href="../icons/scissors_cut.svg#icon" width="100%" height="100%" x="0" y="0"></use>
+</svg>
+```
+
+## 3) Current button patterns
+
+1) Top bar icon buttons
+```html
+<button class="button iconBtn" aria-label="Help">
+  <svg class="icon" aria-hidden="true"><use href="../icons/manual_help.svg#icon"></use></svg>
+</button>
+```
+CSS: `Sv4/structure_display_v4.css` (`.button`, `.iconBtn`, `.topbar .iconBtn`)
+
+Notes:
+- Standard size: 40x40, padding 6.
+- Uses `.iconBtn` with a top bar override (border transparent at rest, icon fills the button).
+
+2) General icon buttons (corpus switch, local corpus controls)
+```html
+<button class="button iconBtn" aria-label="Local corpus">
+  <svg class="icon" aria-hidden="true"><use href="../icons/hard-drive.svg#icon"></use></svg>
+</button>
+```
+CSS: `Sv4/structure_display_v4.css` (`.iconBtn`, `.iconBtn svg`)
+
+Notes:
+- Standard size: 40x40, padding 6.
+- Icon wrapper is 22x22.
+
+3) Wizard square icon buttons (analyze_new_excerpt)
+```html
+<button class="wizardActionBtn iconSquareBtn" aria-label="Split sentence">
   <svg class="icon" aria-hidden="true">
     <use href="../icons/scissors_cut.svg#icon" width="100%" height="100%" x="0" y="0"></use>
   </svg>
 </button>
 ```
+CSS: `Sv4/analyze_new_excerpt.css` (`.iconSquareBtn`, `.iconSquareBtn > svg.icon`, `.iconSquareBtn > svg.icon > use`)
 
 Notes:
-- The `width/height/x/y` on `<use>` forces the referenced SVG to scale to the wrapper.
-- This is critical when icon sources have different intrinsic sizes (e.g., 16×16 vs 24×24).
+- Bordered 40x40 buttons in this page.
+- Icon wrapper is 22x22.
+- `<use>` is forced to fill the wrapper (fixes 16x16 sources rendering too small).
 
-## 3) CSS for square icon buttons
-Use a dedicated class for square icon buttons. The current pattern lives in
-`Sv4/analyze_new_excerpt.css`:
+4) Non-square example (excerpt source button)
+```html
+<!-- Non-square icon button: width set inline, height stretches with the row. -->
+<button class="button iconBtnNonStandard" id="excerptSourceBtn" style="width:36px">
+  <svg class="icon" aria-hidden="true"><use href="../icons/dive-in_doc.svg#icon"></use></svg>
+</button>
+```
+CSS: `Sv4/structure_display_v4.css` (`.iconBtnNonStandard`)
+
+Notes:
+- Use `.iconBtnNonStandard` when the button should stretch in height to match its row.
+- Set the width inline per instance (keeps this exception explicit).
+
+## 4) Responsive sizing
+We standardize 40x40 for desktop. On small screens (phones), we keep 40x40 but
+reduce padding slightly:
 
 ```css
-.iconSquareBtn{
-  width: 40px;
-  height: 40px;
-  min-width: 40px;
-  min-height: 40px;
-  max-width: 40px;
-  max-height: 40px;
-  flex: 0 0 40px; /* prevent flex from shrinking width */
-  padding: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  font-size: 0;
-  line-height: 0;
-}
-
-.iconSquareBtn > svg.icon{
-  width: 22px;
-  height: 22px;
-  display: block;
-  pointer-events: none;
-  overflow: visible;
-}
-
-.iconSquareBtn > svg.icon > use{
-  width: 100%;
-  height: 100%;
-  x: 0;
-  y: 0;
+@media (max-width: 640px){
+  .iconBtn,
+  .topbar .iconBtn{
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+  }
+  .iconBtnNonStandard{
+    padding: 5px;
+  }
 }
 ```
 
-Why this works:
-- The button stays square even in flex layouts (prevents the 27–28px width bug).
-- The wrapper sets a consistent icon box (22×22).
-- The `<use>` is forced to fill the wrapper so 16×16 assets no longer render small or offset.
+## 5) Compact variants (non-square)
+Planned compact variants for tighter layouts:
 
-## 4) Troubleshooting checklist
+- `.iconSmallWideBtn` (short and wide, 32x25)
+- `.iconSmallNarrowBtn` (tall and narrow, 25x32)
+
+These should be used as modifiers alongside `.iconBtn` or `.iconBtnNonStandard`.
+
+```css
+.iconSmallWideBtn{
+  width: 32px;
+  height: 25px;
+  padding: 3px;
+  border-radius: 8px;
+}
+.iconSmallNarrowBtn{
+  width: 25px;
+  height: 32px;
+  padding: 3px;
+  border-radius: 8px;
+}
+.iconSmallWideBtn svg,
+.iconSmallNarrowBtn svg{
+  width: 18px;
+  height: 18px;
+}
+```
+
+## 6) Hover border behavior
+All icon buttons share the same hover effect:
+- background highlight via `var(--hlBtn)`
+- brighter border via `var(--iconBorderHover)`
+- top bar buttons keep a transparent border at rest, but show the border on hover
+
+## 7) corpusFilterBtn reminder
+`#corpusFilterBtn.hasFilter` uses a thicker dashed border to stand out.
+If it ever feels jumpy, consider an `outline` or `box-shadow` to avoid layout shifts.
+
+## 8) Troubleshooting checklist
 If an icon looks offset or cropped:
 - Confirm the SVG file has `id="icon"` and `fill="currentColor"` (or `stroke="currentColor"`).
-- Make sure the `<use>` includes `width="100%" height="100%" x="0" y="0"`.
-- Ensure the wrapper `<svg class="icon">` has explicit width/height (22×22).
-- If the button isn’t square, check for missing `iconSquareBtn` or flex shrink.
-
+- Make sure the `<use>` includes `width="100%" height="100%" x="0" y="0"` (or the CSS equivalent).
+- Ensure the wrapper `<svg class="icon">` has explicit width and height (22x22).
+- If the button is not square, check for missing `iconSquareBtn` or flex shrink.

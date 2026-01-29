@@ -11,17 +11,17 @@
 <body>
 <header class="topbar">
   <div class="leftControls">
-    <button class="topIconBtn" id="collapseBtn" disabled title="Collapse workspace" aria-label="Collapse workspace"><svg class="icon" aria-hidden="true"><use href="../icons/panel_hide.svg?#icon"></use></svg></button>
-    <button class="topIconBtn" id="storeBtn"    disabled title="Copy for reference" aria-label="Copy for reference"><svg class="icon" aria-hidden="true"><use href="../icons/doc_plus.svg?#icon"  ></use></svg></button>
+    <button class="button iconBtn" id="collapseBtn" disabled title="Collapse workspace" aria-label="Collapse workspace"><svg class="icon" aria-hidden="true"><use href="../icons/panel_hide.svg#icon"></use></svg></button>
+    <button class="button iconBtn" id="storeBtn"    disabled title="Copy for reference" aria-label="Copy for reference"><svg class="icon" aria-hidden="true"><use href="../icons/doc_plus.svg#icon"  ></use></svg></button>
   </div>
   <div class="titleWrap">
     <span class="titleMain">Sentence Structure Explorer</span>
     <span class="titleSub">— A visual breakdown of sentence structure across authors.</span>
   </div>
   <div class="rightControls">
-    <button class="topIconBtn" id="helpBtn"      aria-label="Help"              title="Help and documentation"><svg class="icon" aria-hidden="true"><use href="../icons/manual_help.svg?#icon"></use></svg></button>
-    <button class="topIconBtn" id="localDataBtn" aria-label="Local corpus data" title="Local corpus data"><svg class="icon" aria-hidden="true"><use href="../icons/database.svg?#icon"></use></svg></button>
-    <button class="topIconBtn" id="settingsBtn"  aria-label="Settings"          title="Settings"         ><svg class="icon" aria-hidden="true"><use href="../icons/settings.svg?#icon"></use></svg></button>
+    <button class="button iconBtn" id="helpBtn"      aria-label="Help"              title="Help and documentation"><svg class="icon" aria-hidden="true"><use href="../icons/manual_help.svg#icon"></use></svg></button>
+    <button class="button iconBtn" id="localDataBtn" aria-label="Local corpus data" title="Local corpus data"><svg class="icon" aria-hidden="true"><use href="../icons/database_v2.svg#icon"></use></svg></button>
+    <button class="button iconBtn" id="settingsBtn"  aria-label="Settings"          title="Settings"         ><svg class="icon" aria-hidden="true"><use href="../icons/settings.svg#icon"></use></svg></button>
   </div>
 </header>
 
@@ -43,14 +43,14 @@
           </div>
           <div class="listBlock">
             <div class="corpusSwitch" aria-label="Corpus switch">
-              <button class="iconBtn" id="corpusFilterBtn" title="Filter remote corpus" aria-label="Filter remote corpus" disabled>
-                <svg class="icon" aria-hidden="true"><use href="../icons/filter.svg?#icon"></use></svg>
+              <button class="button iconBtn" id="corpusFilterBtn" title="Filter remote corpus" aria-label="Filter remote corpus" disabled>
+                <svg class="icon" aria-hidden="true"><use href="../icons/filter.svg#icon"></use></svg>
               </button>
-              <button class="iconBtn listSelectBtn" id="corpusRemoteBtn" disabled title="Remote corpus">
-                <svg class="icon" aria-hidden="true"><use href="../icons/world_network.svg?#icon"></use></svg>
+              <button class="button iconBtn listSelectBtn" id="corpusRemoteBtn" disabled title="Remote corpus">
+                <svg class="icon" aria-hidden="true"><use href="../icons/world_network.svg#icon"></use></svg>
               </button>
-              <button class="iconBtn listSelectBtn" id="corpusLocalBtn" title="Local corpus">
-                <svg class="icon" aria-hidden="true"><use href="../icons/hard-drive.svg?#icon"></use></svg>
+              <button class="button iconBtn listSelectBtn" id="corpusLocalBtn" title="Local corpus">
+                <svg class="icon" aria-hidden="true"><use href="../icons/hard-drive.svg#icon"></use></svg>
               </button>
             </div>
             <select class="work-list" id="workListRemote" size="4"></select>
@@ -61,7 +61,10 @@
       <div id="explorerArea">
         <div class="row-2">
           <div class="comment" id="commentArea"></div>
-          <button id="excerptSourceBtn" title="Open raw / excerpt panel"><svg class="icon" aria-hidden="true"><use href="../icons/dive-in_doc.svg?#icon"></use></svg></button>
+          <!-- Non-square icon button: width set inline, height stretches with the row to match the neighbor panel. -->
+          <button class="button iconBtnNonStandard" id="excerptSourceBtn" title="Open raw / excerpt panel" style="width:36px">
+            <svg class="icon" aria-hidden="true"><use href="../icons/dive-in_doc.svg#icon"></use></svg>
+          </button>
         </div>
       <div class="sentence" id="sentenceArea"></div>
     </div>
@@ -73,10 +76,10 @@
           <div class="deconstruct-status" id="deconstructStatus"></div>
         </div>
         <div class="deconstruct-controls">
-          <button class="hoverBtn" id="deconstructResetBtn" type="button">Reset all clauses</button>
-          <button class="hoverBtn" id="deconstructCollapseBtn" type="button">Collapse all clauses</button>
-          <button class="hoverBtn" id="deconstructKeepDCBtn" type="button">Keep only DCs</button>
-          <button class="hoverBtn" id="deconstructCopyBtn" type="button">Copy text</button>
+          <button class="button textBtn" id="deconstructResetBtn" type="button">Reset all clauses</button>
+          <button class="button textBtn" id="deconstructCollapseBtn" type="button">Collapse all clauses</button>
+          <button class="button textBtn" id="deconstructKeepDCBtn" type="button">Keep only DCs</button>
+          <button class="button textBtn" id="deconstructCopyBtn" type="button">Copy text</button>
         </div>
         <div class="deconstruct-body">Partially implemented</div>
       </div>
@@ -89,11 +92,11 @@
   <div class="modal">
     <div class="modal-header">
       <div class="modalHeaderLeft">
-        <button id="toggleView" style="width:200px; white-space: nowrap;" class="hoverBtn">Switch to original excerpt</button>
-        <button id="copyClipboardBtn" style="width:200px; white-space: nowrap;" class="hoverBtn">Copy to clipboard</button>
-        <button id="cloneLocalBtn" class="hoverBtn">Clone to local corpus</button>
+        <button id="toggleView" style="width:200px; white-space: nowrap;" class="button textBtn">Switch to original excerpt</button>
+        <button id="copyClipboardBtn" style="width:200px; white-space: nowrap;" class="button textBtn">Copy to clipboard</button>
+        <button id="cloneLocalBtn" class="button textBtn">Clone to local corpus</button>
       </div>
-      <button id="excerptSourceClose" class="hoverBtn">×</button>
+      <button id="excerptSourceClose" class="button textBtn oneCharBtn">×</button>
     </div>
     <div class="modal-content mono" id="excerptSourceContent"></div>
   </div>
@@ -104,7 +107,7 @@
   <div class="modal param-modal">
     <div class="modal-header">
       <div class="param-title">Parameters</div>
-      <button id="closeParam" class="hoverBtn">×</button>
+      <button id="closeParam" class="button textBtn oneCharBtn">×</button>
     </div>
 
     <div class="param-body">
@@ -130,8 +133,8 @@
     </div>
 
     <div class="param-actions">
-      <button id="pCancel" class="hoverBtn">Cancel</button>
-      <button id="pApply" class="hoverBtn">Validate &amp; process</button>
+      <button id="pCancel" class="button textBtn">Cancel</button>
+      <button id="pApply" class="button textBtn">Validate &amp; process</button>
     </div>
   </div>
 </div>
