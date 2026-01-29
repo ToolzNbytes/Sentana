@@ -133,7 +133,22 @@ All icon buttons share the same hover effect:
 `#corpusFilterBtn.hasFilter` uses a thicker dashed border to stand out.
 If it ever feels jumpy, consider an `outline` or `box-shadow` to avoid layout shifts.
 
-## 8) Troubleshooting checklist
+## 8) List select buttons (corpus switch)
+The corpus switch list buttons (`#corpusRemoteBtn`, `#corpusLocalBtn`) widen when disabled to
+visually merge with the list. To avoid SVG size changes during this width change:
+
+- Keep icons at `width/height: 100%` in the base `.iconBtn` rule.
+- On the disabled state, increase right padding to absorb the extra width while keeping
+  the content box unchanged:
+
+```css
+.corpusSwitch .iconBtn.listSelectBtn:disabled{
+  width:46px;        /* 38 + 8 */
+  padding-right:16px; /* keep content width stable */
+}
+```
+
+## 9) Troubleshooting checklist
 If an icon looks offset or cropped:
 - Confirm the SVG file has `id="icon"` and `fill="currentColor"` (or `stroke="currentColor"`).
 - Make sure the `<use>` includes `width="100%" height="100%" x="0" y="0"` (or the CSS equivalent).

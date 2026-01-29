@@ -112,12 +112,7 @@ body{
   border-color: transparent;
   border-radius: 8px;
 }
-/* testing for all .iconBtn svg
-.topbar .iconBtn svg{
-  width: 100%;
-  height: 100%;
-}
-*/
+
 /* ===== Common layout ===== */
 .workspaces{
   display:flex;
@@ -209,9 +204,6 @@ body{
 
 .iconBtn svg,
 .iconBtnNonStandard svg{
-  /* testing
-  width: 22px;
-  height: 22px;*/
   width: 100%;
   height: 100%;
   display: block;
@@ -272,6 +264,8 @@ body{
   border-style: dashed;
   border-width: 3px; /* 3x thicker than the default 1px border */
   border-color: rgba(231,215,182,.55);
+  /* offset thicker border so the icon size stays stable */
+  padding: 4px 6px;
 }
 
 /* ===== Local corpus manager ===== */
@@ -581,6 +575,7 @@ body{
 .corpusSwitch .iconBtn.listSelectBtn:disabled{
   margin-right:0;
   width:46px;                 /* 38 + 8*/
+  padding-right:16px;
   background:var(--listJoinBg);
   border-right:none;
   border-radius:10px 0 0 10px;
@@ -604,7 +599,7 @@ body{
   background: var(--panel);
   /* keep it visually aligned with the panels */
   padding: 14px;
-  /* add space between row-2 and sentenceArea */
+  /* add space between row-comment and sentenceArea */
   display: flex;
   flex-direction: column;
   gap: 10px;
