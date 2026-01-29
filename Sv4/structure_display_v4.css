@@ -205,22 +205,22 @@ body{
   pointer-events: none;
 }
 
-.iconSmallWideBtn{
+.smallWideBtn{
   width: 32px;
   height: 25px;
   padding: 3px;
   border-radius: 5px;
 }
 
-.iconSmallNarrowBtn{
+.smallNarrowBtn{
   width: 25px;
   height: 32px;
   padding: 3px;
   border-radius: 5px;
 }
 
-.iconSmallWideBtn svg,
-.iconSmallNarrowBtn svg{
+.smallWideBtn svg,
+.smallNarrowBtn svg{
   width: 18px;
   height: 18px;
 }
@@ -240,6 +240,12 @@ body{
   padding: 0;
   font-size: 18px;
   line-height: 1;
+}
+
+.oneCharBtn.smallWideBtn{
+  width: 32px;
+  height: 25px;
+  padding: 3px;
 }
 
 @media (max-width: 640px){

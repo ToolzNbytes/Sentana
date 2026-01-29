@@ -303,31 +303,6 @@
   display: none;
 }
 
-.wizardActionBtn{
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: transparent;
-  color: var(--paper);
-  padding: 6px 12px;
-  cursor: pointer;
-  font-size: 13px;
-}
-
-.wizardActionBtn:hover{
-  background: var(--hlBtn);
-}
-
-.wizardActionBtn:disabled{
-  cursor: default;
-  color: rgba(239,230,213,.3);
-  border-color: rgba(231,215,182,.12);
-  background: transparent;
-}
-
-.wizardActionBtn:disabled:hover{
-  background: transparent;
-}
-
 .paraTools{
   display:flex;
   align-items:center;
@@ -900,10 +875,6 @@
   align-items:center;
 }
 
-.structureIndentBtn{
-  padding: 3px 8px;
-  min-width: 30px;
-}
 
 .structureLevel{
   font-size: 12px;
@@ -913,10 +884,6 @@
   text-align:center;
 }
 
-.structureMergeBtn{
-  padding: 3px 8px;
-  min-width: 30px;
-}
 
 .structureMergeCol{
   display:flex;

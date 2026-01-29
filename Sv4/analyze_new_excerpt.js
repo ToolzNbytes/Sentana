@@ -1066,12 +1066,29 @@ function renderStructureTable() {
     if (forwardWrap) tagRow.appendChild(forwardWrap);
     controlsStack.appendChild(tagRow);
 
+    // Build unindent button
     const actionRow = document.createElement("div");
     actionRow.className = "structureControlRow";
+    const svgNs = "http://www.w3.org/2000/svg";
+    const xlinkNs = "http://www.w3.org/1999/xlink";
     const unindentBtn = document.createElement("button");
-    unindentBtn.className = "wizardActionBtn structureIndentBtn";
+    unindentBtn.className = "button iconBtn smallWideBtn";
     unindentBtn.type = "button";
-    unindentBtn.textContent = "🢀"; // unicode 1F880
+    unindentBtn.setAttribute("aria-label", "Unindent");
+    unindentBtn.setAttribute("title", "Unindent");
+    const unindentIcon = document.createElementNS(svgNs, "svg");
+    unindentIcon.setAttribute("class", "icon");
+    unindentIcon.setAttribute("aria-hidden", "true");
+    const unindentUse = document.createElementNS(svgNs, "use");
+    unindentUse.setAttribute("href", "../icons/unindent_line.svg#icon");
+    unindentUse.setAttributeNS(xlinkNs, "href", "../icons/unindent_line.svg#icon");
+    unindentUse.setAttribute("width", "100%");
+    unindentUse.setAttribute("height", "100%");
+    unindentUse.setAttribute("x", "0");
+    unindentUse.setAttribute("y", "0");
+    unindentIcon.appendChild(unindentUse);
+    unindentBtn.appendChild(unindentIcon);
+    // Before "🢀"; // unicode 1F880
     // alternative:
     // ↤ Leftwards Arrow From Bar 21A4
     // 🡐 LEFTWARDS SANS-SERIF ARROW, U+1F850
@@ -1091,10 +1108,25 @@ function renderStructureTable() {
     levelBadge.className = "structureLevel";
     levelBadge.textContent = String(line.level);
 
+    // Build indent button
     const indentBtn = document.createElement("button");
-    indentBtn.className = "wizardActionBtn structureIndentBtn";
+    indentBtn.className = "button iconBtn smallWideBtn";
     indentBtn.type = "button";
-    indentBtn.textContent = "🢂"; // unicode 1F882
+    indentBtn.setAttribute("aria-label", "Indent");
+    indentBtn.setAttribute("title", "Indent");
+    const indentIcon = document.createElementNS(svgNs, "svg");
+    indentIcon.setAttribute("class", "icon");
+    indentIcon.setAttribute("aria-hidden", "true");
+    const indentUse = document.createElementNS(svgNs, "use");
+    indentUse.setAttribute("href", "../icons/indent_line.svg#icon");
+    indentUse.setAttributeNS(xlinkNs, "href", "../icons/indent_line.svg#icon");
+    indentUse.setAttribute("width", "100%");
+    indentUse.setAttribute("height", "100%");
+    indentUse.setAttribute("x", "0");
+    indentUse.setAttribute("y", "0");
+    indentIcon.appendChild(indentUse);
+    indentBtn.appendChild(indentIcon);
+    // Before: "🢂"; // unicode 1F882
     // Alternaives:
     // ↦ Rightwards Arrow From Bar 21A6
     // 🠊 RIGHTWARDS ARROW WITH LARGE TRIANGLE ARROWHEAD, U+1F80A
@@ -1109,9 +1141,22 @@ function renderStructureTable() {
     });
 
     const mergeUpBtn = document.createElement("button");
-    mergeUpBtn.className = "wizardActionBtn structureMergeBtn";
+    mergeUpBtn.className = "button iconBtn smallWideBtn";
     mergeUpBtn.type = "button";
-    mergeUpBtn.textContent = "🠝"; // unicode 1F81D
+    mergeUpBtn.setAttribute("aria-label", "Merge up");
+    mergeUpBtn.setAttribute("title", "Merge up");
+    const mergeUpIcon = document.createElementNS(svgNs, "svg");
+    mergeUpIcon.setAttribute("class", "icon");
+    mergeUpIcon.setAttribute("aria-hidden", "true");
+    const mergeUpUse = document.createElementNS(svgNs, "use");
+    mergeUpUse.setAttribute("href", "../icons/lines_up.svg#icon");
+    mergeUpUse.setAttributeNS(xlinkNs, "href", "../icons/lines_up.svg#icon");
+    mergeUpUse.setAttribute("width", "100%");
+    mergeUpUse.setAttribute("height", "100%");
+    mergeUpUse.setAttribute("x", "0");
+    mergeUpUse.setAttribute("y", "0");
+    mergeUpIcon.appendChild(mergeUpUse);
+    mergeUpBtn.appendChild(mergeUpIcon);
     // alternatives:
     // ↟ Upwards Two Headed Arrow 219F
     // ⯭ UPWARDS TWO-HEADED ARROW WITH TRIANGLE ARROWHEADS, U+2BED
@@ -1124,9 +1169,22 @@ function renderStructureTable() {
     mergeUpBtn.addEventListener("click", () => mergeLine(entry, index, "up"));
 
     const mergeDownBtn = document.createElement("button");
-    mergeDownBtn.className = "wizardActionBtn structureMergeBtn";
+    mergeDownBtn.className = "button iconBtn smallWideBtn";
     mergeDownBtn.type = "button";
-    mergeDownBtn.textContent = "🠟"; // unicode 1F81F
+    mergeDownBtn.setAttribute("aria-label", "Merge down");
+    mergeDownBtn.setAttribute("title", "Merge down");
+    const mergeDownIcon = document.createElementNS(svgNs, "svg");
+    mergeDownIcon.setAttribute("class", "icon");
+    mergeDownIcon.setAttribute("aria-hidden", "true");
+    const mergeDownUse = document.createElementNS(svgNs, "use");
+    mergeDownUse.setAttribute("href", "../icons/lines_down.svg#icon");
+    mergeDownUse.setAttributeNS(xlinkNs, "href", "../icons/lines_down.svg#icon");
+    mergeDownUse.setAttribute("width", "100%");
+    mergeDownUse.setAttribute("height", "100%");
+    mergeDownUse.setAttribute("x", "0");
+    mergeDownUse.setAttribute("y", "0");
+    mergeDownIcon.appendChild(mergeDownUse);
+    mergeDownBtn.appendChild(mergeDownIcon);
     // alternative:
     // ↡ Downwards Two Headed Arrow 21A1
     // ⯯  DOWNWARDS TWO-HEADED ARROW WITH TRIANGLE ARROWHEADS, U+2BEF

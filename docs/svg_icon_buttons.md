@@ -51,7 +51,7 @@ Notes:
 
 3) Wizard square icon buttons (analyze_new_excerpt)
 ```html
-<button class="wizardActionBtn iconSquareBtn" aria-label="Split sentence">
+<button class="button iconBtn iconSquareBtn" aria-label="Split sentence">
   <svg class="icon" aria-hidden="true">
     <use href="../icons/scissors_cut.svg#icon" width="100%" height="100%" x="0" y="0"></use>
   </svg>
@@ -98,26 +98,26 @@ reduce padding slightly:
 ## 5) Compact variants (non-square)
 Planned compact variants for tighter layouts:
 
-- `.iconSmallWideBtn` (short and wide, 32x25)
-- `.iconSmallNarrowBtn` (tall and narrow, 25x32)
+- `.smallWideBtn` (short and wide, 32x25)
+- `.smallNarrowBtn` (tall and narrow, 25x32)
 
 These should be used as modifiers alongside `.iconBtn` or `.iconBtnNonStandard`.
 
 ```css
-.iconSmallWideBtn{
+.smallWideBtn{
   width: 32px;
   height: 25px;
   padding: 3px;
   border-radius: 8px;
 }
-.iconSmallNarrowBtn{
+.smallNarrowBtn{
   width: 25px;
   height: 32px;
   padding: 3px;
   border-radius: 8px;
 }
-.iconSmallWideBtn svg,
-.iconSmallNarrowBtn svg{
+.smallWideBtn svg,
+.smallNarrowBtn svg{
   width: 18px;
   height: 18px;
 }
@@ -148,7 +148,30 @@ visually merge with the list. To avoid SVG size changes during this width change
 }
 ```
 
-## 9) Troubleshooting checklist
+## 9) Dynamic SVG icon buttons (JS)
+When creating SVG icon buttons in JS, the SVG elements must be created in the SVG namespace
+or the `<use>` won’t render:
+
+```js
+const svgNs = "http://www.w3.org/2000/svg";
+const xlinkNs = "http://www.w3.org/1999/xlink";
+const btn = document.createElement("button");
+btn.className = "button iconBtn";
+const icon = document.createElementNS(svgNs, "svg");
+icon.setAttribute("class", "icon");
+icon.setAttribute("aria-hidden", "true");
+const use = document.createElementNS(svgNs, "use");
+use.setAttribute("href", "../icons/indent_line.svg#icon");
+use.setAttributeNS(xlinkNs, "href", "../icons/indent_line.svg#icon"); /* fallback */
+use.setAttribute("width", "100%");
+use.setAttribute("height", "100%");
+use.setAttribute("x", "0");
+use.setAttribute("y", "0");
+icon.appendChild(use);
+btn.appendChild(icon);
+```
+
+## 10) Troubleshooting checklist
 If an icon looks offset or cropped:
 - Confirm the SVG file has `id="icon"` and `fill="currentColor"` (or `stroke="currentColor"`).
 - Make sure the `<use>` includes `width="100%" height="100%" x="0" y="0"` (or the CSS equivalent).

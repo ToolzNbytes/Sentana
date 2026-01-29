@@ -19,7 +19,7 @@
     <span class="titleSub">— A visual breakdown of sentence structure across authors.</span>
   </div>
   <div class="rightControls">
-    <button class="button iconBtn" id="helpBtn"      aria-label="Help"              title="Help and documentation"><svg class="icon" aria-hidden="true"><use href="../icons/manual_help.svg#icon"></use></svg></button>
+    <button class="button iconBtn" id="helpBtn"      aria-label="Help"              title="Help"><svg class="icon" aria-hidden="true"><use href="../icons/manual_help.svg#icon"></use></svg></button>
     <button class="button iconBtn" id="localDataBtn" aria-label="Local corpus data" title="Local corpus data"><svg class="icon" aria-hidden="true"><use href="../icons/database_v2.svg#icon"></use></svg></button>
     <button class="button iconBtn" id="settingsBtn"  aria-label="Settings"          title="Settings"         ><svg class="icon" aria-hidden="true"><use href="../icons/settings.svg#icon"></use></svg></button>
   </div>
@@ -46,10 +46,10 @@
               <button class="button iconBtn" id="corpusFilterBtn" title="Filter remote corpus" aria-label="Filter remote corpus" disabled>
                 <svg class="icon" aria-hidden="true"><use href="../icons/filter.svg#icon"></use></svg>
               </button>
-              <button class="button iconBtn listSelectBtn" id="corpusRemoteBtn" disabled title="Remote corpus">
+              <button class="button iconBtn listSelectBtn" id="corpusRemoteBtn" disabled title="Remote corpus" aria-label="Remote corpus">
                 <svg class="icon" aria-hidden="true"><use href="../icons/world_network.svg#icon"></use></svg>
               </button>
-              <button class="button iconBtn listSelectBtn" id="corpusLocalBtn" title="Local corpus">
+              <button class="button iconBtn listSelectBtn" id="corpusLocalBtn" title="Local corpus" aria-label="Local corpus">
                 <svg class="icon" aria-hidden="true"><use href="../icons/hard-drive.svg#icon"></use></svg>
               </button>
             </div>
@@ -62,7 +62,7 @@
         <div class="row-comment">
           <div class="comment" id="commentArea"></div>
           <!-- Non-square icon button: width set inline, height stretches with the row to match the neighbor panel. -->
-          <button class="button iconBtnNonStandard" id="excerptSourceBtn" title="Open raw / excerpt panel" style="width:36px">
+          <button class="button iconBtnNonStandard" id="excerptSourceBtn" title="Open raw / excerpt panel" aria-label="Open raw / excerpt panel" style="width:36px">
             <svg class="icon" aria-hidden="true"><use href="../icons/dive-in_doc.svg#icon"></use></svg>
           </button>
         </div>
