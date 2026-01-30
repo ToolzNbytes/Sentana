@@ -1011,7 +1011,7 @@ function renderStructureTable() {
   const entry = getCurrentEntry();
   if (!entry) return;
   ensureEntryStructure(entry);
-  entry._hasIllegalContinuation = false;
+  const lineWarnings = computeLineWarnings(entry);
   const spacerColors = computeSpacerColors(entry);
   structureTable.innerHTML = "";
   sentenceDialogueToggle.checked = Boolean(entry.structure.dialogue);
@@ -1042,6 +1042,10 @@ function renderStructureTable() {
     if (line.level === 1 && (line.tag === "IC" || line.tag === "FG")) {
       textWrap.classList.add("indepStart");
     }
+    if ((lineWarnings[index] || []).length > 0) {
+      textWrap.classList.add("hasWarning");
+      textWrap.appendChild(buildWarningIcon());
+    }
     const textNodes = buildWordNodes(line.text, index);
     textNodes.forEach((node) => textWrap.appendChild(node));
     textCell.appendChild(spacerWrap);
@@ -1059,7 +1063,7 @@ function renderStructureTable() {
 
     const tagRow = document.createElement("div");
     tagRow.className = "structureControlRow structureControlRowTight";
-    tagRow.appendChild(buildTagSelect(line, index));
+    tagRow.appendChild(buildTagSelect(entry, line, index));
     const dialogueWrap = buildDialogueToggle(entry, line);
     if (dialogueWrap) tagRow.appendChild(dialogueWrap);
     const forwardWrap = buildForwardToggle(line);
@@ -1208,6 +1212,13 @@ function renderStructureTable() {
     hintCell.className = "structureCell structureHint";
     if (isLastRow) hintCell.classList.add("isLastRow");
     hintCell.textContent = buildTagHint(entry, index);
+    const warnings = lineWarnings[index] || [];
+    if (warnings.length) {
+      const warnSpan = document.createElement("span");
+      warnSpan.className = "structureWarningText";
+      warnSpan.textContent = ` ${warnings.join(" ")}`;
+      hintCell.appendChild(warnSpan);
+    }
 
     row.appendChild(controlsCell);
     row.appendChild(textCell);
@@ -1220,9 +1231,9 @@ function renderStructureTable() {
   updateStructureVisibility(entry);
 }
 
-function buildTagSelect(line, index) {
+function buildTagSelect(entry, line, index) {
   const select = document.createElement("select");
-  const options = getTagOptions(index);
+  const options = getTagOptions(index, entry, true);
   options.forEach((tag) => {
     const opt = document.createElement("option");
     opt.value = tag;
@@ -1284,9 +1295,61 @@ function buildDialogueToggle(entry, line) {
   return dialogueWrap;
 }
 
-function getTagOptions(index) {
-  if (index === 0) return ["IC", "FG", "??"];
-  return ["??", "--", "IC", "FG", "DC", "PP", "AP", "CP", "AT"];
+function getTagOptions(index, entry, includeCurrent = false) {
+  if (index === 0) return ["IC", "FG", "--", "??"];
+  const options = ["??", "--", "IC", "FG", "DC", "PP", "AP", "CP", "AT"];
+  if (!entry) return options;
+  const line = entry.structure?.lines?.[index];
+  if (!line) return options;
+  const allowAT = canUseAT(entry, index);
+  if (!allowAT && line.tag !== "AT") {
+    removeValue(options, "AT");
+  }
+  const allowCP = hasPrevSameLevelText(entry, index);
+  if (!allowCP && line.tag !== "CP") {
+    removeValue(options, "CP");
+  }
+  if (!includeCurrent) return options;
+  if (line.tag === "AT" && !options.includes("AT")) options.push("AT");
+  if (line.tag === "CP" && !options.includes("CP")) options.push("CP");
+  return options;
+}
+
+function removeValue(list, value) {
+  const idx = list.indexOf(value);
+  if (idx >= 0) list.splice(idx, 1);
+}
+
+function findNearestLineAtLevel(entry, index, level) {
+  if (!entry?.structure?.lines?.length) return null;
+  for (let i = index - 1; i >= 0; i--) {
+    const prev = entry.structure.lines[i];
+    if (prev.level === level) return prev;
+  }
+  return null;
+}
+
+function hasPrevSameLevelText(entry, index) {
+  const line = entry?.structure?.lines?.[index];
+  if (!line) return false;
+  for (let i = index - 1; i >= 0; i--) {
+    const prev = entry.structure.lines[i];
+    if (prev.level === line.level) {
+      return String(prev.text || "").trim().length > 0;
+    }
+  }
+  return false;
+}
+
+function canUseAT(entry, index) {
+  if (entry?.structure?.dialogue) return true;
+  const line = entry?.structure?.lines?.[index];
+  if (!line) return false;
+  for (let level = line.level - 1; level >= 1; level--) {
+    const stacked = findNearestLineAtLevel(entry, index, level);
+    if (stacked && ["IC", "FG"].includes(stacked.tag) && stacked.dialogue) return true;
+  }
+  return false;
 }
 
 function handleTagChange(entry, index, prevTag, nextTag) {
@@ -1340,16 +1403,69 @@ function buildTagHint(entry, index) {
   if (line.tag === "--") {
     const ref = findPreviousTagAtLevel(entry, index, line.level);
     const base = ref ? `Continuation of ${ref}.` : "Continuation.";
-    const prev = entry.structure.lines[index - 1];
-    if (!prev || line.level >= prev.level) {
-      entry._hasIllegalContinuation = true;
-      return `${parts.join(" ")}${parts.length ? " " : ""}${base} Illegal continuation line.`;
-    }
     return `${parts.join(" ")}${parts.length ? " " : ""}${base}`;
   }
   const label = window.SSE_APP?.tags?.getLabel ? window.SSE_APP.tags.getLabel(line.tag) : "";
   const base = label || "Define the clause type.";
   return `${parts.join(" ")}${parts.length ? " " : ""}${base}`;
+}
+
+function computeLineWarnings(entry) {
+  const warningsByLine = (entry?.structure?.lines || []).map(() => []);
+  if (!entry?.structure?.lines?.length) {
+    entry._lineWarnings = warningsByLine;
+    entry._warningCount = 0;
+    return warningsByLine;
+  }
+
+  const lines = entry.structure.lines;
+  if (lines[0] && lines[0].level !== 1) {
+    warningsByLine[0].push("First line must be level 1.");
+  }
+
+  lines.forEach((line, index) => {
+    if (!line) return;
+    if (line.level === 1 && !["IC", "FG", "--"].includes(line.tag)) {
+      warningsByLine[index].push("Level 1 lines must be tagged IC, FG, or --.");
+    }
+    if (line.tag === "--") {
+      const prev = lines[index - 1];
+      if (prev && prev.tag === "--" && line.level >= prev.level) {
+        warningsByLine[index].push("Continuation after '--' must be lower level.");
+      }
+    }
+    if (["IC", "FG"].includes(line.tag) && line.level >= 2 && !line.dialogue) {
+      warningsByLine[index].push("IC/FG at level 2+ must be Dialogue.");
+    }
+    if (line.tag === "AT" && !canUseAT(entry, index)) {
+      warningsByLine[index].push("AT requires sentence Dialogue or a Dialogue IC/FG above.");
+    }
+    if (line.tag === "CP" && !hasPrevSameLevelText(entry, index)) {
+      warningsByLine[index].push("CP cannot be the first text at its level.");
+    }
+  });
+
+  entry._lineWarnings = warningsByLine;
+  entry._warningCount = warningsByLine.reduce((sum, list) => sum + list.length, 0);
+  return warningsByLine;
+}
+
+function buildWarningIcon() {
+  const wrap = document.createElement("div");
+  wrap.className = "structureWarningIcon";
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("class", "structureWarningSvg");
+  svg.setAttribute("aria-hidden", "true");
+  svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+  const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+  use.setAttributeNS("http://www.w3.org/1999/xlink", "href", "../icons/warning_diamond.svg#icon");
+  use.setAttribute("width", "100%");
+  use.setAttribute("height", "100%");
+  use.setAttribute("x", "0");
+  use.setAttribute("y", "0");
+  svg.appendChild(use);
+  wrap.appendChild(svg);
+  return wrap;
 }
 
 function findPreviousTagAtLevel(entry, index, level) {
@@ -1477,23 +1593,26 @@ function computeSpacerColors(entry) {
 function updatePendingStatus(entry) {
   const pending = entry.structure.lines.filter((line) => line.tag === "??").length;
   const { noneDefined, pendingCount, doneCount, total } = getStructureSummary();
+  const warningCount = Number(entry._warningCount || 0);
+  const warningSuffix = warningCount > 0 ? ` Warnings: ${warningCount}.` : "";
   if (pending === 0) {
     if (doneCount === total && total > 0) {
-      structurePendingStatus.textContent = "Current sentence done? / Excerpt structures done?";
+      structurePendingStatus.textContent = `Current sentence done?${warningSuffix} / Excerpt structures done?`;
     } else {
       const parts = [`${noneDefined} sentences have no structure defined at all`];
       if (pendingCount > 0) parts.push(`${pendingCount} have pending structure`);
-      structurePendingStatus.textContent = `Current sentence done? / Excerpt: ${parts.join(", ")}.`;
+      structurePendingStatus.textContent = `Current sentence done?${warningSuffix} / Excerpt: ${parts.join(", ")}.`;
     }
     return;
   }
   const parts = [`${noneDefined} sentences have no structure defined at all`];
   if (pendingCount > 0) parts.push(`${pendingCount} have pending structure`);
-  structurePendingStatus.textContent = `Current sentence: ${pending} line(s) tagged ?? / Excerpt: ${parts.join(", ")}.`;
+  structurePendingStatus.textContent = `Current sentence: ${pending} line(s) tagged ??${warningSuffix} / Excerpt: ${parts.join(", ")}.`;
 }
 
 function updateSentenceDone(entry) {
-  entry.done = entry.structure.lines.every((line) => line.tag !== "??") && !entry._hasIllegalContinuation;
+  computeLineWarnings(entry);
+  entry.done = entry.structure.lines.every((line) => line.tag !== "??") && (entry._warningCount || 0) === 0;
 }
 
 function updateStructureVisibility(entry) {
@@ -1886,7 +2005,7 @@ function openTagMenu(x, y, lineIndex) {
   list.innerHTML = "";
 
   const defs = window.SSE_APP?.tags?.defs || {};
-  const allowedTags = getTagOptions(lineIndex).filter((tag) => tag !== "??" && tag !== "--");
+  const allowedTags = getTagOptions(lineIndex, entry, false).filter((tag) => tag !== "??" && tag !== "--");
   allowedTags.forEach((key) => {
     const item = document.createElement("button");
     item.className = "sentenceMenuItem menuTagItem";
