@@ -39,6 +39,19 @@ const sentenceDialogueToggle = document.getElementById("sentenceDialogueToggle")
 const sentenceComment = document.getElementById("sentenceComment");
 const structureTable = document.getElementById("structureTable");
 const structurePendingStatus = document.getElementById("structurePendingStatus");
+const checksMetaSummary = document.getElementById("checksMetaSummary");
+const checksStats = document.getElementById("checksStats");
+const checksSentenceStats = document.getElementById("checksSentenceStats");
+const checksParaWarning = document.getElementById("checksParaWarning");
+const check1Status = document.getElementById("check1Status");
+const check1Body = document.getElementById("check1Body");
+const check2Status = document.getElementById("check2Status");
+const check2Body = document.getElementById("check2Body");
+const check3Status = document.getElementById("check3Status");
+const check3Body = document.getElementById("check3Body");
+const check3Actions = document.getElementById("check3Actions");
+const copyReconstructedBtn = document.getElementById("copyReconstructedBtn");
+const copyReconstructedNote = document.getElementById("copyReconstructedNote");
 
 const metaHintTitle = document.getElementById("metaHintTitle");
 const metaHintBody = document.getElementById("metaHintBody");
@@ -69,6 +82,15 @@ const LS_KEY_WIZARD_DRAFT = "SentenceStructureExplorer.v1.wizardDraft";
 let dragState = null;
 let dragIndicator = null;
 let lastDragTime = 0;
+let checksState = {
+  level1: false,
+  level2: false,
+  level3: false,
+  analyzedText: "",
+  reconstructedText: ""
+};
+let analyzedTextReady = false;
+let analyzedTextOutput = "";
 
 function setStatus(message) {
   wizardStatus.textContent = message;
@@ -94,6 +116,9 @@ function showPanel(index) {
   }
   if (panelIndex === 4) {
     showStructuresPanel();
+  }
+  if (panelIndex === 5) {
+    showChecksPanel();
   }
   updateNavState();
   updateProgressFill();
@@ -276,6 +301,15 @@ function updateNavState() {
     nextBtn.disabled = !allSentencesDone();
     return;
   }
+  if (panelIndex === 5) {
+    nextBtn.disabled = !checksState.level3;
+    return;
+  }
+  if (panelIndex === 6) {
+    nextBtn.textContent = "Done";
+    nextBtn.disabled = true;
+    return;
+  }
   nextBtn.disabled = false;
 }
 
@@ -313,6 +347,14 @@ function computeStepFill(stepIndex) {
     if (!total) return 0;
     const doneCount = sentenceEntries.filter((entry) => entry.done).length;
     return doneCount / total;
+  }
+  if (stepIndex === 5) {
+    const doneCount = [checksState.level1, checksState.level2, checksState.level3]
+      .filter(Boolean).length;
+    return doneCount / 3;
+  }
+  if (stepIndex === 6) {
+    return panelIndex >= 6 ? 1 : 0;
   }
   return 0;
 }
@@ -364,6 +406,9 @@ function handleNext() {
   }
   if (panelIndex === 4) {
     saveWizardDraft({ panelIndex: 4 });
+  }
+  if (panelIndex === 5) {
+    saveWizardDraft({ panelIndex: 5 });
   }
   if (panelIndex < panels.length - 1) {
     showPanel(panelIndex + 1);
@@ -485,6 +530,11 @@ function restoreWizardDraft(draft) {
   }
 
   const targetPanel = Number.isFinite(draft.panelIndex) ? draft.panelIndex : 1;
+  if (targetPanel >= 4) {
+    const savedIndex = sentenceIndex;
+    initializeSentenceEntries(true);
+    sentenceIndex = Number.isFinite(savedIndex) ? savedIndex : 0;
+  }
   showPanel(targetPanel);
   if (targetPanel === 2) {
     showTextStep(textStepIndex || 2);
@@ -494,12 +544,6 @@ function restoreWizardDraft(draft) {
       sentenceSplitInput.value = splitTextWorking;
       renderSplitPreview(splitTextWorking);
     }
-  }
-  if (targetPanel === 4) {
-    const savedIndex = sentenceIndex;
-    initializeSentenceEntries(true);
-    sentenceIndex = Number.isFinite(savedIndex) ? savedIndex : 0;
-    showStructuresPanel();
   }
 }
 
@@ -525,6 +569,17 @@ function resetWizardState() {
   showNextContext = false;
   if (alwaysShowControlsToggle) alwaysShowControlsToggle.checked = false;
   if (clauseHintsToggle) clauseHintsToggle.checked = false;
+  checksState = {
+    level1: false,
+    level2: false,
+    level3: false,
+    analyzedText: "",
+    reconstructedText: ""
+  };
+  analyzedTextReady = false;
+  analyzedTextOutput = "";
+  updateChecksProgressLabel();
+  updateStoreProgressState();
 }
 applyResponsiveDefaults();
 
@@ -681,6 +736,19 @@ sentenceComment.addEventListener("input", () => {
   const entry = getCurrentEntry();
   if (!entry) return;
   entry.structure.comment = sentenceComment.value;
+});
+
+copyReconstructedBtn?.addEventListener("click", () => {
+  const text = checksState.reconstructedText || "";
+  if (!text) return;
+  if (copyReconstructedNote) copyReconstructedNote.textContent = "Copying...";
+  copyTextToClipboard(text)
+    .then(() => {
+      if (copyReconstructedNote) copyReconstructedNote.textContent = "Copied.";
+    })
+    .catch(() => {
+      if (copyReconstructedNote) copyReconstructedNote.textContent = "Copy failed.";
+    });
 });
 
 structureTable.addEventListener("click", (event) => {
@@ -1663,6 +1731,492 @@ function allSentencesDone() {
   return sentenceEntries.length > 0 && sentenceEntries.every((entry) => entry.done);
 }
 
+function showChecksPanel() {
+  analyzedTextReady = false;
+  analyzedTextOutput = "";
+  checksState = {
+    level1: false,
+    level2: false,
+    level3: false,
+    analyzedText: "",
+    reconstructedText: ""
+  };
+
+  const initialDoneCount = sentenceEntries.filter((entry) => entry.done).length;
+  updateChecksInfo(initialDoneCount);
+  if (!sentenceEntries.length) {
+    renderCheckLevel1({ ok: false, issues: ["No sentences available for checks."] });
+    renderCheckSkipped(2);
+    renderCheckSkipped(3);
+    finalizeChecksState();
+    return;
+  }
+
+  const level1 = runStructureEvaluation();
+  renderCheckLevel1(level1);
+  if (!level1.ok) {
+    renderCheckSkipped(2);
+    renderCheckSkipped(3);
+    finalizeChecksState();
+    return;
+  }
+  checksState.level1 = true;
+
+  const buildRes = buildAnalyzedTextSet(sentenceEntries);
+  if (!buildRes.ok) {
+    renderCheckLevel2Error(buildRes.msg || "Structure conversion error.");
+    renderCheckSkipped(3);
+    finalizeChecksState();
+    return;
+  }
+
+  const verifyRes = verifyAnalyzedText(buildRes.text);
+  if (!verifyRes.ok) {
+    renderCheckLevel2Invalid(verifyRes.msg || "Invalid analyzed text.", buildRes.text);
+    renderCheckSkipped(3);
+    finalizeChecksState();
+    return;
+  }
+
+  checksState.level2 = true;
+  checksState.analyzedText = buildRes.text;
+  renderCheckLevel2Passed();
+
+  const consistency = runConsistencyCheck(sentenceEntries, sourceText);
+  if (!consistency.ok) {
+    checksState.reconstructedText = consistency.reconstructed || "";
+    renderCheckLevel3Error(consistency);
+    finalizeChecksState();
+    return;
+  }
+
+  checksState.level3 = true;
+  checksState.reconstructedText = consistency.reconstructed || "";
+  analyzedTextReady = true;
+  analyzedTextOutput = buildRes.text;
+  renderCheckLevel3Passed();
+  finalizeChecksState();
+}
+
+function updateChecksInfo(doneCount) {
+  if (!checksMetaSummary || !checksStats || !checksSentenceStats) return;
+  checksMetaSummary.textContent = buildMetadataSummary();
+
+  const excerpt = String(sourceText || "").replace(/\r\n/g, "\n");
+  const charCount = excerpt.length;
+  const wordCount = countWords(excerpt);
+  const lines = excerpt.split("\n");
+  const nonEmpty = lines.filter((line) => line.trim().length > 0);
+  const emptyCount = Math.max(0, lines.length - nonEmpty.length);
+  checksStats.textContent = `Excerpt: ${charCount} chars / ${wordCount} words / ${nonEmpty.length} paragraphs`;
+
+  if (checksParaWarning) {
+    if (emptyCount > 0) {
+      checksParaWarning.textContent = `Warning: ${emptyCount} empty line(s) found. This will fail the final check.`;
+      checksParaWarning.classList.remove("hidden");
+    } else {
+      checksParaWarning.textContent = "";
+      checksParaWarning.classList.add("hidden");
+    }
+  }
+
+  const total = sentenceEntries.length;
+  const done = Number.isFinite(doneCount) ? doneCount : sentenceEntries.filter((entry) => entry.done).length;
+  if (!total) {
+    checksSentenceStats.textContent = "Sentences: 0";
+    checksSentenceStats.classList.remove("isError");
+    return;
+  }
+  if (done === total) {
+    checksSentenceStats.textContent = `Sentences: ${total} (all done)`;
+    checksSentenceStats.classList.remove("isError");
+  } else {
+    checksSentenceStats.textContent = `Sentences: only ${done}/${total} done - error`;
+    checksSentenceStats.classList.add("isError");
+  }
+}
+
+function buildMetadataSummary() {
+  const work = document.getElementById("fWork").value.trim() || "(untitled)";
+  const author = document.getElementById("fAuthor").value.trim() || "(unknown author)";
+  const year = document.getElementById("fYear").value.trim() || "?";
+  const choice = document.getElementById("fChoice").value.trim() || "?";
+  const language = document.getElementById("fLanguage").value.trim() || "??";
+  const tags = document.getElementById("fTags").value.trim();
+  const comment = document.getElementById("fComment").value.trim();
+  const commentSuffix = comment ? ` - ${comment}` : " -";
+  return `${work} by ${author} (${year}) Lang=${language} (${choice}) [ ${tags} ]${commentSuffix}`;
+}
+
+function countWords(text) {
+  const raw = String(text || "");
+  const trimmed = raw.trim();
+  if (trimmed.length === 1 && ",.;:!?".includes(trimmed)) return 0;
+  return raw.replace(/["]/g, " ").trim().split(/\s+/).filter(Boolean).length;
+}
+
+function runStructureEvaluation() {
+  const issues = [];
+  let doneCount = 0;
+
+  sentenceEntries.forEach((entry, idx) => {
+    if (!entry || !entry.structure || !Array.isArray(entry.structure.lines) || entry.structure.lines.length === 0) {
+      issues.push(`Sentence ${idx + 1}: No structure defined.`);
+      entry.done = false;
+      return;
+    }
+
+    updateSentenceDone(entry);
+
+    const warningsByLine = entry._lineWarnings || [];
+    warningsByLine.forEach((warnings, lineIdx) => {
+      warnings.forEach((warning) => {
+        issues.push(`Sentence ${idx + 1}, line ${lineIdx + 1}: ${warning}`);
+      });
+    });
+
+    entry.structure.lines.forEach((line, lineIdx) => {
+      if (line.tag === "??") {
+        issues.push(`Sentence ${idx + 1}, line ${lineIdx + 1}: Tag is still '??'.`);
+      }
+    });
+
+    if (entry.done) doneCount += 1;
+  });
+
+  updateStructuresProgressLabel();
+  updateProgressFill();
+
+  return { ok: issues.length === 0, issues, doneCount, total: sentenceEntries.length };
+}
+
+function renderCheckLevel1(result) {
+  if (!check1Status || !check1Body) return;
+  if (result.ok) {
+    setCheckStatus(check1Status, "Passed", "ok");
+    check1Body.textContent = "Check level 1 passed.";
+    return;
+  }
+  setCheckStatus(check1Status, "Failed", "error");
+  renderCheckIssues(check1Body, "Check level 1 failed.", result.issues);
+}
+
+function renderCheckLevel2Passed() {
+  if (!check2Status || !check2Body) return;
+  setCheckStatus(check2Status, "Passed", "ok");
+  check2Body.textContent = "Check level 2 passed.";
+}
+
+function renderCheckLevel2Error(message) {
+  if (!check2Status || !check2Body) return;
+  setCheckStatus(check2Status, "Failed", "error");
+  check2Body.textContent = message;
+}
+
+function renderCheckLevel2Invalid(message, analyzedText) {
+  if (!check2Status || !check2Body) return;
+  setCheckStatus(check2Status, "Failed", "error");
+  check2Body.innerHTML = "";
+  const msg = document.createElement("div");
+  msg.className = "checkMessage";
+  msg.textContent = message;
+  check2Body.appendChild(msg);
+
+  const lineNumber = window.SSE?.extractLineNumber ? window.SSE.extractLineNumber(message) : null;
+  const snippet = buildErrorSnippet(analyzedText, lineNumber, 5);
+  if (snippet) {
+    const pre = document.createElement("pre");
+    pre.className = "checkSnippet";
+    pre.textContent = snippet;
+    check2Body.appendChild(pre);
+  }
+}
+
+function renderCheckLevel3Passed() {
+  if (!check3Status || !check3Body) return;
+  setCheckStatus(check3Status, "Passed", "ok");
+  check3Body.textContent = "Check level 3 passed.";
+  if (check3Actions) check3Actions.classList.add("hidden");
+  if (copyReconstructedNote) copyReconstructedNote.textContent = "";
+}
+
+function renderCheckLevel3Error(details) {
+  if (!check3Status || !check3Body) return;
+  setCheckStatus(check3Status, "Failed", "error");
+  const mismatch = Number.isFinite(details?.line) ? `Mismatch at paragraph ${details.line}.` : "Mismatch detected.";
+  check3Body.textContent = `Check level 3 failed. ${mismatch}`;
+  if (check3Actions) check3Actions.classList.remove("hidden");
+  if (copyReconstructedBtn) copyReconstructedBtn.disabled = !checksState.reconstructedText;
+  if (copyReconstructedNote) copyReconstructedNote.textContent = "Copy the reconstructed text for inspection.";
+}
+
+function renderCheckSkipped(level) {
+  const statusEl = level === 2 ? check2Status : check3Status;
+  const bodyEl = level === 2 ? check2Body : check3Body;
+  if (!statusEl || !bodyEl) return;
+  setCheckStatus(statusEl, "Skipped", "muted");
+  bodyEl.textContent = "Fix the previous level to continue.";
+  if (level === 3) {
+    if (check3Actions) check3Actions.classList.add("hidden");
+    if (copyReconstructedNote) copyReconstructedNote.textContent = "";
+  }
+}
+
+function setCheckStatus(el, text, tone) {
+  if (!el) return;
+  el.textContent = text;
+  el.classList.remove("isOk", "isError", "isMuted");
+  if (tone === "ok") el.classList.add("isOk");
+  if (tone === "error") el.classList.add("isError");
+  if (tone === "muted") el.classList.add("isMuted");
+}
+
+function renderCheckIssues(container, title, issues) {
+  container.innerHTML = "";
+  const msg = document.createElement("div");
+  msg.textContent = title;
+  container.appendChild(msg);
+  const list = document.createElement("ul");
+  list.className = "checkList";
+  issues.forEach((issue) => {
+    const li = document.createElement("li");
+    li.textContent = issue;
+    list.appendChild(li);
+  });
+  container.appendChild(list);
+}
+
+function buildAnalyzedTextSet(entries) {
+  const lines = [];
+  for (let i = 0; i < entries.length; i++) {
+    const entry = entries[i];
+    if (!entry || !entry.structure || !Array.isArray(entry.structure.lines)) {
+      return { ok: false, msg: `Sentence ${i + 1}: Missing structure.` };
+    }
+    lines.push(String(entry.text || ""));
+    const comment = String(entry.structure.comment || "").replace(/\r?\n/g, " ").trim();
+    if (comment) {
+      lines.push(`#${comment}`);
+    }
+    const structureLines = buildStructureLines(entry);
+    if (!structureLines.ok) {
+      return { ok: false, msg: `Sentence ${i + 1}: ${structureLines.msg}` };
+    }
+    lines.push(...structureLines.lines);
+    lines.push("");
+  }
+  return { ok: true, text: lines.join("\n") };
+}
+
+function buildStructureLines(entry) {
+  const allowed = new Set(["IC", "FG", "DC", "PP", "AP", "CP", "AT", "--"]);
+  const linesOut = [];
+  let currentLevel = 0;
+  const closingStack = [];
+  let clauseId = 1;
+  const lines = entry.structure.lines || [];
+
+  const closeOne = () => {
+    if (currentLevel < 1) return false;
+    if (!closingStack.length) return false;
+    const closeChar = closingStack.pop();
+    const prefix = "~".repeat(Math.max(0, currentLevel - 1));
+    linesOut.push(prefix + closeChar);
+    currentLevel -= 1;
+    return true;
+  };
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const tag = line?.tag || "";
+    if (tag === "??") {
+      return { ok: false, msg: "Undefined tag '??' in structure." };
+    }
+    if (!allowed.has(tag)) {
+      return { ok: false, msg: `Unsupported tag '${tag || "?"}'.` };
+    }
+    const level = Number(line.level);
+    if (!Number.isFinite(level) || level < 1) {
+      return { ok: false, msg: `Invalid level at line ${i + 1}.` };
+    }
+    const isContinuation = tag === "--";
+    const isCP = tag === "CP";
+    let targetLevel = level;
+    if (!isContinuation && !isCP) {
+      targetLevel = level - 1;
+    }
+
+    while (currentLevel > targetLevel) {
+      if (!closeOne()) {
+        return { ok: false, msg: "Processing error while closing structure." };
+      }
+    }
+
+    const prefix = "~".repeat(Math.max(0, level - 1));
+    if (isContinuation) {
+      if (currentLevel !== targetLevel) {
+        return { ok: false, msg: `Unexpected level at line ${i + 1}.` };
+      }
+      linesOut.push(prefix + String(line.text || ""));
+      continue;
+    }
+    if (isCP) {
+      if (currentLevel !== targetLevel) {
+        return { ok: false, msg: `Unexpected level at line ${i + 1}.` };
+      }
+      closingStack.push("]");
+      linesOut.push(`${prefix}[CP${clauseId}${String(line.text || "")}`);
+      clauseId += 1;
+      continue;
+    }
+
+    currentLevel += 1;
+    if (currentLevel !== level) {
+      return { ok: false, msg: `Processing error at line ${i + 1}.` };
+    }
+    closingStack.push(")");
+
+    let textLine = `${prefix}(${tag}${clauseId}`;
+    clauseId += 1;
+
+    if (["DC", "PP", "AP"].includes(tag)) {
+      textLine += (line.forward ? ">" : "<") + "0";
+    }
+
+    if (["IC", "FG"].includes(tag)) {
+      const sentenceDialogue = Boolean(entry.structure.dialogue) && i === 0;
+      if (line.dialogue || sentenceDialogue) {
+        textLine += "@0";
+      }
+    }
+
+    textLine += String(line.text || "");
+    linesOut.push(textLine);
+  }
+
+  while (currentLevel > 0) {
+    if (!closeOne()) {
+      return { ok: false, msg: "Processing error while closing structure." };
+    }
+  }
+
+  return { ok: true, lines: linesOut };
+}
+
+function verifyAnalyzedText(text) {
+  let errMsg = null;
+  const parsed = window.SSE?.parseAnalyzedText ? window.SSE.parseAnalyzedText(text, (msg) => {
+    errMsg = msg;
+  }) : null;
+  if (!parsed) {
+    return { ok: false, msg: errMsg || "Invalid analysis." };
+  }
+  return { ok: true, msg: null };
+}
+
+function buildErrorSnippet(text, lineNumber, linesBefore) {
+  const lines = String(text || "").split("\n");
+  if (!lines.length) return "";
+  const target = Number.isFinite(lineNumber) ? Math.min(lines.length, Math.max(1, lineNumber)) : lines.length;
+  const endIdx = target - 1;
+  const startIdx = Math.max(0, endIdx - (linesBefore || 0));
+  const width = String(target).length;
+  const snippet = [];
+  for (let i = startIdx; i <= endIdx && i < lines.length; i++) {
+    const ln = String(i + 1).padStart(width, " ");
+    snippet.push(`${ln} | ${lines[i]}`);
+  }
+  return snippet.join("\n");
+}
+
+function runConsistencyCheck(entries, originalText) {
+  const reconstructed = rebuildExcerptFromSentences(entries);
+  const comparison = compareParagraphs(originalText, reconstructed);
+  if (!comparison.ok) {
+    return { ok: false, line: comparison.line, reconstructed };
+  }
+  return { ok: true, reconstructed };
+}
+
+function rebuildExcerptFromSentences(entries) {
+  let out = "";
+  entries.forEach((entry, idx) => {
+    const sentence = String(entry?.text || "");
+    const stripped = sentence.replace(/^\s+/, "");
+    if (!sentence) return;
+    if (idx === 0) {
+      out += stripped;
+      return;
+    }
+    if (/^\s/.test(sentence)) {
+      out += "\n" + stripped;
+    } else {
+      out += " " + sentence;
+    }
+  });
+  return out;
+}
+
+function compareParagraphs(originalText, reconstructedText) {
+  const normalize = (text) => String(text || "").replace(/\r\n/g, "\n").replace(/\n+$/g, "").split("\n");
+  const originalLines = normalize(originalText);
+  const rebuiltLines = normalize(reconstructedText);
+  if (originalLines.length !== rebuiltLines.length) {
+    return { ok: false, line: Math.min(originalLines.length, rebuiltLines.length) + 1 };
+  }
+  for (let i = 0; i < originalLines.length; i++) {
+    if (originalLines[i] !== rebuiltLines[i]) {
+      return { ok: false, line: i + 1 };
+    }
+  }
+  return { ok: true };
+}
+
+function copyTextToClipboard(text) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    return navigator.clipboard.writeText(text);
+  }
+  return new Promise((resolve, reject) => {
+    const temp = document.createElement("textarea");
+    temp.value = text;
+    temp.setAttribute("readonly", "");
+    temp.style.position = "fixed";
+    temp.style.opacity = "0";
+    document.body.appendChild(temp);
+    temp.select();
+    let ok = false;
+    try {
+      ok = document.execCommand("copy");
+    } catch (err) {
+      ok = false;
+    }
+    temp.remove();
+    ok ? resolve() : reject(new Error("copy failed"));
+  });
+}
+
+function finalizeChecksState() {
+  updateChecksProgressLabel();
+  updateStoreProgressState();
+  updateProgressFill();
+  updateNavState();
+}
+
+function updateChecksProgressLabel() {
+  const step = progressSteps[4];
+  if (!step) return;
+  const labelEl = step.querySelector(".progressLabel");
+  if (!labelEl) return;
+  const done = [checksState.level1, checksState.level2, checksState.level3].filter(Boolean).length;
+  labelEl.textContent = done ? `Checks ${done}/3` : "Checks";
+}
+
+function updateStoreProgressState() {
+  const storeStep = progressSteps[5];
+  if (!storeStep) return;
+  storeStep.classList.toggle("isDisabled", !checksState.level3);
+}
+
 function getCurrentEntry() {
   return sentenceEntries[sentenceIndex] || null;
 }
@@ -2167,7 +2721,8 @@ function splitLineAtIndex(lineIndex, splitIndex, direction) {
   }
   enforceFirstLineIC(entry);
 
-  entry.text = joinSentenceLines(entry.structure.lines);
+  /* Error here: should not be needed and adds illegitimate space around em-dash
+  entry.text = joinSentenceLines(entry.structure.lines); */
   updateSentenceDone(entry);
   renderStructuresPanel();
 }

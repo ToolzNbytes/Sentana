@@ -42,7 +42,7 @@
           <div class="progressTrack"><span class="progressFill"></span></div>
           <div class="progressLabel">Structures</div>
         </div>
-        <div class="progressStep isDisabled" data-step="6">
+        <div class="progressStep" data-step="6">
           <div class="progressTrack"><span class="progressFill"></span></div>
           <div class="progressLabel">Checks</div>
         </div>
@@ -287,6 +287,68 @@
         </div>
 
         <div class="structurePending" id="structurePendingStatus">Pending definitions.</div>
+      </section>
+
+      <section class="wizardPanel" data-panel="5">
+        <div class="panelTitleRow">
+          <div class="panelTitleText">Checks</div>
+          <div class="panelTitleNote">Review the excerpt summary and validate the output.</div>
+        </div>
+
+        <div class="checksLayout">
+          <div class="panelCard checksCard">
+            <div class="panelCardTitle">Excerpt overview</div>
+            <div class="checksMeta" id="checksMetaSummary"></div>
+            <div class="checksStatRow" id="checksStats"></div>
+            <div class="checksStatRow" id="checksSentenceStats"></div>
+            <div class="checksWarning hidden" id="checksParaWarning"></div>
+          </div>
+
+          <div class="panelCard checksCard">
+            <div class="panelCardTitle">Checks</div>
+
+            <div class="checkBlock">
+              <div class="checkHeader">
+                <span class="checkLabel">Level 1 - Structure evaluation</span>
+                <span class="checkStatus" id="check1Status">Pending</span>
+              </div>
+              <div class="checkBody" id="check1Body"></div>
+            </div>
+
+            <div class="checkBlock">
+              <div class="checkHeader">
+                <span class="checkLabel">Level 2 - Analyzed text validation</span>
+                <span class="checkStatus" id="check2Status">Pending</span>
+              </div>
+              <div class="checkBody" id="check2Body"></div>
+            </div>
+
+            <div class="checkBlock">
+              <div class="checkHeader">
+                <span class="checkLabel">Level 3 - Excerpt consistency</span>
+                <span class="checkStatus" id="check3Status">Pending</span>
+              </div>
+              <div class="checkBody" id="check3Body"></div>
+              <div class="checkActions hidden" id="check3Actions">
+                <button class="button textBtn" id="copyReconstructedBtn" type="button">Copy reconstructed text</button>
+                <span class="checkActionNote" id="copyReconstructedNote"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="wizardPanel" data-panel="6">
+        <div class="panelTitleRow">
+          <div class="panelTitleText">Store</div>
+          <div class="panelTitleNote">Coming next.</div>
+        </div>
+        <div class="panelCard">
+          <div class="panelCardTitle">Not implemented yet</div>
+          <div class="panelHint">
+            This panel will handle saving and exporting once it is implemented.
+          </div>
+        </div>
       </section>
     </div>
 
